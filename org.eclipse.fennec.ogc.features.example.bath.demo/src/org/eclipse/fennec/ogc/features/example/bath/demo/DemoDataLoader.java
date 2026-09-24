@@ -45,10 +45,7 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
 /**
  * Loads GeoJSON files of this bundle into a repository unless it already holds instances of
- * the configured class, and then registers a condition.
- * <p>
- * Loading happens on a thread of its own and is retried: the repository is registered from
- * within the activation of its persistence unit, before the unit accepts requests.
+ * the configured class, and then registers a condition. Loading happens in the activation.
  */
 @Component(name = DemoDataLoader.PID, configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Designate(ocd = DemoDataLoader.Config.class, factory = true)
@@ -92,14 +89,12 @@ public class DemoDataLoader {
 		String conditionId();
 	}
 
-	private final BundleContext context;
 	private final Config config;
 	private final Repository repository;
 	private final DataSource dataSource;
 	private final EPackage ePackage;
 	private final Resource.Factory geoJson;
-	private final Thread worker;
-	private volatile ServiceRegistration<Condition> condition;
+	private final ServiceRegistration<Condition> condition;
 
 	/**
 	 * @param context the bundle context
@@ -108,43 +103,25 @@ public class DemoDataLoader {
 	 * @param dataSource the database behind the repository
 	 * @param ePackage the package of the feature classes
 	 * @param geoJson the GeoJSON resource factory
+	 * @throws IOException if a data file cannot be read
+	 * @throws SQLException if the geometry columns cannot be widened
 	 */
 	@Activate
 	public DemoDataLoader(BundleContext context, Config config,
 			@Reference(name = "repository") Repository repository,
 			@Reference(name = "dataSource") DataSource dataSource,
 			@Reference(name = "ePackage") EPackage ePackage,
-			@Reference(target = "(emf.configuratorName=geojson)") Resource.Factory geoJson) {
-		this.context = context;
+			@Reference(target = "(emf.configuratorName=geojson)") Resource.Factory geoJson)
+			throws IOException, SQLException {
 		this.config = config;
 		this.repository = repository;
 		this.dataSource = dataSource;
 		this.ePackage = ePackage;
 		this.geoJson = geoJson;
-		this.worker = Thread.ofVirtual().name("demo-data-loader-" + ePackage.getName()).start(this::loadWithRetry);
-	}
-
-	private void loadWithRetry() {
-		for (int attempt = 1; !Thread.currentThread().isInterrupted(); attempt++) {
-			try {
-				load();
-				Dictionary<String, Object> properties = new Hashtable<>();
-				properties.put(Condition.CONDITION_ID, config.conditionId());
-				condition = context.registerService(Condition.class, Condition.INSTANCE, properties);
-				return;
-			} catch (IOException | SQLException | RuntimeException e) {
-				if (attempt >= 30) {
-					LOGGER.log(System.Logger.Level.ERROR, "Giving up loading the demo data of " + ePackage.getNsURI(), e);
-					return;
-				}
-				LOGGER.log(System.Logger.Level.DEBUG, "Store not ready, retrying: {0}", e.getMessage());
-				try {
-					Thread.sleep(Math.min(200L * attempt, 2000L));
-				} catch (InterruptedException ie) {
-					Thread.currentThread().interrupt();
-				}
-			}
-		}
+		load();
+		Dictionary<String, Object> properties = new Hashtable<>();
+		properties.put(Condition.CONDITION_ID, config.conditionId());
+		this.condition = context.registerService(Condition.class, Condition.INSTANCE, properties);
 	}
 
 	private void load() throws IOException, SQLException {
@@ -182,12 +159,7 @@ public class DemoDataLoader {
 	}
 
 	@Deactivate
-	void deactivate() throws InterruptedException {
-		worker.interrupt();
-		worker.join(5000);
-		ServiceRegistration<Condition> registration = condition;
-		if (registration != null) {
-			registration.unregister();
-		}
+	void deactivate() {
+		condition.unregister();
 	}
 }
