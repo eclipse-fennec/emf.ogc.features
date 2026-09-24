@@ -27,10 +27,17 @@ import java.util.function.Supplier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.fennec.ogc.features.api.CollectionDescriptor;
 import org.eclipse.fennec.ogc.features.api.Envelope;
+import org.eclipse.fennec.ogc.features.api.FeatureQuery;
 import org.eclipse.fennec.ogc.features.api.FeatureResult;
 import org.eclipse.fennec.ogc.features.api.FeatureSource;
 import org.eclipse.fennec.ogc.features.api.FeatureSourceException;
 import org.eclipse.fennec.ogc.features.api.FilterLanguage;
+import org.geojson.LineString;
+import org.geojson.MultiLineString;
+import org.geojson.MultiPoint;
+import org.geojson.MultiPolygon;
+import org.geojson.Point;
+import org.geojson.Polygon;
 
 /**
  * The OGC API Features resources, independent of the servlet API: a request path, its
@@ -76,9 +83,17 @@ final class OgcApi {
 	 * @param status the HTTP status
 	 * @param contentType the media type
 	 * @param body the body
+	 * @param filename the file name for a download, {@code null} to show the body
 	 */
-	record Response(int status, String contentType, byte[] body) {
+	record Response(int status, String contentType, byte[] body, String filename) {
+
+		Response(int status, String contentType, byte[] body) {
+			this(status, contentType, body, null);
+		}
 	}
+
+	/** features looked at for one with a geometry, in the order the items are served */
+	private static final int KIND_SAMPLE = 20;
 
 	private final CollectionRegistry registry;
 	private final Supplier<Map<String, FilterLanguage>> languages;
@@ -102,6 +117,9 @@ final class OgcApi {
 			format = format(parameters.get("f"), accept);
 			LinkFactory links = new LinkFactory(baseUrl);
 			List<String> segments = segments(path);
+			if ("qgs".equals(format) && !segments.equals(List.of("collections"))) {
+				throw RequestException.notAcceptable("f=qgs is offered for /collections only");
+			}
 			if (segments.isEmpty()) {
 				return landingPage(links, format);
 			}
@@ -172,7 +190,11 @@ final class OgcApi {
 			if ("html".equals(format)) {
 				return html(new HtmlEncoder(links).collections(views));
 			}
-			List<Link> pageLinks = links.selfLinks("/collections", format, "Feature collections");
+			if ("qgs".equals(format)) {
+				return qgisProject(views, links);
+			}
+			List<Link> pageLinks = new ArrayList<>(links.selfLinks("/collections", format, "Feature collections"));
+			pageLinks.add(new Link(links.url("/collections?f=qgs"), "alternate", MediaTypes.QGIS_PROJECT, "QGIS project"));
 			return json(MediaTypes.JSON, e -> e.collections(views, pageLinks));
 		}
 		CollectionDescriptor collection = registry.collection(segments.get(1))
@@ -206,7 +228,16 @@ final class OgcApi {
 			String format, LinkFactory links) {
 		ItemsRequest request = ItemsRequest.parse(parameters, collection, languages.get(), settings.defaultLimit(),
 				settings.maxLimit());
-		FeatureResult result = source.query(request.query());
+		FeatureResult result;
+		try {
+			result = source.query(request.query());
+		} catch (UnsupportedOperationException e) {
+			// the backend cannot evaluate part of the filter, as in OData
+			throw RequestException.notImplemented("Not supported by the backend of collection " + collection.id() + ": "
+					+ e.getMessage());
+		} catch (IllegalArgumentException e) {
+			throw RequestException.badRequest("Invalid filter: " + e.getMessage());
+		}
 		List<Link> pageLinks = links.itemsLinks(collection, request, result.features().size(), result.numberMatched(),
 				format);
 		if ("html".equals(format)) {
@@ -226,6 +257,42 @@ final class OgcApi {
 			return html(new HtmlEncoder(links).feature(collection, feature, featureLinks));
 		}
 		return json(MediaTypes.GEO_JSON, e -> e.feature(collection, feature, featureLinks, links));
+	}
+
+	/** the collections as a QGIS project, one layer per collection with features */
+	private Response qgisProject(List<CollectionView> views, LinkFactory links) {
+		List<QgisProject.Layer> layers = new ArrayList<>();
+		for (CollectionView view : views) {
+			kind(view.descriptor()).ifPresent(kind -> layers.add(new QgisProject.Layer(view, kind)));
+		}
+		byte[] body = QgisProject.write(settings.title(), links.url(""), layers);
+		return new Response(200, MediaTypes.QGIS_PROJECT, body, "ogc-features.qgs");
+	}
+
+	/** the geometry type of the first feature with a geometry: QGIS gives the layer that type */
+	private Optional<QgisProject.Kind> kind(CollectionDescriptor collection) {
+		if (collection.geometry() == null) {
+			return Optional.empty();
+		}
+		Optional<FeatureSource> source = registry.source(collection);
+		if (source.isEmpty()) {
+			return Optional.empty();
+		}
+		for (EObject feature : source.get().query(FeatureQuery.builder(collection).limit(KIND_SAMPLE).build()).features()) {
+			QgisProject.Kind kind = switch (feature.eGet(collection.geometry())) {
+			case Point p -> QgisProject.Kind.POINT;
+			case MultiPoint p -> QgisProject.Kind.POINT;
+			case LineString l -> QgisProject.Kind.LINE;
+			case MultiLineString l -> QgisProject.Kind.LINE;
+			case Polygon p -> QgisProject.Kind.POLYGON;
+			case MultiPolygon p -> QgisProject.Kind.POLYGON;
+			case null, default -> null;
+			};
+			if (kind != null) {
+				return Optional.of(kind);
+			}
+		}
+		return Optional.empty();
 	}
 
 	private CollectionView view(CollectionDescriptor collection, LinkFactory links, String format) {
@@ -277,7 +344,8 @@ final class OgcApi {
 			return switch (lower) {
 			case "json", "geojson" -> "json";
 			case "html" -> "html";
-			default -> throw RequestException.notAcceptable("Unsupported format f=" + f + ", supported: json, html");
+			case "qgs", "qgis" -> "qgs";
+			default -> throw RequestException.notAcceptable("Unsupported format f=" + f + ", supported: json, html, qgs");
 			};
 		}
 		if (accept != null && accept.contains("text/html")) {

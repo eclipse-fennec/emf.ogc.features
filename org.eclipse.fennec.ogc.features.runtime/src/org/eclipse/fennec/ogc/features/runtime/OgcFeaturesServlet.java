@@ -128,6 +128,9 @@ public class OgcFeaturesServlet extends HttpServlet {
 		cors(response);
 		response.setStatus(result.status());
 		response.setContentType(result.contentType());
+		if (result.filename() != null) {
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + result.filename() + "\"");
+		}
 		response.setContentLength(result.body().length);
 		response.getOutputStream().write(result.body());
 	}

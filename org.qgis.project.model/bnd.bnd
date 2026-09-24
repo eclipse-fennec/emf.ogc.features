@@ -1,0 +1,20 @@
+Bundle-Name: QGIS Project Model
+Bundle-Description: The part of the QGIS project file (.qgs) that Fennec OGC Features writes, as \
+ EMF model mapped to the QGIS XML names: layer tree, map layers, renderers, symbols with their \
+ option maps, labelling and view settings. QGIS has no current schema of the format; the model \
+ follows the files QGIS 3 writes.
+
+src: src-gen,src
+-library: enableEMF
+
+-generate: \
+	model/qgis.ecore; \
+		generate=fennecEMF; \
+		ecore=model/qgis.ecore; \
+		output=src-gen
+
+-includeresource.model: model=model
+
+-testpath: \
+	${junit},\
+	assertj-core;version=latest

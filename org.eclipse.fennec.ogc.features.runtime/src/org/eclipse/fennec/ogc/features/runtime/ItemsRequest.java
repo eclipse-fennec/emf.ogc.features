@@ -12,8 +12,6 @@
  */
 package org.eclipse.fennec.ogc.features.runtime;
 
-import static org.eclipse.fennec.model.query.builder.Expressions.path;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -23,15 +21,17 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.fennec.ogc.features.api.CollectionDescriptor;
 import org.eclipse.fennec.ogc.features.api.Envelope;
-import org.eclipse.fennec.ogc.features.api.FeatureFilter;
 import org.eclipse.fennec.ogc.features.api.FeatureQuery;
 import org.eclipse.fennec.ogc.features.api.FilterLanguage;
-import org.eclipse.fennec.ogc.features.geo.FeaturePredicates;
-import org.eclipse.fennec.ogc.features.geo.JtsGeometries;
-import org.eclipse.fennec.ogc.features.geo.SpatialRelation;
+import org.eclipse.fennec.ogc.features.cql2.Cql2Evaluator;
+import org.eclipse.fennec.ogc.features.cql2.Cql2Filters;
+
+import net.opengis.cql2.Predicate;
 
 /**
- * The parameters of an items request, translated into a {@link FeatureQuery}.
+ * The parameters of an items request, translated into a {@link FeatureQuery} whose one CQL2
+ * filter carries every restriction: {@code bbox}, {@code datetime}, {@code filter} and the
+ * property parameters.
  *
  * @param query the query
  * @param limit the effective page size
@@ -65,14 +65,14 @@ record ItemsRequest(FeatureQuery query, int limit, int offset, Map<String, Strin
 
 		requireCrs84(parameters, "bbox-crs");
 		String bbox = parameters.get("bbox");
-		if (bbox != null) {
-			bbox(builder, collection, envelope(bbox));
+		if (bbox != null && collection.geometry() != null) {
+			builder.where(Cql2Filters.intersects(collection.geometry(), envelope(bbox)));
 		}
 
 		String datetime = parameters.get("datetime");
 		if (datetime != null && collection.temporal() != null) {
 			try {
-				builder.where(DateTimeParameter.parse(datetime).toExpression(collection.temporal()));
+				builder.where(DateTimeParameter.parse(datetime).toPredicate(collection.temporal()));
 			} catch (IllegalArgumentException e) {
 				throw RequestException.badRequest("Invalid datetime: " + e.getMessage());
 			}
@@ -87,8 +87,10 @@ record ItemsRequest(FeatureQuery query, int limit, int offset, Map<String, Strin
 				throw RequestException.badRequest("Unsupported filter-lang '" + lang + "', supported: " + languages.keySet());
 			}
 			try {
-				FeatureFilter parsed = language.parse(filter, collection);
-				parsed.applyTo(builder);
+				Predicate parsed = language.parse(filter);
+				// the reference semantics decide what is valid for the collection, the same for every backend
+				Cql2Evaluator.compile(parsed, collection);
+				builder.where(parsed);
 			} catch (IllegalArgumentException e) {
 				throw RequestException.badRequest("Invalid filter: " + e.getMessage());
 			}
@@ -102,24 +104,13 @@ record ItemsRequest(FeatureQuery query, int limit, int offset, Map<String, Strin
 			}
 			EAttribute property = collection.property(parameter.getKey())
 					.orElseThrow(() -> RequestException.badRequest("Unknown parameter '" + parameter.getKey() + "'"));
-			builder.where(path(property).eq(value(property, parameter.getValue())));
+			builder.where(Cql2Filters.equal(property, value(property, parameter.getValue())));
 		}
 
 		Map<String, String> paging = new LinkedHashMap<>(parameters);
 		paging.remove("offset");
 		paging.put("limit", Integer.toString(limit));
 		return new ItemsRequest(builder.build(), limit, offset, paging);
-	}
-
-	private static void bbox(FeatureQuery.Builder builder, CollectionDescriptor collection, Envelope envelope) {
-		if (collection.bbox() != null) {
-			builder.where(collection.bbox().intersects(envelope));
-		}
-		if (collection.geometry() != null) {
-			// the stored boxes only pre-filter: a polygon's box may touch the bbox while the polygon does not
-			builder.residual(FeaturePredicates.spatial(collection.geometry(), SpatialRelation.INTERSECTS,
-					JtsGeometries.toJts(envelope)));
-		}
 	}
 
 	private static Envelope envelope(String bbox) {

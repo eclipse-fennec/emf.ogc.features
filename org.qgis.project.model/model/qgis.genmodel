@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    copyrightText="Copyright (c) 2026 Contributors to the Eclipse Foundation.&#xA;&#xA;This program and the accompanying materials are made&#xA;available under the terms of the Eclipse Public License 2.0&#xA;which is available at https://www.eclipse.org/legal/epl-2.0/&#xA;&#xA;SPDX-License-Identifier: EPL-2.0&#xA;&#xA;Contributors:&#xA;     Data In Motion - initial API and implementation"
+    modelDirectory="/org.qgis.project.model/src-gen" modelPluginID="org.qgis.project.model"
+    modelName="Project" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" bundleManifest="false" complianceLevel="17.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true" oSGiCompatible="true">
+  <foreignModel>qgis.ecore</foreignModel>
+  <genPackages prefix="Qgis" basePackage="org.qgis" resource="XML" disposableProviderFactory="true">
+    <ecorePackage href="qgis.ecore#/"/>
+    <genEnums typeSafeEnumCompatible="false">
+      <ecoreEnum href="qgis.ecore#//CheckState"/>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="qgis.ecore#//CheckState/Checked"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="qgis.ecore#//CheckState/Unchecked"/>
+      </genEnumLiterals>
+    </genEnums>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//Project"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Project/version"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Project/projectname"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Project/title"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//Project/projectCrs"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//Project/layerTreeGroup"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//Project/projectLayers"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//Project/layerOrder"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//Project/properties"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//Project/viewSettings"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//Crs"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//Crs/spatialRefSys"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//SpatialRefSys"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//SpatialRefSys/nativeFormat"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//SpatialRefSys/wkt"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//SpatialRefSys/proj4"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//SpatialRefSys/srsid"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//SpatialRefSys/srid"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//SpatialRefSys/authid"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//SpatialRefSys/description"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//SpatialRefSys/projectionacronym"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//SpatialRefSys/ellipsoidacronym"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//SpatialRefSys/geographicflag"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//LayerTreeGroup"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//LayerTreeGroup/name"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//LayerTreeGroup/checked"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//LayerTreeGroup/expanded"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//LayerTreeGroup/groups"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//LayerTreeGroup/layers"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//LayerTreeGroup/customOrder"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//LayerTreeLayer"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//LayerTreeLayer/id"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//LayerTreeLayer/name"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//LayerTreeLayer/providerKey"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//LayerTreeLayer/source"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//LayerTreeLayer/checked"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//LayerTreeLayer/expanded"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//CustomOrder"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//CustomOrder/enabled"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//CustomOrder/items"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//ProjectLayers"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//ProjectLayers/layers"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//MapLayer"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//MapLayer/type"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//MapLayer/geometry"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//MapLayer/id"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//MapLayer/datasource"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//MapLayer/layername"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//MapLayer/srs"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//MapLayer/provider"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//MapLayer/renderer"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//MapLayer/labeling"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//Provider"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Provider/encoding"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Provider/key"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//Renderer"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Renderer/type"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Renderer/symbollevels"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Renderer/enableorderby"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Renderer/forceraster"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//Renderer/symbols"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//Symbols"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//Symbols/symbols"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//Symbol"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Symbol/type"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Symbol/name"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Symbol/alpha"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Symbol/clipToExtent"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Symbol/forceRhr"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//Symbol/layers"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//SymbolLayer"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//SymbolLayer/layerClass"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//SymbolLayer/enabled"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//SymbolLayer/locked"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//SymbolLayer/pass"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//SymbolLayer/options"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//SymbolLayer/dataDefinedProperties"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//DataDefinedProperties"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//DataDefinedProperties/option"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//Option"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Option/name"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Option/type"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Option/value"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//Option/options"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//Labeling"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Labeling/type"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//Labeling/settings"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//LabelSettings"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//LabelSettings/calloutType"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//LabelSettings/textStyle"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//LabelSettings/placement"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//LabelSettings/rendering"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//TextStyle"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//TextStyle/fieldName"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//TextStyle/isExpression"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//TextStyle/fontSize"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//TextStyle/textColor"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//TextStyle/textBuffer"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//TextBuffer"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//TextBuffer/bufferDraw"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//TextBuffer/bufferSize"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//TextBuffer/bufferColor"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//Placement"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Placement/placement"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//Rendering"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Rendering/scaleVisibility"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Rendering/scaleMin"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Rendering/scaleMax"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//LayerOrder"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//LayerOrder/layers"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//LayerRef"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//LayerRef/id"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//Properties"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//Properties/spatialRefSys"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//SpatialRefSysProperties"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//SpatialRefSysProperties/projectionsEnabled"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//TypedValue"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//TypedValue/type"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//TypedValue/value"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//ProjectViewSettings"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//ProjectViewSettings/useProjectScales"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//ProjectViewSettings/rotation"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//ProjectViewSettings/defaultViewExtent"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="qgis.ecore#//Extent"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Extent/xmin"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Extent/ymin"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Extent/xmax"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="qgis.ecore#//Extent/ymax"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="qgis.ecore#//Extent/spatialRefSys"/>
+      </genFeatures>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

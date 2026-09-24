@@ -15,12 +15,13 @@ package org.eclipse.fennec.ogc.features.cql2.internal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.fennec.ogc.features.api.CollectionDescriptor;
-import org.eclipse.fennec.ogc.features.api.FeatureFilter;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.fennec.ogc.features.api.FilterLanguage;
-import org.eclipse.fennec.ogc.features.cql2.Cql2JsonParser;
-import org.eclipse.fennec.ogc.features.cql2.Cql2Translator;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+
+import net.opengis.cql2.Predicate;
 
 /**
  * {@code filter-lang=cql2-json}
@@ -28,14 +29,24 @@ import org.osgi.service.component.annotations.Component;
 @Component
 public class Cql2JsonLanguage implements FilterLanguage {
 
+	private final Resource.Factory factory;
+
+	/**
+	 * @param factory the resource factory of the CQL2 JSON encoding
+	 */
+	@Activate
+	public Cql2JsonLanguage(@Reference(target = "(emf.configuratorName=cql2-json)") Resource.Factory factory) {
+		this.factory = factory;
+	}
+
 	@Override
 	public String name() {
 		return "cql2-json";
 	}
 
 	@Override
-	public FeatureFilter parse(String filter, CollectionDescriptor collection) {
-		return Cql2Translator.translate(Cql2JsonParser.parse(filter), collection);
+	public Predicate parse(String filter) {
+		return Cql2Languages.parse(factory, "filter.cql2json", filter);
 	}
 
 	@Override

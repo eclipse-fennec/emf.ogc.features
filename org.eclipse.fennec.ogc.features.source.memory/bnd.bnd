@@ -1,0 +1,18 @@
+Bundle-Name: Fennec OGC Features Memory Source
+Bundle-Description: A feature source over objects held in memory, evaluated by the CQL2 \
+ evaluator: the reference backend, without Fennec persistence.
+
+-library: enableEMF
+
+-buildpath: \
+	net.opengis.cql2.model;version=snapshot,\
+	org.eclipse.fennec.ogc.features.api;version=snapshot,\
+	org.eclipse.fennec.ogc.features.cql2;version=snapshot
+
+-testpath: \
+	${junit},\
+	assertj-core;version=latest,\
+	org.locationtech.jts.jts-core;version=latest,\
+	org.geojson.model;version=latest,\
+	org.eclipse.fennec.ogc.features.geo;version=snapshot,\
+	org.eclipse.fennec.ogc.features.example.bath;version=snapshot

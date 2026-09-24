@@ -12,15 +12,11 @@
  */
 package org.eclipse.fennec.ogc.features.api;
 
-import static org.eclipse.fennec.model.query.builder.Expressions.and;
-import static org.eclipse.fennec.model.query.builder.Expressions.path;
-
 import java.util.Objects;
 import java.util.Optional;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.fennec.model.expression.Expression;
 
 /**
  * The four persisted attributes holding the bounding box of a feature's geometry.
@@ -41,20 +37,6 @@ public record BboxAttributes(EAttribute minX, EAttribute minY, EAttribute maxX, 
 		Objects.requireNonNull(minY, "minY");
 		Objects.requireNonNull(maxX, "maxX");
 		Objects.requireNonNull(maxY, "maxY");
-	}
-
-	/**
-	 * Builds the store side envelope test: the feature's box and the given one overlap.
-	 *
-	 * @param envelope the envelope to test against
-	 * @return the predicate in the Fennec query IR
-	 */
-	public Expression intersects(Envelope envelope) {
-		return and(
-				path(minX).le(envelope.maxX()),
-				path(maxX).ge(envelope.minX()),
-				path(minY).le(envelope.maxY()),
-				path(maxY).ge(envelope.minY()));
 	}
 
 	/**

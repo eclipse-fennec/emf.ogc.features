@@ -20,12 +20,12 @@ Private-Package: org.eclipse.fennec.ogc.features.tests
 	org.osgi.service.condition;version=latest,\
 	org.osgi.service.jdbc;version=latest,\
 	org.geojson.model;version=latest,\
-	org.eclipse.fennec.expression.model;version=latest,\
-	org.eclipse.fennec.query.model;version=latest,\
 	org.eclipse.fennec.ogc.features.api;version=snapshot,\
 	org.eclipse.fennec.ogc.features.geo;version=snapshot,\
-	org.eclipse.fennec.ogc.features.source;version=snapshot,\
+	org.eclipse.fennec.ogc.features.source.memory;version=snapshot,\
 	org.eclipse.fennec.ogc.features.cql2;version=snapshot,\
+	org.eclipse.fennec.codec.cql2;version=snapshot,\
+	net.opengis.cql2.model;version=snapshot,\
 	tools.jackson.core.jackson-core;version=latest,\
 	tools.jackson.core.jackson-databind;version=latest,\
 	org.eclipse.fennec.ogc.features.example.bath;version=snapshot,\

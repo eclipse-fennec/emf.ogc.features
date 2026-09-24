@@ -55,7 +55,7 @@ import org.osgi.test.junit5.cm.ConfigurationExtension;
 		@Property(key = "fennec.jpa.dataSource.target", value = "(subprotocol=%s)",
 				templateArguments = @TemplateArgument(source = ValueSource.SystemProperty, value = "ogc.test.subprotocol")),
 		@Property(key = "fennec.jpa.converter.target", value = "(fennec.persistence.converter=geojson)"),
-		@Property(key = "fennec.jpa.ext.eclipselink.ddl-generation", value = "create-or-extend-tables"),
+		@Property(key = "fennec.jpa.ext.eclipselink.ddl-generation", value = "create-tables"),
 		// every read must go to the database, or a broken read conversion hides behind the cache
 		@Property(key = "fennec.jpa.ext.eclipselink.cache.shared.default", value = "false") })
 @WithFactoryConfiguration(factoryPid = "fennec.repository.jpa", name = "bath", location = "?", properties = {

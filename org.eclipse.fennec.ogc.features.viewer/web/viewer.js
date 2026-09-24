@@ -133,6 +133,9 @@ function setVisible(collection, visible) {
   if (visible) load(collection);
 }
 
+/** the property the viewer stores the feature id in */
+const FEATURE_ID = '__id';
+
 let loadToken = 0;
 async function load(collection) {
   const b = map.getBounds();
@@ -140,6 +143,8 @@ async function load(collection) {
   const token = ++loadToken;
   try {
     const page = await getJson(api(`collections/${encodeURIComponent(collection.id)}/items`, { bbox, limit: PAGE_SIZE }));
+    // MapLibre keeps numeric feature ids only; the OGC ids are strings, so carry them as a property
+    for (const f of page.features) f.properties = { ...f.properties, [FEATURE_ID]: f.id };
     map.getSource(sourceId(collection)).setData(page);
     state.counts.set(collection.id, page.numberMatched ?? page.numberReturned);
     const badge = document.querySelector(`[data-count="${CSS.escape(collection.id)}"]`);
@@ -224,10 +229,11 @@ function escapeHtml(text) {
 
 function popupHtml(feature, collection) {
   const p = feature.properties;
-  const rows = Object.entries(p).filter(([k]) => k !== 'name' && k !== 'color')
+  const id = p[FEATURE_ID];
+  const rows = Object.entries(p).filter(([k]) => k !== 'name' && k !== 'color' && k !== FEATURE_ID)
     .map(([k, v]) => `<tr><td>${escapeHtml(k)}</td><td>${escapeHtml(v)}</td></tr>`).join('');
-  const href = new URL(`collections/${encodeURIComponent(collection.id)}/items/${encodeURIComponent(feature.id)}?f=html`, API);
-  return `<div class="popup"><h2>${escapeHtml(p.name ?? feature.id)}</h2>`
+  const href = new URL(`collections/${encodeURIComponent(collection.id)}/items/${encodeURIComponent(id)}?f=html`, API);
+  return `<div class="popup"><h2>${escapeHtml(p.name ?? id)}</h2>`
     + `<div class="type">${escapeHtml(collection.title)}</div><table>${rows}</table>`
     + `<p><a href="${href}" target="_blank" rel="noopener">Details</a></p></div>`;
 }

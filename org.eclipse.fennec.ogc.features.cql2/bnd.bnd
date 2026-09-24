@@ -1,31 +1,32 @@
 Bundle-Name: Fennec OGC Features CQL2
-Bundle-Description: The OGC Common Query Language (CQL2) for Fennec OGC Features: text and JSON \
- encodings of basic CQL2, the advanced comparison operators and the spatial functions, \
- translated into a store part in the Fennec query IR and an in-memory residual.
+Bundle-Description: The OGC Common Query Language (CQL2) for Fennec OGC Features, backend \
+ neutral: the filter languages cql2-text and cql2-json over the CQL2 EMF resources, the binding \
+ of a filter to a collection, builders for the request parameters and the in-memory evaluator \
+ every backend is tested against.
 
 -library: enableEMF
 
 -buildpath: \
 	org.osgi.service.component.annotations;version=latest,\
 	org.locationtech.jts.jts-core;version=latest,\
-	org.eclipse.fennec.expression.model;version=latest,\
-	org.eclipse.fennec.query.model;version=latest,\
-	org.eclipse.fennec.persistence.query;version=latest,\
-	tools.jackson.core.jackson-core;version=latest,\
-	tools.jackson.core.jackson-databind;version=latest,\
 	org.geojson.model;version=latest,\
 	org.eclipse.fennec.ogc.features.api;version=snapshot,\
-	org.eclipse.fennec.ogc.features.geo;version=snapshot
+	org.eclipse.fennec.ogc.features.geo;version=snapshot,\
+	net.opengis.cql2.model;version=snapshot
 
 -testpath: \
-	org.eclipse.fennec.ogc.features.example.bath;version=snapshot,\
-	org.eclipse.fennec.ogc.features.source;version=snapshot,\
-	org.eclipse.fennec.persistence.capabilities;version=latest,\
-	org.eclipse.fennec.m2x.ocl.model;version=latest,\
+	${junit},\
+	assertj-core;version=latest,\
 	org.eclipse.fennec.codec.geojson;version=latest,\
-	org.eclipse.fennec.codec;version=latest,\
+	org.eclipse.fennec.ogc.features.example.bath;version=snapshot,\
+	org.eclipse.fennec.codec.cql2;version=snapshot,\
+	org.antlr.antlr4-runtime;version=latest,\
+	tools.jackson.core.jackson-core;version=latest,\
+	tools.jackson.core.jackson-databind;version=latest,\
 	org.eclipse.fennec.codec.api;version=latest,\
+	org.eclipse.fennec.codec;version=latest,\
 	org.eclipse.fennec.codec.metadata;version=latest,\
+	org.eclipse.fennec.emf.osgi.api;version=latest,\
 	org.eclipse.fennec.emf.osgi.metadata;version=latest,\
 	org.eclipse.fennec.emf.osgi.component.minimal;version=latest,\
 	com.fasterxml.jackson.core.jackson-annotations;version=latest

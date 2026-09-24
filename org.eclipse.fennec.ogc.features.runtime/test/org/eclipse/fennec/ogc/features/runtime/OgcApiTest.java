@@ -14,6 +14,7 @@ package org.eclipse.fennec.ogc.features.runtime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -28,9 +29,15 @@ import org.eclipse.fennec.codec.geojson.GeoJsonResourceFactoryImpl;
 import org.eclipse.fennec.ogc.features.example.bath.BathPackage;
 import org.eclipse.fennec.ogc.features.geo.GeoJsonFeatureImporter;
 import org.eclipse.fennec.ogc.features.geo.GeoJsonText;
-import org.eclipse.fennec.ogc.features.source.MemoryFeatureSource;
+import org.eclipse.fennec.ogc.features.source.memory.MemoryFeatureSource;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.qgis.project.CheckState;
+import org.qgis.project.LayerTreeGroup;
+import org.qgis.project.LayerTreeLayer;
+import org.qgis.project.MapLayer;
+import org.qgis.project.Project;
+import org.qgis.project.io.QgisProjectFiles;
 
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.json.JsonMapper;
@@ -213,6 +220,43 @@ class OgcApiTest {
 		assertThat(queryables.path("properties").path("depthMax").path("type").asString()).isEqualTo("number");
 		assertThat(queryables.path("properties").path("geometry").path("format").asString()).isEqualTo("geometry-any");
 		assertThat(queryables.path("properties").has("minX")).isFalse();
+	}
+
+	@Test
+	void qgisProject() throws Exception {
+		OgcApi.Response response = request("/collections", "f", "qgs");
+		assertThat(response.status()).isEqualTo(200);
+		assertThat(response.contentType()).isEqualTo("application/x-qgis-project");
+		assertThat(response.filename()).endsWith(".qgs");
+		Project project = QgisProjectFiles.read(new ByteArrayInputStream(response.body()));
+
+		assertThat(project.getProjectCrs().getSpatialRefSys().getAuthid()).isEqualTo("EPSG:3857");
+		List<MapLayer> layers = project.getProjectLayers().getLayers();
+		// QGIS replaces ids of up to ten characters and loses the tree's references to them
+		assertThat(layers).extracting(MapLayer::getId).allMatch(id -> id.length() > 10);
+		MapLayer pools = layers.stream().filter(l -> "ogc_features_pools".equals(l.getId())).findFirst().orElseThrow();
+		assertThat(pools.getDatasource()).contains("url='" + BASE + "'", "typename='pools'");
+		assertThat(pools.getProvider().getKey()).isEqualTo("OAPIF");
+		// without the full definition QGIS takes the CRS for invalid and draws nothing
+		assertThat(pools.getSrs().getSpatialRefSys().getWkt()).startsWith("GEOGCRS[");
+		assertThat(pools.getRenderer().getSymbols().getSymbols().get(0).getType()).isEqualTo("fill");
+		MapLayer slides = layers.stream().filter(l -> "ogc_features_slides".equals(l.getId())).findFirst().orElseThrow();
+		assertThat(slides.getRenderer().getSymbols().getSymbols().get(0).getType()).isEqualTo("line");
+		assertThat(layers.get(layers.size() - 1).getId()).as("basemap").isEqualTo("openstreetmap");
+
+		// the tree follows the layer groups; the aggregate collection starts hidden
+		LayerTreeGroup water = project.getLayerTreeGroup().getGroups().stream()
+				.filter(g -> "Wasser".equals(g.getName())).findFirst().orElseThrow();
+		assertThat(water.getLayers()).extracting(LayerTreeLayer::getName).contains("Becken");
+		assertThat(project.getLayerTreeGroup().getLayers()).filteredOn(l -> "ogc_features_assets".equals(l.getId()))
+				.extracting(LayerTreeLayer::getChecked).containsExactly(CheckState.UNCHECKED);
+		// points above lines above areas, the basemap at the bottom
+		List<String> order = project.getLayerTreeGroup().getCustomOrder().getItems();
+		assertThat(order.indexOf("ogc_features_toilets")).isLessThan(order.indexOf("ogc_features_slides"));
+		assertThat(order.indexOf("ogc_features_slides")).isLessThan(order.indexOf("ogc_features_pools"));
+		assertThat(order.get(order.size() - 1)).isEqualTo("openstreetmap");
+
+		assertThat(request("/collections/pools/items", "f", "qgs").status()).isEqualTo(406);
 	}
 
 	@Test

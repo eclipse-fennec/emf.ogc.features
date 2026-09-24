@@ -16,6 +16,8 @@ import java.util.List;
 
 import org.osgi.annotation.versioning.ConsumerType;
 
+import net.opengis.cql2.Predicate;
+
 /**
  * A filter language of the OGC API Features {@code filter} parameter, e.g. CQL2 text.
  * Registered as a service.
@@ -29,14 +31,13 @@ public interface FilterLanguage {
 	String name();
 
 	/**
-	 * Parses a filter and translates it for a collection.
+	 * Parses a filter into the CQL2 model, which every feature source understands.
 	 *
 	 * @param filter the filter text
-	 * @param collection the collection the filter applies to
-	 * @return the translated filter
-	 * @throws IllegalArgumentException if the filter is invalid or refers to unknown properties
+	 * @return the filter
+	 * @throws IllegalArgumentException if the filter is invalid
 	 */
-	FeatureFilter parse(String filter, CollectionDescriptor collection);
+	Predicate parse(String filter);
 
 	/**
 	 * @return the conformance class URIs this language contributes, e.g. the CQL2 classes

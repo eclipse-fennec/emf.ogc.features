@@ -3,7 +3,10 @@
 -runrequires: \
 	bnd.identity;id='org.eclipse.fennec.ogc.features.tests',\
 	bnd.identity;id='org.osgi.test.junit5.cm',\
-	bnd.identity;id='org.eclipse.fennec.ogc.features.source',\
+	bnd.identity;id='org.eclipse.fennec.ogc.features.source.memory',\
+	bnd.identity;id='org.eclipse.fennec.ogc.features.source.persistence',\
+	bnd.identity;id='org.eclipse.fennec.codec.cql2',\
+	bnd.identity;id='org.qgis.project.model',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.cql2',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.runtime',\
 	bnd.identity;id='org.apache.felix.http.jetty12',\

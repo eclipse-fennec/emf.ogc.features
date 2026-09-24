@@ -12,35 +12,30 @@
  */
 package org.eclipse.fennec.ogc.features.api;
 
-import static org.eclipse.fennec.model.query.builder.Expressions.and;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.fennec.model.expression.Expression;
+import net.opengis.cql2.And;
+import net.opengis.cql2.Cql2Factory;
+import net.opengis.cql2.Predicate;
 
 /**
  * A query for the features of one collection.
  * <p>
- * A filter comes in two parts. The {@link #filter() store part} is a Fennec query IR
- * predicate the store evaluates. The {@link #residual() residual} is a predicate the source
- * applies in memory to what the store returned, for tests the store cannot express, today
- * the exact spatial relations. With a residual, paging and counting also happen in memory,
- * because the store cannot know which of its rows survive.
+ * The filter is a CQL2 model, independent of any store: every restriction of a request, also
+ * {@code bbox}, {@code datetime} and property parameters, arrives as one CQL2 predicate. Each
+ * {@link FeatureSource} translates it into its own query form, and evaluates in memory what
+ * its store cannot decide.
  *
  * @param collection the collection to query
- * @param filter the store part of the filter, {@code null} for none
- * @param residual the in-memory part of the filter, {@code null} for none
+ * @param filter the CQL2 filter, {@code null} for none
  * @param sort sort criteria; the source appends the id attribute to make paging stable
  * @param offset number of matching features to skip
  * @param limit maximum number of features to return, {@link #UNLIMITED} for all
  * @param count {@code true} to have the number of matching features computed
  */
-public record FeatureQuery(CollectionDescriptor collection, Expression filter, Predicate<EObject> residual,
-		List<SortKey> sort, int offset, int limit, boolean count) {
+public record FeatureQuery(CollectionDescriptor collection, Predicate filter, List<SortKey> sort, int offset, int limit, boolean count) {
 
 	/** {@link #limit()} for no limit */
 	public static final int UNLIMITED = -1;
@@ -65,21 +60,13 @@ public record FeatureQuery(CollectionDescriptor collection, Expression filter, P
 	}
 
 	/**
-	 * @return {@code true} if part of the filter must be evaluated in memory
-	 */
-	public boolean hasResidual() {
-		return residual != null;
-	}
-
-	/**
-	 * Builder for {@link FeatureQuery}. Repeated {@link #where(Expression)} and
-	 * {@link #residual(Predicate)} calls are combined with AND.
+	 * Builder for {@link FeatureQuery}. Repeated {@link #where(Predicate)} calls are combined
+	 * with AND.
 	 */
 	public static final class Builder {
 
 		private final CollectionDescriptor collection;
-		private final List<Expression> filters = new ArrayList<>();
-		private Predicate<EObject> residual;
+		private final List<Predicate> filters = new ArrayList<>();
 		private final List<SortKey> sort = new ArrayList<>();
 		private int offset;
 		private int limit = UNLIMITED;
@@ -90,23 +77,12 @@ public record FeatureQuery(CollectionDescriptor collection, Expression filter, P
 		}
 
 		/**
-		 * @param filter a store side predicate, ignored if {@code null}
+		 * @param filter a CQL2 predicate, ignored if {@code null}
 		 * @return this builder
 		 */
-		public Builder where(Expression filter) {
+		public Builder where(Predicate filter) {
 			if (filter != null) {
 				filters.add(filter);
-			}
-			return this;
-		}
-
-		/**
-		 * @param predicate an in-memory predicate, ignored if {@code null}
-		 * @return this builder
-		 */
-		public Builder residual(Predicate<EObject> predicate) {
-			if (predicate != null) {
-				residual = residual == null ? predicate : residual.and(predicate);
 			}
 			return this;
 		}
@@ -151,12 +127,16 @@ public record FeatureQuery(CollectionDescriptor collection, Expression filter, P
 		 * @return the query
 		 */
 		public FeatureQuery build() {
-			Expression filter = switch (filters.size()) {
+			Predicate filter = switch (filters.size()) {
 			case 0 -> null;
 			case 1 -> filters.get(0);
-			default -> and(filters.toArray(Expression[]::new));
+			default -> {
+				And and = Cql2Factory.eINSTANCE.createAnd();
+				and.getArgs().addAll(filters);
+				yield and;
+			}
 			};
-			return new FeatureQuery(collection, filter, residual, sort, offset, limit, count);
+			return new FeatureQuery(collection, filter, sort, offset, limit, count);
 		}
 	}
 }

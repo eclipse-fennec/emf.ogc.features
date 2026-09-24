@@ -19,13 +19,9 @@ import static org.eclipse.fennec.ogc.features.geo.TestGeometries.line;
 import static org.eclipse.fennec.ogc.features.geo.TestGeometries.point;
 import static org.eclipse.fennec.ogc.features.geo.TestGeometries.withHole;
 
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.fennec.codec.geojson.GeoJsonResourceFactoryImpl;
 import org.eclipse.fennec.codec.util.MetadataServiceFactory;
 import org.eclipse.fennec.emf.osgi.metadata.MetadataWhiteboard;
-import org.eclipse.fennec.ogc.features.geo.internal.GeoJsonTypeConverter;
 import org.geojson.GeoJsonPackage;
 import org.geojson.Geometry;
 import org.geojson.LineString;
@@ -83,20 +79,5 @@ class GeoJsonTextTest {
 	void invalidTextIsRejected() {
 		assertThatThrownBy(() -> text.read("{\"type\":")).isInstanceOf(IllegalArgumentException.class);
 		assertThat(text.read("  ")).isNull();
-	}
-
-	@Test
-	void converterHandlesGeometryDataTypes() {
-		GeoJsonTypeConverter converter = new GeoJsonTypeConverter(factory);
-		EDataType geometryType = EcoreFactory.eINSTANCE.createEDataType();
-		geometryType.setInstanceClass(Geometry.class);
-		assertThat(converter.isConverterForType(geometryType)).isTrue();
-		assertThat(converter.isConverterForType(EcorePackage.Literals.ESTRING)).isFalse();
-
-		Object stored = converter.convertEMFToValue(geometryType, point(3, 4));
-		assertThat(stored).isInstanceOf(String.class);
-		Object loaded = converter.convertValueToEMF(geometryType, stored);
-		assertThat(loaded).isInstanceOf(Point.class);
-		assertThat(converter.convertValueToEMF(geometryType, null)).isNull();
 	}
 }

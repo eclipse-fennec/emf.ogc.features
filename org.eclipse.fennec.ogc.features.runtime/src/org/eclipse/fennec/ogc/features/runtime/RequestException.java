@@ -40,6 +40,10 @@ class RequestException extends RuntimeException {
 		return new RequestException(406, "NotAcceptable", description);
 	}
 
+	static RequestException notImplemented(String description) {
+		return new RequestException(501, "NotImplemented", description);
+	}
+
 	int status() {
 		return status;
 	}

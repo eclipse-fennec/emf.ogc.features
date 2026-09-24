@@ -22,6 +22,7 @@ final class MediaTypes {
 	static final String HTML = "text/html";
 	static final String OPEN_API = "application/vnd.oai.openapi+json;version=3.0";
 	static final String JSON_SCHEMA = "application/schema+json";
+	static final String QGIS_PROJECT = "application/x-qgis-project";
 
 	private MediaTypes() {
 	}

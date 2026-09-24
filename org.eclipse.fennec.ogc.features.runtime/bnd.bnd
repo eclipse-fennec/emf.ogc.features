@@ -12,19 +12,19 @@ Bundle-Description: The OGC API - Features server: landing page, conformance, Op
 	org.apache.felix.http.servlet-api;version=latest,\
 	org.geojson.model;version=latest,\
 	org.locationtech.jts.jts-core;version=latest,\
-	org.eclipse.fennec.expression.model;version=latest,\
-	org.eclipse.fennec.query.model;version=latest,\
 	tools.jackson.core.jackson-core;version=latest,\
 	tools.jackson.core.jackson-databind;version=latest,\
 	org.eclipse.fennec.ogc.features.api;version=snapshot,\
-	org.eclipse.fennec.ogc.features.geo;version=snapshot
+	org.eclipse.fennec.ogc.features.geo;version=snapshot,\
+	org.eclipse.fennec.ogc.features.cql2;version=snapshot,\
+	net.opengis.cql2.model;version=snapshot,\
+	org.qgis.project.model;version=snapshot
 
 -testpath: \
-	org.eclipse.fennec.ogc.features.source;version=snapshot,\
+	${junit},\
+	assertj-core;version=latest,\
+	org.eclipse.fennec.ogc.features.source.memory;version=snapshot,\
 	org.eclipse.fennec.ogc.features.example.bath;version=snapshot,\
-	org.eclipse.fennec.persistence.query;version=latest,\
-	org.eclipse.fennec.persistence.capabilities;version=latest,\
-	org.eclipse.fennec.m2x.ocl.model;version=latest,\
 	org.eclipse.fennec.codec.geojson;version=latest,\
 	org.eclipse.fennec.codec;version=latest,\
 	org.eclipse.fennec.codec.api;version=latest,\

@@ -12,9 +12,6 @@
  */
 package org.eclipse.fennec.ogc.features.runtime;
 
-import static org.eclipse.fennec.model.query.builder.Expressions.and;
-import static org.eclipse.fennec.model.query.builder.Expressions.path;
-
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,9 +21,12 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.fennec.model.expression.Expression;
+import org.eclipse.fennec.ogc.features.cql2.Cql2Filters;
+
+import net.opengis.cql2.Predicate;
 
 /**
  * The OGC {@code datetime} parameter: an instant, a date (the whole day, UTC), or a closed
@@ -37,6 +37,8 @@ import org.eclipse.fennec.model.expression.Expression;
  * @param endExclusive whether {@code end} itself is excluded, as for a day given as date
  */
 record DateTimeParameter(Instant start, Instant end, boolean endExclusive) {
+
+	private static final Set<Class<?>> TEMPORAL = Set.of(Date.class, Instant.class, LocalDateTime.class, LocalDate.class);
 
 	/**
 	 * @param value the parameter value
@@ -70,38 +72,25 @@ record DateTimeParameter(Instant start, Instant end, boolean endExclusive) {
 
 	/**
 	 * @param temporal the temporal attribute, of a date/time type
-	 * @return the predicate selecting values within this parameter
+	 * @return the CQL2 predicate selecting values within this parameter
 	 * @throws IllegalArgumentException if the attribute type is no supported date/time type
 	 */
-	Expression toExpression(EAttribute temporal) {
+	Predicate toPredicate(EAttribute temporal) {
 		Class<?> type = temporal.getEAttributeType().getInstanceClass();
-		if (start != null && start.equals(end) && !endExclusive) {
-			return path(temporal).eq(literal(start, type));
+		if (!TEMPORAL.contains(type)) {
+			throw new IllegalArgumentException("temporal attribute type " + type + " is not supported");
 		}
-		List<Expression> bounds = new ArrayList<>();
+		if (start != null && start.equals(end) && !endExclusive) {
+			return Cql2Filters.equal(temporal, start);
+		}
+		List<Predicate> bounds = new ArrayList<>();
 		if (start != null) {
-			bounds.add(path(temporal).ge(literal(start, type)));
+			bounds.add(Cql2Filters.greaterOrEqual(temporal, start));
 		}
 		if (end != null) {
-			bounds.add(endExclusive ? path(temporal).lt(literal(end, type)) : path(temporal).le(literal(end, type)));
+			bounds.add(endExclusive ? Cql2Filters.lessThan(temporal, end) : Cql2Filters.lessOrEqual(temporal, end));
 		}
-		return bounds.size() == 1 ? bounds.get(0) : and(bounds.toArray(Expression[]::new));
-	}
-
-	private static Object literal(Instant instant, Class<?> type) {
-		if (type == Date.class) {
-			return Date.from(instant);
-		}
-		if (type == Instant.class) {
-			return instant;
-		}
-		if (type == LocalDateTime.class) {
-			return LocalDateTime.ofInstant(instant, ZoneOffset.UTC);
-		}
-		if (type == LocalDate.class) {
-			return LocalDate.ofInstant(instant, ZoneOffset.UTC);
-		}
-		throw new IllegalArgumentException("temporal attribute type " + type + " is not supported");
+		return Cql2Filters.and(bounds);
 	}
 
 	private static boolean open(String part) {

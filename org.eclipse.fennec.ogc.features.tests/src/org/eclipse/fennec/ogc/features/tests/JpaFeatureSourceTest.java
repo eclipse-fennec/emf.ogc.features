@@ -13,7 +13,6 @@
 package org.eclipse.fennec.ogc.features.tests;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.eclipse.fennec.model.query.builder.Expressions.path;
 
 import java.io.InputStream;
 import java.sql.Connection;
@@ -26,26 +25,26 @@ import javax.sql.DataSource;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.fennec.codec.cql2.Cql2Text;
 import org.eclipse.fennec.ogc.features.api.CollectionDescriptor;
 import org.eclipse.fennec.ogc.features.api.Envelope;
 import org.eclipse.fennec.ogc.features.api.FeatureQuery;
 import org.eclipse.fennec.ogc.features.api.FeatureResult;
 import org.eclipse.fennec.ogc.features.api.FeatureSource;
 import org.eclipse.fennec.ogc.features.api.SortKey;
+import org.eclipse.fennec.ogc.features.cql2.Cql2Filters;
 import org.eclipse.fennec.ogc.features.example.bath.Asset;
 import org.eclipse.fennec.ogc.features.example.bath.BathPackage;
 import org.eclipse.fennec.ogc.features.example.bath.demo.DemoDataLoader;
-import org.eclipse.fennec.ogc.features.example.bath.PoolType;
 import org.eclipse.fennec.ogc.features.geo.GeoJsonFeatureImporter;
 import org.eclipse.fennec.ogc.features.geo.GeoJsonText;
 import org.eclipse.fennec.ogc.features.geo.JtsGeometries;
-import org.eclipse.fennec.ogc.features.geo.SpatialRelation;
-import org.eclipse.fennec.ogc.features.source.MemoryFeatureSource;
+import org.eclipse.fennec.ogc.features.source.memory.MemoryFeatureSource;
+import org.geojson.Geometry;
 import org.geojson.Polygon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.locationtech.jts.geom.Geometry;
 import org.osgi.service.condition.Condition;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
@@ -145,21 +144,19 @@ class JpaFeatureSourceTest {
 
 	@Test
 	void bboxFilter() {
-		assertSame(q -> q.where(assets.bbox().intersects(OUTDOOR_POOL_AREA)), assets);
+		assertSame(q -> q.where(Cql2Filters.intersects(assets.geometry(), OUTDOOR_POOL_AREA)), assets);
 	}
 
 	@Test
 	void propertyFilterSortingAndPaging() {
-		assertSame(q -> q.where(path(BathPackage.Literals.POOL__POOL_TYPE).ne(PoolType.KIDS))
+		assertSame(q -> q.where(Cql2Text.parse("poolType <> 'KIDS'"))
 				.sort(SortKey.desc(BathPackage.Literals.POOL__WATER_TEMPERATURE)).offset(2).limit(3), pools);
 	}
 
 	@Test
-	void exactSpatialTestAsResidual() {
-		Geometry area = JtsGeometries.toJts(OUTDOOR_POOL_AREA);
-		assertSame(q -> q.where(assets.bbox().intersects(OUTDOOR_POOL_AREA))
-				.residual(o -> SpatialRelation.INTERSECTS.test(JtsGeometries.toJts(geometry(o)), area))
-				.limit(5), assets);
+	void exactSpatialTestBeforePaging() {
+		// the store pre-filters by envelope, the exact test and the page are computed in memory
+		assertSame(q -> q.where(Cql2Filters.intersects(assets.geometry(), OUTDOOR_POOL_AREA)).limit(5), assets);
 	}
 
 	private void assertSame(UnaryOperator<FeatureQuery.Builder> query, CollectionDescriptor collection) {
@@ -175,7 +172,7 @@ class JpaFeatureSourceTest {
 		return result.features().stream().map(o -> (String) o.eGet(BathPackage.Literals.ASSET__ID)).toList();
 	}
 
-	private static org.geojson.Geometry geometry(EObject asset) {
-		return (org.geojson.Geometry) asset.eGet(BathPackage.Literals.ASSET__GEOMETRY);
+	private static Geometry geometry(EObject asset) {
+		return (Geometry) asset.eGet(BathPackage.Literals.ASSET__GEOMETRY);
 	}
 }

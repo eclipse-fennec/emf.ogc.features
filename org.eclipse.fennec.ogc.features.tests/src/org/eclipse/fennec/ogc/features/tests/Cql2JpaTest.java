@@ -20,18 +20,16 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.fennec.codec.cql2.Cql2Text;
 import org.eclipse.fennec.ogc.features.api.CollectionDescriptor;
-import org.eclipse.fennec.ogc.features.api.FeatureFilter;
 import org.eclipse.fennec.ogc.features.api.FeatureQuery;
 import org.eclipse.fennec.ogc.features.api.FeatureResult;
 import org.eclipse.fennec.ogc.features.api.FeatureSource;
-import org.eclipse.fennec.ogc.features.cql2.Cql2TextParser;
-import org.eclipse.fennec.ogc.features.cql2.Cql2Translator;
 import org.eclipse.fennec.ogc.features.example.bath.BathPackage;
 import org.eclipse.fennec.ogc.features.example.bath.demo.DemoDataLoader;
 import org.eclipse.fennec.ogc.features.geo.GeoJsonFeatureImporter;
 import org.eclipse.fennec.ogc.features.geo.GeoJsonText;
-import org.eclipse.fennec.ogc.features.source.MemoryFeatureSource;
+import org.eclipse.fennec.ogc.features.source.memory.MemoryFeatureSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -93,8 +91,7 @@ class Cql2JpaTest {
 	void sameResultAsMemory(String collectionId, String cql2) {
 		CollectionDescriptor collection = CollectionDescriptor.of(BathPackage.eINSTANCE).stream()
 				.filter(c -> c.id().equals(collectionId)).findFirst().orElseThrow();
-		FeatureFilter filter = Cql2Translator.translate(Cql2TextParser.parse(cql2), collection);
-		FeatureQuery query = filter.applyTo(FeatureQuery.builder(collection).count(true)).build();
+		FeatureQuery query = FeatureQuery.builder(collection).where(Cql2Text.parse(cql2)).count(true).build();
 		FeatureResult expected = memory.query(query);
 		FeatureResult actual = jpa.query(query);
 		assertThat(ids(actual)).containsExactlyElementsOf(ids(expected));
