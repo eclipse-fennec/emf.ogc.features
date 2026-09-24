@@ -124,8 +124,9 @@ subclass of a `SINGLE_TABLE` root, although the id is inherited from the root.
   positions without elevation should stay two-dimensional (`Coordinates.elevation` is
   unset, `eIsSet` can tell).
 
-**Workaround here:** `GeoJsonText.read` catches `RuntimeException`; the OGC output is
-written by our own `GeometryJson`, which omits unset elevations.
+**Fixed** in the snapshots of 2026-09-24: parse errors arrive as `IOException`, positions
+without elevation stay two-dimensional. `GeoJsonText.read` catches `IOException` only now.
+The OGC output is still written by our own `GeometryJson`; it could use the codec now.
 
 
 ## 9. emf.osgi — codegen: a cross reference by nsURI fails in ecore mode
@@ -151,8 +152,8 @@ Every geometry exposes its coordinates a second time as a volatile `double[]` at
 `data`, which is neither `derived` nor `transient`. `EcoreUtil.equals` compares it by array
 identity, so two geometries with the same coordinates are never equal.
 
-**Workaround here:** `Cql2SpecExamplesTest` compares with an `EqualityHelper` that compares
-arrays by content.
+**Fixed** in the snapshot of 2026-09-24 (`data` is derived); `Cql2SpecExamplesTest` uses
+`EcoreUtil.equals` again.
 
 ## 11. emf.persistence-jpa — [#316](https://github.com/eclipse-fennec/emf.persistence-jpa/issues/316): embedded H2 loses the last commits on the idle close
 
@@ -160,6 +161,11 @@ After `emfIdleTimeout` (60 s) the unit closes its factory, the last connection c
 closes the embedded database. After the reopen the most recently committed types were gone,
 without any DELETE in the SQL log. `create-tables` does not help; `DB_CLOSE_DELAY=-1` does, and
 PostgreSQL is not affected.
+
+The cause turned out to be H2 itself (reproduced with plain H2 2.3.232 JDBC, see
+[emf.ogc.features#8](https://github.com/eclipse-fennec/emf.ogc.features/issues/8)): committed
+rows, or the whole store, are lost across the open/close cycles of an embedded database;
+EclipseLink without a pool closes it around every operation.
 
 **Workaround here:** the H2 identifier of the demo carries `DB_CLOSE_DELAY=-1`, and the demo
 also runs on PostgreSQL (`bath-postgres.bndrun`). Both use `ddl-generation=create-tables`.

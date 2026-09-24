@@ -47,6 +47,8 @@ class GeoJsonTextTest {
 	void pointRoundTrip() {
 		String json = text.write(point(11.5812, 50.9271));
 		assertThat(json).contains("\"Point\"").contains("11.5812");
+		// a position without elevation stays two-dimensional (emf.codec#225, common.models#24)
+		assertThat(json.replaceAll("\\s", "")).contains("[11.5812,50.9271]");
 		Geometry read = text.read(json);
 		assertThat(read).isInstanceOf(Point.class);
 		assertThat(((Point) read).getCoordinates().getLongitude()).isEqualTo(11.5812);

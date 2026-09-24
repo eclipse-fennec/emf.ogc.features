@@ -22,16 +22,14 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil.EqualityHelper;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
@@ -83,35 +81,12 @@ class Cql2SpecExamplesTest {
 			return;
 		}
 
-		assertThat(same(fromJson, fromText)).as("text and JSON give the same model:%n text %s%n json %s", describe(fromText), describe(fromJson)).isTrue();
-		assertThat(same(Cql2Text.parse(Cql2Text.write(fromText)), fromText))
+		assertThat(EcoreUtil.equals(fromJson, fromText)).as("text and JSON give the same model:%n text %s%n json %s", describe(fromText), describe(fromJson)).isTrue();
+		assertThat(EcoreUtil.equals(Cql2Text.parse(Cql2Text.write(fromText)), fromText))
 				.as("text round trip of %s", Cql2Text.write(fromText)).isTrue();
 		byte[] saved = saveJson(fromText);
-		assertThat(same(loadJson(saved), fromText)).as("JSON round trip of %s", new String(saved, StandardCharsets.UTF_8)).isTrue();
+		assertThat(EcoreUtil.equals(loadJson(saved), fromText)).as("JSON round trip of %s", new String(saved, StandardCharsets.UTF_8)).isTrue();
 		passed.incrementAndGet();
-	}
-
-	/**
-	 * EcoreUtil.equals, but arrays by content: the geojson geometries expose their coordinates a
-	 * second time as a volatile, not derived {@code double[]} attribute {@code data}, computed
-	 * anew on every access.
-	 */
-	private static boolean same(EObject a, EObject b) {
-		return new EqualityHelper() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			protected boolean haveEqualAttribute(EObject o1, EObject o2, EAttribute attribute) {
-				Object v1 = o1.eGet(attribute);
-				Object v2 = o2.eGet(attribute);
-				if (attribute.getEAttributeType().getInstanceClass().isArray()) {
-					// single-valued: an array, many-valued: a list of arrays
-					return attribute.isMany() ? Objects.deepEquals(((List<?>) v1).toArray(), ((List<?>) v2).toArray())
-							: Objects.deepEquals(v1, v2);
-				}
-				return super.haveEqualAttribute(o1, o2, attribute);
-			}
-		}.equals(a, b);
 	}
 
 	/** a compact dump of the set features, to see where two models differ */

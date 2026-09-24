@@ -95,8 +95,7 @@ public final class GeoJsonText {
 		Resource resource = factory.createResource(URI_);
 		try (ByteArrayInputStream in = new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8))) {
 			resource.load(in, null);
-		} catch (IOException | RuntimeException e) {
-			// the codec lets parser exceptions escape unchecked instead of as IOException
+		} catch (IOException e) {
 			throw new IllegalArgumentException("Invalid GeoJSON: " + e.getMessage(), e);
 		}
 		if (!resource.getErrors().isEmpty()) {
