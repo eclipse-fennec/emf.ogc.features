@@ -63,7 +63,8 @@ Suggestion: honour `length`/`columnDefinition`/`lob` from the eorm, or let a
 
 emf.persistence-jpa#319 (PR #321) adds `TypeConverter.isLargeValue`, and
 `GeoJsonTypeConverter` declares the geometry a large value. On PostgreSQL the column still comes
-out as `VARCHAR(255)` with the snapshot of 2026-09-24 19:18 (the hint does not reach the DDL).
+out as `VARCHAR(255)` with the snapshot of 2026-09-24 19:18 (the hint does not reach the DDL,
+[emf.persistence-jpa#324](https://github.com/eclipse-fennec/emf.persistence-jpa/issues/324)).
 
 **Workaround here:** after schema generation the demo loader alters the column to `TEXT`
 (`TextColumns` in `...example.bath.demo`); on PostgreSQL it logs `Widened columns [asset.geometry]`.
