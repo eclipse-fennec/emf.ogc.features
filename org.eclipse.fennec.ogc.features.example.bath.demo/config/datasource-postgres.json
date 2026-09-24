@@ -1,0 +1,12 @@
+{
+  ":configurator:resource-version": 1,
+  ":configurator:symbolic-name": "org.eclipse.fennec.ogc.features.example.bath.demo.postgres",
+  ":configurator:version": "0.1.0",
+  "daanse.jdbc.datasource.postgresql.DataSource~bath": {
+    "host": "127.0.0.1",
+    "port:Integer": 55433,
+    "dbname": "ogc",
+    "user": "ogc",
+    ".password": "ogc"
+  }
+}

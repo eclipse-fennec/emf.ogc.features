@@ -25,6 +25,8 @@ Bundle-Description: Demo data of the leisure pool WOGE and the generated town Di
 	org.eclipse.fennec.ogc.features.example.city;version=snapshot
 
 -testpath: \
+	${junit},\
+	assertj-core;version=latest,\
 	org.eclipse.fennec.codec;version=latest,\
 	org.eclipse.fennec.codec.api;version=latest,\
 	org.eclipse.fennec.codec.metadata;version=latest,\

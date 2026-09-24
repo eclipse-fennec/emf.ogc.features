@@ -1,0 +1,8 @@
+# The demo on PostgreSQL, as in production. Start the database once:
+#   podman run -d --name ogc-demo-postgres -e POSTGRES_DB=ogc -e POSTGRES_USER=ogc -e POSTGRES_PASSWORD=ogc \
+#     -p 127.0.0.1:55433:5432 -v ogc-demo-pgdata:/var/lib/postgresql/data docker.io/library/postgres:17
+#   ./gradlew :org.eclipse.fennec.ogc.features.example.bath.demo:run.bath-postgres
+
+-include: ~${.}/bath.bndrun
+
+demo.config = ${fileuri;${.}/config/bath-demo.json},${fileuri;${.}/config/datasource-postgres.json}

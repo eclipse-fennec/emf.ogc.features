@@ -2,9 +2,6 @@
   ":configurator:resource-version": 1,
   ":configurator:symbolic-name": "org.eclipse.fennec.ogc.features.example.bath.demo.launch",
   ":configurator:version": "0.1.0",
-  "daanse.jdbc.datasource.h2.DataSource~bath": {
-    "identifier": "./generated/h2/bath"
-  },
   "fennec.jpa.EORMMappingService~bath": {
     "fennec.jpa.eorm.mappingName": "bath",
     "fennec.jpa.eorm.model.target": "(emf.nsURI=https://eclipse.org/fennec/ogc/example/bath/1.0)"
@@ -13,8 +10,8 @@
     "fennec.jpa.persistenceUnitName": "bath",
     "fennec.jpa.mapping.target": "(fennec.jpa.eorm.mapping=bath)",
     "fennec.jpa.converter.target": "(fennec.persistence.converter=geojson)",
-    "fennec.jpa.ext.eclipselink.ddl-generation": "create-or-extend-tables",
-    "fennec.jpa.dataSource.target": "(subprotocol=h2)"
+    "fennec.jpa.ext.eclipselink.ddl-generation": "create-tables",
+    "fennec.jpa.dataSource.target": "(subprotocol=*)"
   },
   "fennec.repository.jpa~bath": {
     "repositoryId": "bath",
@@ -36,7 +33,7 @@
   },
   "org.eclipse.fennec.ogc.features.example.loader~bath": {
     "repository.target": "(persistence.repository.id=bath)",
-    "dataSource.target": "(subprotocol=h2)",
+    "dataSource.target": "(subprotocol=*)",
     "ePackage.target": "(emf.nsURI=https://eclipse.org/fennec/ogc/example/bath/1.0)",
     "files": [
       "data/woge.geojson"
@@ -52,8 +49,8 @@
     "fennec.jpa.persistenceUnitName": "city",
     "fennec.jpa.mapping.target": "(fennec.jpa.eorm.mapping=city)",
     "fennec.jpa.converter.target": "(fennec.persistence.converter=geojson)",
-    "fennec.jpa.ext.eclipselink.ddl-generation": "create-or-extend-tables",
-    "fennec.jpa.dataSource.target": "(subprotocol=h2)"
+    "fennec.jpa.ext.eclipselink.ddl-generation": "create-tables",
+    "fennec.jpa.dataSource.target": "(subprotocol=*)"
   },
   "fennec.repository.jpa~city": {
     "repositoryId": "city",
@@ -61,7 +58,7 @@
   },
   "org.eclipse.fennec.ogc.features.example.loader~city": {
     "repository.target": "(persistence.repository.id=city)",
-    "dataSource.target": "(subprotocol=h2)",
+    "dataSource.target": "(subprotocol=*)",
     "ePackage.target": "(emf.nsURI=https://eclipse.org/fennec/ogc/example/city/1.0)",
     "files": [
       "data/city/dim_stadt.geojson=Stadtgebiet",

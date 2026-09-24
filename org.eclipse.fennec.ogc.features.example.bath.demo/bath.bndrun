@@ -8,7 +8,8 @@
 	bnd.identity;id='org.eclipse.fennec.ogc.features.example.city',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.runtime',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.viewer',\
-	bnd.identity;id='org.eclipse.fennec.ogc.features.source',\
+	bnd.identity;id='org.eclipse.fennec.ogc.features.source.persistence',\
+	bnd.identity;id='org.eclipse.fennec.codec.cql2',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.cql2',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.geo',\
 	bnd.identity;id='org.eclipse.fennec.codec.geojson',\
@@ -18,6 +19,8 @@
 	bnd.identity;id='org.eclipse.persistence.asm',\
 	bnd.identity;id='org.eclipse.persistence.jpa.jpql',\
 	bnd.identity;id='org.eclipse.daanse.jdbc.datasource.h2',\
+	bnd.identity;id='org.eclipse.daanse.jdbc.datasource.postgresql',\
+	bnd.identity;id='org.postgresql.jdbc',\
 	bnd.identity;id='com.h2database',\
 	bnd.identity;id='org.apache.aries.spifly.dynamic.bundle',\
 	bnd.identity;id='org.apache.felix.http.jetty12',\
@@ -33,12 +36,19 @@
 -runfw: org.apache.felix.framework
 -runee: JavaSE-21
 
+# Copy the bundles into the framework cache: with reference: URLs a snapshot refreshed in
+# ~/.m2 while the demo runs breaks class loading (ClassFormatError: Incompatible magic value)
+-runnoreferences: true
+
+# the shared configuration plus the data source; bath-postgres.bndrun swaps the data source
+demo.config = ${fileuri;${.}/config/bath-demo.json},${fileuri;${.}/config/datasource-h2.json}
+
 -runproperties: \
 	org.osgi.service.http.port=8080,\
 	gosh.args=--nointeractive,\
 	osgi.shell.telnet.ip=127.0.0.1,\
 	osgi.shell.telnet.port=6666,\
-	configurator.initial=${fileuri;${.}/config/bath-demo.json}
+	configurator.initial="${demo.config}"
 -runbundles: \
 	com.fasterxml.jackson.core.jackson-annotations;version='[2.22.0,2.22.1)',\
 	com.h2database;version='[2.3.232,2.3.233)',\
@@ -71,7 +81,6 @@
 	org.eclipse.fennec.ogc.features.example.bath.demo;version=snapshot,\
 	org.eclipse.fennec.ogc.features.geo;version=snapshot,\
 	org.eclipse.fennec.ogc.features.runtime;version=snapshot,\
-	org.eclipse.fennec.ogc.features.source;version=snapshot,\
 	org.eclipse.fennec.ogc.features.viewer;version=snapshot,\
 	org.eclipse.fennec.persistence;version='[0.1.0,0.1.1)',\
 	org.eclipse.fennec.persistence.capabilities;version='[0.1.0,0.1.1)',\
@@ -105,4 +114,11 @@
 	org.eclipse.fennec.ogc.features.cql2;version=snapshot,\
 	org.eclipse.fennec.ogc.features.example.city;version=snapshot,\
 	org.apache.felix.shell.remote;version='[1.2.0,1.2.1)',\
-	org.eclipse.fennec.ogc.features.example.bath;version=snapshot
+	org.eclipse.fennec.ogc.features.example.bath;version=snapshot,\
+	net.opengis.cql2.model;version=snapshot,\
+	org.antlr.antlr4-runtime;version='[4.13.2,4.13.3)',\
+	org.eclipse.fennec.codec.cql2;version=snapshot,\
+	org.eclipse.fennec.ogc.features.source.persistence;version=snapshot,\
+	org.eclipse.daanse.jdbc.datasource.postgresql;version='[0.0.1,0.0.2)',\
+	org.postgresql.jdbc;version='[42.7.3,42.7.4)',\
+	org.qgis.project.model;version=snapshot

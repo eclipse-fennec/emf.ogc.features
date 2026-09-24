@@ -40,7 +40,7 @@ Inherited keys are looked up along the super types. That way an abstract base cl
 Fennec persistence has no spatial column type yet. The geometry is therefore stored as
 GeoJSON text, and every feature also carries its bounding box as four numbers.
 
-A spatial filter is split into two parts:
+The persistence backend therefore splits a spatial filter into two parts:
 
 1. The envelope test (`minX <= maxX' AND …`). It runs in the store, like any other
    comparison.
@@ -69,12 +69,34 @@ or the `Accept` header. Parameters of `items`:
 - equality filters `?property=value` on any queryable
 
 A repository source needs the geojson `TypeConverter`. It ships in
-`org.eclipse.fennec.ogc.features.geo`. The persistence unit should wait for it:
+`org.eclipse.fennec.ogc.features.source.persistence`. The persistence unit should wait for it:
 `fennec.jpa.converter.target=(fennec.persistence.converter=geojson)`.
+
+## Backends
+
+As in fennec-odata, the server hands every backend the same neutral query: a `FeatureQuery`
+whose filter is one CQL2 predicate (`net.opengis.cql2.model`). `bbox`, `datetime` and the
+property parameters are turned into CQL2 too (`Cql2Filters`). A backend is a
+`FeatureSource` service. It claims its classes with `supports(EClass)` and translates the
+CQL2 model into its own query form.
+
+| Backend | Translation |
+|---------|-------------|
+| `org.eclipse.fennec.ogc.features.source.persistence` | `Cql2ToQuery`: CQL2 → Fennec query IR, plus an in-memory residual for the exact spatial relations |
+| `org.eclipse.fennec.ogc.features.source.memory` | `Cql2Evaluator` on the objects, the reference semantics |
+
+`Cql2Binding` binds property references and literals to a collection, the same for every
+backend. The server validates a filter with the evaluator (400 for an unknown queryable or
+a literal that does not fit). A backend throws `UnsupportedOperationException` for what it
+cannot evaluate, answered with 501. The evaluator uses three-valued logic like SQL:
+`NOT (x = 1)` does not match a feature without `x`.
 
 ## CQL2
 
-Text and JSON encoding, translated into the Fennec query IR:
+The filter languages read the filter through the CQL2 EMF resources of
+`org.eclipse.fennec.codec.cql2`, registered with emf.osgi (`text/cql2` via an ANTLR parser,
+`application/cql2+json` via the Fennec codec). Both are tested against the examples of the
+CQL2 specification. Supported:
 
 - Comparisons (`= <> < <= > >=`), including property against property.
 - `AND`, `OR`, `NOT`, `IS [NOT] NULL`, `[NOT] LIKE`, `[NOT] BETWEEN`, `[NOT] IN`.
@@ -129,9 +151,55 @@ The server's `layerFolders` put the packages into one layer tree:
 # Shell:  telnet 127.0.0.1 6666                      (Gogo, e.g. scr:list)
 ```
 
+On PostgreSQL, as in production, start a database once and run `bath-postgres`:
+
+```bash
+podman run -d --name ogc-demo-postgres -e POSTGRES_DB=ogc -e POSTGRES_USER=ogc -e POSTGRES_PASSWORD=ogc \
+  -p 127.0.0.1:55433:5432 -v ogc-demo-pgdata:/var/lib/postgresql/data docker.io/library/postgres:17
+./gradlew :org.eclipse.fennec.ogc.features.example.bath.demo:run.bath-postgres
+```
+
+The configuration is split: `config/bath-demo.json` holds everything but the data source,
+`config/datasource-h2.json` and `config/datasource-postgres.json` add one each.
+
+`run.bath` updates the running framework when workspace bundles or repository snapshots
+change. That suits development, but a snapshot refreshed during the run can leave bundles
+uninstalled. For a demo that keeps running, export it and start the executable jar:
+
+```bash
+./gradlew :org.eclipse.fennec.ogc.features.example.bath.demo:export.bath
+java -jar org.eclipse.fennec.ogc.features.example.bath.demo/generated/distributions/executable/bath.jar
+```
+
 The data is written to H2 in the launcher's working directory
 (`generated/tmp/run.bath/…/generated/h2`). It is loaded on the first start only; delete the
 database files to reload it.
+
+## QGIS project
+
+`/ogc/collections?f=qgs` returns the collections as a QGIS project (`application/x-qgis-project`),
+styled as the viewer draws them; the viewer links to it ("In QGIS öffnen").
+
+- One OGC API Features layer per collection, in the folders of the `layerGroup` paths.
+  A collection gathering others (e.g. all assets) starts hidden.
+- The drawing order of the viewer: points, lines, then areas from small to large, and
+  OpenStreetMap at the bottom.
+- Colour and fill opacity from `style`, the colour per feature from the property `color`,
+  the outline by `status` as in the viewer, labels from `name` below 1:5000 unless
+  `labels:false`.
+- The project opens at the extent the viewer starts at.
+
+The file is written with the EMF model `org.qgis.project.model`. QGIS has no current schema of
+its project format (the DTD dates from QGIS 1.x), so the model covers the part written here and
+follows the files QGIS 3 writes. Two findings from testing it against QGIS 3.44:
+
+- QGIS reads the project CRS only with its full definition and `SpatialRefSys/ProjectionsEnabled`.
+- QGIS replaces a layer id of up to ten characters by a generated one and loses the references
+  of the layer tree to it; the layer ids are therefore `ogc_features_<collection>`.
+
+A QGIS layer has a single geometry type, taken from the first features, so a collection with
+mixed types shows only the type of its first feature (in the demo the centre point of Dim Stadt).
+Reading styles back from QGIS would need a style endpoint; not done yet.
 
 ## Viewer
 
@@ -149,8 +217,8 @@ OGC_TEST_FLAVOR=postgres OGC_TEST_CONTAINER_CLI=podman \
   ./gradlew :org.eclipse.fennec.ogc.features.tests:testOSGi --rerun   # the same on PostgreSQL 17
 ```
 
-The OSGi tests compare every query and every CQL2 construct between JPA and the in-memory
-reference engine. They also exercise the API over HTTP. For PostgreSQL a container
+The OSGi tests compare every query and every CQL2 construct between the JPA backend and the
+in-memory reference backend. They also exercise the API over HTTP. For PostgreSQL a container
 `postgres:17` is started on port 55432 (`OGC_TEST_POSTGRES_PORT`).
 
 ## Known limitations
