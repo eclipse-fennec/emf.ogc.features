@@ -114,7 +114,7 @@ class OgcHttpTest {
 	@Test
 	void singleFeatureFromJpa() throws Exception {
 		JsonNode feature = json("/collections/lawns/items/lawn-big");
-		assertThat(feature.path("featureType").asString()).isEqualTo("Lawn");
+		assertThat(feature.path("properties").path("featureType").asString()).isEqualTo("Lawn");
 		assertThat(feature.path("geometry").path("coordinates").get(0).size()).isEqualTo(49);
 		assertThat(feature.path("properties").path("lastInspection").asString()).isEqualTo("2026-06-15T00:00:00Z");
 	}

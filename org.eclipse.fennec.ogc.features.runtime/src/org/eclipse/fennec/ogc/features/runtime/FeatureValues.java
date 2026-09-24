@@ -51,18 +51,21 @@ final class FeatureValues {
 	}
 
 	/**
-	 * @return the set property values of the feature, by attribute name, in attribute order;
-	 *         includes the attributes of the feature's own class, which may be a subclass of
-	 *         the collection type
+	 * @return the non-null property values of the feature, by attribute name, in attribute
+	 *         order; a value equal to the attribute's default is included, as a feature of
+	 *         the same type always carries the same properties. Includes the attributes of
+	 *         the feature's own class, which may be a subclass of the collection type
 	 */
 	static Map<String, Object> properties(CollectionDescriptor collection, EObject feature) {
 		Map<String, Object> result = new LinkedHashMap<>();
 		for (EAttribute attribute : feature.eClass().getEAllAttributes()) {
-			if (!collection.isProperty(attribute) || attribute.equals(collection.idAttribute())
-					|| !feature.eIsSet(attribute)) {
+			if (!collection.isProperty(attribute) || attribute.equals(collection.idAttribute())) {
 				continue;
 			}
 			Object value = feature.eGet(attribute);
+			if (value == null || (attribute.isMany() && ((List<?>) value).isEmpty())) {
+				continue;
+			}
 			if (attribute.isMany()) {
 				List<Object> values = new ArrayList<>();
 				for (Object v : (List<?>) value) {

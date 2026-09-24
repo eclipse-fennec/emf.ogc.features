@@ -118,7 +118,8 @@ class OgcApiTest {
 	void featureCarriesGeometryPropertiesAndType() {
 		JsonNode feature = get("/collections/pools/items/pool-diving");
 		assertThat(feature.path("type").asString()).isEqualTo("Feature");
-		assertThat(feature.path("featureType").asString()).isEqualTo("Pool");
+		assertThat(feature.has("featureType")).as("no JSON-FG member").isFalse();
+		assertThat(feature.path("properties").path("featureType").asString()).isEqualTo("Pool");
 		assertThat(feature.path("geometry").path("type").asString()).isEqualTo("Polygon");
 		assertThat(feature.path("geometry").path("coordinates").get(0).get(0).size()).isEqualTo(2);
 		JsonNode properties = feature.path("properties");
@@ -127,6 +128,16 @@ class OgcApiTest {
 		assertThat(properties.path("status").asString()).isEqualTo("MAINTENANCE");
 		assertThat(properties.has("minX")).isFalse();
 		assertThat(properties.has("geometry")).isFalse();
+	}
+
+	@Test
+	void defaultValuesArePropertiesToo() {
+		// OPEN and GROUND_FLOOR are the first enum literals, false the boolean default
+		JsonNode properties = get("/collections/changing-rooms/items/changing-main").path("properties");
+		assertThat(properties.path("status").asString()).isEqualTo("OPEN");
+		assertThat(properties.path("level").asString()).isEqualTo("GROUND_FLOOR");
+		assertThat(properties.path("family").isBoolean()).isTrue();
+		assertThat(properties.path("family").asBoolean()).isFalse();
 	}
 
 	@Test

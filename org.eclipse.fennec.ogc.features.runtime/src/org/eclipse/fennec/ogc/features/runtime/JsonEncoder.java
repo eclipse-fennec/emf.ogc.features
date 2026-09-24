@@ -40,6 +40,9 @@ final class JsonEncoder {
 
 	private static final JsonMapper MAPPER = JsonMapper.builder().build();
 
+	/** name of the property carrying the EClass name of a feature */
+	static final String FEATURE_TYPE = "featureType";
+
 	private final JsonGenerator g;
 
 	private JsonEncoder(JsonGenerator generator) {
@@ -152,12 +155,17 @@ final class JsonEncoder {
 		g.writeStartObject();
 		g.writeStringProperty("type", "Feature");
 		g.writeStringProperty("id", id);
-		// JSON-FG's member for the type of a feature, useful in collections of several types
-		g.writeStringProperty("featureType", feature.eClass().getName());
 		g.writeName("geometry");
 		GeometryJson.write(g, FeatureValues.geometry(collection, feature));
 		g.writeObjectPropertyStart("properties");
-		for (Map.Entry<String, Object> property : FeatureValues.properties(collection, feature).entrySet()) {
+		Map<String, Object> properties = FeatureValues.properties(collection, feature);
+		// the type of a feature, useful in collections of several types. A property rather than
+		// JSON-FG's featureType member: clients such as GDAL split a GeoJSON collection by that
+		// member into one layer per type, and this server does not declare JSON-FG
+		if (!properties.containsKey(FEATURE_TYPE)) {
+			g.writeStringProperty(FEATURE_TYPE, feature.eClass().getName());
+		}
+		for (Map.Entry<String, Object> property : properties.entrySet()) {
 			g.writeName(property.getKey());
 			FeatureValues.write(g, property.getValue());
 		}
