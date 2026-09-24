@@ -175,6 +175,11 @@ The data is written to H2 in the launcher's working directory
 (`generated/tmp/run.bath/…/generated/h2`). It is loaded on the first start only; delete the
 database files to reload it.
 
+The H2 identifier in `config/datasource-h2.json` carries `DB_CLOSE_DELAY=-1`. Without a pool,
+EclipseLink holds no connection between operations, so an embedded H2 would be closed and
+reopened around every one of them, and H2 loses committed rows or even the whole store across
+such cycles ([#8](https://github.com/eclipse-fennec/emf.ogc.features/issues/8)).
+
 ## QGIS project
 
 `/ogc/collections?f=qgs` returns the collections as a QGIS project (`application/x-qgis-project`),

@@ -56,8 +56,8 @@ public final class OgcFeaturesAnnotations {
 	public static final String STYLE = "style";
 	/**
 	 * On an EAttribute: the name of the GeoJSON property it is read from, where that name is
-	 * no identifier (e.g. {@code marker-color}). ExtendedMetaData names are honoured too, but
-	 * Fennec persistence also takes them as column names.
+	 * no identifier (e.g. {@code marker-color}). An ExtendedMetaData name works as well; this
+	 * annotation keeps the GeoJSON name apart from other serialisations of the model.
 	 */
 	public static final String PROPERTY = "property";
 

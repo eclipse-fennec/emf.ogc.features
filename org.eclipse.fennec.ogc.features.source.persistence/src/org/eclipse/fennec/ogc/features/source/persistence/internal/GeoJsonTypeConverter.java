@@ -59,6 +59,12 @@ public class GeoJsonTypeConverter implements TypeConverter {
 	}
 
 	@Override
+	public boolean isLargeValue(EClassifier eDataType) {
+		// a geometry as GeoJSON text has no useful bound: mapped as a Lob, not as VARCHAR(255)
+		return isConverterForType(eDataType);
+	}
+
+	@Override
 	public Object convertValueToEMF(EClassifier eDataType, Object value) {
 		if (value == null || value instanceof Geometry) {
 			return value;

@@ -61,8 +61,12 @@ String. A GeoJSON polygon exceeds 255 characters quickly. H2 has no such limit.
 Suggestion: honour `length`/`columnDefinition`/`lob` from the eorm, or let a
 `TypeConverter` hint the column type.
 
+emf.persistence-jpa#319 (PR #321) adds `TypeConverter.isLargeValue`, and
+`GeoJsonTypeConverter` declares the geometry a large value. On PostgreSQL the column still comes
+out as `VARCHAR(255)` with the snapshot of 2026-09-24 19:18 (the hint does not reach the DDL).
+
 **Workaround here:** after schema generation the demo loader alters the column to `TEXT`
-(`TextColumns` in `...example.bath.demo`); on PostgreSQL it logs `Widened geometry columns [asset.geometry]`.
+(`TextColumns` in `...example.bath.demo`); on PostgreSQL it logs `Widened columns [asset.geometry]`.
 
 ## 4. emf.persistence-jpa — [#313](https://github.com/eclipse-fennec/emf.persistence-jpa/issues/313): repository published before its unit accepts requests
 
@@ -76,8 +80,8 @@ call stack:
 
 "Presence indicates functionality" does not hold for the repository in this window.
 
-**Workaround here:** the demo loader works asynchronously and retries
-(`BathDataLoader`).
+**Fixed** (PR #318): `jpa://` resolves a unit that is registered but not yet bound; the demo
+loader loads in its activation again.
 
 ## 5. emf.persistence-jpa — [comment on #262](https://github.com/eclipse-fennec/emf.persistence-jpa/issues/262#issuecomment-5812601905) (G-P4, geo on JPA/PostGIS)
 
@@ -106,8 +110,10 @@ found".
 
 Suggestion: quote such names, sanitize them, or map the attribute name instead.
 
-**Workaround here:** GeoJSON property names that are no identifiers are mapped with our own
-annotation detail `property` (`OgcFeaturesAnnotations.PROPERTY`) instead of ExtendedMetaData.
+**Fixed** (PR #317): ExtendedMetaData names are no longer column names unless the mapping asks
+for it. The own annotation detail `property` (`OgcFeaturesAnnotations.PROPERTY`) stays for the
+GeoJSON names. Existing databases keep their old column names; the demo database has to be
+created anew (or the mapping sets `fennec.jpa.eorm.useNamesFromExtendedMetaData=true`).
 
 ## 7. emf.persistence-jpa — [#315](https://github.com/eclipse-fennec/emf.persistence-jpa/issues/315): id warning for every SINGLE_TABLE subclass
 
