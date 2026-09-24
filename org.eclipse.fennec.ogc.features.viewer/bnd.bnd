@@ -1,0 +1,11 @@
+Bundle-Name: Fennec OGC Features Viewer
+Bundle-Description: A MapLibre GL JS map viewer for the Fennec OGC API Features server: one \
+ toggleable layer per collection, grouped and styled from the collection metadata, served \
+ under /ogc/viewer. Bundles MapLibre GL JS (BSD-3-Clause).
+
+-includeresource.web: web=web
+
+-buildpath: \
+	org.osgi.service.component.annotations;version=latest,\
+	org.osgi.service.servlet;version=latest,\
+	org.apache.felix.http.servlet-api;version=latest

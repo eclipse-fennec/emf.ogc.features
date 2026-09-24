@@ -1,0 +1,25 @@
+Bundle-Name: Fennec OGC Features Geo
+Bundle-Description: Geometry support for Fennec OGC Features: envelopes of GeoJSON EMF geometries, \
+ conversion to JTS, the OGC spatial relations and the geojson TypeConverter that stores a \
+ geometry as GeoJSON text in Fennec persistence.
+
+-library: enableEMF
+
+-buildpath: \
+	org.osgi.service.component.annotations;version=latest,\
+	org.geojson.model;version=latest,\
+	org.locationtech.jts.jts-core;version=latest,\
+	org.eclipse.fennec.persistence;version=latest,\
+	org.eclipse.fennec.emf.osgi.api;version=latest,\
+	org.eclipse.fennec.ogc.features.api;version=snapshot,\
+	org.eclipse.fennec.codec.geojson;version=latest,\
+	tools.jackson.core.jackson-core;version=latest,\
+	tools.jackson.core.jackson-databind;version=latest
+
+-testpath: \
+	org.eclipse.fennec.codec;version=latest,\
+	org.eclipse.fennec.codec.api;version=latest,\
+	org.eclipse.fennec.codec.metadata;version=latest,\
+	org.eclipse.fennec.emf.osgi.metadata;version=latest,\
+	org.eclipse.fennec.emf.osgi.component.minimal;version=latest,\
+	com.fasterxml.jackson.core.jackson-annotations;version=latest

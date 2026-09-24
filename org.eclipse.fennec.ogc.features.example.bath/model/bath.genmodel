@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    copyrightText="Copyright (c) 2026 Contributors to the Eclipse Foundation.&#xA;&#xA;This program and the accompanying materials are made&#xA;available under the terms of the Eclipse Public License 2.0&#xA;which is available at https://www.eclipse.org/legal/epl-2.0/&#xA;&#xA;SPDX-License-Identifier: EPL-2.0&#xA;&#xA;Contributors:&#xA;     Data In Motion - initial API and implementation"
+    modelDirectory="/org.eclipse.fennec.ogc.features.example.bath/src-gen" modelPluginID="org.eclipse.fennec.ogc.features.example.bath"
+    modelName="Bath" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" bundleManifest="false" complianceLevel="17.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true" oSGiCompatible="true">
+  <foreignModel>bath.ecore</foreignModel>
+  <genPackages prefix="Bath" basePackage="org.eclipse.fennec.ogc.features.example"
+      resource="XMI" disposableProviderFactory="true">
+    <ecorePackage href="bath.ecore#/"/>
+    <genEnums typeSafeEnumCompatible="false">
+      <ecoreEnum href="bath.ecore#//Level"/>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//Level/GROUND_FLOOR"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//Level/UPPER_FLOOR"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//Level/BASEMENT"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//Level/OUTDOOR"/>
+      </genEnumLiterals>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false">
+      <ecoreEnum href="bath.ecore#//OperationalStatus"/>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//OperationalStatus/OPEN"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//OperationalStatus/CLOSED"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//OperationalStatus/MAINTENANCE"/>
+      </genEnumLiterals>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false">
+      <ecoreEnum href="bath.ecore#//PoolType"/>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//PoolType/SWIMMER"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//PoolType/NON_SWIMMER"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//PoolType/KIDS"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//PoolType/WAVE"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//PoolType/OUTDOOR"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//PoolType/WHIRLPOOL"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//PoolType/DIVING"/>
+      </genEnumLiterals>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false">
+      <ecoreEnum href="bath.ecore#//SaunaType"/>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//SaunaType/FINNISH"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//SaunaType/BIO"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//SaunaType/STEAM"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//SaunaType/INFRARED"/>
+      </genEnumLiterals>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false">
+      <ecoreEnum href="bath.ecore#//SportType"/>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//SportType/BEACH_VOLLEYBALL"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//SportType/SOCCER"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//SportType/TABLE_TENNIS"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//SportType/FITNESS"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//SportType/BASKETBALL"/>
+      </genEnumLiterals>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false">
+      <ecoreEnum href="bath.ecore#//Surface"/>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//Surface/PAVED"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//Surface/GRAVEL"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//Surface/WOODEN"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//Surface/RUBBER"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//Surface/GRASS"/>
+      </genEnumLiterals>
+    </genEnums>
+    <genDataTypes>
+      <ecoreDataType href="bath.ecore#//GeoJsonGeometry"/>
+    </genDataTypes>
+    <genClasses image="false">
+      <ecoreClass href="bath.ecore#//Asset"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Asset/id"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Asset/name"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Asset/description"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Asset/geometry"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Asset/minX"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Asset/minY"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Asset/maxX"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Asset/maxY"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Asset/level"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Asset/status"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Asset/accessible"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Asset/lastInspection"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="bath.ecore#//Pool"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Pool/poolType"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Pool/depthMin"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Pool/depthMax"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Pool/waterTemperature"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Pool/lanes"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="bath.ecore#//Slide"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Slide/length"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Slide/heightDifference"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Slide/minAge"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="bath.ecore#//ChangingRoom"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//ChangingRoom/cabins"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//ChangingRoom/lockers"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//ChangingRoom/family"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="bath.ecore#//Toilet"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Toilet/babyChanging"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="bath.ecore#//Kiosk"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Kiosk/openingHours"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Kiosk/seats"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="bath.ecore#//Sauna"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Sauna/saunaType"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Sauna/temperature"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Sauna/capacity"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="bath.ecore#//SportArea"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//SportArea/sportType"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="bath.ecore#//Lawn"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Lawn/shaded"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="bath.ecore#//Playground"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Playground/ageFrom"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Playground/ageTo"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="bath.ecore#//FirstAid"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//FirstAid/defibrillator"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="bath.ecore#//Entrance"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Entrance/main"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="bath.ecore#//Path"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Path/surface"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="bath.ecore#//Building"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Building/floors"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="bath.ecore#//SiteBoundary"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

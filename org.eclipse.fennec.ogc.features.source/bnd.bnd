@@ -1,0 +1,21 @@
+Bundle-Name: Fennec OGC Features Sources
+Bundle-Description: Feature sources of Fennec OGC Features: one over a Fennec persistence \
+ repository (JPA, MongoDB) and one over objects held in memory.
+
+-library: enableEMF
+
+-buildpath: \
+	org.osgi.service.component;version=latest,\
+	org.osgi.service.component.annotations;version=latest,\
+	org.osgi.service.metatype.annotations;version=latest,\
+	org.eclipse.fennec.expression.model;version=latest,\
+	org.eclipse.fennec.query.model;version=latest,\
+	org.eclipse.fennec.persistence.query;version=latest,\
+	org.eclipse.fennec.persistence.repository;version=latest,\
+	org.eclipse.fennec.ogc.features.api;version=snapshot
+
+-testpath: \
+	org.eclipse.fennec.ogc.features.example.bath;version=snapshot,\
+	org.geojson.model;version=latest,\
+	org.eclipse.fennec.persistence.capabilities;version=latest,\
+	org.eclipse.fennec.m2x.ocl.model;version=latest

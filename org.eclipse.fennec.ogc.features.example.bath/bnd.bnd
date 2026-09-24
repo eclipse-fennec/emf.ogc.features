@@ -1,0 +1,21 @@
+Bundle-Name: Fennec OGC Features Example — Leisure Pool Model
+Bundle-Description: Demo model: the assets of a leisure pool (pools, slides, changing rooms, \
+ toilets, kiosk, sauna, sport areas, lawns, playground ...), annotated as OGC API Features \
+ collections and mapped to Fennec persistence with single table inheritance.
+
+src: src-gen,src
+-library: enableEMF
+
+-generate: \
+	model/bath.ecore; \
+		generate=fennecEMF; \
+		ecore=model/bath.ecore; \
+		output=src-gen
+
+# If this is not done with an instruction namespace, bnd would think you like
+# to take full control over whats exported and imported and will ignore @Export
+-includeresource.model: model=model
+
+-buildpath: \
+	org.geojson.model;version=latest,\
+	org.eclipse.fennec.ogc.features.geo;version=snapshot

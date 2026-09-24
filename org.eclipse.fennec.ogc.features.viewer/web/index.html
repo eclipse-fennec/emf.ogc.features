@@ -1,0 +1,37 @@
+<!doctype html>
+<!--
+  Copyright (c) 2026 Contributors to the Eclipse Foundation.
+  SPDX-License-Identifier: EPL-2.0
+-->
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fennec Asset-Karte</title>
+<link rel="stylesheet" href="maplibre/maplibre-gl.css">
+<link rel="stylesheet" href="viewer.css">
+</head>
+<body>
+<div id="map" aria-label="Karte"></div>
+<aside id="panel">
+  <header>
+    <h1 id="title">Asset-Karte</h1>
+    <button id="collapse" type="button" aria-expanded="true" title="Ebenen ein-/ausblenden">&#9776;</button>
+  </header>
+  <div id="panel-body">
+    <section class="basemap">
+      <label>Hintergrund
+        <select id="basemap">
+          <option value="osm">OpenStreetMap</option>
+          <option value="none">Ohne</option>
+        </select>
+      </label>
+      <label class="check"><input type="checkbox" id="labels" checked> Beschriftung</label>
+    </section>
+    <section id="layers" aria-label="Ebenen"><p class="muted">Lade Collections&hellip;</p></section>
+    <footer><a id="api-link" href="../?f=html" target="_blank" rel="noopener">OGC API</a></footer>
+  </div>
+</aside>
+<script type="module" src="viewer.js"></script>
+</body>
+</html>

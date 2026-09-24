@@ -1,0 +1,1823 @@
+{
+ "type": "FeatureCollection",
+ "name": "Freizeitbad Saaleaue",
+ "features": [
+  {
+   "type": "Feature",
+   "id": "site",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.615,
+       50.905
+      ],
+      [
+       11.6181339,
+       50.905
+      ],
+      [
+       11.6181339,
+       50.9064373
+      ],
+      [
+       11.6167094,
+       50.9064373
+      ],
+      [
+       11.6167094,
+       50.9063654
+      ],
+      [
+       11.615,
+       50.9063654
+      ],
+      [
+       11.615,
+       50.905
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "SiteBoundary",
+    "name": "Gelände Freizeitbad Saaleaue",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "description": "Grundstücksgrenze",
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "hall",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6152849,
+       50.9058085
+      ],
+      [
+       11.616567,
+       50.9058085
+      ],
+      [
+       11.616567,
+       50.9063205
+      ],
+      [
+       11.6152849,
+       50.9063205
+      ],
+      [
+       11.6152849,
+       50.9058085
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Building",
+    "name": "Hallenbad",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "floors": 2,
+    "level": "GROUND_FLOOR",
+    "description": "Hallenbad mit Umkleiden, Wellenbecken und Bistro"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "sauna-house",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6172222,
+       50.906042
+      ],
+      [
+       11.6176211,
+       50.906042
+      ],
+      [
+       11.6176211,
+       50.9062936
+      ],
+      [
+       11.6172222,
+       50.9062936
+      ],
+      [
+       11.6172222,
+       50.906042
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Building",
+    "name": "Saunahaus",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "floors": 1,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "pool-sport",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6153989,
+       50.9058624
+      ],
+      [
+       11.615755,
+       50.9058624
+      ],
+      [
+       11.615755,
+       50.9059747
+      ],
+      [
+       11.6153989,
+       50.9059747
+      ],
+      [
+       11.6153989,
+       50.9058624
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Pool",
+    "name": "Sportbecken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-09-01",
+    "poolType": "SWIMMER",
+    "depthMin": 1.35,
+    "depthMax": 2.0,
+    "waterTemperature": 27.0,
+    "lanes": 5,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "pool-learn",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6158547,
+       50.9058624
+      ],
+      [
+       11.6161111,
+       50.9058624
+      ],
+      [
+       11.6161111,
+       50.9059522
+      ],
+      [
+       11.6158547,
+       50.9059522
+      ],
+      [
+       11.6158547,
+       50.9058624
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Pool",
+    "name": "Nichtschwimmerbecken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "poolType": "NON_SWIMMER",
+    "depthMin": 0.6,
+    "depthMax": 1.25,
+    "waterTemperature": 30.0,
+    "lanes": 0,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "pool-kids",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6161681,
+       50.9058624
+      ],
+      [
+       11.6163248,
+       50.9058624
+      ],
+      [
+       11.6163533,
+       50.9059073
+      ],
+      [
+       11.6162821,
+       50.9059522
+      ],
+      [
+       11.6161823,
+       50.9059432
+      ],
+      [
+       11.6161681,
+       50.9058624
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Pool",
+    "name": "Kinderplanschbecken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "poolType": "KIDS",
+    "depthMin": 0.2,
+    "depthMax": 0.4,
+    "waterTemperature": 32.0,
+    "lanes": 0,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "pool-wave",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6158262,
+       50.9060241
+      ],
+      [
+       11.6163675,
+       50.9060241
+      ],
+      [
+       11.6163106,
+       50.9062576
+      ],
+      [
+       11.6158832,
+       50.9062576
+      ],
+      [
+       11.6158262,
+       50.9060241
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Pool",
+    "name": "Wellenbecken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "poolType": "WAVE",
+    "depthMin": 0.0,
+    "depthMax": 2.0,
+    "waterTemperature": 28.0,
+    "lanes": 0,
+    "level": "GROUND_FLOOR",
+    "description": "Wellenbetrieb jede volle Stunde"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "pool-whirl",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6164886,
+       50.9061858
+      ],
+      [
+       11.6164838,
+       50.906197
+      ],
+      [
+       11.6164708,
+       50.9062052
+      ],
+      [
+       11.616453,
+       50.9062082
+      ],
+      [
+       11.6164352,
+       50.9062052
+      ],
+      [
+       11.6164222,
+       50.906197
+      ],
+      [
+       11.6164174,
+       50.9061858
+      ],
+      [
+       11.6164222,
+       50.9061745
+      ],
+      [
+       11.6164352,
+       50.9061663
+      ],
+      [
+       11.616453,
+       50.9061633
+      ],
+      [
+       11.6164708,
+       50.9061663
+      ],
+      [
+       11.6164838,
+       50.9061745
+      ],
+      [
+       11.6164886,
+       50.9061858
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Pool",
+    "name": "Whirlpool",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "poolType": "WHIRLPOOL",
+    "depthMin": 0.9,
+    "depthMax": 0.9,
+    "waterTemperature": 36.0,
+    "lanes": 0,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "pool-outdoor",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6167094,
+       50.9051617
+      ],
+      [
+       11.6174217,
+       50.9051617
+      ],
+      [
+       11.6174217,
+       50.9053503
+      ],
+      [
+       11.6167094,
+       50.9053503
+      ],
+      [
+       11.6167094,
+       50.9051617
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Pool",
+    "name": "Freibad-Schwimmerbecken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "poolType": "OUTDOOR",
+    "depthMin": 1.2,
+    "depthMax": 2.0,
+    "waterTemperature": 24.0,
+    "lanes": 8,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "pool-diving",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6175071,
+       50.9051617
+      ],
+      [
+       11.6177208,
+       50.9051617
+      ],
+      [
+       11.6177208,
+       50.9053054
+      ],
+      [
+       11.6175071,
+       50.9053054
+      ],
+      [
+       11.6175071,
+       50.9051617
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Pool",
+    "name": "Sprungbecken",
+    "status": "MAINTENANCE",
+    "accessible": true,
+    "lastInspection": "2025-11-20",
+    "poolType": "DIVING",
+    "depthMin": 3.8,
+    "depthMax": 4.5,
+    "waterTemperature": 23.0,
+    "lanes": 0,
+    "level": "OUTDOOR",
+    "description": "Sprungturm 1 m / 3 m / 5 m, derzeit Wartung"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "slide-tornado",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      11.6165955,
+      50.905557
+     ],
+     [
+      11.6166809,
+      50.9055929
+     ],
+     [
+      11.6167664,
+      50.905557
+     ],
+     [
+      11.6167379,
+      50.9054941
+     ],
+     [
+      11.6166524,
+      50.9054671
+     ],
+     [
+      11.6166239,
+      50.9054132
+     ],
+     [
+      11.6167237,
+      50.9053773
+     ],
+     [
+      11.6168519,
+      50.9053593
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Slide",
+    "name": "Tornado-Rutsche",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "length": 86.0,
+    "heightDifference": 11.5,
+    "minAge": 8,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "slide-kids",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      11.6164245,
+      50.9053953
+     ],
+     [
+      11.61651,
+      50.9053773
+     ],
+     [
+      11.6165955,
+      50.9053638
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Slide",
+    "name": "Kinderrutsche",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "length": 14.0,
+    "heightDifference": 2.0,
+    "minAge": 3,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "slide-blackhole",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      11.61651,
+      50.9063115
+     ],
+     [
+      11.6164245,
+      50.9063475
+     ],
+     [
+      11.6163106,
+      50.9063385
+     ],
+     [
+      11.6162536,
+      50.9062936
+     ],
+     [
+      11.6161966,
+      50.9062576
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Slide",
+    "name": "Black-Hole-Rutsche",
+    "status": "OPEN",
+    "accessible": false,
+    "lastInspection": "2026-06-15",
+    "length": 62.0,
+    "heightDifference": 8.0,
+    "minAge": 10,
+    "level": "UPPER_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "changing-main",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6153134,
+       50.90606
+      ],
+      [
+       11.6156553,
+       50.90606
+      ],
+      [
+       11.6156553,
+       50.9063026
+      ],
+      [
+       11.6153134,
+       50.9063026
+      ],
+      [
+       11.6153134,
+       50.90606
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "ChangingRoom",
+    "name": "Umkleiden Halle",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "cabins": 40,
+    "lockers": 350,
+    "family": false,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "changing-family",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6156695,
+       50.9062217
+      ],
+      [
+       11.6157977,
+       50.9062217
+      ],
+      [
+       11.6157977,
+       50.9063026
+      ],
+      [
+       11.6156695,
+       50.9063026
+      ],
+      [
+       11.6156695,
+       50.9062217
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "ChangingRoom",
+    "name": "Familienumkleide",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "cabins": 6,
+    "lockers": 40,
+    "family": true,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "changing-outdoor",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6164245,
+       50.9056288
+      ],
+      [
+       11.6166239,
+       50.9056288
+      ],
+      [
+       11.6166239,
+       50.9057186
+      ],
+      [
+       11.6164245,
+       50.9057186
+      ],
+      [
+       11.6164245,
+       50.9056288
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "ChangingRoom",
+    "name": "Umkleiden Freibad",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "cabins": 16,
+    "lockers": 120,
+    "family": false,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "wc-hall",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.6156838,
+     50.9061139
+    ]
+   },
+   "properties": {
+    "assetType": "Toilet",
+    "name": "WC Halle",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "babyChanging": true,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "wc-wave",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.616396,
+     50.9060061
+    ]
+   },
+   "properties": {
+    "assetType": "Toilet",
+    "name": "WC Wellenbecken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "babyChanging": false,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "wc-outdoor",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6166382,
+       50.9056288
+      ],
+      [
+       11.6167237,
+       50.9056288
+      ],
+      [
+       11.6167237,
+       50.9056827
+      ],
+      [
+       11.6166382,
+       50.9056827
+      ],
+      [
+       11.6166382,
+       50.9056288
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Toilet",
+    "name": "WC Freibad",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "babyChanging": true,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "wc-sauna",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.6175926,
+     50.90606
+    ]
+   },
+   "properties": {
+    "assetType": "Toilet",
+    "name": "WC Saunahaus",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "babyChanging": false,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "first-aid-hall",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.6157977,
+     50.9060061
+    ]
+   },
+   "properties": {
+    "assetType": "FirstAid",
+    "name": "Erste Hilfe / Bademeister",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "defibrillator": true,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "first-aid-outdoor",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.6174502,
+     50.9053953
+    ]
+   },
+   "properties": {
+    "assetType": "FirstAid",
+    "name": "Erste Hilfe Freibad",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "defibrillator": true,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "bistro",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.6164815,
+     50.9058983
+    ]
+   },
+   "properties": {
+    "assetType": "Kiosk",
+    "name": "Bistro Wellenblick",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "openingHours": "10:00-21:00",
+    "seats": 60,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "kiosk-outdoor",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.6169231,
+     50.9057725
+    ]
+   },
+   "properties": {
+    "assetType": "Kiosk",
+    "name": "Kiosk Freibad",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "openingHours": "11:00-19:00",
+    "seats": 40,
+    "level": "OUTDOOR",
+    "description": "Pommes, Eis und Getränke"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "sauna-finnish",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6172507,
+       50.9061498
+      ],
+      [
+       11.6173932,
+       50.9061498
+      ],
+      [
+       11.6173932,
+       50.9062756
+      ],
+      [
+       11.6172507,
+       50.9062756
+      ],
+      [
+       11.6172507,
+       50.9061498
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Sauna",
+    "name": "Finnische Sauna",
+    "status": "OPEN",
+    "accessible": false,
+    "lastInspection": "2026-06-15",
+    "saunaType": "FINNISH",
+    "temperature": 90.0,
+    "capacity": 20,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "sauna-bio",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6174217,
+       50.9061858
+      ],
+      [
+       11.6175926,
+       50.9061858
+      ],
+      [
+       11.6175926,
+       50.9062756
+      ],
+      [
+       11.6174217,
+       50.9062756
+      ],
+      [
+       11.6174217,
+       50.9061858
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Sauna",
+    "name": "Bio-Sauna",
+    "status": "OPEN",
+    "accessible": false,
+    "lastInspection": "2026-06-15",
+    "saunaType": "BIO",
+    "temperature": 60.0,
+    "capacity": 14,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "sauna-steam",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6172507,
+       50.90606
+      ],
+      [
+       11.6173647,
+       50.90606
+      ],
+      [
+       11.6173647,
+       50.9061319
+      ],
+      [
+       11.6172507,
+       50.9061319
+      ],
+      [
+       11.6172507,
+       50.90606
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Sauna",
+    "name": "Dampfbad",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "saunaType": "STEAM",
+    "temperature": 45.0,
+    "capacity": 10,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "sauna-infrared",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6174217,
+       50.906078
+      ],
+      [
+       11.6175071,
+       50.906078
+      ],
+      [
+       11.6175071,
+       50.9061319
+      ],
+      [
+       11.6174217,
+       50.9061319
+      ],
+      [
+       11.6174217,
+       50.906078
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Sauna",
+    "name": "Infrarotkabine",
+    "status": "CLOSED",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "saunaType": "INFRARED",
+    "temperature": 40.0,
+    "capacity": 4,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "lawn-big",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6164245,
+       50.9054042
+      ],
+      [
+       11.6164472,
+       50.905441
+      ],
+      [
+       11.6164482,
+       50.9054791
+      ],
+      [
+       11.6164221,
+       50.9055155
+      ],
+      [
+       11.6163719,
+       50.9055471
+      ],
+      [
+       11.6163066,
+       50.905573
+      ],
+      [
+       11.6162368,
+       50.9055948
+      ],
+      [
+       11.6161691,
+       50.9056155
+      ],
+      [
+       11.616104,
+       50.9056376
+      ],
+      [
+       11.6160368,
+       50.9056613
+      ],
+      [
+       11.6159616,
+       50.9056837
+      ],
+      [
+       11.6158761,
+       50.9057
+      ],
+      [
+       11.6157835,
+       50.9057061
+      ],
+      [
+       11.6156909,
+       50.9057
+      ],
+      [
+       11.6156054,
+       50.9056837
+      ],
+      [
+       11.6155302,
+       50.9056613
+      ],
+      [
+       11.615463,
+       50.9056376
+      ],
+      [
+       11.6153979,
+       50.9056155
+      ],
+      [
+       11.6153302,
+       50.9055948
+      ],
+      [
+       11.6152603,
+       50.905573
+      ],
+      [
+       11.615195,
+       50.9055471
+      ],
+      [
+       11.6151448,
+       50.9055155
+      ],
+      [
+       11.6151188,
+       50.9054791
+      ],
+      [
+       11.6151197,
+       50.905441
+      ],
+      [
+       11.6151425,
+       50.9054042
+      ],
+      [
+       11.6151761,
+       50.9053706
+      ],
+      [
+       11.6152098,
+       50.9053396
+      ],
+      [
+       11.6152377,
+       50.9053092
+      ],
+      [
+       11.6152616,
+       50.9052776
+      ],
+      [
+       11.6152895,
+       50.9052449
+      ],
+      [
+       11.6153302,
+       50.9052137
+      ],
+      [
+       11.6153886,
+       50.9051879
+      ],
+      [
+       11.615463,
+       50.9051709
+      ],
+      [
+       11.6155461,
+       50.9051633
+      ],
+      [
+       11.6156298,
+       50.9051631
+      ],
+      [
+       11.6157088,
+       50.9051657
+      ],
+      [
+       11.6157835,
+       50.9051671
+      ],
+      [
+       11.6158582,
+       50.9051657
+      ],
+      [
+       11.6159372,
+       50.9051631
+      ],
+      [
+       11.6160208,
+       50.9051633
+      ],
+      [
+       11.616104,
+       50.9051709
+      ],
+      [
+       11.6161784,
+       50.9051879
+      ],
+      [
+       11.6162368,
+       50.9052137
+      ],
+      [
+       11.6162775,
+       50.9052449
+      ],
+      [
+       11.6163053,
+       50.9052776
+      ],
+      [
+       11.6163293,
+       50.9053092
+      ],
+      [
+       11.6163572,
+       50.9053396
+      ],
+      [
+       11.6163908,
+       50.9053706
+      ],
+      [
+       11.6164245,
+       50.9054042
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Lawn",
+    "name": "Große Liegewiese",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "shaded": false,
+    "level": "OUTDOOR",
+    "description": "Sonnige Liegewiese mit Blick auf das Freibad"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "lawn-trees",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6177921,
+       50.9054312
+      ],
+      [
+       11.618077,
+       50.9054492
+      ],
+      [
+       11.6180912,
+       50.9059342
+      ],
+      [
+       11.6179915,
+       50.9060061
+      ],
+      [
+       11.6178063,
+       50.9059702
+      ],
+      [
+       11.6177921,
+       50.9054312
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Lawn",
+    "name": "Liegewiese unter Bäumen",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "shaded": true,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "lawn-sauna",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6176496,
+       50.906042
+      ],
+      [
+       11.618077,
+       50.906042
+      ],
+      [
+       11.618077,
+       50.9063295
+      ],
+      [
+       11.6176496,
+       50.9063295
+      ],
+      [
+       11.6176496,
+       50.906042
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Lawn",
+    "name": "Saunagarten",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "shaded": true,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "playground",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6168234,
+       50.9058624
+      ],
+      [
+       11.6171368,
+       50.9058444
+      ],
+      [
+       11.6171653,
+       50.9060241
+      ],
+      [
+       11.6168519,
+       50.906042
+      ],
+      [
+       11.6168234,
+       50.9058624
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Playground",
+    "name": "Abenteuerspielplatz",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "ageFrom": 3,
+    "ageTo": 12,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "splash",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.616396,
+       50.905557
+      ],
+      [
+       11.6163846,
+       50.9055839
+      ],
+      [
+       11.6163533,
+       50.9056036
+      ],
+      [
+       11.6163106,
+       50.9056109
+      ],
+      [
+       11.6162678,
+       50.9056036
+      ],
+      [
+       11.6162365,
+       50.9055839
+      ],
+      [
+       11.6162251,
+       50.905557
+      ],
+      [
+       11.6162365,
+       50.90553
+      ],
+      [
+       11.6162678,
+       50.9055103
+      ],
+      [
+       11.6163106,
+       50.9055031
+      ],
+      [
+       11.6163533,
+       50.9055103
+      ],
+      [
+       11.6163846,
+       50.90553
+      ],
+      [
+       11.616396,
+       50.905557
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Playground",
+    "name": "Wasserspielplatz",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "ageFrom": 1,
+    "ageTo": 6,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "volleyball",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6171368,
+       50.9054941
+      ],
+      [
+       11.6173647,
+       50.9054941
+      ],
+      [
+       11.6173647,
+       50.9055659
+      ],
+      [
+       11.6171368,
+       50.9055659
+      ],
+      [
+       11.6171368,
+       50.9054941
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "SportArea",
+    "name": "Beachvolleyball",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "sportType": "BEACH_VOLLEYBALL",
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "soccer",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6169943,
+       50.9061229
+      ],
+      [
+       11.6171653,
+       50.9061229
+      ],
+      [
+       11.6171653,
+       50.9063295
+      ],
+      [
+       11.6169943,
+       50.9063295
+      ],
+      [
+       11.6169943,
+       50.9061229
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "SportArea",
+    "name": "Bolzplatz",
+    "status": "OPEN",
+    "accessible": false,
+    "lastInspection": "2026-06-15",
+    "sportType": "SOCCER",
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "table-tennis",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6174502,
+       50.905521
+      ],
+      [
+       11.6175356,
+       50.905521
+      ],
+      [
+       11.6175356,
+       50.905557
+      ],
+      [
+       11.6174502,
+       50.905557
+      ],
+      [
+       11.6174502,
+       50.905521
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "SportArea",
+    "name": "Tischtennis",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "sportType": "TABLE_TENNIS",
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "fitness",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.6152849,
+       50.9063115
+      ],
+      [
+       11.6155698,
+       50.9063115
+      ],
+      [
+       11.6155698,
+       50.9063205
+      ],
+      [
+       11.6152849,
+       50.9063205
+      ],
+      [
+       11.6152849,
+       50.9063115
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "SportArea",
+    "name": "Aqua-Fitness-Raum",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "sportType": "FITNESS",
+    "level": "UPPER_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "entrance-main",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.6159259,
+     50.9058085
+    ]
+   },
+   "properties": {
+    "assetType": "Entrance",
+    "name": "Haupteingang mit Kasse",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "main": true,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "entrance-outdoor",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.616567,
+     50.9057995
+    ]
+   },
+   "properties": {
+    "assetType": "Entrance",
+    "name": "Ausgang Freibad",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "main": false,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "entrance-staff",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.6152849,
+     50.9058983
+    ]
+   },
+   "properties": {
+    "assetType": "Entrance",
+    "name": "Personaleingang",
+    "status": "OPEN",
+    "accessible": false,
+    "lastInspection": "2026-06-15",
+    "main": false,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "path-main",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      11.6159259,
+      50.9058085
+     ],
+     [
+      11.6159259,
+      50.9057546
+     ],
+     [
+      11.6164245,
+      50.9057546
+     ],
+     [
+      11.6169231,
+      50.9057546
+     ],
+     [
+      11.6172792,
+      50.9056288
+     ],
+     [
+      11.6174502,
+      50.9054312
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Path",
+    "name": "Hauptweg",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "surface": "PAVED",
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "path-sauna",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      11.616567,
+      50.906078
+     ],
+     [
+      11.6168519,
+      50.906078
+     ],
+     [
+      11.6172222,
+      50.9061229
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Path",
+    "name": "Weg zum Saunahaus",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "surface": "WOODEN",
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "path-lawn",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      11.6164245,
+      50.9057546
+     ],
+     [
+      11.6162821,
+      50.9056288
+     ],
+     [
+      11.6159972,
+      50.905539
+     ],
+     [
+      11.6155698,
+      50.9054492
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Path",
+    "name": "Weg Liegewiese",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-06-15",
+    "surface": "GRAVEL",
+    "level": "OUTDOOR"
+   }
+  }
+ ]
+}

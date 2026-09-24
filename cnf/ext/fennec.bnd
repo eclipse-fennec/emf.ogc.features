@@ -13,15 +13,15 @@
 -include: ${workspace}/gradle.properties
 
 # Enable the Fennec library setups (resolved from Maven Central via central.mvn).
-# fennecPersistence brings the JPA/EclipseLink + query IR stack, fennecCodec the GeoJSON
-# codec, fennecEMFModels the GeoJSON EMF model, fennecM2X the OCL bundles persistence needs
-# (and the ANTLR runtime the CQL2 parser uses).
+# fennecPersistence brings the JPA/EclipseLink + query IR stack (including the OCL model it
+# needs), fennecCodec the GeoJSON codec, fennecEMFModels the GeoJSON EMF model. fennecM2X is
+# deliberately not enabled: its index references an unpublished artifact
+# (m2x.library.project) and pins an older OCL model than fennecPersistence.
 -library: \
 	fennec,\
 	fennecTest,\
 	fennecJacoco,\
 	fennecEMF,\
-	fennecM2X,\
 	fennecPersistence,\
 	fennecEMFModels,\
 	fennecCodec

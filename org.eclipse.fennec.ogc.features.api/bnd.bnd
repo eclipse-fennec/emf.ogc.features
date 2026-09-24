@@ -1,0 +1,10 @@
+Bundle-Name: Fennec OGC Features API
+Bundle-Description: The protocol neutral feature access SPI of Fennec OGC Features: collection \
+ descriptors derived from annotated EClasses, feature queries over the Fennec query IR and the \
+ FeatureSource a store implements.
+
+-library: enableEMF
+
+-buildpath: \
+	org.eclipse.fennec.expression.model;version=latest,\
+	org.eclipse.fennec.query.model;version=latest

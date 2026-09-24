@@ -1,0 +1,28 @@
+Bundle-Name: Fennec OGC Features OSGi Tests
+Bundle-Description: OSGi integration tests of Fennec OGC Features: the leisure pool demo \
+ loaded into JPA on H2 through the geojson converter, feature sources compared against the \
+ in-memory reference, and the OGC API over HTTP.
+
+Test-Cases: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.annotation.Testable;CONCRETE}
+
+-library: \
+	enableOSGi-Test,\
+	enableEMF
+
+Private-Package: org.eclipse.fennec.ogc.features.tests
+
+-buildpath: \
+	org.osgi.framework;version=latest,\
+	org.osgi.service.cm;version=latest,\
+	org.osgi.test.junit5.cm;version=latest,\
+	org.osgi.service.condition;version=latest,\
+	org.osgi.service.jdbc;version=latest,\
+	org.geojson.model;version=latest,\
+	org.eclipse.fennec.expression.model;version=latest,\
+	org.eclipse.fennec.query.model;version=latest,\
+	org.eclipse.fennec.ogc.features.api;version=snapshot,\
+	org.eclipse.fennec.ogc.features.geo;version=snapshot,\
+	org.eclipse.fennec.ogc.features.source;version=snapshot,\
+	org.eclipse.fennec.ogc.features.example.bath;version=snapshot,\
+	org.eclipse.fennec.ogc.features.example.bath.demo;version=snapshot,\
+	org.locationtech.jts.jts-core;version=latest

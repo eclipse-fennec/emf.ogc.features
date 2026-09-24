@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="bath" nsURI="https://eclipse.org/fennec/ogc/example/bath/1.0"
+    nsPrefix="bath">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="copyrightText" value="Copyright (c) 2026 Contributors to the Eclipse Foundation.&#10;&#10;This program and the accompanying materials are made&#10;available under the terms of the Eclipse Public License 2.0&#10;which is available at https://www.eclipse.org/legal/epl-2.0/&#10;&#10;SPDX-License-Identifier: EPL-2.0&#10;&#10;Contributors:&#10;     Data In Motion - initial API and implementation"/>
+    <details key="documentation" value="Assets of a leisure pool (Freizeitbad), published as OGC API Features collections."/>
+    <details key="complianceLevel" value="17.0"/>
+    <details key="oSGiCompatible" value="true"/>
+    <details key="basePackage" value="org.eclipse.fennec.ogc.features.example"/>
+    <details key="prefix" value="Bath"/>
+    <details key="modelName" value="Bath"/>
+    <details key="resource" value="XMI"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Asset" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="An asset of the leisure pool that has a location."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/persistence">
+      <details key="inheritance" value="SINGLE_TABLE"/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="assets"/>
+      <details key="title" value="Alle Anlagen"/>
+      <details key="description" value="Alle Anlagen des Freizeitbads"/>
+      <details key="geometry" value="geometry"/>
+      <details key="bbox" value="minX,minY,maxX,maxY"/>
+      <details key="temporal" value="lastInspection"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Stable identifier of the asset, also the OGC feature id."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Display name."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="geometry" eType="#//GeoJsonGeometry">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Location of the asset as GeoJSON geometry in CRS84 (longitude, latitude)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minX" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Bounding box, western edge. Derived from the geometry when the asset is stored."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minY" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Bounding box, southern edge."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxX" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Bounding box, eastern edge."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxY" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Bounding box, northern edge."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" eType="#//Level"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//OperationalStatus"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessible" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Barrier-free access."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastInspection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Date of the last safety inspection, the temporal property of the feature."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Pool" eSuperTypes="#//Asset">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A pool."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="pools"/>
+      <details key="title" value="Becken"/>
+      <details key="layerGroup" value="Wasser"/>
+      <details key="style" value="#1e88e5"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="poolType" eType="#//PoolType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="depthMin" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Minimum water depth in metres."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="depthMax" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Maximum water depth in metres."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="waterTemperature" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Water temperature in °C."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lanes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Number of swimming lanes, 0 if none."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Slide" eSuperTypes="#//Asset">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A water slide, modelled as the line of its run."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="slides"/>
+      <details key="title" value="Rutschen"/>
+      <details key="layerGroup" value="Wasser"/>
+      <details key="style" value="#00acc1"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Length in metres."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="heightDifference" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Height difference in metres."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minAge" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Minimum age."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ChangingRoom" eSuperTypes="#//Asset">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A changing room area."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="changing-rooms"/>
+      <details key="title" value="Umkleiden"/>
+      <details key="layerGroup" value="Service"/>
+      <details key="style" value="#8e24aa"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cabins" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Number of changing cabins."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lockers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Number of lockers."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="family" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Family changing room."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Toilet" eSuperTypes="#//Asset">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A toilet."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="toilets"/>
+      <details key="title" value="WC"/>
+      <details key="layerGroup" value="Service"/>
+      <details key="style" value="#6d4c41"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="babyChanging" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Baby changing table available."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Kiosk" eSuperTypes="#//Asset">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A kiosk or snack bar."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="kiosks"/>
+      <details key="title" value="Kiosk &amp; Gastronomie"/>
+      <details key="layerGroup" value="Gastronomie"/>
+      <details key="style" value="#fb8c00"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="openingHours" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Opening hours, e.g. 10:00-19:00."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="seats" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Number of seats."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Sauna" eSuperTypes="#//Asset">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A sauna."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="saunas"/>
+      <details key="title" value="Sauna"/>
+      <details key="layerGroup" value="Wellness"/>
+      <details key="style" value="#e53935"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="saunaType" eType="#//SaunaType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="temperature" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Temperature in °C."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Number of persons."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SportArea" eSuperTypes="#//Asset">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A sport area."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="sport-areas"/>
+      <details key="title" value="Sportbereich"/>
+      <details key="layerGroup" value="Sport"/>
+      <details key="style" value="#43a047"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sportType" eType="#//SportType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Lawn" eSuperTypes="#//Asset">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A lawn for sunbathing."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="lawns"/>
+      <details key="title" value="Liegewiese"/>
+      <details key="layerGroup" value="Freiflächen"/>
+      <details key="style" value="#7cb342"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shaded" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Partly shaded by trees."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Playground" eSuperTypes="#//Asset">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A playground."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="playgrounds"/>
+      <details key="title" value="Spielplatz"/>
+      <details key="layerGroup" value="Freiflächen"/>
+      <details key="style" value="#fdd835"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ageFrom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Minimum age."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ageTo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Maximum age."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FirstAid" eSuperTypes="#//Asset">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A first aid station."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="first-aid"/>
+      <details key="title" value="Erste Hilfe"/>
+      <details key="layerGroup" value="Service"/>
+      <details key="style" value="#d81b60"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defibrillator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="An AED is available."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Entrance" eSuperTypes="#//Asset">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="An entrance or exit."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="entrances"/>
+      <details key="title" value="Eingänge"/>
+      <details key="layerGroup" value="Infrastruktur"/>
+      <details key="style" value="#546e7a"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="main" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Main entrance with cash desk."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Path" eSuperTypes="#//Asset">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A footpath."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="paths"/>
+      <details key="title" value="Wege"/>
+      <details key="layerGroup" value="Infrastruktur"/>
+      <details key="style" value="#9e9e9e"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="surface" eType="#//Surface"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Building" eSuperTypes="#//Asset">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A building of the facility."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="buildings"/>
+      <details key="title" value="Gebäude"/>
+      <details key="layerGroup" value="Infrastruktur"/>
+      <details key="style" value="{&quot;color&quot;:&quot;#78909c&quot;,&quot;fillOpacity&quot;:0.15}"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="floors" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Number of floors."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SiteBoundary" eSuperTypes="#//Asset">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The boundary of the facility site."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="site"/>
+      <details key="title" value="Gelände"/>
+      <details key="layerGroup" value="Infrastruktur"/>
+      <details key="style" value="{&quot;color&quot;:&quot;#37474f&quot;,&quot;fillOpacity&quot;:0.03}"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="GeoJsonGeometry" instanceClassName="org.geojson.Geometry">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A GeoJSON geometry. Persisted as GeoJSON text by the geojson TypeConverter of org.eclipse.fennec.ogc.features.geo. The string conversion lets XMI carry it, and reads it back from JPA as long as Fennec persistence hands String column values to EcoreUtil.createFromString instead of to the converter."/>
+      <details key="create" value="return org.eclipse.fennec.ogc.features.geo.GeoJsonText.standalone().read(it);"/>
+      <details key="convert" value="return it == null ? null : org.eclipse.fennec.ogc.features.geo.GeoJsonText.standalone().write(it);"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Level">
+    <eLiterals name="GROUND_FLOOR"/>
+    <eLiterals name="UPPER_FLOOR" value="1"/>
+    <eLiterals name="BASEMENT" value="2"/>
+    <eLiterals name="OUTDOOR" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="OperationalStatus">
+    <eLiterals name="OPEN"/>
+    <eLiterals name="CLOSED" value="1"/>
+    <eLiterals name="MAINTENANCE" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PoolType">
+    <eLiterals name="SWIMMER"/>
+    <eLiterals name="NON_SWIMMER" value="1"/>
+    <eLiterals name="KIDS" value="2"/>
+    <eLiterals name="WAVE" value="3"/>
+    <eLiterals name="OUTDOOR" value="4"/>
+    <eLiterals name="WHIRLPOOL" value="5"/>
+    <eLiterals name="DIVING" value="6"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SaunaType">
+    <eLiterals name="FINNISH"/>
+    <eLiterals name="BIO" value="1"/>
+    <eLiterals name="STEAM" value="2"/>
+    <eLiterals name="INFRARED" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SportType">
+    <eLiterals name="BEACH_VOLLEYBALL"/>
+    <eLiterals name="SOCCER" value="1"/>
+    <eLiterals name="TABLE_TENNIS" value="2"/>
+    <eLiterals name="FITNESS" value="3"/>
+    <eLiterals name="BASKETBALL" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Surface">
+    <eLiterals name="PAVED"/>
+    <eLiterals name="GRAVEL" value="1"/>
+    <eLiterals name="WOODEN" value="2"/>
+    <eLiterals name="RUBBER" value="3"/>
+    <eLiterals name="GRASS" value="4"/>
+  </eClassifiers>
+</ecore:EPackage>

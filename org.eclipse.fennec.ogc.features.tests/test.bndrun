@@ -1,0 +1,32 @@
+-library: enableOSGi-Test
+
+-runrequires: \
+	bnd.identity;id='org.eclipse.fennec.ogc.features.tests',\
+	bnd.identity;id='org.osgi.test.junit5.cm',\
+	bnd.identity;id='org.eclipse.fennec.ogc.features.source',\
+	bnd.identity;id='org.eclipse.fennec.ogc.features.geo',\
+	bnd.identity;id='org.eclipse.fennec.ogc.features.example.bath',\
+	bnd.identity;id='org.eclipse.fennec.ogc.features.example.bath.demo',\
+	bnd.identity;id='org.eclipse.fennec.codec.geojson',\
+	bnd.identity;id='org.eclipse.fennec.emf.osgi.metadata',\
+	bnd.identity;id='org.eclipse.fennec.persistence.eclipselink',\
+	bnd.identity;id='org.eclipse.fennec.persistence.repository',\
+	bnd.identity;id='org.eclipse.fennec.persistence.repository.jpa',\
+	bnd.identity;id='org.eclipse.persistence.asm',\
+	bnd.identity;id='org.eclipse.persistence.jpa.jpql',\
+	bnd.identity;id='org.eclipse.daanse.jdbc.datasource.h2',\
+	bnd.identity;id='com.h2database',\
+	bnd.identity;id='org.apache.aries.spifly.dynamic.bundle',\
+	bnd.identity;id='org.apache.felix.configadmin'
+
+# see emf.persistence-jpa test.bndrun: the framework extension variant embeds an ASM
+# that cannot read Java 21 class files
+-runblacklist: \
+	bnd.identity;id='org.apache.aries.spifly.dynamic.framework.extension'
+
+-runfw: org.apache.felix.framework
+
+-runee: JavaSE-21
+
+-runproperties: \
+	bathDb=${.}/generated/h2/bath-${tstamp}
