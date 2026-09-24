@@ -1,7 +1,14 @@
 /*
  * Copyright (c) 2026 Contributors to the Eclipse Foundation.
- * SPDX-License-Identifier: EPL-2.0
  *
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ */
+
+/*
  * Map viewer for the Fennec OGC API Features server. Every collection becomes a GeoJSON
  * source with fill, line and circle layers; the layer panel shows the collections as a tree of
  * their layerGroup paths ("Town/Facility/Water") and colours them by their style. Features are fetched for the visible bbox.

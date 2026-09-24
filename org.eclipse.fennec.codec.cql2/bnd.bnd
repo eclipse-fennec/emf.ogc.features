@@ -6,9 +6,9 @@ Bundle-Description: EMF resources of the two CQL2 encodings: the text encoding (
 
 -library: enableEMF
 
-src=${^src},src-gen-parser
+src=${^src},src-gen
 
-# The ANTLR4 parser in src-gen-parser is generated from grammar/CQL2.g4 and checked in, as in
+# The ANTLR4 parser in src-gen is generated from grammar/CQL2.g4 and checked in, as in
 # the m2x parsers. The tool classpath comes from the workspace repositories (cnf/ext/central.mvn).
 antlr4-version = 4.13.2
 antlr4.tool.cp = \
@@ -23,11 +23,11 @@ antlr4.tool.cp = \
 # comment it out again. -Xexact-output-dir: without it ANTLR appends the grammar's directory to -o.
 #-generate: \
 #	grammar/CQL2.g4; \
-#		output=src-gen-parser; \
+#		output=src-gen; \
 #		system='java -cp ${antlr4.tool.cp} org.antlr.v4.Tool \
 #			-visitor -no-listener -Xexact-output-dir \
 #			-package org.eclipse.fennec.codec.cql2.antlr \
-#			-o ${project}/src-gen-parser/org/eclipse/fennec/codec/cql2/antlr \
+#			-o ${project}/src-gen/org/eclipse/fennec/codec/cql2/antlr \
 #			${project}/grammar/CQL2.g4'
 
 # Include the grammar for downstream reuse
