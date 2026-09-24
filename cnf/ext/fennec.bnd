@@ -15,8 +15,7 @@
 # Enable the Fennec library setups (resolved from Maven Central via central.mvn).
 # fennecPersistence brings the JPA/EclipseLink + query IR stack (including the OCL model it
 # needs), fennecCodec the GeoJSON codec, fennecEMFModels the GeoJSON EMF model. fennecM2X is
-# deliberately not enabled: its index references an unpublished artifact
-# (m2x.library.project) and pins an older OCL model than fennecPersistence.
+# not needed: nothing here uses the OCL/QVT engines directly.
 -library: \
 	fennec,\
 	fennecTest,\

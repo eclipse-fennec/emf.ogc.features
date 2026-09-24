@@ -111,13 +111,3 @@ subclass of a `SINGLE_TABLE` root, although the id is inherited from the root.
 **Workaround here:** `GeoJsonText.read` catches `RuntimeException`; the OGC output is
 written by our own `GeometryJson`, which omits unset elevations.
 
-## 8. m2m (emf.m2x) — fennecM2X library references an unpublished artifact
-
-The `fennecM2X` index (`org.eclipse.fennec.m2x.library.workspace:0.1.0-SNAPSHOT`)
-lists `org.eclipse.fennec.m2x:org.eclipse.fennec.m2x.library.project:0.1.0-SNAPSHOT`,
-which does not exist on Sonatype Central (HTTP 404). Every resolve in a workspace that
-enables `fennecM2X` fails with `No metadata for revision ...m2x.library.project`. The index
-also pins `m2x.ocl.model` 0.1.0-SNAPSHOT while `fennecPersistence` brings 0.1.1-SNAPSHOT.
-
-**Workaround here:** `fennecM2X` is not enabled (`cnf/ext/fennec.bnd`); the ANTLR runtime
-is listed directly in `cnf/ext/central.mvn`.

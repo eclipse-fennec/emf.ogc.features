@@ -129,7 +129,6 @@ org.bndtools:org.bndtools.templates.osgi:${bndversion}
 org.eclipse.fennec.emf:org.eclipse.fennec.emf.osgi.bnd.library.workspace:1.1.0-SNAPSHOT
 org.eclipse.osgi-technology.rest:org.eclipse.osgitech.rest.bnd.library:1.2.3
 org.eclipse.fennec.codec:org.eclipse.fennec.codec.workspace.library:0.1.0-SNAPSHOT
-org.eclipse.fennec.m2x:org.eclipse.fennec.m2x.library.workspace:0.1.0-SNAPSHOT
 org.eclipse.fennec.persistence:org.eclipse.fennec.persistence.workspace.library:0.1.0-SNAPSHOT
 org.eclipse.fennec.models:org.eclipse.fennec.common.models.library:0.0.1-SNAPSHOT
 
@@ -137,9 +136,6 @@ org.eclipse.fennec.models:org.eclipse.fennec.common.models.library:0.0.1-SNAPSHO
 # after the bbox pre-filter was pushed to the store. The jar ships OSGi metadata.
 org.locationtech.jts:jts-core:1.20.0
 
-# ANTLR 4 runtime for the generated CQL2 text parser (the tool itself is only used to
-# regenerate the checked-in parser, see org.eclipse.fennec.ogc.features.cql2/bnd.bnd).
-org.antlr:antlr4-runtime:4.13.2
 
 # ServiceLoader mediator for the daanse JDBC data sources. The dynamic.bundle variant wires the
 # current ASM bundles; the framework extension embeds an ASM too old for Java 21 class files.
