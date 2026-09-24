@@ -1,4 +1,4 @@
-# Contributing to Eclipse Fennec — EMF M2X
+# Contributing to Eclipse Fennec — OGC Features
 
 Thank you for your interest in this project. Eclipse Fennec is an open-source
 project hosted by the [Eclipse Foundation](https://www.eclipse.org) and
@@ -6,8 +6,8 @@ operated under the [Eclipse Development Process](https://www.eclipse.org/project
 Contributions are welcome from the whole community.
 
 * Project home: https://projects.eclipse.org/projects/technology.fennec
-* This repository: https://github.com/eclipse-fennec/emf.m2x
-* Issue tracker: https://github.com/eclipse-fennec/emf.m2x/issues
+* This repository: https://github.com/eclipse-fennec/emf.ogc.features
+* Issue tracker: https://github.com/eclipse-fennec/emf.ogc.features/issues
 * Developer mailing list: https://accounts.eclipse.org/mailing-list/fennec-dev
 
 ## Eclipse Development Process
@@ -39,7 +39,7 @@ Background reading:
 
 ## Reporting issues
 
-* Search the [issue tracker](https://github.com/eclipse-fennec/emf.m2x/issues)
+* Search the [issue tracker](https://github.com/eclipse-fennec/emf.ogc.features/issues)
   first — your problem may already be reported.
 * When filing a new issue, include the Fennec version, Java version, OSGi
   framework (Felix/Equinox/…) version, and a minimal reproducer if possible.
@@ -185,4 +185,4 @@ high-quality contributions over time, followed by a committer election.
 
 * Mailing list: [fennec-dev@eclipse.org](mailto:fennec-dev@eclipse.org)
   ([subscribe](https://accounts.eclipse.org/mailing-list/fennec-dev))
-* Issues: https://github.com/eclipse-fennec/emf.m2x/issues
+* Issues: https://github.com/eclipse-fennec/emf.ogc.features/issues

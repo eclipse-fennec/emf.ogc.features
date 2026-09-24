@@ -3,10 +3,10 @@ import { GUIDES } from '../../guides.mjs'
 
 // Per-project docs are served under a versioned sub-path, matching the org
 // convention (https://eclipse-fennec.github.io/<repo>/<version>/). The snapshot
-// branch publishes to /emf.m2x/snapshot/; tagged releases / `latest` get added
+// branch publishes to /emf.ogc.features/snapshot/; tagged releases / `latest` get added
 // once the first release lands.
 const version = process.env.DOCS_BRANCH || 'snapshot'
-const base = `/emf.m2x/${version}/`
+const base = `/emf.ogc.features/${version}/`
 
 // Git ref the "Edit this page" links point at — the same one sync-guides.mjs uses
 // for its blob URLs. Not `version`: that is a URL segment and `latest` is no branch.
@@ -15,13 +15,10 @@ const ref = process.env.DOCS_REF || 'snapshot'
 // Canonical published origin. Links that point OUTSIDE the current docs base
 // (other doc versions) must be full URLs — VitePress
 // auto-prepends `base` to any root-absolute (`/…`) link, which would otherwise
-// double the path (e.g. /emf.m2x/snapshot/emf.m2x/ocl/…). Links to pages WITHIN
-// this version stay base-relative (e.g. `/guides/ocl`).
-const SITE = 'https://eclipse-fennec.github.io/emf.m2x'
+// double the path (e.g. /emf.ogc.features/snapshot/emf.ogc.features/guides/…). Links to pages WITHIN
+// this version stay base-relative (e.g. `/guides/overview`).
+const SITE = 'https://eclipse-fennec.github.io/emf.ogc.features'
 
-// The OCL p2 update site lives on the Eclipse download server, one directory per
-// channel (`snapshot`, `latest`), published by .github/workflows/p2-downloads.yml.
-const P2_SITE = 'https://download.eclipse.org/fennec/m2x/ocl/p2'
 
 // Version selector. Only `snapshot` is deployed today; keep as data so adding
 // `latest` and tagged versions later is a one-liner.
@@ -39,13 +36,13 @@ const editPattern = new Function(
   'page',
   `const sources = ${JSON.stringify(editSources)}\n` +
     `const path = sources[page.filePath] || 'docs-site/docs/' + page.filePath\n` +
-    `return 'https://github.com/eclipse-fennec/emf.m2x/edit/${ref}/' + path`
+    `return 'https://github.com/eclipse-fennec/emf.ogc.features/edit/${ref}/' + path`
 ) as (page: { filePath: string }) => string
 
 export default defineConfig({
-  title: 'Fennec M2X',
+  title: 'Fennec OGC Features',
   description:
-    'Lightweight, spec-compliant OCL, QVT-O, QVT-R and MOFM2T engines for EMF — decoupled from the Eclipse platform.',
+    'OGC API Features for EMF models — collections, items, CQL2 filtering and GeoJSON on top of Fennec persistence.',
   lang: 'en-US',
   base,
   cleanUrls: true,
@@ -56,39 +53,29 @@ export default defineConfig({
   // build instead of shipping.
   ignoreDeadLinks: false,
 
-  markdown: {
-    // Shiki has no grammars for the OMG transformation languages. QVT-O/QVT-R
-    // are OCL-derived and read reasonably under the Java grammar; Acceleo MTL
-    // templates are markup-like, so leave them unhighlighted rather than mangled.
-    languageAlias: { qvto: 'java', qvtr: 'java', mtl: 'html' },
-  },
 
   head: [
     ['link', { rel: 'icon', type: 'image/png', href: `${base}fennec-logo.png` }],
     ['meta', { name: 'theme-color', content: '#c0631c' }],
     ['meta', { property: 'og:type', content: 'website' }],
-    ['meta', { property: 'og:title', content: 'Fennec M2X' }],
+    ['meta', { property: 'og:title', content: 'Fennec OGC Features' }],
     [
       'meta',
       {
         property: 'og:description',
         content:
-          'Lightweight OCL, QVT-O, QVT-R and MOFM2T engines for EMF — no Eclipse platform required.',
+          'OGC API Features for EMF models on top of Fennec persistence.',
       },
     ],
   ],
 
   themeConfig: {
     logo: '/fennec-logo.png',
-    siteTitle: 'Fennec M2X',
+    siteTitle: 'Fennec OGC Features',
 
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Guides', items: guideItems },
-      {
-        text: 'Eclipse Update Site',
-        link: `${P2_SITE}/${version}/`,
-      },
       { text: `version: ${version}`, items: versions },
     ],
 
@@ -96,7 +83,7 @@ export default defineConfig({
       '/guides/': [{ text: 'User Guides', items: guideItems }],
     },
 
-    socialLinks: [{ icon: 'github', link: 'https://github.com/eclipse-fennec/emf.m2x' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/eclipse-fennec/emf.ogc.features' }],
 
     search: { provider: 'local' },
 

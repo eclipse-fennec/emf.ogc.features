@@ -29,7 +29,7 @@ const outDir = join(here, 'docs', 'guides'); // VitePress content root
 // repository root IS the workspace, so the docs live under `docs/`, not
 // `workspace/docs/`.
 const ref = process.env.DOCS_REF || 'snapshot';
-const blobBase = `https://github.com/eclipse-fennec/emf.m2x/blob/${ref}/docs`;
+const blobBase = `https://github.com/eclipse-fennec/emf.ogc.features/blob/${ref}/docs`;
 
 const published = new Map(GUIDES.map((g) => [g.file, g.slug]));
 

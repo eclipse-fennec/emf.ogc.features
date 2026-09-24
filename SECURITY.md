@@ -11,7 +11,7 @@ If you think you have found a vulnerability in this repository, please report it
 Instead, report it using one of the following ways:
 
 * Create a [confidential issue](https://gitlab.eclipse.org/security/vulnerability-reports/-/issues/new?issuable_template=new_vulnerability) in the Eclipse Foundation Vulnerability Reporting Tracker
-* Report a [vulnerability](https://github.com/eclipse-fennec/emf.m2x/security/advisories/new) directly via private vulnerability reporting on GitHub
+* Report a [vulnerability](https://github.com/eclipse-fennec/emf.ogc.features/security/advisories/new) directly via private vulnerability reporting on GitHub
 
 You can find more information about reporting and disclosure at the [Eclipse Foundation Security page](https://www.eclipse.org/security/).
 
@@ -31,7 +31,7 @@ This information will help us triage your report more quickly.
 
 ## Supported Versions
 
-Eclipse Fennec EMF M2X has **not had a release yet**. Until it does, there is no supported
+Eclipse Fennec OGC Features has **not had a release yet**. Until it does, there is no supported
 version in the usual sense: fixes land on the `snapshot` branch, and the published snapshot
 artifacts (currently the `0.1.x` stream) carry them.
 

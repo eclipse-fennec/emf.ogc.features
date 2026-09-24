@@ -13,20 +13,20 @@
 -include: ${workspace}/gradle.properties
 
 # Enable the Fennec library setups (resolved from Maven Central via central.mvn).
-# fennecCodec re-added 2026-07-03 for E3 (OData-JSON data codec) — backing artifact
-# org.eclipse.fennec.codec:org.eclipse.fennec.codec.workspace.library:0.1.0-SNAPSHOT.
+# fennecPersistence brings the JPA/EclipseLink + query IR stack, fennecCodec the GeoJSON
+# codec, fennecEMFModels the GeoJSON EMF model, fennecM2X the OCL bundles persistence needs
+# (and the ANTLR runtime the CQL2 parser uses).
 -library: \
 	fennec,\
 	fennecTest,\
 	fennecJacoco,\
 	fennecEMF,\
 	fennecM2X,\
-	fennecJPA,\
+	fennecPersistence,\
 	fennecEMFModels,\
-	fennecCodec,\
-	jakartaREST
+	fennecCodec
 
-base-version: 1.0.0
+base-version: 0.1.0
 javac.source: 21
 javac.target: 21
 -require-bnd: "(version>=7.1.0)"

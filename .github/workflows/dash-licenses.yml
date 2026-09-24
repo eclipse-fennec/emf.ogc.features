@@ -34,9 +34,9 @@ jobs:
       - name: Generate DEPENDENCIES and check licenses
         # The script exits with the number of "restricted" artifacts, so a
         # non-zero exit means something is not vetted yet. That is reported here
-        # but does NOT fail the job: one dependency is restricted today (the
-        # ANTLR 4 tool, used to generate the parsers), and until its CQ is
-        # through, a hard gate would only teach everyone to ignore a red check.
+        # but does NOT fail the job while new dependencies (e.g. the ANTLR 4
+        # tool, used to generate the CQL2 parser) still wait for vetting — a hard
+        # gate would only teach everyone to ignore a red check.
         # Drop continue-on-error the moment the count reaches zero — that is the
         # whole point of having the check.
         continue-on-error: true

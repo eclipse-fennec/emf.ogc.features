@@ -3,7 +3,7 @@ name: Release Build
 # Orchestrator for main (release branch -> Maven Central).
 #
 # Identical in shape to snapshot.yml; the only differences are do-release=true and
-# the `latest` channel (Pages docs and the p2 site on download.eclipse.org). Note that verify now gates the release: the previous
+# the `latest` channel (Pages docs). Note that verify now gates the release: the previous
 # bespoke workflow called `./gradlew release` directly, and the bnd release task
 # does not depend on test/check, so main published without ever running a test.
 on:
@@ -31,12 +31,9 @@ jobs:
   verify:
     name: Verify
     uses: eclipse-fennec/.github/.github/workflows/reusable-verify.yml@2a98ad6e2459556b858e1273bff2f8d87fc11a06 # v1.3.0
-    with:
-      # java-versions unset on purpose: the reusable default '["21","25"]' runs
-      # both legs. m2x still targets Java 21; the 25 leg is a toolchain check.
-      # perfTest gates since #88 and costs ~38 s since #87 — a release is the last
-      # place to skip a check that cheap.
-      run-perf-tests: true
+    # java-versions unset on purpose: the reusable default '["21","25"]' runs
+    # both legs. The artifacts target Java 21 (cnf/ext/fennec.bnd); the 25 leg is
+    # a toolchain check.
 
   release:
     name: Release to Maven Central
@@ -44,21 +41,8 @@ jobs:
     uses: eclipse-fennec/.github/.github/workflows/reusable-release.yml@2a98ad6e2459556b858e1273bff2f8d87fc11a06 # v1.3.0
     with:
       do-release: true
-      artifact-paths: org.eclipse.fennec.m2x.ocl.ide.p2/generated/org.eclipse.fennec.m2x.ocl.p2.jar
     secrets: inherit
 
-  p2:
-    name: Publish p2 to download.eclipse.org
-    needs: release
-    # Independent of the Pages deploy: `deploy` does not wait for it, so the two
-    # publications never block each other.
-    uses: ./.github/workflows/p2-downloads.yml
-    with:
-      channel: latest
-    secrets:
-      SCP_USERNAME: ${{ secrets.SCP_USERNAME }}
-      SCP_KEY: ${{ secrets.SCP_KEY }}
-      SCP_PASSPHRASE: ${{ secrets.SCP_PASSPHRASE }}
 
   docs:
     name: Build docs slice

@@ -9,53 +9,10 @@ jakarta.ws.rs:jakarta.ws.rs-api:3.1.0
 jakarta.xml.bind:jakarta.xml.bind-api:4.0.2
 jakarta.json:jakarta.json-api:2.1.3
 
-# Google Protocol Buffers (EMF <-> Protobuf utility). The jar ships OSGi metadata.
-com.google.protobuf:protobuf-java:4.35.1
-
-# OSGi-fied grpc: the gecko wrap bundles (io.grpc.core merges api/core/stub/protobuf/
-# protobuf-lite/util — io.grpc is a split package upstream; io.grpc.netty is the unshaded
-# transport over the official io.netty bundles). These are what resolves at OSGi runtime.
-org.geckoprojects.libraries:io.grpc.core:1.82.2-SNAPSHOT
-org.geckoprojects.libraries:io.grpc.netty:1.82.2-SNAPSHOT
-
-# grpc-java for the gRPC client (build/test only — the upstream jars carry NO OSGi metadata).
-# grpc-inprocess/-core/-util + guava/perfmark are the in-process test-runtime closure.
-io.grpc:grpc-api:1.82.2
-io.grpc:grpc-stub:1.82.2
-io.grpc:grpc-core:1.82.2
-io.grpc:grpc-util:1.82.2
-io.grpc:grpc-inprocess:1.82.2
-io.grpc:grpc-context:1.82.2
-io.grpc:grpc-netty:1.82.2
-io.perfmark:perfmark-api:0.27.0
-com.google.guava:guava:33.6.0-jre
-com.google.guava:failureaccess:1.0.3
-com.google.errorprone:error_prone_annotations:2.50.0
-com.google.code.gson:gson:2.14.0
-com.google.code.findbugs:jsr305:3.0.2
-# netty for the grpc-netty test transport (the official jars ARE OSGi bundles)
-io.netty:netty-buffer:4.1.133.Final
-io.netty:netty-codec:4.1.133.Final
-io.netty:netty-codec-http:4.1.133.Final
-io.netty:netty-codec-http2:4.1.133.Final
-io.netty:netty-codec-socks:4.1.133.Final
-io.netty:netty-common:4.1.133.Final
-io.netty:netty-handler:4.1.133.Final
-io.netty:netty-handler-proxy:4.1.133.Final
-io.netty:netty-resolver:4.1.133.Final
-io.netty:netty-transport:4.1.133.Final
-io.netty:netty-transport-native-unix-common:4.1.133.Final
-
-# EMF XSD model + XSDEcoreBuilder (WSDL/XSD -> Ecore for the SOAP utility). Ships OSGi
-# metadata; requires org.eclipse.emf.ecore [2.41,3.0) — aligned with the workspace EMF.
-org.eclipse.emf:org.eclipse.xsd:2.22.0
-
 # used by configurator
 org.eclipse.parsson:jakarta.json:1.1.7
 org.apache.sling:org.apache.sling.commons.johnzon:2.0.0
 
-org.apache.aries.component-dsl:org.apache.aries.component-dsl.component-dsl:1.2.2
-org.apache.aries.typedevent:org.apache.aries.typedevent.bus:1.0.1
 org.apache.aries.spifly:org.apache.aries.spifly.dynamic.framework.extension:1.3.7
 org.apache.felix:org.apache.felix.cm.json:2.0.6
 org.apache.felix:org.apache.felix.configadmin:1.9.26
@@ -155,19 +112,11 @@ org.osgi:osgi.annotation:7.0.0
 org.osgi:osgi.core:7.0.0
 org.osgi:osgi.core:8.0.0
 org.osgi:osgi.cmpn:7.0.0
-org.osgi:org.osgi.service.typedevent:1.0.0
-
 
 org.slf4j:slf4j-simple:2.0.17
 org.slf4j:slf4j-simple:1.7.36
 org.slf4j:slf4j-api:2.0.17
 org.slf4j:slf4j-api:1.7.36
-
-# Dropwizard Metrics — imported by org.eclipse.sensinact.gateway.core.impl
-# (com.codahale.metrics). Sourced from Maven Central here (proper OSGi bundle:
-# BSN io.dropwizard.metrics.core, Export-Package com.codahale.metrics;version=4.2.37);
-# the sensinact-releases copy does not resolve the package in a clean CI resolve.
-io.dropwizard.metrics:metrics-core:4.2.37
 
 # PoC: pinned to a concrete released version (the original template used ${Bundle-Version},
 # which only resolves during mustache template processing, not in a plain workspace).
@@ -181,14 +130,9 @@ org.eclipse.fennec.emf:org.eclipse.fennec.emf.osgi.bnd.library.workspace:1.1.0-S
 org.eclipse.osgi-technology.rest:org.eclipse.osgitech.rest.bnd.library:1.2.3
 org.eclipse.fennec.codec:org.eclipse.fennec.codec.workspace.library:0.1.0-SNAPSHOT
 org.eclipse.fennec.m2x:org.eclipse.fennec.m2x.library.workspace:0.1.0-SNAPSHOT
-org.eclipse.fennec.persistence.jpa:org.eclipse.fennec.persistence.jpa.library.workspace:0.1.0-SNAPSHOT
+org.eclipse.fennec.persistence:org.eclipse.fennec.persistence.workspace.library:0.1.0-SNAPSHOT
 org.eclipse.fennec.models:org.eclipse.fennec.common.models.library:0.0.1-SNAPSHOT
 
-org.geckoprojects.weather:org.gecko.weather.model:1.1.0-SNAPSHOT
-
-org.eclipse.fennec.model.atlas:org.eclipse.fennec.model.atlas.rest.client.api:0.1.0-SNAPSHOT
-org.eclipse.fennec.model.atlas:org.eclipse.fennec.model.atlas.rest.client.impl:0.1.0-SNAPSHOT
-org.eclipse.fennec.model.atlas:org.eclipse.fennec.model.atlas.rest.client.osgi:0.1.0-SNAPSHOT
-org.eclipse.fennec.model.atlas:org.eclipse.fennec.model.atlas.scope.api:0.1.0-SNAPSHOT
-
-
+# JTS Topology Suite — exact spatial predicates (S_INTERSECTS & co.) evaluated in memory
+# after the bbox pre-filter was pushed to the store. The jar ships OSGi metadata.
+org.locationtech.jts:jts-core:1.20.0

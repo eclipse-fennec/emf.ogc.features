@@ -19,36 +19,33 @@ subprojects {
         mavenCentral()
     }
     // Allow gradle to enable JUnit support in submodules
-    // The ordinary build runs everything that asserts behaviour. The two tags below
-    // measure instead, and are excluded from it.
+    // Exclude @Tag("perf") (slow) and @Tag("remote") (needs internet) tests from normal
+    // builds — run via the perfTest / remoteTest tasks. Tests against a PostgreSQL
+    // container are not tagged: they skip themselves (JUnit assumption) unless the
+    // container flavor is requested, see the tests.postgres project.
     test {
         useJUnitPlatform {
-            excludeTags 'perf', 'benchmark'
+            excludeTags 'perf', 'remote'
         }
-        // The thread-safety tests saturate whatever cores they find. A build agent has
-        // fewer to give than a developer machine, and a race shows up at any load.
-        systemProperty 'ocl.test.threads', findProperty('ocl.test.threads') ?: '4'
-        systemProperty 'ocl.test.iterations', findProperty('ocl.test.iterations') ?: '200'
     }
 
-    // Our own performance tests (@Tag("perf")) — how fast the engines are.
+    // Dedicated task for the slow scaling tests (@Tag("perf"), kept out of the fast build).
     tasks.register('perfTest', Test) {
         useJUnitPlatform {
             includeTags 'perf'
         }
     }
 
-    // The comparison against the Eclipse implementations (@Tag("benchmark")). These need
-    // the Eclipse bundles in the benchmark projects' lib/ and produce relative numbers,
-    // which vary with the machine — so a slow run is not a broken build.
-    tasks.register('benchmarkTest', Test) {
+    // Dedicated task for tests against PUBLIC endpoints (@Tag("remote")): they validate the
+    // service-client design against real services but depend on internet + third-party uptime,
+    // so they never gate the normal build. Run explicitly: ./gradlew remoteTest
+    tasks.register('remoteTest', Test) {
         useJUnitPlatform {
-            includeTags 'benchmark'
+            includeTags 'remote'
         }
-        ignoreFailures = true
     }
-    
-       // Add JUnit dependencies for modules that have Gradle tests
+
+    // Add JUnit dependencies for modules that have Gradle tests
     dependencies {
         testImplementation 'org.junit.jupiter:junit-jupiter:5.14.4'
         testImplementation 'org.junit.platform:junit-platform-launcher:1.14.4'
@@ -56,18 +53,46 @@ subprojects {
         testImplementation 'org.mockito:mockito-junit-jupiter:5.23.0'
         testImplementation 'org.assertj:assertj-core:3.27.7'
     }
-    
+
+    // Coverage floor: a catastrophic-regression tripwire (e.g. a bundle's tests deleted) wired
+    // into `check`. Conservative baseline of 30% instructions on the hand-written code of the
+    // library bundles that carry plain-JUnit tests — generated code and test-only/OSGi-covered
+    // bundles are out of scope. Ratchet upward as coverage is deliberately raised.
+    // Add each core bundle here as it gains plain-JUnit tests.
+    def coverageFloorBundles = [
+    ]
+    afterEvaluate {
+        if (project.name in coverageFloorBundles) {
+            tasks.named('jacocoTestCoverageVerification') {
+                // exclude generated code (ANTLR parser, EMF src-gen models)
+                def generated = ['**/antlr/**']
+                classDirectories.setFrom(files(classDirectories.files.collect {
+                    fileTree(dir: it, exclude: generated)
+                }))
+                violationRules {
+                    rule {
+                        limit {
+                            counter = 'INSTRUCTION'
+                            value = 'COVEREDRATIO'
+                            minimum = 0.30
+                        }
+                    }
+                }
+            }
+            tasks.named('check').configure { dependsOn 'jacocoTestCoverageVerification' }
+        }
+    }
+
 }
 
-// Sonar setup
+// Sonar setup — values come from gradle.properties (github_org, github_repository)
 sonarqube {
   properties {
-    property "sonar.projectName", "fennec.codec"
-    property "sonar.projectKey", "eclipse-fennec_emf.codec"
-    property "sonar.organization", "eclipse-fennec"
+    property "sonar.projectName", github_repository
+    property "sonar.projectKey", github_org + "-" + github_repository
+    property "sonar.organization", github_org
     property "sonar.host.url", "https://sonarcloud.io"
-    property "sonar.coverage.jacoco.xmlReportPaths", "${rootDir}/build/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
-    //property "sonar.exclusions", "org.eclipse.fennec.project/**/*.java"
+    property "sonar.coverage.jacoco.xmlReportPaths", rootDir.toString() + "/build/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
   }
 }
 
@@ -93,4 +118,3 @@ task codeCoverageReport(type: JacocoReport) {
 tasks.named("sonar") {
     dependsOn(codeCoverageReport)
 }
-
