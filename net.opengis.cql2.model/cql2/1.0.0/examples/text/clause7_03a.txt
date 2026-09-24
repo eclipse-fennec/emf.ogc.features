@@ -1,1 +1,0 @@
-cityName IN ('Toronto','Frankfurt','Tokyo','New York')

@@ -39,13 +39,12 @@ import org.junit.jupiter.api.TestFactory;
 import net.opengis.cql2.Predicate;
 
 /**
- * The examples of the CQL2 specification (OGC 21-065r2): every text example against its JSON
+ * The examples of the CQL2 specification (OGC 21-065r2, see {@link SpecExamples}): every text example against its JSON
  * counterpart, and both written and read again. Examples outside the supported subset are
  * skipped with the parser's message.
  */
 class Cql2SpecExamplesTest {
 
-	private static final Path EXAMPLES = Path.of("../net.opengis.cql2.model/cql2/1.0.0/examples");
 
 	/** the examples of the supported subset; fewer means the grammar lost something */
 	private static final int SUPPORTED = 68;
@@ -53,12 +52,13 @@ class Cql2SpecExamplesTest {
 
 	@AfterAll
 	static void noSupportedExampleLost() {
+		SpecExamples.directory();
 		assertThat(passed).as("examples passed").hasValueGreaterThanOrEqualTo(SUPPORTED);
 	}
 
 	@TestFactory
 	Stream<DynamicTest> examples() throws IOException {
-		return Files.list(EXAMPLES.resolve("text")).sorted()
+		return Files.list(SpecExamples.directory().resolve("text")).sorted()
 				.map(file -> DynamicTest.dynamicTest(file.getFileName().toString(), () -> check(file)));
 	}
 
@@ -66,7 +66,7 @@ class Cql2SpecExamplesTest {
 		// example36-alt01.txt is another text form of example36.json
 		String name = textFile.getFileName().toString().replaceFirst("(-alt\\d+)?\\.txt$", "");
 		String text = Files.readString(textFile);
-		byte[] json = Files.readAllBytes(EXAMPLES.resolve("json").resolve(name + ".json"));
+		byte[] json = Files.readAllBytes(SpecExamples.directory().resolve("json").resolve(name + ".json"));
 
 		Predicate fromText;
 		EObject fromJson;

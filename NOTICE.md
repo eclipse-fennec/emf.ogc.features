@@ -38,9 +38,9 @@ This project leverages third-party content. Notable runtime dependencies are:
 * JTS Topology Suite — Eclipse Public License 2.0 / Eclipse Distribution License 1.0
 * MapLibre GL JS (loaded by the viewer from cdn.jsdelivr.net, not part of this repository) — BSD 3-Clause License
 * ANTLR 4 runtime (the CQL2 text parser) — BSD 3-Clause License
-* OGC Common Query Language (CQL2) 1.0.0 schema, BNF and examples, used as test material in
-  `net.opengis.cql2.model/cql2/1.0.0` — Copyright (c) 2024 Open Geospatial Consortium,
-  see https://www.ogc.org/ogc/legal/
+* The tests of the CQL2 resources download the examples of the OGC Common Query Language
+  (CQL2) 1.0.0 from https://schemas.opengis.net/cql2/ at build time; they are not part of this
+  repository — Copyright (c) 2024 Open Geospatial Consortium, see https://www.ogc.org/ogc/legal/
 * OSGi Core, Compendium and Annotation APIs — Apache License 2.0
 
 The [`DEPENDENCIES`](DEPENDENCIES) file at the repository root lists them with their licences

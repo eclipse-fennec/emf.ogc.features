@@ -1,3 +1,0 @@
-swimming_pool=true AND (floors>5 
-                    OR  material LIKE 'brick%'
-                    OR  material LIKE '%brick')
