@@ -23,8 +23,11 @@ html, body { margin: 0; height: 100%; font: 14px/1.4 system-ui, -apple-system, "
 #panel.collapsed #panel-body { display: none; }
 .basemap { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
 .basemap select { margin-left: 6px; }
-.group { margin-top: 10px; }
+.group { margin-top: 8px; }
+.group .group { margin-left: 14px; }
 .group > label { font-weight: 600; display: flex; align-items: center; gap: 6px; }
+.group.depth-0 > label { font-size: 15px; }
+.group.depth-1 > label { color: var(--accent); }
 .layer { display: flex; align-items: center; gap: 8px; padding: 3px 0 3px 18px; }
 .layer label { flex: 1; display: flex; align-items: center; gap: 8px; cursor: pointer; }
 .swatch { width: 14px; height: 14px; border-radius: 3px; flex: none; border: 1px solid rgba(0, 0, 0, .25); }

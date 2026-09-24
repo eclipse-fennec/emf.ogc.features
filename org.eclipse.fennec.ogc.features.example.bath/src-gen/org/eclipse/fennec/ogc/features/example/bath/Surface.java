@@ -79,7 +79,17 @@ public enum Surface implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GRASS(4, "GRASS", "GRASS");
+	GRASS(4, "GRASS", "GRASS"),
+
+	/**
+	 * The '<em><b>TILES</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #TILES_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	TILES(5, "TILES", "TILES");
 
 	/**
 	 * The '<em><b>PAVED</b></em>' literal value.
@@ -137,6 +147,17 @@ public enum Surface implements Enumerator {
 	public static final int GRASS_VALUE = 4;
 
 	/**
+	 * The '<em><b>TILES</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #TILES
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TILES_VALUE = 5;
+
+	/**
 	 * An array of all the '<em><b>Surface</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -149,6 +170,7 @@ public enum Surface implements Enumerator {
 			WOODEN,
 			RUBBER,
 			GRASS,
+			TILES,
 		};
 
 	/**
@@ -210,6 +232,7 @@ public enum Surface implements Enumerator {
 			case WOODEN_VALUE: return WOODEN;
 			case RUBBER_VALUE: return RUBBER;
 			case GRASS_VALUE: return GRASS;
+			case TILES_VALUE: return TILES;
 		}
 		return null;
 	}

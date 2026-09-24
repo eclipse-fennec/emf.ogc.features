@@ -45,7 +45,7 @@ class OgcApiTest {
 	@BeforeAll
 	static void setUp() throws Exception {
 		List<EObject> assets;
-		try (InputStream in = Files.newInputStream(Path.of("../org.eclipse.fennec.ogc.features.example.bath.demo/data/bath.geojson"))) {
+		try (InputStream in = Files.newInputStream(Path.of("../org.eclipse.fennec.ogc.features.example.bath.demo/data/saaleaue.geojson"))) {
 			assets = new GeoJsonFeatureImporter(new GeoJsonText(new GeoJsonResourceFactoryImpl()), BathPackage.eINSTANCE,
 					"assetType").read(in);
 		}
@@ -90,13 +90,29 @@ class OgcApiTest {
 	@Test
 	void collections() {
 		JsonNode collections = get("/collections").path("collections");
-		assertThat(collections.size()).isEqualTo(15);
+		assertThat(collections.size()).isEqualTo(21);
 		JsonNode pools = collections.valueStream().filter(c -> "pools".equals(c.path("id").asString())).findFirst()
 				.orElseThrow();
 		assertThat(pools.path("title").asString()).isEqualTo("Becken");
 		assertThat(pools.path("layerGroup").asString()).isEqualTo("Wasser");
 		assertThat(pools.path("extent").path("spatial").path("bbox").get(0).size()).isEqualTo(4);
 		assertThat(rels(pools)).contains("items", "http://www.opengis.net/def/rel/ogc/1.0/queryables");
+	}
+
+	@Test
+	void layerFoldersArePutInFrontOfTheGroups() {
+		CollectionRegistry registry = new CollectionRegistry();
+		registry.addPackage(BathPackage.eINSTANCE);
+		registry.addSource(new MemoryFeatureSource(Set.of(BathPackage.eNS_URI), List::of));
+		OgcApi foldered = new OgcApi(registry, Map::of, new OgcApi.Settings("t", null, 10, 100,
+				Map.of(BathPackage.eNS_URI, "Dim Stadt/Freizeitbad WOGE")));
+		JsonNode collections = MAPPER.readTree(foldered.handle("/collections", Map.of(), null, BASE).body()).path("collections");
+		JsonNode pools = collections.valueStream().filter(c -> "pools".equals(c.path("id").asString())).findFirst().orElseThrow();
+		JsonNode all = collections.valueStream().filter(c -> "assets".equals(c.path("id").asString())).findFirst().orElseThrow();
+		assertThat(pools.path("layerGroup").asString()).isEqualTo("Dim Stadt/Freizeitbad WOGE/Wasser");
+		assertThat(pools.has("aggregate")).isFalse();
+		assertThat(all.path("layerGroup").asString()).isEqualTo("Dim Stadt/Freizeitbad WOGE");
+		assertThat(all.path("aggregate").asBoolean()).isTrue();
 	}
 
 	@Test
@@ -193,7 +209,7 @@ class OgcApiTest {
 	@Test
 	void queryables() {
 		JsonNode queryables = get("/collections/pools/queryables");
-		assertThat(queryables.path("properties").path("poolType").path("enum").size()).isEqualTo(7);
+		assertThat(queryables.path("properties").path("poolType").path("enum").size()).isEqualTo(9);
 		assertThat(queryables.path("properties").path("depthMax").path("type").asString()).isEqualTo("number");
 		assertThat(queryables.path("properties").path("geometry").path("format").asString()).isEqualTo("geometry-any");
 		assertThat(queryables.path("properties").has("minX")).isFalse();

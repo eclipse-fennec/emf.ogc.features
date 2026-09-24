@@ -42,7 +42,7 @@ import org.osgi.annotation.versioning.ProviderType;
  * @generated
  */
 @ProviderType
-@EPackage(uri = BathPackage.eNS_URI, fingerprint = "fp1:d039ba11b9091e0f1e915795ff0015b768377d9885eb13c17d40529e46223f30", genModel = "/model/bath.genmodel", genModelSourceLocations = {"model/bath.genmodel","org.eclipse.fennec.ogc.features.example.bath/model/bath.genmodel"}, ecore = "/model/bath.ecore", ecoreSourceLocations = "/model/bath.ecore")
+@EPackage(uri = BathPackage.eNS_URI, fingerprint = "fp1:d078980007d9fb7c31e2e1babb62b624a0d6c6b062f7154fbfb1c04c949cf645", genModel = "/model/bath.genmodel", genModelSourceLocations = {"model/bath.genmodel","org.eclipse.fennec.ogc.features.example.bath/model/bath.genmodel"}, ecore = "/model/bath.ecore", ecoreSourceLocations = "/model/bath.ecore")
 public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	/**
 	 * The package name.
@@ -2342,6 +2342,948 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int SITE_BOUNDARY_OPERATION_COUNT = ASSET_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.fennec.ogc.features.example.bath.impl.ParkingLotImpl <em>Parking Lot</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.ParkingLotImpl
+	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getParkingLot()
+	 * @generated
+	 */
+	int PARKING_LOT = 15;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARKING_LOT__ID = ASSET__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARKING_LOT__NAME = ASSET__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARKING_LOT__DESCRIPTION = ASSET__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARKING_LOT__GEOMETRY = ASSET__GEOMETRY;
+
+	/**
+	 * The feature id for the '<em><b>Min X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARKING_LOT__MIN_X = ASSET__MIN_X;
+
+	/**
+	 * The feature id for the '<em><b>Min Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARKING_LOT__MIN_Y = ASSET__MIN_Y;
+
+	/**
+	 * The feature id for the '<em><b>Max X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARKING_LOT__MAX_X = ASSET__MAX_X;
+
+	/**
+	 * The feature id for the '<em><b>Max Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARKING_LOT__MAX_Y = ASSET__MAX_Y;
+
+	/**
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARKING_LOT__LEVEL = ASSET__LEVEL;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARKING_LOT__STATUS = ASSET__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Accessible</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARKING_LOT__ACCESSIBLE = ASSET__ACCESSIBLE;
+
+	/**
+	 * The feature id for the '<em><b>Last Inspection</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARKING_LOT__LAST_INSPECTION = ASSET__LAST_INSPECTION;
+
+	/**
+	 * The feature id for the '<em><b>Spaces</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARKING_LOT__SPACES = ASSET_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Free Hours</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARKING_LOT__FREE_HOURS = ASSET_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Charging Points</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARKING_LOT__CHARGING_POINTS = ASSET_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Parking Lot</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARKING_LOT_FEATURE_COUNT = ASSET_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Parking Lot</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARKING_LOT_OPERATION_COUNT = ASSET_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.fennec.ogc.features.example.bath.impl.PavingImpl <em>Paving</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.PavingImpl
+	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getPaving()
+	 * @generated
+	 */
+	int PAVING = 16;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAVING__ID = ASSET__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAVING__NAME = ASSET__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAVING__DESCRIPTION = ASSET__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAVING__GEOMETRY = ASSET__GEOMETRY;
+
+	/**
+	 * The feature id for the '<em><b>Min X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAVING__MIN_X = ASSET__MIN_X;
+
+	/**
+	 * The feature id for the '<em><b>Min Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAVING__MIN_Y = ASSET__MIN_Y;
+
+	/**
+	 * The feature id for the '<em><b>Max X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAVING__MAX_X = ASSET__MAX_X;
+
+	/**
+	 * The feature id for the '<em><b>Max Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAVING__MAX_Y = ASSET__MAX_Y;
+
+	/**
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAVING__LEVEL = ASSET__LEVEL;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAVING__STATUS = ASSET__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Accessible</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAVING__ACCESSIBLE = ASSET__ACCESSIBLE;
+
+	/**
+	 * The feature id for the '<em><b>Last Inspection</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAVING__LAST_INSPECTION = ASSET__LAST_INSPECTION;
+
+	/**
+	 * The feature id for the '<em><b>Surface</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAVING__SURFACE = ASSET_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Slip Resistant</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAVING__SLIP_RESISTANT = ASSET_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Paving</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAVING_FEATURE_COUNT = ASSET_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Paving</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAVING_OPERATION_COUNT = ASSET_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.fennec.ogc.features.example.bath.impl.ShowerImpl <em>Shower</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.ShowerImpl
+	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getShower()
+	 * @generated
+	 */
+	int SHOWER = 17;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOWER__ID = ASSET__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOWER__NAME = ASSET__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOWER__DESCRIPTION = ASSET__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOWER__GEOMETRY = ASSET__GEOMETRY;
+
+	/**
+	 * The feature id for the '<em><b>Min X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOWER__MIN_X = ASSET__MIN_X;
+
+	/**
+	 * The feature id for the '<em><b>Min Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOWER__MIN_Y = ASSET__MIN_Y;
+
+	/**
+	 * The feature id for the '<em><b>Max X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOWER__MAX_X = ASSET__MAX_X;
+
+	/**
+	 * The feature id for the '<em><b>Max Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOWER__MAX_Y = ASSET__MAX_Y;
+
+	/**
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOWER__LEVEL = ASSET__LEVEL;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOWER__STATUS = ASSET__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Accessible</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOWER__ACCESSIBLE = ASSET__ACCESSIBLE;
+
+	/**
+	 * The feature id for the '<em><b>Last Inspection</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOWER__LAST_INSPECTION = ASSET__LAST_INSPECTION;
+
+	/**
+	 * The feature id for the '<em><b>Heads</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOWER__HEADS = ASSET_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Warm Water</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOWER__WARM_WATER = ASSET_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Shower</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOWER_FEATURE_COUNT = ASSET_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Shower</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHOWER_OPERATION_COUNT = ASSET_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.fennec.ogc.features.example.bath.impl.TreeImpl <em>Tree</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.TreeImpl
+	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getTree()
+	 * @generated
+	 */
+	int TREE = 18;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE__ID = ASSET__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE__NAME = ASSET__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE__DESCRIPTION = ASSET__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE__GEOMETRY = ASSET__GEOMETRY;
+
+	/**
+	 * The feature id for the '<em><b>Min X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE__MIN_X = ASSET__MIN_X;
+
+	/**
+	 * The feature id for the '<em><b>Min Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE__MIN_Y = ASSET__MIN_Y;
+
+	/**
+	 * The feature id for the '<em><b>Max X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE__MAX_X = ASSET__MAX_X;
+
+	/**
+	 * The feature id for the '<em><b>Max Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE__MAX_Y = ASSET__MAX_Y;
+
+	/**
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE__LEVEL = ASSET__LEVEL;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE__STATUS = ASSET__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Accessible</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE__ACCESSIBLE = ASSET__ACCESSIBLE;
+
+	/**
+	 * The feature id for the '<em><b>Last Inspection</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE__LAST_INSPECTION = ASSET__LAST_INSPECTION;
+
+	/**
+	 * The feature id for the '<em><b>Species</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE__SPECIES = ASSET_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Height M</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE__HEIGHT_M = ASSET_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Crown Diameter M</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE__CROWN_DIAMETER_M = ASSET_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Tree</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE_FEATURE_COUNT = ASSET_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Tree</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE_OPERATION_COUNT = ASSET_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.fennec.ogc.features.example.bath.impl.ShrubImpl <em>Shrub</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.ShrubImpl
+	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getShrub()
+	 * @generated
+	 */
+	int SHRUB = 19;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHRUB__ID = ASSET__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHRUB__NAME = ASSET__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHRUB__DESCRIPTION = ASSET__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHRUB__GEOMETRY = ASSET__GEOMETRY;
+
+	/**
+	 * The feature id for the '<em><b>Min X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHRUB__MIN_X = ASSET__MIN_X;
+
+	/**
+	 * The feature id for the '<em><b>Min Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHRUB__MIN_Y = ASSET__MIN_Y;
+
+	/**
+	 * The feature id for the '<em><b>Max X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHRUB__MAX_X = ASSET__MAX_X;
+
+	/**
+	 * The feature id for the '<em><b>Max Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHRUB__MAX_Y = ASSET__MAX_Y;
+
+	/**
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHRUB__LEVEL = ASSET__LEVEL;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHRUB__STATUS = ASSET__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Accessible</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHRUB__ACCESSIBLE = ASSET__ACCESSIBLE;
+
+	/**
+	 * The feature id for the '<em><b>Last Inspection</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHRUB__LAST_INSPECTION = ASSET__LAST_INSPECTION;
+
+	/**
+	 * The feature id for the '<em><b>Species</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHRUB__SPECIES = ASSET_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Height M</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHRUB__HEIGHT_M = ASSET_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Shrub</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHRUB_FEATURE_COUNT = ASSET_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Shrub</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHRUB_OPERATION_COUNT = ASSET_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.fennec.ogc.features.example.bath.impl.BikeParkingImpl <em>Bike Parking</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BikeParkingImpl
+	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getBikeParking()
+	 * @generated
+	 */
+	int BIKE_PARKING = 20;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIKE_PARKING__ID = ASSET__ID;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIKE_PARKING__NAME = ASSET__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIKE_PARKING__DESCRIPTION = ASSET__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIKE_PARKING__GEOMETRY = ASSET__GEOMETRY;
+
+	/**
+	 * The feature id for the '<em><b>Min X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIKE_PARKING__MIN_X = ASSET__MIN_X;
+
+	/**
+	 * The feature id for the '<em><b>Min Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIKE_PARKING__MIN_Y = ASSET__MIN_Y;
+
+	/**
+	 * The feature id for the '<em><b>Max X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIKE_PARKING__MAX_X = ASSET__MAX_X;
+
+	/**
+	 * The feature id for the '<em><b>Max Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIKE_PARKING__MAX_Y = ASSET__MAX_Y;
+
+	/**
+	 * The feature id for the '<em><b>Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIKE_PARKING__LEVEL = ASSET__LEVEL;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIKE_PARKING__STATUS = ASSET__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Accessible</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIKE_PARKING__ACCESSIBLE = ASSET__ACCESSIBLE;
+
+	/**
+	 * The feature id for the '<em><b>Last Inspection</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIKE_PARKING__LAST_INSPECTION = ASSET__LAST_INSPECTION;
+
+	/**
+	 * The feature id for the '<em><b>Racks</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIKE_PARKING__RACKS = ASSET_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Covered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIKE_PARKING__COVERED = ASSET_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Bike Parking</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIKE_PARKING_FEATURE_COUNT = ASSET_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Bike Parking</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIKE_PARKING_OPERATION_COUNT = ASSET_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.fennec.ogc.features.example.bath.Level <em>Level</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2349,7 +3291,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getLevel()
 	 * @generated
 	 */
-	int LEVEL = 15;
+	int LEVEL = 21;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.fennec.ogc.features.example.bath.OperationalStatus <em>Operational Status</em>}' enum.
@@ -2359,7 +3301,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getOperationalStatus()
 	 * @generated
 	 */
-	int OPERATIONAL_STATUS = 16;
+	int OPERATIONAL_STATUS = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.fennec.ogc.features.example.bath.PoolType <em>Pool Type</em>}' enum.
@@ -2369,7 +3311,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getPoolType()
 	 * @generated
 	 */
-	int POOL_TYPE = 17;
+	int POOL_TYPE = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.fennec.ogc.features.example.bath.SaunaType <em>Sauna Type</em>}' enum.
@@ -2379,7 +3321,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getSaunaType()
 	 * @generated
 	 */
-	int SAUNA_TYPE = 18;
+	int SAUNA_TYPE = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.fennec.ogc.features.example.bath.SportType <em>Sport Type</em>}' enum.
@@ -2389,7 +3331,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getSportType()
 	 * @generated
 	 */
-	int SPORT_TYPE = 19;
+	int SPORT_TYPE = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.fennec.ogc.features.example.bath.Surface <em>Surface</em>}' enum.
@@ -2399,7 +3341,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getSurface()
 	 * @generated
 	 */
-	int SURFACE = 20;
+	int SURFACE = 26;
 
 	/**
 	 * The meta object id for the '<em>Geo Json Geometry</em>' data type.
@@ -2409,7 +3351,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getGeoJsonGeometry()
 	 * @generated
 	 */
-	int GEO_JSON_GEOMETRY = 21;
+	int GEO_JSON_GEOMETRY = 27;
 
 
 	/**
@@ -2970,6 +3912,220 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	EClass getSiteBoundary();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.fennec.ogc.features.example.bath.ParkingLot <em>Parking Lot</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Parking Lot</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.ParkingLot
+	 * @generated
+	 */
+	EClass getParkingLot();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.fennec.ogc.features.example.bath.ParkingLot#getSpaces <em>Spaces</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Spaces</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.ParkingLot#getSpaces()
+	 * @see #getParkingLot()
+	 * @generated
+	 */
+	EAttribute getParkingLot_Spaces();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.fennec.ogc.features.example.bath.ParkingLot#getFreeHours <em>Free Hours</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Free Hours</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.ParkingLot#getFreeHours()
+	 * @see #getParkingLot()
+	 * @generated
+	 */
+	EAttribute getParkingLot_FreeHours();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.fennec.ogc.features.example.bath.ParkingLot#getChargingPoints <em>Charging Points</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Charging Points</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.ParkingLot#getChargingPoints()
+	 * @see #getParkingLot()
+	 * @generated
+	 */
+	EAttribute getParkingLot_ChargingPoints();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.fennec.ogc.features.example.bath.Paving <em>Paving</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Paving</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.Paving
+	 * @generated
+	 */
+	EClass getPaving();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.fennec.ogc.features.example.bath.Paving#getSurface <em>Surface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Surface</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.Paving#getSurface()
+	 * @see #getPaving()
+	 * @generated
+	 */
+	EAttribute getPaving_Surface();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.fennec.ogc.features.example.bath.Paving#isSlipResistant <em>Slip Resistant</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Slip Resistant</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.Paving#isSlipResistant()
+	 * @see #getPaving()
+	 * @generated
+	 */
+	EAttribute getPaving_SlipResistant();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.fennec.ogc.features.example.bath.Shower <em>Shower</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Shower</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.Shower
+	 * @generated
+	 */
+	EClass getShower();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.fennec.ogc.features.example.bath.Shower#getHeads <em>Heads</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Heads</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.Shower#getHeads()
+	 * @see #getShower()
+	 * @generated
+	 */
+	EAttribute getShower_Heads();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.fennec.ogc.features.example.bath.Shower#isWarmWater <em>Warm Water</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Warm Water</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.Shower#isWarmWater()
+	 * @see #getShower()
+	 * @generated
+	 */
+	EAttribute getShower_WarmWater();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.fennec.ogc.features.example.bath.Tree <em>Tree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Tree</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.Tree
+	 * @generated
+	 */
+	EClass getTree();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.fennec.ogc.features.example.bath.Tree#getSpecies <em>Species</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Species</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.Tree#getSpecies()
+	 * @see #getTree()
+	 * @generated
+	 */
+	EAttribute getTree_Species();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.fennec.ogc.features.example.bath.Tree#getHeightM <em>Height M</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Height M</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.Tree#getHeightM()
+	 * @see #getTree()
+	 * @generated
+	 */
+	EAttribute getTree_HeightM();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.fennec.ogc.features.example.bath.Tree#getCrownDiameterM <em>Crown Diameter M</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Crown Diameter M</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.Tree#getCrownDiameterM()
+	 * @see #getTree()
+	 * @generated
+	 */
+	EAttribute getTree_CrownDiameterM();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.fennec.ogc.features.example.bath.Shrub <em>Shrub</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Shrub</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.Shrub
+	 * @generated
+	 */
+	EClass getShrub();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.fennec.ogc.features.example.bath.Shrub#getSpecies <em>Species</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Species</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.Shrub#getSpecies()
+	 * @see #getShrub()
+	 * @generated
+	 */
+	EAttribute getShrub_Species();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.fennec.ogc.features.example.bath.Shrub#getHeightM <em>Height M</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Height M</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.Shrub#getHeightM()
+	 * @see #getShrub()
+	 * @generated
+	 */
+	EAttribute getShrub_HeightM();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.fennec.ogc.features.example.bath.BikeParking <em>Bike Parking</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bike Parking</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.BikeParking
+	 * @generated
+	 */
+	EClass getBikeParking();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.fennec.ogc.features.example.bath.BikeParking#getRacks <em>Racks</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Racks</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.BikeParking#getRacks()
+	 * @see #getBikeParking()
+	 * @generated
+	 */
+	EAttribute getBikeParking_Racks();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.fennec.ogc.features.example.bath.BikeParking#isCovered <em>Covered</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Covered</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.BikeParking#isCovered()
+	 * @see #getBikeParking()
+	 * @generated
+	 */
+	EAttribute getBikeParking_Covered();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.fennec.ogc.features.example.bath.Level <em>Level</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3511,6 +4667,178 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 		 * @generated
 		 */
 		EClass SITE_BOUNDARY = eINSTANCE.getSiteBoundary();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.fennec.ogc.features.example.bath.impl.ParkingLotImpl <em>Parking Lot</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.fennec.ogc.features.example.bath.impl.ParkingLotImpl
+		 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getParkingLot()
+		 * @generated
+		 */
+		EClass PARKING_LOT = eINSTANCE.getParkingLot();
+
+		/**
+		 * The meta object literal for the '<em><b>Spaces</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PARKING_LOT__SPACES = eINSTANCE.getParkingLot_Spaces();
+
+		/**
+		 * The meta object literal for the '<em><b>Free Hours</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PARKING_LOT__FREE_HOURS = eINSTANCE.getParkingLot_FreeHours();
+
+		/**
+		 * The meta object literal for the '<em><b>Charging Points</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PARKING_LOT__CHARGING_POINTS = eINSTANCE.getParkingLot_ChargingPoints();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.fennec.ogc.features.example.bath.impl.PavingImpl <em>Paving</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.fennec.ogc.features.example.bath.impl.PavingImpl
+		 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getPaving()
+		 * @generated
+		 */
+		EClass PAVING = eINSTANCE.getPaving();
+
+		/**
+		 * The meta object literal for the '<em><b>Surface</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PAVING__SURFACE = eINSTANCE.getPaving_Surface();
+
+		/**
+		 * The meta object literal for the '<em><b>Slip Resistant</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PAVING__SLIP_RESISTANT = eINSTANCE.getPaving_SlipResistant();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.fennec.ogc.features.example.bath.impl.ShowerImpl <em>Shower</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.fennec.ogc.features.example.bath.impl.ShowerImpl
+		 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getShower()
+		 * @generated
+		 */
+		EClass SHOWER = eINSTANCE.getShower();
+
+		/**
+		 * The meta object literal for the '<em><b>Heads</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SHOWER__HEADS = eINSTANCE.getShower_Heads();
+
+		/**
+		 * The meta object literal for the '<em><b>Warm Water</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SHOWER__WARM_WATER = eINSTANCE.getShower_WarmWater();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.fennec.ogc.features.example.bath.impl.TreeImpl <em>Tree</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.fennec.ogc.features.example.bath.impl.TreeImpl
+		 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getTree()
+		 * @generated
+		 */
+		EClass TREE = eINSTANCE.getTree();
+
+		/**
+		 * The meta object literal for the '<em><b>Species</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TREE__SPECIES = eINSTANCE.getTree_Species();
+
+		/**
+		 * The meta object literal for the '<em><b>Height M</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TREE__HEIGHT_M = eINSTANCE.getTree_HeightM();
+
+		/**
+		 * The meta object literal for the '<em><b>Crown Diameter M</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TREE__CROWN_DIAMETER_M = eINSTANCE.getTree_CrownDiameterM();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.fennec.ogc.features.example.bath.impl.ShrubImpl <em>Shrub</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.fennec.ogc.features.example.bath.impl.ShrubImpl
+		 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getShrub()
+		 * @generated
+		 */
+		EClass SHRUB = eINSTANCE.getShrub();
+
+		/**
+		 * The meta object literal for the '<em><b>Species</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SHRUB__SPECIES = eINSTANCE.getShrub_Species();
+
+		/**
+		 * The meta object literal for the '<em><b>Height M</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SHRUB__HEIGHT_M = eINSTANCE.getShrub_HeightM();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.fennec.ogc.features.example.bath.impl.BikeParkingImpl <em>Bike Parking</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BikeParkingImpl
+		 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getBikeParking()
+		 * @generated
+		 */
+		EClass BIKE_PARKING = eINSTANCE.getBikeParking();
+
+		/**
+		 * The meta object literal for the '<em><b>Racks</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BIKE_PARKING__RACKS = eINSTANCE.getBikeParking_Racks();
+
+		/**
+		 * The meta object literal for the '<em><b>Covered</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BIKE_PARKING__COVERED = eINSTANCE.getBikeParking_Covered();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.fennec.ogc.features.example.bath.Level <em>Level</em>}' enum.

@@ -161,6 +161,60 @@ public interface BathFactory extends EFactory {
 	SiteBoundary createSiteBoundary();
 
 	/**
+	 * Returns a new object of class '<em>Parking Lot</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Parking Lot</em>'.
+	 * @generated
+	 */
+	ParkingLot createParkingLot();
+
+	/**
+	 * Returns a new object of class '<em>Paving</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Paving</em>'.
+	 * @generated
+	 */
+	Paving createPaving();
+
+	/**
+	 * Returns a new object of class '<em>Shower</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Shower</em>'.
+	 * @generated
+	 */
+	Shower createShower();
+
+	/**
+	 * Returns a new object of class '<em>Tree</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tree</em>'.
+	 * @generated
+	 */
+	Tree createTree();
+
+	/**
+	 * Returns a new object of class '<em>Shrub</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Shrub</em>'.
+	 * @generated
+	 */
+	Shrub createShrub();
+
+	/**
+	 * Returns a new object of class '<em>Bike Parking</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Bike Parking</em>'.
+	 * @generated
+	 */
+	BikeParking createBikeParking();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

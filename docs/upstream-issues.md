@@ -95,12 +95,26 @@ What we would push down with PostGIS:
 - Envelope overlap `&&` for the bbox parameter.
 - A spatial column type in the eorm mapping, filled from the GeoJSON EDataType.
 
-## 6. emf.persistence-jpa — minor: id warning for every SINGLE_TABLE subclass
+## 6. emf.persistence-jpa — new: ExtendedMetaData names become column names unchecked
+
+The derived mapping takes the ExtendedMetaData `name` of an attribute as its column name.
+A name that is fine in JSON or XML but no SQL identifier breaks the schema generation. For
+example, `marker-color` from a simplestyle GeoJSON produces
+`CREATE TABLE CITYFEATURE (… marker-color VARCHAR …)`, which fails with
+`JdbcSQLSyntaxErrorException`. After that, every query on the unit fails with "table not
+found".
+
+Suggestion: quote such names, sanitize them, or map the attribute name instead.
+
+**Workaround here:** GeoJSON property names that are no identifiers are mapped with our own
+annotation detail `property` (`OgcFeaturesAnnotations.PROPERTY`) instead of ExtendedMetaData.
+
+## 7. emf.persistence-jpa — minor: id warning for every SINGLE_TABLE subclass
 
 `IdConfigurator.configureIds` logs `No IDs specified for entity Lawn` for every
 subclass of a `SINGLE_TABLE` root, although the id is inherited from the root.
 
-## 7. emf.codec — geojson: unchecked parse errors, elevation 0.0 on every position
+## 8. emf.codec — geojson: unchecked parse errors, elevation 0.0 on every position
 
 - `GeoJsonResourceImpl.load` lets `tools.jackson.core.exc.*` escape unchecked instead of
   reporting an `IOException` or resource error for invalid JSON.

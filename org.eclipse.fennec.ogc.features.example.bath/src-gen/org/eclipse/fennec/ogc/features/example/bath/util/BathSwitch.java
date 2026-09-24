@@ -180,6 +180,48 @@ public class BathSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BathPackage.PARKING_LOT: {
+				ParkingLot parkingLot = (ParkingLot)theEObject;
+				T result = caseParkingLot(parkingLot);
+				if (result == null) result = caseAsset(parkingLot);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BathPackage.PAVING: {
+				Paving paving = (Paving)theEObject;
+				T result = casePaving(paving);
+				if (result == null) result = caseAsset(paving);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BathPackage.SHOWER: {
+				Shower shower = (Shower)theEObject;
+				T result = caseShower(shower);
+				if (result == null) result = caseAsset(shower);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BathPackage.TREE: {
+				Tree tree = (Tree)theEObject;
+				T result = caseTree(tree);
+				if (result == null) result = caseAsset(tree);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BathPackage.SHRUB: {
+				Shrub shrub = (Shrub)theEObject;
+				T result = caseShrub(shrub);
+				if (result == null) result = caseAsset(shrub);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BathPackage.BIKE_PARKING: {
+				BikeParking bikeParking = (BikeParking)theEObject;
+				T result = caseBikeParking(bikeParking);
+				if (result == null) result = caseAsset(bikeParking);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -406,6 +448,96 @@ public class BathSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSiteBoundary(SiteBoundary object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Parking Lot</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Parking Lot</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParkingLot(ParkingLot object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Paving</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Paving</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePaving(Paving object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Shower</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Shower</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseShower(Shower object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Tree</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Tree</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTree(Tree object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Shrub</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Shrub</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseShrub(Shrub object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Bike Parking</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Bike Parking</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBikeParking(BikeParking object) {
 		return null;
 	}
 

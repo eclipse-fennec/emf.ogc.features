@@ -83,6 +83,12 @@ public class BathFactoryImpl extends EFactoryImpl implements BathFactory {
 			case BathPackage.PATH: return createPath();
 			case BathPackage.BUILDING: return createBuilding();
 			case BathPackage.SITE_BOUNDARY: return createSiteBoundary();
+			case BathPackage.PARKING_LOT: return createParkingLot();
+			case BathPackage.PAVING: return createPaving();
+			case BathPackage.SHOWER: return createShower();
+			case BathPackage.TREE: return createTree();
+			case BathPackage.SHRUB: return createShrub();
+			case BathPackage.BIKE_PARKING: return createBikeParking();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -294,6 +300,72 @@ public class BathFactoryImpl extends EFactoryImpl implements BathFactory {
 	public SiteBoundary createSiteBoundary() {
 		SiteBoundaryImpl siteBoundary = new SiteBoundaryImpl();
 		return siteBoundary;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ParkingLot createParkingLot() {
+		ParkingLotImpl parkingLot = new ParkingLotImpl();
+		return parkingLot;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Paving createPaving() {
+		PavingImpl paving = new PavingImpl();
+		return paving;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Shower createShower() {
+		ShowerImpl shower = new ShowerImpl();
+		return shower;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Tree createTree() {
+		TreeImpl tree = new TreeImpl();
+		return tree;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Shrub createShrub() {
+		ShrubImpl shrub = new ShrubImpl();
+		return shrub;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BikeParking createBikeParking() {
+		BikeParkingImpl bikeParking = new BikeParkingImpl();
+		return bikeParking;
 	}
 
 	/**

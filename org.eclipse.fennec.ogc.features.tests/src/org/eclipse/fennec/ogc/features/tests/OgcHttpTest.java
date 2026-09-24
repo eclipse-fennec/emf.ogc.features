@@ -23,7 +23,6 @@ import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.List;
 
-import org.eclipse.fennec.ogc.features.example.bath.demo.BathDataLoader;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.service.condition.Condition;
@@ -48,7 +47,7 @@ class OgcHttpTest {
 	private static final JsonMapper MAPPER = JsonMapper.builder().build();
 	private static final HttpClient CLIENT = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5)).build();
 
-	@InjectService(filter = "(osgi.condition.id=" + BathDataLoader.CONDITION_ID + ")", timeout = 30000)
+	@InjectService(filter = "(osgi.condition.id=" + BathSetup.LOADED + ")", timeout = 30000)
 	Condition loaded;
 
 	@InjectService(filter = "(osgi.http.whiteboard.servlet.name=fennec-ogc-features)", timeout = 10000)
@@ -82,7 +81,7 @@ class OgcHttpTest {
 	@Test
 	void collectionsWithExtent() throws Exception {
 		JsonNode collections = json("/collections").path("collections");
-		assertThat(collections.size()).isEqualTo(15);
+		assertThat(collections.size()).isEqualTo(21);
 		assertThat(collections.get(0).path("links").valueStream().map(l -> l.path("href").asString()))
 				.anyMatch(href -> href.startsWith(BASE + "/collections/"));
 	}

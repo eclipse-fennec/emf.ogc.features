@@ -354,6 +354,144 @@
       <details key="style" value="{&quot;color&quot;:&quot;#37474f&quot;,&quot;fillOpacity&quot;:0.03}"/>
     </eAnnotations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParkingLot" eSuperTypes="#//Asset">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A car park."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="parking"/>
+      <details key="title" value="Parkplätze"/>
+      <details key="layerGroup" value="Mobilität"/>
+      <details key="style" value="{&quot;color&quot;:&quot;#3949ab&quot;,&quot;fillOpacity&quot;:0.3}"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="spaces" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Number of parking spaces."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="freeHours" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Hours of free parking."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="chargingPoints" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Number of charging points for electric cars."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Paving" eSuperTypes="#//Asset">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A paved or tiled area, e.g. the surround of a pool, drawn as polygon with the pool as hole."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="paving"/>
+      <details key="title" value="Pflasterflächen"/>
+      <details key="layerGroup" value="Infrastruktur"/>
+      <details key="style" value='{"color":"#bcaaa4","fillOpacity":0.55,"labels":false}'/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="surface" eType="#//Surface"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="slipResistant" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Slip resistant surface, rating R11 or better."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Shower" eSuperTypes="#//Asset">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Showers at a pool."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="showers"/>
+      <details key="title" value="Duschen"/>
+      <details key="layerGroup" value="Service"/>
+      <details key="style" value='{"color":"#0288d1","labels":false}'/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="heads" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Number of shower heads."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="warmWater" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Warm water."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tree" eSuperTypes="#//Asset">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A tree."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="trees"/>
+      <details key="title" value="Bäume"/>
+      <details key="layerGroup" value="Vegetation"/>
+      <details key="style" value='{"color":"#2e7d32","labels":false}'/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="species" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Tree species."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="heightM" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Height in metres."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="crownDiameterM" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Crown diameter in metres."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Shrub" eSuperTypes="#//Asset">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A bush, a group of shrubs or a hedge."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="shrubs"/>
+      <details key="title" value="Büsche &amp; Hecken"/>
+      <details key="layerGroup" value="Vegetation"/>
+      <details key="style" value='{"color":"#558b2f","fillOpacity":0.6,"labels":false}'/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="species" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Shrub or hedge species."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="heightM" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Height in metres."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BikeParking" eSuperTypes="#//Asset">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Bicycle parking."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="bike-parking"/>
+      <details key="title" value="Fahrradstellplätze"/>
+      <details key="layerGroup" value="Mobilität"/>
+      <details key="style" value="#5e35b1"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="racks" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Number of bicycle racks."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="covered" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Roofed."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="GeoJsonGeometry" instanceClassName="org.geojson.Geometry">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A GeoJSON geometry. Persisted as GeoJSON text by the geojson TypeConverter of org.eclipse.fennec.ogc.features.geo. The string conversion lets XMI carry it, and reads it back from JPA as long as Fennec persistence hands String column values to EcoreUtil.createFromString instead of to the converter."/>
@@ -380,6 +518,8 @@
     <eLiterals name="OUTDOOR" value="4"/>
     <eLiterals name="WHIRLPOOL" value="5"/>
     <eLiterals name="DIVING" value="6"/>
+    <eLiterals name="SOLE" value="7"/>
+    <eLiterals name="LANDING" value="8"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SaunaType">
     <eLiterals name="FINNISH"/>
@@ -400,5 +540,6 @@
     <eLiterals name="WOODEN" value="2"/>
     <eLiterals name="RUBBER" value="3"/>
     <eLiterals name="GRASS" value="4"/>
+    <eLiterals name="TILES" value="5"/>
   </eClassifiers>
 </ecore:EPackage>

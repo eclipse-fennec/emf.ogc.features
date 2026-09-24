@@ -59,8 +59,17 @@ final class OgcApi {
 	 * @param description description of the landing page, may be {@code null}
 	 * @param defaultLimit page size when a request has no {@code limit}
 	 * @param maxLimit largest page size served
+	 * @param layerFolders folder put in front of the layer groups of a package, by namespace URI
 	 */
-	record Settings(String title, String description, int defaultLimit, int maxLimit) {
+	record Settings(String title, String description, int defaultLimit, int maxLimit, Map<String, String> layerFolders) {
+
+		Settings {
+			layerFolders = Map.copyOf(layerFolders);
+		}
+
+		Settings(String title, String description, int defaultLimit, int maxLimit) {
+			this(title, description, defaultLimit, maxLimit, Map.of());
+		}
 	}
 
 	/**
@@ -227,7 +236,16 @@ final class OgcApi {
 			LOGGER.log(System.Logger.Level.WARNING, "Cannot compute the extent of " + collection.id(), e);
 			extent = Optional.empty();
 		}
-		return new CollectionView(collection, extent, links.collectionLinks(collection, format));
+		return new CollectionView(collection, extent, links.collectionLinks(collection, format), layerGroup(collection));
+	}
+
+	private String layerGroup(CollectionDescriptor collection) {
+		String folder = collection.type().getEPackage() == null ? null
+				: settings.layerFolders().get(collection.type().getEPackage().getNsURI());
+		if (folder == null) {
+			return collection.layerGroup();
+		}
+		return collection.layerGroup() == null ? folder : folder + "/" + collection.layerGroup();
 	}
 
 	private Response exception(RequestException e, String format, LinkFactory links) {

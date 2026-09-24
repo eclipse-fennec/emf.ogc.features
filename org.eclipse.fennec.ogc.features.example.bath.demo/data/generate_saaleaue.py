@@ -8,7 +8,7 @@
 #
 # SPDX-License-Identifier: EPL-2.0
 #
-# Generates bath.geojson, the demo data of a fictional leisure pool ("Freizeitbad
+# Generates saaleaue.geojson, the test data of a fictional leisure pool ("Freizeitbad
 # Saaleaue") at the edge of Jena. The layout is drawn in metres on a local grid
 # (x east, y north, origin at the south-west corner of the site) and projected to
 # CRS84 around ORIGIN. Run it after changing the layout; the output is committed.
@@ -161,7 +161,7 @@ asset("Path", "path-sauna", "Weg zum Saunahaus", line((110, 120), (130, 120), (1
 asset("Path", "path-lawn", "Weg Liegewiese", line((100, 84), (90, 70), (70, 60), (40, 50)),
       surface="GRAVEL", level="OUTDOOR")
 
-out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "bath.geojson")
+out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "saaleaue.geojson")
 with open(out, "w", encoding="utf-8") as f:
     json.dump({"type": "FeatureCollection", "name": "Freizeitbad Saaleaue", "features": features},
               f, ensure_ascii=False, indent=1)

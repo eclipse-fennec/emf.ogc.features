@@ -21,12 +21,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.osgi.test.common.annotation.Property;
 import org.osgi.test.common.annotation.Property.TemplateArgument;
 import org.osgi.test.common.annotation.Property.ValueSource;
-import org.osgi.test.common.annotation.config.WithConfiguration;
 import org.osgi.test.common.annotation.config.WithFactoryConfiguration;
 import org.osgi.test.junit5.cm.ConfigurationExtension;
 
 /**
- * The leisure pool demo on the database of the run: an H2 and a PostgreSQL data source are
+ * The leisure pool test data (the fixture Freizeitbad Saaleaue) on the database of the run: an H2 and a PostgreSQL data source are
  * both configured, and the persistence unit and the loader pick the one whose subprotocol
  * is {@code ogc.test.subprotocol} ({@code OGC_TEST_FLAVOR=postgres} selects PostgreSQL and
  * starts its container). Mapping derived from the model, persistence unit bound to the
@@ -62,10 +61,15 @@ import org.osgi.test.junit5.cm.ConfigurationExtension;
 @WithFactoryConfiguration(factoryPid = "fennec.repository.jpa", name = "bath", location = "?", properties = {
 		@Property(key = "repositoryId", value = "bath"),
 		@Property(key = "unit.target", value = "(osgi.unit.name=bath)") })
-@WithConfiguration(pid = "org.eclipse.fennec.ogc.features.example.bath.loader", location = "?", properties = {
-		@Property(key = "repository.target", value = "(persistence.repository.id=bath)"),
-		@Property(key = "dataSource.target", value = "(subprotocol=%s)",
-				templateArguments = @TemplateArgument(source = ValueSource.SystemProperty, value = "ogc.test.subprotocol")) })
+@WithFactoryConfiguration(factoryPid = "org.eclipse.fennec.ogc.features.example.loader", name = "bath", location = "?",
+		properties = {
+				@Property(key = "repository.target", value = "(persistence.repository.id=bath)"),
+				@Property(key = "dataSource.target", value = "(subprotocol=%s)",
+						templateArguments = @TemplateArgument(source = ValueSource.SystemProperty, value = "ogc.test.subprotocol")),
+				@Property(key = "ePackage.target", value = "(emf.nsURI=" + BathSetup.NS_URI + ")"),
+				@Property(key = "files", value = "data/saaleaue.geojson"),
+				@Property(key = "existsType", value = "Asset"),
+				@Property(key = "conditionId", value = BathSetup.LOADED) })
 @WithFactoryConfiguration(factoryPid = "org.eclipse.fennec.ogc.features.source.repository", name = "bath",
 		location = "?", properties = {
 				@Property(key = "repository.target", value = "(persistence.repository.id=bath)"),
@@ -74,4 +78,7 @@ public @interface BathSetup {
 
 	/** namespace URI of the leisure pool model */
 	String NS_URI = "https://eclipse.org/fennec/ogc/example/bath/1.0";
+
+	/** the condition registered once the test data is in the store */
+	String LOADED = "fennec.ogc.test.bath.loaded";
 }

@@ -123,8 +123,11 @@ final class JsonEncoder {
 			g.writeEndObject();
 		}
 		// display hints for map clients, not part of OGC API Features
-		if (c.layerGroup() != null) {
-			g.writeStringProperty("layerGroup", c.layerGroup());
+		if (view.layerGroup() != null) {
+			g.writeStringProperty("layerGroup", view.layerGroup());
+		}
+		if (view.aggregate()) {
+			g.writeBooleanProperty("aggregate", true);
 		}
 		if (c.style() != null) {
 			g.writeStringProperty("style", c.style());

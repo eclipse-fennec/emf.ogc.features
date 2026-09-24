@@ -28,7 +28,7 @@ import org.eclipse.fennec.ogc.features.api.FeatureSource;
 import org.eclipse.fennec.ogc.features.cql2.Cql2TextParser;
 import org.eclipse.fennec.ogc.features.cql2.Cql2Translator;
 import org.eclipse.fennec.ogc.features.example.bath.BathPackage;
-import org.eclipse.fennec.ogc.features.example.bath.demo.BathDataLoader;
+import org.eclipse.fennec.ogc.features.example.bath.demo.DemoDataLoader;
 import org.eclipse.fennec.ogc.features.geo.GeoJsonFeatureImporter;
 import org.eclipse.fennec.ogc.features.geo.GeoJsonText;
 import org.eclipse.fennec.ogc.features.source.MemoryFeatureSource;
@@ -50,7 +50,7 @@ import org.osgi.test.junit5.service.ServiceExtension;
 @BathSetup
 class Cql2JpaTest {
 
-	@InjectService(filter = "(osgi.condition.id=" + BathDataLoader.CONDITION_ID + ")", timeout = 30000)
+	@InjectService(filter = "(osgi.condition.id=" + BathSetup.LOADED + ")", timeout = 30000)
 	Condition loaded;
 
 	@InjectService(filter = "(component.name=org.eclipse.fennec.ogc.features.source.repository)", timeout = 10000)
@@ -64,7 +64,7 @@ class Cql2JpaTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		List<EObject> reference;
-		try (InputStream in = BathDataLoader.class.getResourceAsStream("/data/bath.geojson")) {
+		try (InputStream in = DemoDataLoader.class.getResourceAsStream("/data/saaleaue.geojson")) {
 			reference = new GeoJsonFeatureImporter(new GeoJsonText(geoJson), BathPackage.eINSTANCE, "assetType").read(in);
 		}
 		memory = new MemoryFeatureSource(Set.of(BathPackage.eNS_URI), () -> reference);

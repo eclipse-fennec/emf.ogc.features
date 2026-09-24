@@ -34,8 +34,8 @@ import org.eclipse.fennec.ogc.features.api.FeatureSource;
 import org.eclipse.fennec.ogc.features.api.SortKey;
 import org.eclipse.fennec.ogc.features.example.bath.Asset;
 import org.eclipse.fennec.ogc.features.example.bath.BathPackage;
+import org.eclipse.fennec.ogc.features.example.bath.demo.DemoDataLoader;
 import org.eclipse.fennec.ogc.features.example.bath.PoolType;
-import org.eclipse.fennec.ogc.features.example.bath.demo.BathDataLoader;
 import org.eclipse.fennec.ogc.features.geo.GeoJsonFeatureImporter;
 import org.eclipse.fennec.ogc.features.geo.GeoJsonText;
 import org.eclipse.fennec.ogc.features.geo.JtsGeometries;
@@ -69,7 +69,7 @@ class JpaFeatureSourceTest {
 
 	private static final Envelope OUTDOOR_POOL_AREA = new Envelope(11.6166, 50.9051, 11.6177, 50.9054);
 
-	@InjectService(filter = "(osgi.condition.id=" + BathDataLoader.CONDITION_ID + ")", timeout = 30000)
+	@InjectService(filter = "(osgi.condition.id=" + BathSetup.LOADED + ")", timeout = 30000)
 	Condition loaded;
 
 	@InjectService(filter = "(component.name=org.eclipse.fennec.ogc.features.source.repository)", timeout = 10000)
@@ -90,7 +90,7 @@ class JpaFeatureSourceTest {
 		List<EObject> reference;
 		GeoJsonFeatureImporter importer = new GeoJsonFeatureImporter(new GeoJsonText(geoJson), BathPackage.eINSTANCE,
 				"assetType");
-		try (InputStream in = BathDataLoader.class.getResourceAsStream("/data/bath.geojson")) {
+		try (InputStream in = DemoDataLoader.class.getResourceAsStream("/data/saaleaue.geojson")) {
 			reference = importer.read(in);
 		}
 		memory = new MemoryFeatureSource(Set.of(BathPackage.eNS_URI), () -> reference);

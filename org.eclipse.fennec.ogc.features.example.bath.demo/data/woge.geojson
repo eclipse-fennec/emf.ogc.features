@@ -1,0 +1,2937 @@
+{
+ "type": "FeatureCollection",
+ "name": "Freizeitbad WOGE",
+ "features": [
+  {
+   "type": "Feature",
+   "id": "woge-site",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2964081,
+       51.3070337
+      ],
+      [
+       11.2997134,
+       51.3070337
+      ],
+      [
+       11.2997134,
+       51.3085617
+      ],
+      [
+       11.2964081,
+       51.3085617
+      ],
+      [
+       11.2964081,
+       51.3070337
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "SiteBoundary",
+    "name": "Freizeitbad WOGE",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "level": "OUTDOOR",
+    "description": "Freizeitbad WOGE, Am Wellental 1, Dim Stadt. 363 Tage im Jahr geöffnet: Mo–Fr 9–22 Uhr, Sa 9–23 Uhr, So 9–21 Uhr. Busse 12 und 47."
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-access",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      11.2959338,
+      51.3070517
+     ],
+     [
+      11.2963362,
+      51.3071056
+     ],
+     [
+      11.296523,
+      51.3073034
+     ],
+     [
+      11.296523,
+      51.3077078
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Path",
+    "name": "Am Wellental",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "surface": "PAVED",
+    "level": "OUTDOOR",
+    "description": "Zufahrt von der Unstrutstraße"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-parking",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2965805,
+       51.3070787
+      ],
+      [
+       11.2973853,
+       51.3070787
+      ],
+      [
+       11.2973853,
+       51.3084718
+      ],
+      [
+       11.2965805,
+       51.3084718
+      ],
+      [
+       11.2965805,
+       51.3070787
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "ParkingLot",
+    "name": "Parkplatz WOGE",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "spaces": 350,
+    "freeHours": 4,
+    "chargingPoints": 12,
+    "level": "OUTDOOR",
+    "description": "350 Stellplätze, die ersten 4 Stunden kostenlos"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-bikes",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2974428,
+       51.3073483
+      ],
+      [
+       11.2975721,
+       51.3073483
+      ],
+      [
+       11.2975721,
+       51.3077528
+      ],
+      [
+       11.2974428,
+       51.3077528
+      ],
+      [
+       11.2974428,
+       51.3073483
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "BikeParking",
+    "name": "Fahrradüberdachung",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "racks": 400,
+    "covered": true,
+    "level": "OUTDOOR",
+    "description": "400 überdachte Fahrradstellplätze"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-entrance",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2976296,
+     51.307609
+    ]
+   },
+   "properties": {
+    "assetType": "Entrance",
+    "name": "Haupteingang Am Wellental 1",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "main": true,
+    "level": "GROUND_FLOOR",
+    "description": "Kasse; Erwachsene 12,50 €, Kinder (4–15) 7,50 €, Familie (bis 5) 32,00 €"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-walk",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      11.2973853,
+      51.307609
+     ],
+     [
+      11.2976296,
+      51.307609
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Path",
+    "name": "Weg zum Eingang",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "surface": "PAVED",
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-hall",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2976296,
+       51.307573
+      ],
+      [
+       11.2990667,
+       51.307573
+      ],
+      [
+       11.2990667,
+       51.3083819
+      ],
+      [
+       11.2976296,
+       51.3083819
+      ],
+      [
+       11.2976296,
+       51.307573
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Building",
+    "name": "Badehalle",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "floors": 2,
+    "level": "GROUND_FLOOR",
+    "description": "Wellenbad, Sportbecken, Kinderwelt, Umkleiden und Bistro unter einem Dach"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-changing",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2976727,
+       51.3076
+      ],
+      [
+       11.2980751,
+       51.3076
+      ],
+      [
+       11.2980751,
+       51.3078067
+      ],
+      [
+       11.2976727,
+       51.3078067
+      ],
+      [
+       11.2976727,
+       51.3076
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "ChangingRoom",
+    "name": "Umkleiden & Schließfächer",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "cabins": 60,
+    "lockers": 600,
+    "family": false,
+    "level": "GROUND_FLOOR",
+    "description": "Barrierefreie Umkleiden und Schließfächer"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-changing-family",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2976727,
+       51.3078157
+      ],
+      [
+       11.2978595,
+       51.3078157
+      ],
+      [
+       11.2978595,
+       51.3078966
+      ],
+      [
+       11.2976727,
+       51.3078966
+      ],
+      [
+       11.2976727,
+       51.3078157
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "ChangingRoom",
+    "name": "Familienumkleide",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "cabins": 8,
+    "lockers": 60,
+    "family": true,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-wc-entrance",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2981039,
+     51.3076269
+    ]
+   },
+   "properties": {
+    "assetType": "Toilet",
+    "name": "WC Eingang",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "babyChanging": true,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-wc-hall",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2989086,
+     51.3078966
+    ]
+   },
+   "properties": {
+    "assetType": "Toilet",
+    "name": "WC Wellenbad",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "babyChanging": true,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-bistro",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2981326,
+       51.307609
+      ],
+      [
+       11.2985637,
+       51.307609
+      ],
+      [
+       11.2985637,
+       51.3078067
+      ],
+      [
+       11.2981326,
+       51.3078067
+      ],
+      [
+       11.2981326,
+       51.307609
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Kiosk",
+    "name": "Bistro Sandbank",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "openingHours": "11:30-20:00",
+    "seats": 90,
+    "level": "GROUND_FLOOR",
+    "description": "Küche 11:30–20:00 Uhr"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-first-aid",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2981613,
+     51.3078606
+    ]
+   },
+   "properties": {
+    "assetType": "FirstAid",
+    "name": "Erste Hilfe / Badeaufsicht",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "defibrillator": true,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-wave",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2982045,
+       51.3079325
+      ],
+      [
+       11.2988512,
+       51.3079325
+      ],
+      [
+       11.2987793,
+       51.3081572
+      ],
+      [
+       11.2982763,
+       51.3081572
+      ],
+      [
+       11.2982045,
+       51.3079325
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Pool",
+    "name": "Wellenbecken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "poolType": "WAVE",
+    "depthMin": 0.0,
+    "depthMax": 2.0,
+    "waterTemperature": 28.0,
+    "lanes": 0,
+    "level": "GROUND_FLOOR",
+    "description": "1.000 m² Wasserfläche, Wellen alle 30 Minuten"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-wave-surround",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2981606,
+       51.3079101
+      ],
+      [
+       11.298895,
+       51.3079101
+      ],
+      [
+       11.2988088,
+       51.3081797
+      ],
+      [
+       11.2982469,
+       51.3081797
+      ],
+      [
+       11.2981606,
+       51.3079101
+      ]
+     ],
+     [
+      [
+       11.2982763,
+       51.3081572
+      ],
+      [
+       11.2987793,
+       51.3081572
+      ],
+      [
+       11.2988512,
+       51.3079325
+      ],
+      [
+       11.2982045,
+       51.3079325
+      ],
+      [
+       11.2982763,
+       51.3081572
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Paving",
+    "name": "Umfassung Wellenbecken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "surface": "TILES",
+    "slipResistant": true,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-wave-shower-1",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2982476,
+     51.3079191
+    ]
+   },
+   "properties": {
+    "assetType": "Shower",
+    "name": "Duschen Wellenbecken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "heads": 6,
+    "warmWater": true,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-wave-shower-2",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.298808,
+     51.3079191
+    ]
+   },
+   "properties": {
+    "assetType": "Shower",
+    "name": "Duschen Wellenbecken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "heads": 6,
+    "warmWater": true,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-sport",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2977015,
+       51.3081482
+      ],
+      [
+       11.2980607,
+       51.3081482
+      ],
+      [
+       11.2980607,
+       51.3082651
+      ],
+      [
+       11.2977015,
+       51.3082651
+      ],
+      [
+       11.2977015,
+       51.3081482
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Pool",
+    "name": "Sportbecken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "poolType": "SWIMMER",
+    "depthMin": 1.8,
+    "depthMax": 2.0,
+    "waterTemperature": 26.0,
+    "lanes": 6,
+    "level": "GROUND_FLOOR",
+    "description": "25 m, sechs Bahnen; Schwimmkurse für Kinder und Erwachsene"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-sport-surround",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2976655,
+       51.3081258
+      ],
+      [
+       11.2980967,
+       51.3081258
+      ],
+      [
+       11.2980967,
+       51.3082876
+      ],
+      [
+       11.2976655,
+       51.3082876
+      ],
+      [
+       11.2976655,
+       51.3081258
+      ]
+     ],
+     [
+      [
+       11.2977015,
+       51.3082651
+      ],
+      [
+       11.2980607,
+       51.3082651
+      ],
+      [
+       11.2980607,
+       51.3081482
+      ],
+      [
+       11.2977015,
+       51.3081482
+      ],
+      [
+       11.2977015,
+       51.3082651
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Paving",
+    "name": "Umfassung Sportbecken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "surface": "TILES",
+    "slipResistant": true,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-sport-shower-1",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2976799,
+     51.3081662
+    ]
+   },
+   "properties": {
+    "assetType": "Shower",
+    "name": "Duschen Sportbecken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "heads": 4,
+    "warmWater": true,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-sport-shower-2",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2976799,
+     51.3082471
+    ]
+   },
+   "properties": {
+    "assetType": "Shower",
+    "name": "Duschen Sportbecken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "heads": 4,
+    "warmWater": true,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-kids",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2977015,
+       51.3079325
+      ],
+      [
+       11.2979314,
+       51.3079325
+      ],
+      [
+       11.2979601,
+       51.3080224
+      ],
+      [
+       11.2978452,
+       51.3080943
+      ],
+      [
+       11.2977015,
+       51.3080763
+      ],
+      [
+       11.2977015,
+       51.3079325
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Pool",
+    "name": "Kinderwelt",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "poolType": "KIDS",
+    "depthMin": 0.1,
+    "depthMax": 0.4,
+    "waterTemperature": 32.0,
+    "lanes": 0,
+    "level": "GROUND_FLOOR",
+    "description": "Planschbecken für Kinder von 0 bis 6 Jahren"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-kids-surround",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2976655,
+       51.3079101
+      ],
+      [
+       11.2979609,
+       51.3079101
+      ],
+      [
+       11.2979991,
+       51.3080298
+      ],
+      [
+       11.297857,
+       51.3081187
+      ],
+      [
+       11.2976655,
+       51.3080948
+      ],
+      [
+       11.2976655,
+       51.3079101
+      ]
+     ],
+     [
+      [
+       11.2977015,
+       51.3080763
+      ],
+      [
+       11.2978452,
+       51.3080943
+      ],
+      [
+       11.2979601,
+       51.3080224
+      ],
+      [
+       11.2979314,
+       51.3079325
+      ],
+      [
+       11.2977015,
+       51.3079325
+      ],
+      [
+       11.2977015,
+       51.3080763
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Paving",
+    "name": "Umfassung Kinderwelt",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "surface": "TILES",
+    "slipResistant": true,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-kids-shower-1",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2977302,
+     51.3079191
+    ]
+   },
+   "properties": {
+    "assetType": "Shower",
+    "name": "Duschen Kinderwelt",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "heads": 3,
+    "warmWater": true,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-landing",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2989086,
+       51.3081842
+      ],
+      [
+       11.299038,
+       51.3081842
+      ],
+      [
+       11.299038,
+       51.3082921
+      ],
+      [
+       11.2989086,
+       51.3082921
+      ],
+      [
+       11.2989086,
+       51.3081842
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Pool",
+    "name": "Landebecken Blauer Blitz",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "poolType": "LANDING",
+    "depthMin": 1.0,
+    "depthMax": 1.2,
+    "waterTemperature": 28.0,
+    "lanes": 0,
+    "level": "GROUND_FLOOR",
+    "description": "Auslauf der Rutsche Blauer Blitz"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-landing-surround",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2988727,
+       51.3081617
+      ],
+      [
+       11.2990739,
+       51.3081617
+      ],
+      [
+       11.2990739,
+       51.3083145
+      ],
+      [
+       11.2988727,
+       51.3083145
+      ],
+      [
+       11.2988727,
+       51.3081617
+      ]
+     ],
+     [
+      [
+       11.2989086,
+       51.3082921
+      ],
+      [
+       11.299038,
+       51.3082921
+      ],
+      [
+       11.299038,
+       51.3081842
+      ],
+      [
+       11.2989086,
+       51.3081842
+      ],
+      [
+       11.2989086,
+       51.3082921
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Paving",
+    "name": "Umfassung Landebecken Blauer Blitz",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "surface": "TILES",
+    "slipResistant": true,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-landing-shower-1",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2988871,
+     51.3082741
+    ]
+   },
+   "properties": {
+    "assetType": "Shower",
+    "name": "Duschen Landebecken Blauer Blitz",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "heads": 2,
+    "warmWater": true,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-sole",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2991673,
+       51.3078966
+      ],
+      [
+       11.299541,
+       51.3078966
+      ],
+      [
+       11.299541,
+       51.3080404
+      ],
+      [
+       11.2991673,
+       51.3080404
+      ],
+      [
+       11.2991673,
+       51.3078966
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Pool",
+    "name": "Außen-Solebecken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "poolType": "SOLE",
+    "depthMin": 1.2,
+    "depthMax": 1.35,
+    "waterTemperature": 34.0,
+    "lanes": 0,
+    "level": "OUTDOOR",
+    "description": "Ganzjährig 34 °C mit Massagedüsen"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-sole-surround",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2991314,
+       51.3078741
+      ],
+      [
+       11.2995769,
+       51.3078741
+      ],
+      [
+       11.2995769,
+       51.3080629
+      ],
+      [
+       11.2991314,
+       51.3080629
+      ],
+      [
+       11.2991314,
+       51.3078741
+      ]
+     ],
+     [
+      [
+       11.2991673,
+       51.3080404
+      ],
+      [
+       11.299541,
+       51.3080404
+      ],
+      [
+       11.299541,
+       51.3078966
+      ],
+      [
+       11.2991673,
+       51.3078966
+      ],
+      [
+       11.2991673,
+       51.3080404
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Paving",
+    "name": "Umfassung Außen-Solebecken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "surface": "PAVED",
+    "slipResistant": true,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-sole-shower-1",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2991458,
+     51.3080224
+    ]
+   },
+   "properties": {
+    "assetType": "Shower",
+    "name": "Duschen Außen-Solebecken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "heads": 4,
+    "warmWater": true,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-pirates",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2980033,
+       51.3079415
+      ],
+      [
+       11.2981326,
+       51.3079415
+      ],
+      [
+       11.2981326,
+       51.3080404
+      ],
+      [
+       11.2980033,
+       51.3080404
+      ],
+      [
+       11.2980033,
+       51.3079415
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Playground",
+    "name": "Piratenschiff & Wasserpilz",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "ageFrom": 0,
+    "ageTo": 6,
+    "level": "GROUND_FLOOR",
+    "description": "Piratenschiff und Wasserpilz in der Kinderwelt"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-mini-slide",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      11.2977302,
+      51.3080494
+     ],
+     [
+      11.2977733,
+      51.3080134
+     ],
+     [
+      11.2978308,
+      51.3079775
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Slide",
+    "name": "Minirutsche",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "length": 10.7,
+    "heightDifference": 1.2,
+    "minAge": 2,
+    "level": "GROUND_FLOOR",
+    "description": "Endet im Planschbecken der Kinderwelt"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-blauer-blitz",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      11.299038,
+      51.308364
+     ],
+     [
+      11.2992248,
+      51.3084538
+     ],
+     [
+      11.2994547,
+      51.3084359
+     ],
+     [
+      11.2994835,
+      51.30831
+     ],
+     [
+      11.2993398,
+      51.3082561
+     ],
+     [
+      11.2994547,
+      51.3081842
+     ],
+     [
+      11.2992823,
+      51.3081033
+     ],
+     [
+      11.2991098,
+      51.3081303
+     ],
+     [
+      11.2990811,
+      51.3082202
+     ],
+     [
+      11.2989661,
+      51.3082381
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Slide",
+    "name": "Blauer Blitz",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "length": 120.0,
+    "heightDifference": 12.0,
+    "minAge": 8,
+    "level": "UPPER_FLOOR",
+    "description": "120 m Röhrenrutsche mit Zeitmessung, Landung im Landebecken"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-path-pools",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      11.2978739,
+      51.3078067
+     ],
+     [
+      11.2978739,
+      51.3079056
+     ],
+     [
+      11.2981326,
+      51.3079056
+     ],
+     [
+      11.2985637,
+      51.3079056
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Path",
+    "name": "Barfußgang Umkleiden – Becken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "surface": "TILES",
+    "level": "GROUND_FLOOR",
+    "description": "Von den Umkleiden an Kinderwelt und Wellenbecken vorbei"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-path-sport",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      11.2978739,
+      51.3079056
+     ],
+     [
+      11.2981039,
+      51.3080943
+     ],
+     [
+      11.2981039,
+      51.3082022
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Path",
+    "name": "Barfußgang Sportbecken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "surface": "TILES",
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-path-landing",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      11.2985637,
+      51.3079056
+     ],
+     [
+      11.2988655,
+      51.3079056
+     ],
+     [
+      11.2988512,
+      51.3081752
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Path",
+    "name": "Barfußgang Landebecken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "surface": "TILES",
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-path-sole",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      11.2988655,
+      51.3079056
+     ],
+     [
+      11.2990667,
+      51.3079235
+     ],
+     [
+      11.2991242,
+      51.3079505
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Path",
+    "name": "Weg zum Solebecken",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "surface": "PAVED",
+    "level": "OUTDOOR",
+    "description": "Durch die Schleuse ins Außenbecken"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-path-sauna",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      11.2989949,
+      51.3080674
+     ],
+     [
+      11.2990811,
+      51.3080943
+     ],
+     [
+      11.2991673,
+      51.3081482
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Path",
+    "name": "Saunagang",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "surface": "TILES",
+    "level": "GROUND_FLOOR",
+    "description": "Von der Halle in die Saunawelt"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-path-lawn",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      11.2993541,
+      51.3078786
+     ],
+     [
+      11.2993541,
+      51.3078247
+     ],
+     [
+      11.2992536,
+      51.3077708
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Path",
+    "name": "Weg zur Liegewiese",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "surface": "WOODEN",
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-lawn",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2996416,
+       51.3074652
+      ],
+      [
+       11.2996542,
+       51.307513
+      ],
+      [
+       11.2996504,
+       51.3075621
+      ],
+      [
+       11.2996273,
+       51.307608
+      ],
+      [
+       11.299588,
+       51.3076473
+      ],
+      [
+       11.2995402,
+       51.3076796
+      ],
+      [
+       11.2994906,
+       51.3077078
+      ],
+      [
+       11.2994421,
+       51.3077358
+      ],
+      [
+       11.2993928,
+       51.3077649
+      ],
+      [
+       11.2993386,
+       51.3077927
+      ],
+      [
+       11.2992771,
+       51.3078134
+      ],
+      [
+       11.2992104,
+       51.3078211
+      ],
+      [
+       11.2991437,
+       51.3078134
+      ],
+      [
+       11.2990823,
+       51.3077927
+      ],
+      [
+       11.299028,
+       51.3077649
+      ],
+      [
+       11.2989787,
+       51.3077358
+      ],
+      [
+       11.2989303,
+       51.3077078
+      ],
+      [
+       11.2988807,
+       51.3076796
+      ],
+      [
+       11.2988328,
+       51.3076473
+      ],
+      [
+       11.2987936,
+       51.307608
+      ],
+      [
+       11.2987705,
+       51.3075621
+      ],
+      [
+       11.2987667,
+       51.307513
+      ],
+      [
+       11.2987793,
+       51.3074652
+      ],
+      [
+       11.2988007,
+       51.3074209
+      ],
+      [
+       11.2988231,
+       51.3073798
+      ],
+      [
+       11.2988429,
+       51.3073392
+      ],
+      [
+       11.2988627,
+       51.3072974
+      ],
+      [
+       11.2988885,
+       51.3072558
+      ],
+      [
+       11.2989259,
+       51.3072187
+      ],
+      [
+       11.298976,
+       51.3071914
+      ],
+      [
+       11.2990346,
+       51.3071763
+      ],
+      [
+       11.2990957,
+       51.3071718
+      ],
+      [
+       11.2991544,
+       51.3071728
+      ],
+      [
+       11.2992104,
+       51.307174
+      ],
+      [
+       11.2992664,
+       51.3071728
+      ],
+      [
+       11.2993252,
+       51.3071718
+      ],
+      [
+       11.2993862,
+       51.3071763
+      ],
+      [
+       11.2994449,
+       51.3071914
+      ],
+      [
+       11.2994949,
+       51.3072187
+      ],
+      [
+       11.2995324,
+       51.3072558
+      ],
+      [
+       11.2995582,
+       51.3072974
+      ],
+      [
+       11.299578,
+       51.3073392
+      ],
+      [
+       11.2995978,
+       51.3073798
+      ],
+      [
+       11.2996202,
+       51.3074209
+      ],
+      [
+       11.2996416,
+       51.3074652
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Lawn",
+    "name": "Liegewiese",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "shaded": false,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-1",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2964512,
+     51.3071416
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Spitzahorn",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Spitzahorn",
+    "heightM": 9.0,
+    "crownDiameterM": 5.4,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-2",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.297414,
+     51.3072225
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Winterlinde",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Winterlinde",
+    "heightM": 8.0,
+    "crownDiameterM": 4.8,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-3",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2964512,
+     51.3073034
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Winterlinde",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Winterlinde",
+    "heightM": 12.0,
+    "crownDiameterM": 7.2,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-4",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.297414,
+     51.3073843
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Spitzahorn",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Spitzahorn",
+    "heightM": 10.5,
+    "crownDiameterM": 6.3,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-5",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2964512,
+     51.3074652
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Spitzahorn",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Spitzahorn",
+    "heightM": 15.0,
+    "crownDiameterM": 9.0,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-6",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.297414,
+     51.3075461
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Winterlinde",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Winterlinde",
+    "heightM": 13.0,
+    "crownDiameterM": 7.8,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-7",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2964512,
+     51.3076269
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Winterlinde",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Winterlinde",
+    "heightM": 9.0,
+    "crownDiameterM": 5.4,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-8",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.297414,
+     51.3077078
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Spitzahorn",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Spitzahorn",
+    "heightM": 15.5,
+    "crownDiameterM": 9.3,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-9",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2964512,
+     51.3077887
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Spitzahorn",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Spitzahorn",
+    "heightM": 12.0,
+    "crownDiameterM": 7.2,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-10",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.297414,
+     51.3078696
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Winterlinde",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Winterlinde",
+    "heightM": 8.0,
+    "crownDiameterM": 4.8,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-11",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2964512,
+     51.3079505
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Winterlinde",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Winterlinde",
+    "heightM": 15.0,
+    "crownDiameterM": 9.0,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-12",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.297414,
+     51.3080314
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Spitzahorn",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Spitzahorn",
+    "heightM": 10.5,
+    "crownDiameterM": 6.3,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-13",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2964512,
+     51.3081123
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Spitzahorn",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Spitzahorn",
+    "heightM": 9.0,
+    "crownDiameterM": 5.4,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-14",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.297414,
+     51.3081932
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Winterlinde",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Winterlinde",
+    "heightM": 13.0,
+    "crownDiameterM": 7.8,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-15",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2964512,
+     51.3082741
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Winterlinde",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Winterlinde",
+    "heightM": 12.0,
+    "crownDiameterM": 7.2,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-16",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.297414,
+     51.308355
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Spitzahorn",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Spitzahorn",
+    "heightM": 15.5,
+    "crownDiameterM": 9.3,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-17",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2964512,
+     51.3084359
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Spitzahorn",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Spitzahorn",
+    "heightM": 15.0,
+    "crownDiameterM": 9.0,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-18",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.297414,
+     51.3085168
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Winterlinde",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Winterlinde",
+    "heightM": 8.0,
+    "crownDiameterM": 4.8,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-20",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2995064,
+     51.30779
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Rotbuche",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Rotbuche",
+    "heightM": 17.0,
+    "crownDiameterM": 10.2,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-21",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2991421,
+     51.3078486
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Rotbuche",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Rotbuche",
+    "heightM": 20.0,
+    "crownDiameterM": 12.0,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-23",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.298665,
+     51.3074841
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Rotbuche",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Rotbuche",
+    "heightM": 17.0,
+    "crownDiameterM": 10.2,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-24",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2987754,
+     51.3072316
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Rotbuche",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Rotbuche",
+    "heightM": 20.0,
+    "crownDiameterM": 12.0,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-25",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2990893,
+     51.3070883
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Stieleiche",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Stieleiche",
+    "heightM": 14.0,
+    "crownDiameterM": 8.4,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-26",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.29946,
+     51.3071214
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Rotbuche",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Rotbuche",
+    "heightM": 17.0,
+    "crownDiameterM": 10.2,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-28",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2996559,
+     51.3083819
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Sandbirke",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Sandbirke",
+    "heightM": 12.0,
+    "crownDiameterM": 7.2,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-29",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2996559,
+     51.3081842
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Sandbirke",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Sandbirke",
+    "heightM": 12.0,
+    "crownDiameterM": 7.2,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-tree-30",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2990811,
+     51.3085078
+    ]
+   },
+   "properties": {
+    "assetType": "Tree",
+    "name": "Sandbirke",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Sandbirke",
+    "heightM": 12.0,
+    "crownDiameterM": 7.2,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-hedge-south",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2976152,
+       51.3070382
+      ],
+      [
+       11.2997062,
+       51.3070382
+      ],
+      [
+       11.2997062,
+       51.3070562
+      ],
+      [
+       11.2976152,
+       51.3070562
+      ],
+      [
+       11.2976152,
+       51.3070382
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Shrub",
+    "name": "Hainbuchenhecke Süd",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Hainbuche",
+    "heightM": 1.8,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-hedge-east",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2996775,
+       51.3070562
+      ],
+      [
+       11.2997062,
+       51.3070562
+      ],
+      [
+       11.2997062,
+       51.3085572
+      ],
+      [
+       11.2996775,
+       51.3085572
+      ],
+      [
+       11.2996775,
+       51.3070562
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Shrub",
+    "name": "Hainbuchenhecke Ost",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Hainbuche",
+    "heightM": 1.8,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-shrub-1",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2975721,
+       51.3078427
+      ],
+      [
+       11.2975639,
+       51.3078585
+      ],
+      [
+       11.2975423,
+       51.3078683
+      ],
+      [
+       11.2975157,
+       51.3078683
+      ],
+      [
+       11.2974941,
+       51.3078585
+      ],
+      [
+       11.2974859,
+       51.3078427
+      ],
+      [
+       11.2974941,
+       51.3078268
+      ],
+      [
+       11.2975157,
+       51.307817
+      ],
+      [
+       11.2975423,
+       51.307817
+      ],
+      [
+       11.2975639,
+       51.3078268
+      ],
+      [
+       11.2975721,
+       51.3078427
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Shrub",
+    "name": "Forsythie",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Forsythie",
+    "heightM": 3.0,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-shrub-2",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2978164,
+       51.3074382
+      ],
+      [
+       11.2978082,
+       51.307454
+      ],
+      [
+       11.2977866,
+       51.3074638
+      ],
+      [
+       11.29776,
+       51.3074638
+      ],
+      [
+       11.2977384,
+       51.307454
+      ],
+      [
+       11.2977302,
+       51.3074382
+      ],
+      [
+       11.2977384,
+       51.3074223
+      ],
+      [
+       11.29776,
+       51.3074126
+      ],
+      [
+       11.2977866,
+       51.3074126
+      ],
+      [
+       11.2978082,
+       51.3074223
+      ],
+      [
+       11.2978164,
+       51.3074382
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Shrub",
+    "name": "Forsythie",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Forsythie",
+    "heightM": 3.0,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-shrub-3",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2987649,
+       51.3073034
+      ],
+      [
+       11.298754,
+       51.3073245
+      ],
+      [
+       11.2987252,
+       51.3073376
+      ],
+      [
+       11.2986897,
+       51.3073376
+      ],
+      [
+       11.2986609,
+       51.3073245
+      ],
+      [
+       11.29865,
+       51.3073034
+      ],
+      [
+       11.2986609,
+       51.3072822
+      ],
+      [
+       11.2986897,
+       51.3072692
+      ],
+      [
+       11.2987252,
+       51.3072692
+      ],
+      [
+       11.298754,
+       51.3072822
+      ],
+      [
+       11.2987649,
+       51.3073034
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Shrub",
+    "name": "Haselnuss",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Haselnuss",
+    "heightM": 3.333333333333333,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-shrub-4",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.298614,
+       51.3073933
+      ],
+      [
+       11.2986044,
+       51.3074117
+      ],
+      [
+       11.2985793,
+       51.3074232
+      ],
+      [
+       11.2985482,
+       51.3074232
+      ],
+      [
+       11.298523,
+       51.3074117
+      ],
+      [
+       11.2985134,
+       51.3073933
+      ],
+      [
+       11.298523,
+       51.3073748
+      ],
+      [
+       11.2985482,
+       51.3073633
+      ],
+      [
+       11.2985793,
+       51.3073633
+      ],
+      [
+       11.2986044,
+       51.3073748
+      ],
+      [
+       11.298614,
+       51.3073933
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Shrub",
+    "name": "Schneeball",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Schneeball",
+    "heightM": 3.166666666666667,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-shrub-5",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2996416,
+       51.3078247
+      ],
+      [
+       11.2996333,
+       51.3078405
+      ],
+      [
+       11.2996118,
+       51.3078503
+      ],
+      [
+       11.2995851,
+       51.3078503
+      ],
+      [
+       11.2995636,
+       51.3078405
+      ],
+      [
+       11.2995553,
+       51.3078247
+      ],
+      [
+       11.2995636,
+       51.3078088
+      ],
+      [
+       11.2995851,
+       51.307799
+      ],
+      [
+       11.2996118,
+       51.307799
+      ],
+      [
+       11.2996333,
+       51.3078088
+      ],
+      [
+       11.2996416,
+       51.3078247
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Shrub",
+    "name": "Liguster",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "species": "Liguster",
+    "heightM": 3.0,
+    "level": "OUTDOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-sauna-house",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2991098,
+       51.3081303
+      ],
+      [
+       11.2996847,
+       51.3081303
+      ],
+      [
+       11.2996847,
+       51.3085257
+      ],
+      [
+       11.2991098,
+       51.3085257
+      ],
+      [
+       11.2991098,
+       51.3081303
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Building",
+    "name": "Saunawelt",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "floors": 1,
+    "level": "GROUND_FLOOR",
+    "description": "Vier Saunen (60–90 °C), Eisbrunnen, Ruheraum mit Panoramafenstern, stündliche Aufgüsse; ab 16 Jahren, textilfrei"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-sauna-finnish",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.299153,
+       51.3083909
+      ],
+      [
+       11.2993541,
+       51.3083909
+      ],
+      [
+       11.2993541,
+       51.3084988
+      ],
+      [
+       11.299153,
+       51.3084988
+      ],
+      [
+       11.299153,
+       51.3083909
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Sauna",
+    "name": "Finnische Sauna",
+    "status": "OPEN",
+    "accessible": false,
+    "lastInspection": "2026-07-01",
+    "saunaType": "FINNISH",
+    "temperature": 90.0,
+    "capacity": 24,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-sauna-infusion",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2993973,
+       51.3083909
+      ],
+      [
+       11.2996416,
+       51.3083909
+      ],
+      [
+       11.2996416,
+       51.3084988
+      ],
+      [
+       11.2993973,
+       51.3084988
+      ],
+      [
+       11.2993973,
+       51.3083909
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Sauna",
+    "name": "Aufguss-Sauna",
+    "status": "OPEN",
+    "accessible": false,
+    "lastInspection": "2026-07-01",
+    "saunaType": "FINNISH",
+    "temperature": 85.0,
+    "capacity": 40,
+    "level": "GROUND_FLOOR",
+    "description": "Stündliche Aufgüsse"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-sauna-herbal",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.299153,
+       51.3082561
+      ],
+      [
+       11.2993254,
+       51.3082561
+      ],
+      [
+       11.2993254,
+       51.308364
+      ],
+      [
+       11.299153,
+       51.308364
+      ],
+      [
+       11.299153,
+       51.3082561
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Sauna",
+    "name": "Kräutersauna",
+    "status": "OPEN",
+    "accessible": false,
+    "lastInspection": "2026-07-01",
+    "saunaType": "BIO",
+    "temperature": 70.0,
+    "capacity": 16,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-sauna-bio",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       11.2993685,
+       51.3082561
+      ],
+      [
+       11.299541,
+       51.3082561
+      ],
+      [
+       11.299541,
+       51.308364
+      ],
+      [
+       11.2993685,
+       51.308364
+      ],
+      [
+       11.2993685,
+       51.3082561
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "assetType": "Sauna",
+    "name": "Bio-Sauna",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "saunaType": "BIO",
+    "temperature": 60.0,
+    "capacity": 16,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-wc-sauna",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2996128,
+     51.3081842
+    ]
+   },
+   "properties": {
+    "assetType": "Toilet",
+    "name": "WC Saunawelt",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "babyChanging": false,
+    "level": "GROUND_FLOOR"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-sauna-showers",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2992392,
+     51.3081842
+    ]
+   },
+   "properties": {
+    "assetType": "Shower",
+    "name": "Erlebnisduschen Saunawelt",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "heads": 6,
+    "warmWater": true,
+    "level": "GROUND_FLOOR",
+    "description": "Schwall-, Regen- und Kaltwasserduschen, Eisbrunnen"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "woge-changing-showers",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.2980176,
+     51.3077528
+    ]
+   },
+   "properties": {
+    "assetType": "Shower",
+    "name": "Duschen Umkleide",
+    "status": "OPEN",
+    "accessible": true,
+    "lastInspection": "2026-07-01",
+    "heads": 16,
+    "warmWater": true,
+    "level": "GROUND_FLOOR"
+   }
+  }
+ ]
+}

@@ -54,6 +54,12 @@ public final class OgcFeaturesAnnotations {
 	public static final String LAYER_GROUP = "layerGroup";
 	/** display style for a viewer, a CSS color or a JSON object */
 	public static final String STYLE = "style";
+	/**
+	 * On an EAttribute: the name of the GeoJSON property it is read from, where that name is
+	 * no identifier (e.g. {@code marker-color}). ExtendedMetaData names are honoured too, but
+	 * Fennec persistence also takes them as column names.
+	 */
+	public static final String PROPERTY = "property";
 
 	private OgcFeaturesAnnotations() {
 	}

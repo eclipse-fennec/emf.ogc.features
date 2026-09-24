@@ -1,10 +1,13 @@
-Bundle-Name: Fennec OGC Features Example — Leisure Pool Demo
-Bundle-Description: Demo data of a fictional leisure pool and the loader putting it into a \
- Fennec persistence repository, plus the launch configuration of the demo server.
+Bundle-Name: Fennec OGC Features Example — WOGE in Dim Stadt
+Bundle-Description: Demo data of the leisure pool WOGE and the generated town Dim Stadt, the loader putting \
+ them into Fennec persistence repositories, and the launch configuration of the demo server.
 
 -library: enableEMF
 
--includeresource.data: data/bath.geojson=data/bath.geojson
+-includeresource.data: \
+	data/woge.geojson=data/woge.geojson,\
+	data/saaleaue.geojson=data/saaleaue.geojson,\
+	data/city=data/city
 
 -buildpath: \
 	org.osgi.framework;version=latest,\
@@ -18,7 +21,8 @@ Bundle-Description: Demo data of a fictional leisure pool and the loader putting
 	org.eclipse.fennec.expression.model;version=latest,\
 	org.eclipse.fennec.ogc.features.api;version=snapshot,\
 	org.eclipse.fennec.ogc.features.geo;version=snapshot,\
-	org.eclipse.fennec.ogc.features.example.bath;version=snapshot
+	org.eclipse.fennec.ogc.features.example.bath;version=snapshot,\
+	org.eclipse.fennec.ogc.features.example.city;version=snapshot
 
 -testpath: \
 	org.eclipse.fennec.codec;version=latest,\
@@ -30,4 +34,6 @@ Bundle-Description: Demo data of a fictional leisure pool and the loader putting
 	org.locationtech.jts.jts-core;version=latest,\
 	tools.jackson.core.jackson-core;version=latest,\
 	tools.jackson.core.jackson-databind;version=latest,\
-	com.fasterxml.jackson.core.jackson-annotations;version=latest
+	com.fasterxml.jackson.core.jackson-annotations;version=latest,\
+	org.eclipse.fennec.expression.model;version=latest,\
+	org.eclipse.fennec.query.model;version=latest

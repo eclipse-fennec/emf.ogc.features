@@ -72,6 +72,10 @@ public class OgcFeaturesServlet extends HttpServlet {
 
 		@AttributeDefinition(description = "Value of Access-Control-Allow-Origin; no CORS header when empty")
 		String corsOrigin() default "*";
+
+		@AttributeDefinition(description = "Folders of the layer groups, 'nsURI=Folder/Subfolder': put in front of the "
+				+ "layer groups of the collections of that package")
+		String[] layerFolders() default {};
 	}
 
 	private final transient CollectionRegistry registry = new CollectionRegistry();
@@ -85,7 +89,7 @@ public class OgcFeaturesServlet extends HttpServlet {
 		this.config = config;
 		this.api = new OgcApi(registry, () -> Map.copyOf(languages),
 				new OgcApi.Settings(config.title(), emptyToNull(config.description()), config.defaultLimit(),
-						config.maxLimit()));
+						config.maxLimit(), folders(config.layerFolders())));
 	}
 
 	@Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC)
@@ -153,6 +157,17 @@ public class OgcFeaturesServlet extends HttpServlet {
 		String url = request.getRequestURL().toString();
 		String origin = url.substring(0, url.length() - request.getRequestURI().length());
 		return origin + request.getContextPath() + request.getServletPath();
+	}
+
+	private static Map<String, String> folders(String[] entries) {
+		Map<String, String> folders = new LinkedHashMap<>();
+		for (String entry : entries) {
+			int eq = entry.lastIndexOf('=');
+			if (eq > 0) {
+				folders.put(entry.substring(0, eq).trim(), entry.substring(eq + 1).trim());
+			}
+		}
+		return folders;
 	}
 
 	private static String emptyToNull(String value) {

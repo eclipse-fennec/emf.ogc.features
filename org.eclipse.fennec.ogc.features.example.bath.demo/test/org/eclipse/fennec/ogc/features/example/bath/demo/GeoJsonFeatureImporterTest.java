@@ -57,7 +57,7 @@ class GeoJsonFeatureImporterTest {
 	@Test
 	void importsTheDemoData() throws Exception {
 		List<EObject> assets;
-		try (InputStream in = Files.newInputStream(Path.of("data/bath.geojson"))) {
+		try (InputStream in = Files.newInputStream(Path.of("data/saaleaue.geojson"))) {
 			assets = importer.read(in);
 		}
 		assertThat(assets).hasSize(43).allMatch(Asset.class::isInstance);

@@ -2,7 +2,6 @@
   ":configurator:resource-version": 1,
   ":configurator:symbolic-name": "org.eclipse.fennec.ogc.features.example.bath.demo.launch",
   ":configurator:version": "0.1.0",
-
   "daanse.jdbc.datasource.h2.DataSource~bath": {
     "identifier": "./generated/h2/bath"
   },
@@ -14,22 +13,71 @@
     "fennec.jpa.persistenceUnitName": "bath",
     "fennec.jpa.mapping.target": "(fennec.jpa.eorm.mapping=bath)",
     "fennec.jpa.converter.target": "(fennec.persistence.converter=geojson)",
-    "fennec.jpa.ext.eclipselink.ddl-generation": "create-or-extend-tables"
+    "fennec.jpa.ext.eclipselink.ddl-generation": "create-or-extend-tables",
+    "fennec.jpa.dataSource.target": "(subprotocol=h2)"
   },
   "fennec.repository.jpa~bath": {
     "repositoryId": "bath",
     "unit.target": "(osgi.unit.name=bath)"
   },
-  "org.eclipse.fennec.ogc.features.example.bath.loader": {
-    "repository.target": "(persistence.repository.id=bath)",
-    "dataSource.target": "(objectClass=javax.sql.DataSource)"
-  },
   "org.eclipse.fennec.ogc.features.source.repository~bath": {
     "repository.target": "(persistence.repository.id=bath)",
-    "nsURIs": ["https://eclipse.org/fennec/ogc/example/bath/1.0"]
+    "nsURIs": [
+      "https://eclipse.org/fennec/ogc/example/bath/1.0"
+    ]
   },
   "org.eclipse.fennec.ogc.features.servlet": {
-    "title": "Freizeitbad Saaleaue",
-    "description": "Anlagen eines (fiktiven) Freizeitbads als OGC API Features, gespeichert mit Fennec Persistence (JPA/H2)"
+    "title": "Freizeitbad WOGE in Dim Stadt",
+    "description": "Das Freizeitbad WOGE (Am Wellental 1) in der generierten Stadt Dim Stadt als OGC API Features, gespeichert mit Fennec Persistence (JPA/H2)",
+    "layerFolders": [
+      "https://eclipse.org/fennec/ogc/example/city/1.0=Dim Stadt",
+      "https://eclipse.org/fennec/ogc/example/bath/1.0=Dim Stadt/Freizeitbad WOGE"
+    ]
+  },
+  "org.eclipse.fennec.ogc.features.example.loader~bath": {
+    "repository.target": "(persistence.repository.id=bath)",
+    "dataSource.target": "(subprotocol=h2)",
+    "ePackage.target": "(emf.nsURI=https://eclipse.org/fennec/ogc/example/bath/1.0)",
+    "files": [
+      "data/woge.geojson"
+    ],
+    "existsType": "Asset",
+    "conditionId": "fennec.ogc.example.bath.loaded"
+  },
+  "fennec.jpa.EORMMappingService~city": {
+    "fennec.jpa.eorm.mappingName": "city",
+    "fennec.jpa.eorm.model.target": "(emf.nsURI=https://eclipse.org/fennec/ogc/example/city/1.0)"
+  },
+  "fennec.jpa.EMPersistenceUnit~city": {
+    "fennec.jpa.persistenceUnitName": "city",
+    "fennec.jpa.mapping.target": "(fennec.jpa.eorm.mapping=city)",
+    "fennec.jpa.converter.target": "(fennec.persistence.converter=geojson)",
+    "fennec.jpa.ext.eclipselink.ddl-generation": "create-or-extend-tables",
+    "fennec.jpa.dataSource.target": "(subprotocol=h2)"
+  },
+  "fennec.repository.jpa~city": {
+    "repositoryId": "city",
+    "unit.target": "(osgi.unit.name=city)"
+  },
+  "org.eclipse.fennec.ogc.features.example.loader~city": {
+    "repository.target": "(persistence.repository.id=city)",
+    "dataSource.target": "(subprotocol=h2)",
+    "ePackage.target": "(emf.nsURI=https://eclipse.org/fennec/ogc/example/city/1.0)",
+    "files": [
+      "data/city/dim_stadt.geojson=Stadtgebiet",
+      "data/city/stadtteile.geojson=Stadtteil",
+      "data/city/flaechen.geojson=Flaeche",
+      "data/city/strassen.geojson=Strasse",
+      "data/city/gebaeude.geojson=Gebaeude",
+      "data/city/orte.geojson=Ort"
+    ],
+    "existsType": "CityFeature",
+    "conditionId": "fennec.ogc.example.city.loaded"
+  },
+  "org.eclipse.fennec.ogc.features.source.repository~city": {
+    "repository.target": "(persistence.repository.id=city)",
+    "nsURIs": [
+      "https://eclipse.org/fennec/ogc/example/city/1.0"
+    ]
   }
 }

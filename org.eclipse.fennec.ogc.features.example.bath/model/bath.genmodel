@@ -60,6 +60,12 @@
       <genEnumLiterals>
         <ecoreEnumLiteral href="bath.ecore#//PoolType/DIVING"/>
       </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//PoolType/SOLE"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//PoolType/LANDING"/>
+      </genEnumLiterals>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false">
       <ecoreEnum href="bath.ecore#//SaunaType"/>
@@ -110,6 +116,9 @@
       </genEnumLiterals>
       <genEnumLiterals>
         <ecoreEnumLiteral href="bath.ecore#//Surface/GRASS"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="bath.ecore#//Surface/TILES"/>
       </genEnumLiterals>
     </genEnums>
     <genDataTypes>
@@ -270,6 +279,66 @@
     </genClasses>
     <genClasses>
       <ecoreClass href="bath.ecore#//SiteBoundary"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="bath.ecore#//ParkingLot"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//ParkingLot/spaces"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//ParkingLot/freeHours"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//ParkingLot/chargingPoints"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="bath.ecore#//Paving"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Paving/surface"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Paving/slipResistant"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="bath.ecore#//Shower"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Shower/heads"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Shower/warmWater"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="bath.ecore#//Tree"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Tree/species"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Tree/heightM"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Tree/crownDiameterM"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="bath.ecore#//Shrub"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Shrub/species"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Shrub/heightM"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="bath.ecore#//BikeParking"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//BikeParking/racks"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//BikeParking/covered"/>
+      </genFeatures>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

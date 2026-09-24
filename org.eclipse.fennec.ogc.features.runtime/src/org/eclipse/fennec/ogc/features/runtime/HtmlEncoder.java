@@ -91,7 +91,7 @@ final class HtmlEncoder {
 				html.append("<br><span class=\"muted\">").append(esc(c.description())).append("</span>");
 			}
 			html.append("</td><td><code>").append(esc(c.id())).append("</code></td><td>")
-					.append(esc(c.layerGroup() == null ? "" : c.layerGroup())).append("</td><td>")
+					.append(esc(view.layerGroup() == null ? "" : view.layerGroup())).append("</td><td>")
 					.append(view.extent().map(HtmlEncoder::extent).orElse("")).append("</td></tr>");
 		}
 		html.append("</table>");

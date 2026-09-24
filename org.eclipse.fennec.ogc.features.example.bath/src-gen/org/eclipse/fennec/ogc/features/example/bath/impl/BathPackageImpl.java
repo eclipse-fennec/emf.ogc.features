@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.fennec.ogc.features.example.bath.Asset;
 import org.eclipse.fennec.ogc.features.example.bath.BathFactory;
 import org.eclipse.fennec.ogc.features.example.bath.BathPackage;
+import org.eclipse.fennec.ogc.features.example.bath.BikeParking;
 import org.eclipse.fennec.ogc.features.example.bath.Building;
 import org.eclipse.fennec.ogc.features.example.bath.ChangingRoom;
 import org.eclipse.fennec.ogc.features.example.bath.Entrance;
@@ -31,18 +32,23 @@ import org.eclipse.fennec.ogc.features.example.bath.Kiosk;
 import org.eclipse.fennec.ogc.features.example.bath.Lawn;
 import org.eclipse.fennec.ogc.features.example.bath.Level;
 import org.eclipse.fennec.ogc.features.example.bath.OperationalStatus;
+import org.eclipse.fennec.ogc.features.example.bath.ParkingLot;
 import org.eclipse.fennec.ogc.features.example.bath.Path;
+import org.eclipse.fennec.ogc.features.example.bath.Paving;
 import org.eclipse.fennec.ogc.features.example.bath.Playground;
 import org.eclipse.fennec.ogc.features.example.bath.Pool;
 import org.eclipse.fennec.ogc.features.example.bath.PoolType;
 import org.eclipse.fennec.ogc.features.example.bath.Sauna;
 import org.eclipse.fennec.ogc.features.example.bath.SaunaType;
+import org.eclipse.fennec.ogc.features.example.bath.Shower;
+import org.eclipse.fennec.ogc.features.example.bath.Shrub;
 import org.eclipse.fennec.ogc.features.example.bath.SiteBoundary;
 import org.eclipse.fennec.ogc.features.example.bath.Slide;
 import org.eclipse.fennec.ogc.features.example.bath.SportArea;
 import org.eclipse.fennec.ogc.features.example.bath.SportType;
 import org.eclipse.fennec.ogc.features.example.bath.Surface;
 import org.eclipse.fennec.ogc.features.example.bath.Toilet;
+import org.eclipse.fennec.ogc.features.example.bath.Tree;
 
 import org.geojson.Geometry;
 
@@ -157,6 +163,48 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 	 * @generated
 	 */
 	private EClass siteBoundaryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass parkingLotEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pavingEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass showerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass treeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass shrubEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bikeParkingEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -793,6 +841,206 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getParkingLot() {
+		return parkingLotEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getParkingLot_Spaces() {
+		return (EAttribute)parkingLotEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getParkingLot_FreeHours() {
+		return (EAttribute)parkingLotEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getParkingLot_ChargingPoints() {
+		return (EAttribute)parkingLotEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getPaving() {
+		return pavingEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPaving_Surface() {
+		return (EAttribute)pavingEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPaving_SlipResistant() {
+		return (EAttribute)pavingEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getShower() {
+		return showerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getShower_Heads() {
+		return (EAttribute)showerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getShower_WarmWater() {
+		return (EAttribute)showerEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getTree() {
+		return treeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTree_Species() {
+		return (EAttribute)treeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTree_HeightM() {
+		return (EAttribute)treeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTree_CrownDiameterM() {
+		return (EAttribute)treeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getShrub() {
+		return shrubEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getShrub_Species() {
+		return (EAttribute)shrubEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getShrub_HeightM() {
+		return (EAttribute)shrubEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getBikeParking() {
+		return bikeParkingEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBikeParking_Racks() {
+		return (EAttribute)bikeParkingEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBikeParking_Covered() {
+		return (EAttribute)bikeParkingEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getLevel() {
 		return levelEEnum;
 	}
@@ -953,6 +1201,32 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 
 		siteBoundaryEClass = createEClass(SITE_BOUNDARY);
 
+		parkingLotEClass = createEClass(PARKING_LOT);
+		createEAttribute(parkingLotEClass, PARKING_LOT__SPACES);
+		createEAttribute(parkingLotEClass, PARKING_LOT__FREE_HOURS);
+		createEAttribute(parkingLotEClass, PARKING_LOT__CHARGING_POINTS);
+
+		pavingEClass = createEClass(PAVING);
+		createEAttribute(pavingEClass, PAVING__SURFACE);
+		createEAttribute(pavingEClass, PAVING__SLIP_RESISTANT);
+
+		showerEClass = createEClass(SHOWER);
+		createEAttribute(showerEClass, SHOWER__HEADS);
+		createEAttribute(showerEClass, SHOWER__WARM_WATER);
+
+		treeEClass = createEClass(TREE);
+		createEAttribute(treeEClass, TREE__SPECIES);
+		createEAttribute(treeEClass, TREE__HEIGHT_M);
+		createEAttribute(treeEClass, TREE__CROWN_DIAMETER_M);
+
+		shrubEClass = createEClass(SHRUB);
+		createEAttribute(shrubEClass, SHRUB__SPECIES);
+		createEAttribute(shrubEClass, SHRUB__HEIGHT_M);
+
+		bikeParkingEClass = createEClass(BIKE_PARKING);
+		createEAttribute(bikeParkingEClass, BIKE_PARKING__RACKS);
+		createEAttribute(bikeParkingEClass, BIKE_PARKING__COVERED);
+
 		// Create enums
 		levelEEnum = createEEnum(LEVEL);
 		operationalStatusEEnum = createEEnum(OPERATIONAL_STATUS);
@@ -1007,6 +1281,12 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 		pathEClass.getESuperTypes().add(this.getAsset());
 		buildingEClass.getESuperTypes().add(this.getAsset());
 		siteBoundaryEClass.getESuperTypes().add(this.getAsset());
+		parkingLotEClass.getESuperTypes().add(this.getAsset());
+		pavingEClass.getESuperTypes().add(this.getAsset());
+		showerEClass.getESuperTypes().add(this.getAsset());
+		treeEClass.getESuperTypes().add(this.getAsset());
+		shrubEClass.getESuperTypes().add(this.getAsset());
+		bikeParkingEClass.getESuperTypes().add(this.getAsset());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(assetEClass, Asset.class, "Asset", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1076,6 +1356,32 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 
 		initEClass(siteBoundaryEClass, SiteBoundary.class, "SiteBoundary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(parkingLotEClass, ParkingLot.class, "ParkingLot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getParkingLot_Spaces(), ecorePackage.getEInt(), "spaces", null, 0, 1, ParkingLot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getParkingLot_FreeHours(), ecorePackage.getEInt(), "freeHours", null, 0, 1, ParkingLot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getParkingLot_ChargingPoints(), ecorePackage.getEInt(), "chargingPoints", null, 0, 1, ParkingLot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pavingEClass, Paving.class, "Paving", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPaving_Surface(), this.getSurface(), "surface", null, 0, 1, Paving.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPaving_SlipResistant(), ecorePackage.getEBoolean(), "slipResistant", null, 0, 1, Paving.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(showerEClass, Shower.class, "Shower", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getShower_Heads(), ecorePackage.getEInt(), "heads", null, 0, 1, Shower.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getShower_WarmWater(), ecorePackage.getEBoolean(), "warmWater", null, 0, 1, Shower.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(treeEClass, Tree.class, "Tree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTree_Species(), ecorePackage.getEString(), "species", null, 0, 1, Tree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTree_HeightM(), ecorePackage.getEDouble(), "heightM", null, 0, 1, Tree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTree_CrownDiameterM(), ecorePackage.getEDouble(), "crownDiameterM", null, 0, 1, Tree.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(shrubEClass, Shrub.class, "Shrub", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getShrub_Species(), ecorePackage.getEString(), "species", null, 0, 1, Shrub.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getShrub_HeightM(), ecorePackage.getEDouble(), "heightM", null, 0, 1, Shrub.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(bikeParkingEClass, BikeParking.class, "BikeParking", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBikeParking_Racks(), ecorePackage.getEInt(), "racks", null, 0, 1, BikeParking.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBikeParking_Covered(), ecorePackage.getEBoolean(), "covered", null, 0, 1, BikeParking.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(levelEEnum, Level.class, "Level");
 		addEEnumLiteral(levelEEnum, Level.GROUND_FLOOR);
@@ -1096,6 +1402,8 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 		addEEnumLiteral(poolTypeEEnum, PoolType.OUTDOOR);
 		addEEnumLiteral(poolTypeEEnum, PoolType.WHIRLPOOL);
 		addEEnumLiteral(poolTypeEEnum, PoolType.DIVING);
+		addEEnumLiteral(poolTypeEEnum, PoolType.SOLE);
+		addEEnumLiteral(poolTypeEEnum, PoolType.LANDING);
 
 		initEEnum(saunaTypeEEnum, SaunaType.class, "SaunaType");
 		addEEnumLiteral(saunaTypeEEnum, SaunaType.FINNISH);
@@ -1116,6 +1424,7 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 		addEEnumLiteral(surfaceEEnum, Surface.WOODEN);
 		addEEnumLiteral(surfaceEEnum, Surface.RUBBER);
 		addEEnumLiteral(surfaceEEnum, Surface.GRASS);
+		addEEnumLiteral(surfaceEEnum, Surface.TILES);
 
 		// Initialize data types
 		initEDataType(geoJsonGeometryEDataType, Geometry.class, "GeoJsonGeometry", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
@@ -1305,6 +1614,66 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 			   "title", "Gel\u00e4nde",
 			   "layerGroup", "Infrastruktur",
 			   "style", "{\"color\":\"#37474f\",\"fillOpacity\":0.03}"
+		   });
+		addAnnotation
+		  (parkingLotEClass,
+		   source,
+		   new String[] {
+			   "collection", "true",
+			   "id", "parking",
+			   "title", "Parkpl\u00e4tze",
+			   "layerGroup", "Mobilit\u00e4t",
+			   "style", "{\"color\":\"#3949ab\",\"fillOpacity\":0.3}"
+		   });
+		addAnnotation
+		  (pavingEClass,
+		   source,
+		   new String[] {
+			   "collection", "true",
+			   "id", "paving",
+			   "title", "Pflasterfl\u00e4chen",
+			   "layerGroup", "Infrastruktur",
+			   "style", "{\"color\":\"#bcaaa4\",\"fillOpacity\":0.55,\"labels\":false}"
+		   });
+		addAnnotation
+		  (showerEClass,
+		   source,
+		   new String[] {
+			   "collection", "true",
+			   "id", "showers",
+			   "title", "Duschen",
+			   "layerGroup", "Service",
+			   "style", "{\"color\":\"#0288d1\",\"labels\":false}"
+		   });
+		addAnnotation
+		  (treeEClass,
+		   source,
+		   new String[] {
+			   "collection", "true",
+			   "id", "trees",
+			   "title", "B\u00e4ume",
+			   "layerGroup", "Vegetation",
+			   "style", "{\"color\":\"#2e7d32\",\"labels\":false}"
+		   });
+		addAnnotation
+		  (shrubEClass,
+		   source,
+		   new String[] {
+			   "collection", "true",
+			   "id", "shrubs",
+			   "title", "B\u00fcsche & Hecken",
+			   "layerGroup", "Vegetation",
+			   "style", "{\"color\":\"#558b2f\",\"fillOpacity\":0.6,\"labels\":false}"
+		   });
+		addAnnotation
+		  (bikeParkingEClass,
+		   source,
+		   new String[] {
+			   "collection", "true",
+			   "id", "bike-parking",
+			   "title", "Fahrradstellpl\u00e4tze",
+			   "layerGroup", "Mobilit\u00e4t",
+			   "style", "#5e35b1"
 		   });
 	}
 

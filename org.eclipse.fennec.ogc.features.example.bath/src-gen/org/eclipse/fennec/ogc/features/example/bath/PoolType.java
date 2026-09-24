@@ -99,7 +99,27 @@ public enum PoolType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DIVING(6, "DIVING", "DIVING");
+	DIVING(6, "DIVING", "DIVING"),
+
+	/**
+	 * The '<em><b>SOLE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SOLE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	SOLE(7, "SOLE", "SOLE"),
+
+	/**
+	 * The '<em><b>LANDING</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #LANDING_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	LANDING(8, "LANDING", "LANDING");
 
 	/**
 	 * The '<em><b>SWIMMER</b></em>' literal value.
@@ -179,6 +199,28 @@ public enum PoolType implements Enumerator {
 	public static final int DIVING_VALUE = 6;
 
 	/**
+	 * The '<em><b>SOLE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #SOLE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SOLE_VALUE = 7;
+
+	/**
+	 * The '<em><b>LANDING</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #LANDING
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LANDING_VALUE = 8;
+
+	/**
 	 * An array of all the '<em><b>Pool Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -193,6 +235,8 @@ public enum PoolType implements Enumerator {
 			OUTDOOR,
 			WHIRLPOOL,
 			DIVING,
+			SOLE,
+			LANDING,
 		};
 
 	/**
@@ -256,6 +300,8 @@ public enum PoolType implements Enumerator {
 			case OUTDOOR_VALUE: return OUTDOOR;
 			case WHIRLPOOL_VALUE: return WHIRLPOOL;
 			case DIVING_VALUE: return DIVING;
+			case SOLE_VALUE: return SOLE;
+			case LANDING_VALUE: return LANDING;
 		}
 		return null;
 	}

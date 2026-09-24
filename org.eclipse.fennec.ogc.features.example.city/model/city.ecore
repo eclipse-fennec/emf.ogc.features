@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="city" nsURI="https://eclipse.org/fennec/ogc/example/city/1.0"
+    nsPrefix="city">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="copyrightText" value="Copyright (c) 2026 Contributors to the Eclipse Foundation.&#10;&#10;This program and the accompanying materials are made&#10;available under the terms of the Eclipse Public License 2.0&#10;which is available at https://www.eclipse.org/legal/epl-2.0/&#10;&#10;SPDX-License-Identifier: EPL-2.0&#10;&#10;Contributors:&#10;     Data In Motion - initial API and implementation"/>
+    <details key="documentation" value="The generated town Dim Stadt (Kyffhäuserkreis): boundary, districts, land use, streets, buildings and places, published as OGC API Features collections."/>
+    <details key="complianceLevel" value="17.0"/>
+    <details key="oSGiCompatible" value="true"/>
+    <details key="basePackage" value="org.eclipse.fennec.ogc.features.example"/>
+    <details key="prefix" value="City"/>
+    <details key="modelName" value="City"/>
+    <details key="resource" value="XMI"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="CityFeature" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A feature of the generated town Dim Stadt."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/persistence">
+      <details key="inheritance" value="SINGLE_TABLE"/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="geometry" value="geometry"/>
+      <details key="bbox" value="minX,minY,maxX,maxY"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Feature id of the source data."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="geometry" eType="#//GeoJsonGeometry">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Geometry in CRS84."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minX" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minY" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxX" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxY" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Stadtgebiet" eSuperTypes="#//CityFeature">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The town boundary and its centre."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="dim_stadt"/>
+      <details key="title" value="Dim Stadt"/>
+      <details key="style" value='{"color":"#b3261e","fillOpacity":0}'/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kategorie" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="featureTyp" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="feature_typ"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="land" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bundesland" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="landkreis" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="flaecheKm2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="flaeche_km2"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="umfangKm" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="umfang_km"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nachbarorte" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="quelle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="genauigkeitM" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="genauigkeit_m"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hinweis" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Display colour of the feature, from the simplestyle member 'stroke' of the source."/>
+      </eAnnotations>
+      <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+        <details key="property" value="stroke"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Stadtteil" eSuperTypes="#//CityFeature">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A district of the town or its surroundings."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="stadtteile"/>
+      <details key="title" value="Stadtteile"/>
+      <details key="style" value='{"color":"#6366f1","fillOpacity":0.06}'/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typ" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="flaecheKm2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="flaeche_km2"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="gebaeude" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Number of buildings."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="einwohner" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Number of inhabitants."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Display colour of the feature, from the simplestyle member 'fill' of the source."/>
+      </eAnnotations>
+      <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+        <details key="property" value="fill"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Flaeche" eSuperTypes="#//CityFeature">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A parcel of land use."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="flaechen"/>
+      <details key="title" value="Flächen"/>
+      <details key="style" value='{"color":"#a3e635","fillOpacity":0.4}'/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nutzung" eType="#//Nutzung"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="flaecheM2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="flaeche_m2"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="frucht" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="baumart" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Display colour of the feature, from the simplestyle member 'fill' of the source."/>
+      </eAnnotations>
+      <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+        <details key="property" value="fill"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Strasse" eSuperTypes="#//CityFeature">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A street, modelled as its centre line."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="strassen"/>
+      <details key="title" value="Straßen"/>
+      <details key="style" value="#57534e"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="klasse" eType="#//Strassenklasse"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="breiteM" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="breite_m"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="laengeM" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="laenge_m"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="richtung" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Display colour of the feature, from the simplestyle member 'stroke' of the source."/>
+      </eAnnotations>
+      <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+        <details key="property" value="stroke"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Gebaeude" eSuperTypes="#//CityFeature">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A building footprint."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="gebaeude"/>
+      <details key="title" value="Gebäude"/>
+      <details key="style" value='{"color":"#9c4f3f","fillOpacity":0.75}'/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typ" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="geschosse" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hoeheM" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="hoehe_m"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="flaecheM2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="flaeche_m2"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stadtteil" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="adresse" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="gehoeft" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Display colour of the feature, from the simplestyle member 'fill' of the source."/>
+      </eAnnotations>
+      <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+        <details key="property" value="fill"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Ort" eSuperTypes="#//CityFeature">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A point of interest."/>
+    </eAnnotations>
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="orte"/>
+      <details key="title" value="Orte"/>
+      <details key="style" value="#0ea5e9"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kategorie" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Display colour of the feature, from the simplestyle member 'marker-color' of the source."/>
+      </eAnnotations>
+      <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+        <details key="property" value="marker-color"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="GeoJsonGeometry" instanceClassName="org.geojson.Geometry">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A GeoJSON geometry, persisted as GeoJSON text."/>
+      <details key="create" value="return org.eclipse.fennec.ogc.features.geo.GeoJsonText.standalone().read(it);"/>
+      <details key="convert" value="return it == null ? null : org.eclipse.fennec.ogc.features.geo.GeoJsonText.standalone().write(it);"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Nutzung">
+    <eLiterals name="WIESE" literal="Wiese"/>
+    <eLiterals name="FELD" value="1" literal="Feld"/>
+    <eLiterals name="OBSTWIESE" value="2" literal="Obstwiese"/>
+    <eLiterals name="KLEINGAERTEN" value="3" literal="Kleingärten"/>
+    <eLiterals name="WALD" value="4" literal="Wald"/>
+    <eLiterals name="PARK" value="5" literal="Park"/>
+    <eLiterals name="MARKTPLATZ" value="6" literal="Marktplatz"/>
+    <eLiterals name="SCHULHOF" value="7" literal="Schulhof"/>
+    <eLiterals name="FRIEDHOF" value="8" literal="Friedhof"/>
+    <eLiterals name="KLINIKGELAENDE" value="9" literal="Klinikgelände"/>
+    <eLiterals name="SPORTPLATZ" value="10" literal="Sportplatz"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Strassenklasse">
+    <eLiterals name="HAUPTSTRASSE" literal="Hauptstraße"/>
+    <eLiterals name="NEBENSTRASSE" value="1" literal="Nebenstraße"/>
+    <eLiterals name="WOHNSTRASSE" value="2" literal="Wohnstraße"/>
+  </eClassifiers>
+</ecore:EPackage>

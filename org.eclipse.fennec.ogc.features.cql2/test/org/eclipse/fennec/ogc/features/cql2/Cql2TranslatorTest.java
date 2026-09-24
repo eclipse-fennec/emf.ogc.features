@@ -44,7 +44,7 @@ class Cql2TranslatorTest {
 	@BeforeAll
 	static void setUp() throws Exception {
 		List<EObject> data;
-		try (InputStream in = Files.newInputStream(Path.of("../org.eclipse.fennec.ogc.features.example.bath.demo/data/bath.geojson"))) {
+		try (InputStream in = Files.newInputStream(Path.of("../org.eclipse.fennec.ogc.features.example.bath.demo/data/saaleaue.geojson"))) {
 			data = new GeoJsonFeatureImporter(new GeoJsonText(new GeoJsonResourceFactoryImpl()), BathPackage.eINSTANCE,
 					"assetType").read(in);
 		}

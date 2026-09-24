@@ -63,7 +63,7 @@ class MemoryFeatureSourceTest {
 		assertThat(pools.temporal()).isEqualTo(BathPackage.Literals.ASSET__LAST_INSPECTION);
 		assertThat(pools.properties()).contains(BathPackage.Literals.POOL__POOL_TYPE)
 				.doesNotContain(BathPackage.Literals.ASSET__GEOMETRY, BathPackage.Literals.ASSET__MIN_X);
-		assertThat(CollectionDescriptor.of(BathPackage.eINSTANCE)).hasSize(15);
+		assertThat(CollectionDescriptor.of(BathPackage.eINSTANCE)).hasSize(21);
 	}
 
 	@Test

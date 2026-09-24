@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    copyrightText="Copyright (c) 2026 Contributors to the Eclipse Foundation.&#xA;&#xA;This program and the accompanying materials are made&#xA;available under the terms of the Eclipse Public License 2.0&#xA;which is available at https://www.eclipse.org/legal/epl-2.0/&#xA;&#xA;SPDX-License-Identifier: EPL-2.0&#xA;&#xA;Contributors:&#xA;     Data In Motion - initial API and implementation"
+    modelDirectory="/org.eclipse.fennec.ogc.features.example.city/src-gen" modelPluginID="org.eclipse.fennec.ogc.features.example.city"
+    modelName="City" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" bundleManifest="false" complianceLevel="17.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true" oSGiCompatible="true">
+  <foreignModel>city.ecore</foreignModel>
+  <genPackages prefix="City" basePackage="org.eclipse.fennec.ogc.features.example"
+      resource="XMI" disposableProviderFactory="true">
+    <ecorePackage href="city.ecore#/"/>
+    <genEnums typeSafeEnumCompatible="false">
+      <ecoreEnum href="city.ecore#//Nutzung"/>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="city.ecore#//Nutzung/WIESE"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="city.ecore#//Nutzung/FELD"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="city.ecore#//Nutzung/OBSTWIESE"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="city.ecore#//Nutzung/KLEINGAERTEN"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="city.ecore#//Nutzung/WALD"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="city.ecore#//Nutzung/PARK"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="city.ecore#//Nutzung/MARKTPLATZ"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="city.ecore#//Nutzung/SCHULHOF"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="city.ecore#//Nutzung/FRIEDHOF"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="city.ecore#//Nutzung/KLINIKGELAENDE"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="city.ecore#//Nutzung/SPORTPLATZ"/>
+      </genEnumLiterals>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false">
+      <ecoreEnum href="city.ecore#//Strassenklasse"/>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="city.ecore#//Strassenklasse/HAUPTSTRASSE"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="city.ecore#//Strassenklasse/NEBENSTRASSE"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="city.ecore#//Strassenklasse/WOHNSTRASSE"/>
+      </genEnumLiterals>
+    </genEnums>
+    <genDataTypes>
+      <ecoreDataType href="city.ecore#//GeoJsonGeometry"/>
+    </genDataTypes>
+    <genClasses image="false">
+      <ecoreClass href="city.ecore#//CityFeature"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//CityFeature/id"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//CityFeature/name"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//CityFeature/geometry"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//CityFeature/minX"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//CityFeature/minY"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//CityFeature/maxX"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//CityFeature/maxY"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="city.ecore#//Stadtgebiet"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Stadtgebiet/kategorie"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Stadtgebiet/featureTyp"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Stadtgebiet/land"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Stadtgebiet/bundesland"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Stadtgebiet/landkreis"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Stadtgebiet/flaecheKm2"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Stadtgebiet/umfangKm"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Stadtgebiet/nachbarorte"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Stadtgebiet/quelle"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Stadtgebiet/genauigkeitM"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Stadtgebiet/hinweis"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Stadtgebiet/color"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="city.ecore#//Stadtteil"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Stadtteil/typ"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Stadtteil/flaecheKm2"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Stadtteil/gebaeude"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Stadtteil/einwohner"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Stadtteil/color"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="city.ecore#//Flaeche"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Flaeche/nutzung"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Flaeche/flaecheM2"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Flaeche/frucht"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Flaeche/baumart"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Flaeche/color"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="city.ecore#//Strasse"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Strasse/klasse"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Strasse/breiteM"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Strasse/laengeM"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Strasse/richtung"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Strasse/color"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="city.ecore#//Gebaeude"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Gebaeude/typ"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Gebaeude/geschosse"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Gebaeude/hoeheM"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Gebaeude/flaecheM2"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Gebaeude/stadtteil"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Gebaeude/adresse"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Gebaeude/gehoeft"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Gebaeude/color"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="city.ecore#//Ort"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Ort/kategorie"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//Ort/color"/>
+      </genFeatures>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

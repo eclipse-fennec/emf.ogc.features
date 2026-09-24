@@ -138,6 +138,30 @@ public class BathAdapterFactory extends AdapterFactoryImpl {
 				return createSiteBoundaryAdapter();
 			}
 			@Override
+			public Adapter caseParkingLot(ParkingLot object) {
+				return createParkingLotAdapter();
+			}
+			@Override
+			public Adapter casePaving(Paving object) {
+				return createPavingAdapter();
+			}
+			@Override
+			public Adapter caseShower(Shower object) {
+				return createShowerAdapter();
+			}
+			@Override
+			public Adapter caseTree(Tree object) {
+				return createTreeAdapter();
+			}
+			@Override
+			public Adapter caseShrub(Shrub object) {
+				return createShrubAdapter();
+			}
+			@Override
+			public Adapter caseBikeParking(BikeParking object) {
+				return createBikeParkingAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -364,6 +388,90 @@ public class BathAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSiteBoundaryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.fennec.ogc.features.example.bath.ParkingLot <em>Parking Lot</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.ParkingLot
+	 * @generated
+	 */
+	public Adapter createParkingLotAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.fennec.ogc.features.example.bath.Paving <em>Paving</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.Paving
+	 * @generated
+	 */
+	public Adapter createPavingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.fennec.ogc.features.example.bath.Shower <em>Shower</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.Shower
+	 * @generated
+	 */
+	public Adapter createShowerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.fennec.ogc.features.example.bath.Tree <em>Tree</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.Tree
+	 * @generated
+	 */
+	public Adapter createTreeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.fennec.ogc.features.example.bath.Shrub <em>Shrub</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.Shrub
+	 * @generated
+	 */
+	public Adapter createShrubAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.fennec.ogc.features.example.bath.BikeParking <em>Bike Parking</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.BikeParking
+	 * @generated
+	 */
+	public Adapter createBikeParkingAdapter() {
 		return null;
 	}
 

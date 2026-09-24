@@ -1,9 +1,11 @@
-# The leisure pool demo server: OGC API Features on http://localhost:8080/ogc,
+# The leisure pool WOGE in the town Dim Stadt: OGC API Features on http://localhost:8080/ogc,
 # the map viewer on http://localhost:8080/ogc/viewer/, data in H2 under generated/h2.
 #   ./gradlew :org.eclipse.fennec.ogc.features.example.bath.demo:run.bath
 
 -runrequires: \
 	bnd.identity;id='org.eclipse.fennec.ogc.features.example.bath.demo',\
+	bnd.identity;id='org.eclipse.fennec.ogc.features.example.bath',\
+	bnd.identity;id='org.eclipse.fennec.ogc.features.example.city',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.runtime',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.viewer',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.source',\
@@ -22,7 +24,8 @@
 	bnd.identity;id='org.apache.felix.configadmin',\
 	bnd.identity;id='org.apache.felix.configurator',\
 	bnd.identity;id='org.apache.felix.gogo.shell',\
-	bnd.identity;id='org.apache.felix.gogo.command'
+	bnd.identity;id='org.apache.felix.gogo.command',\
+	bnd.identity;id='org.apache.felix.shell.remote'
 
 -runblacklist: \
 	bnd.identity;id='org.apache.aries.spifly.dynamic.framework.extension'
@@ -33,6 +36,8 @@
 -runproperties: \
 	org.osgi.service.http.port=8080,\
 	gosh.args=--nointeractive,\
+	osgi.shell.telnet.ip=127.0.0.1,\
+	osgi.shell.telnet.port=6666,\
 	configurator.initial=${fileuri;${.}/config/bath-demo.json}
 -runbundles: \
 	com.fasterxml.jackson.core.jackson-annotations;version='[2.22.0,2.22.1)',\
@@ -63,7 +68,6 @@
 	org.eclipse.fennec.emf.osgi.metadata;version='[1.1.0,1.1.1)',\
 	org.eclipse.fennec.expression.model;version='[0.1.0,0.1.1)',\
 	org.eclipse.fennec.ogc.features.api;version=snapshot,\
-	org.eclipse.fennec.ogc.features.example.bath;version=snapshot,\
 	org.eclipse.fennec.ogc.features.example.bath.demo;version=snapshot,\
 	org.eclipse.fennec.ogc.features.geo;version=snapshot,\
 	org.eclipse.fennec.ogc.features.runtime;version=snapshot,\
@@ -98,4 +102,7 @@
 	slf4j.simple;version='[2.0.17,2.0.18)',\
 	tools.jackson.core.jackson-core;version='[3.2.2,3.2.3)',\
 	tools.jackson.core.jackson-databind;version='[3.2.2,3.2.3)',\
-	org.eclipse.fennec.ogc.features.cql2;version=snapshot
+	org.eclipse.fennec.ogc.features.cql2;version=snapshot,\
+	org.eclipse.fennec.ogc.features.example.city;version=snapshot,\
+	org.apache.felix.shell.remote;version='[1.2.0,1.2.1)',\
+	org.eclipse.fennec.ogc.features.example.bath;version=snapshot
