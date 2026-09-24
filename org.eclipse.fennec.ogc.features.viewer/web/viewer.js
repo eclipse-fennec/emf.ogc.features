@@ -6,7 +6,8 @@
  * source with fill, line and circle layers; the layer panel shows the collections as a tree of
  * their layerGroup paths ("Town/Facility/Water") and colours them by their style. Features are fetched for the visible bbox.
  */
-import * as maplibregl from './maplibre/maplibre-gl.mjs';
+// MapLibre GL JS from the CDN, not part of this repository; it starts its worker cross-origin itself
+import * as maplibregl from 'https://cdn.jsdelivr.net/npm/maplibre-gl@6.11.1/dist/maplibre-gl.mjs';
 
 const API = new URL('../', window.location.href);
 const PAGE_SIZE = 10000;

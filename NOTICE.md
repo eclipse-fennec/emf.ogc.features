@@ -36,7 +36,7 @@ This project leverages third-party content. Notable runtime dependencies are:
 * Eclipse Modeling Framework (EMF), Ecore and Common — Eclipse Public License 2.0
 * Eclipse Fennec persistence, codec and EMF OSGi libraries — Eclipse Public License 2.0
 * JTS Topology Suite — Eclipse Public License 2.0 / Eclipse Distribution License 1.0
-* MapLibre GL JS (bundled in the viewer) — BSD 3-Clause License
+* MapLibre GL JS (loaded by the viewer from cdn.jsdelivr.net, not part of this repository) — BSD 3-Clause License
 * ANTLR 4 runtime (the CQL2 text parser) — BSD 3-Clause License
 * OGC Common Query Language (CQL2) 1.0.0 schema, BNF and examples, used as test material in
   `net.opengis.cql2.model/cql2/1.0.0` — Copyright (c) 2024 Open Geospatial Consortium,
