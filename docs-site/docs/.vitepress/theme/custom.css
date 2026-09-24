@@ -1,0 +1,54 @@
+/* Eclipse Fennec brand accent — a warm fox/amber tone (matches the org site). */
+:root {
+  --vp-c-brand-1: #c0631c;
+  --vp-c-brand-2: #d4731f;
+  --vp-c-brand-3: #e08a3a;
+  --vp-c-brand-soft: rgba(192, 99, 28, 0.14);
+
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(120deg, #e08a3a 30%, #c0631c);
+  --vp-home-hero-image-background-image: linear-gradient(
+    120deg,
+    rgba(224, 138, 58, 0.5),
+    rgba(192, 99, 28, 0.5)
+  );
+  --vp-home-hero-image-filter: blur(44px);
+}
+
+.dark {
+  --vp-c-brand-1: #e08a3a;
+  --vp-c-brand-2: #d4731f;
+  --vp-c-brand-3: #c0631c;
+}
+
+/* The Eclipse Foundation footer is rendered in the layout-bottom slot (see
+   index.ts), which is not subject to `.VPFooter.has-sidebar { display: none }`.
+   VitePress' own footer would be a second one on pages without a sidebar, so
+   hide it and let themeConfig.footer stay in place, unused. */
+.VPFooter {
+  display: none;
+}
+
+/* The footer sits in the layout-bottom slot, a child of the flex column
+   `.Layout`, so it spans the full page width — while a page with a sidebar
+   indents its content via padding on `.VPContent.has-sidebar`. Without the
+   same padding the footer renders underneath the fixed sidebar: the logo
+   disappears behind it and both copyright lines are clipped on the left.
+   Mirror VitePress' own rules at its own breakpoints. The footer is a
+   following sibling of `.VPContent` inside `.Layout`, so the state class
+   VitePress already sets is enough — no `:has()`, no JS. The extra 24px
+   preserves the footer's own horizontal padding. The home page carries
+   `.is-home` instead of `.has-sidebar`, and below 960px no rule applies,
+   so both stay untouched by construction. */
+@media (min-width: 960px) {
+  .VPContent.has-sidebar ~ .eclipse-footer {
+    padding-left: calc(var(--vp-sidebar-width) + 24px);
+  }
+}
+
+@media (min-width: 1440px) {
+  .VPContent.has-sidebar ~ .eclipse-footer {
+    padding-left: calc((100vw - var(--vp-layout-max-width)) / 2 + var(--vp-sidebar-width) + 24px);
+    padding-right: calc((100vw - var(--vp-layout-max-width)) / 2 + 24px);
+  }
+}

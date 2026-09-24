@@ -1,0 +1,113 @@
+name: Snapshot Build
+
+# Orchestrator for the snapshot branch (development branch -> Maven Snapshot).
+#
+# verify, release, the test-result check runs and the docs build all come from
+# the central reusables in eclipse-fennec/.github. The docs one runs in *slice*
+# mode (deploy: false) and pages-deploy.yml publishes the merged, cumulative
+# Pages site (see there for why the deploy stays repo-local).
+#
+# The p2 update site does NOT go to Pages any more: p2-downloads.yml rsyncs the
+# *exact* jar built by the release job (artifact `release-jars`) to
+# download.eclipse.org, independently of the docs deploy.
+on:
+  push:
+    # This snapshot build should only happen on pushes to the snapshot branch.
+    branches:
+      - snapshot
+  pull_request:
+    # This snapshot build should NOT happen on pull requests.
+    branches-ignore:
+      - '*'
+
+permissions:
+  contents: read
+  pages: write # Pages deploy
+  id-token: write # OIDC token for the Pages deployment
+  actions: read # pages-deploy restores the previous site-full artifact
+
+# Serialize Pages publishing; let an in-flight deploy finish before the next.
+concurrency:
+  group: snapshot-pages
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Verify
+    uses: eclipse-fennec/.github/.github/workflows/reusable-verify.yml@2a98ad6e2459556b858e1273bff2f8d87fc11a06 # v1.3.0
+    with:
+      # java-versions unset on purpose: the reusable default '["21","25"]' runs
+      # both legs. m2x still targets Java 21; the 25 leg is a toolchain check.
+      # perfTest runs our own performance tests. Since #88 it no longer sets
+      # ignoreFailures, so a failure is a failure, and since #87 it takes ~38 s in
+      # CI — there is nothing left to keep it out for. The comparison against the
+      # Eclipse implementations is @Tag("benchmark") and has its own task, which no
+      # workflow invokes.
+      run-perf-tests: true
+
+  release:
+    name: Release snapshot
+    needs: verify
+    uses: eclipse-fennec/.github/.github/workflows/reusable-release.yml@2a98ad6e2459556b858e1273bff2f8d87fc11a06 # v1.3.0
+    with:
+      do-release: false
+      # The p2 repository jar is produced by the normal build (-export: type=p2
+      # in ocl.ide.p2/bnd.bnd), so no extra Gradle task is needed - only the
+      # upload, so the p2 job can reuse this build's jar.
+      artifact-paths: org.eclipse.fennec.m2x.ocl.ide.p2/generated/org.eclipse.fennec.m2x.ocl.p2.jar
+    secrets: inherit
+
+  p2:
+    name: Publish p2 to download.eclipse.org
+    needs: release
+    # Independent of the Pages deploy: `deploy` does not wait for it, so the two
+    # publications never block each other.
+    uses: ./.github/workflows/p2-downloads.yml
+    with:
+      channel: snapshot
+    secrets:
+      SCP_USERNAME: ${{ secrets.SCP_USERNAME }}
+      SCP_KEY: ${{ secrets.SCP_KEY }}
+      SCP_PASSPHRASE: ${{ secrets.SCP_PASSPHRASE }}
+
+  docs:
+    name: Build docs slice
+    # Central VitePress build, in slice mode: `deploy: false` uploads
+    # `site/snapshot/` as the `pages-docs` artifact instead of publishing, which
+    # is what this repo needs — a Pages deploy replaces the ENTIRE site and the
+    # `snapshot` and `latest` channels must not wipe each other, so only
+    # pages-deploy.yml may deploy. It also gates the build on the shared docs theme (Eclipse Foundation
+    # footer, brand palette) matching eclipse-fennec/.github's docs-theme/.
+    uses: eclipse-fennec/.github/.github/workflows/reusable-docs.yml@2a98ad6e2459556b858e1273bff2f8d87fc11a06 # v1.3.0
+    with:
+      deploy: false
+      # `latest`/`snapshot` is a URL segment, not necessarily the ref name:
+      # release.yml runs on `main` but publishes the `latest` channel.
+      version: snapshot
+      # The name pages-deploy.yml globs as `pages-*`.
+      slice-artifact: pages-docs
+
+  deploy:
+    name: Publish merged Pages site
+    needs: docs
+    uses: ./.github/workflows/pages-deploy.yml
+    with:
+      channel: snapshot
+
+  test-report:
+    name: Render test results
+    needs: verify
+    # Render whatever `verify` produced, red or green — a failing run is exactly
+    # when the per-test annotations are worth having.
+    if: ${{ !cancelled() }}
+    permissions:
+      contents: read
+      checks: write
+    # Opt-in check runs from the central set (moved there from this repo's
+    # trial in #241, see eclipse-fennec/.github#34). verify already renders the
+    # same XML as a job summary with inline annotations; this job adds the one
+    # check run per JDK leg, which needs `checks: write` — granted on this job
+    # alone, so verify itself keeps running with `contents: read`.
+    uses: eclipse-fennec/.github/.github/workflows/reusable-test-report.yml@2a98ad6e2459556b858e1273bff2f8d87fc11a06 # v1.3.0
+    # java-versions deliberately unset: it defaults to the same '["21","25"]' as
+    # reusable-verify, so the two stay in step.

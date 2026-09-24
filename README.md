@@ -1,0 +1,203 @@
+# Eclipse Fennec EMF M2X
+
+Lightweight, spec-compliant implementations of OMG model transformation and constraint languages, fully decoupled from the Eclipse platform.
+
+- **OCL v2.5** — Object Constraint Language (backward compatible with v2.4)
+- **QVT Operational v1.3** — Query/View/Transformation (imperative)
+- **QVT Declarative v1.3** — Relations (Core planned)
+- **MOFM2T v1.0** — MOF Model to Text Transformation
+
+All engines work as **standalone Java 21 libraries** with optional OSGi support via Declarative Services.
+
+## Modules
+
+### Compiled units — language-neutral
+
+| Bundle | Description | Status |
+|--------|-------------|--------|
+| `org.eclipse.fennec.m2x.unit` | `CompiledUnit` metamodel (manifest, script, satellites, embedded units, package copies, `SourceUnit`), `SatelliteCollector` + `UnitPackager` behind `compile()` (dependency modes embed / pin / rebind, `fp1` package entries, blackbox requirements), the `m2x1` unit fingerprint, `DefaultUnitStore` over a `UnitStoreBackend` (in-memory shipped), `UnitPreparer` → `PreparedContext` (load, verify by fingerprint, bind — Execute asks no resolver) | Done |
+| `org.eclipse.fennec.m2x.unit.osgi` | The OSGi half of the same contracts: `OsgiServiceUnitResolver`, one whiteboard lookup for all three languages (ranking, LDAP filter escaping, "a failing service is an error"). Its own bundle so that `unit` stays framework-neutral (D39) | Done |
+| `org.eclipse.fennec.m2x.unit.registry` | `RegistryUnitStore` over the emf.osgi `EObjectRegistry`: units delivered as registry entries, the bridge between the store and a running model registry | Done |
+| `org.eclipse.fennec.m2x.unit.tests` | 131 tests and 2 OSGi tests, 0 failures | Done |
+| `org.eclipse.fennec.m2x.unit.registry.tests` | 10 tests and 1 OSGi test, 0 failures | Done |
+
+The three language APIs depend on this bundle, never the other way round, so
+`QvtoUnit`, `QvtdUnit` and `M2tUnit` share one base type without a cycle. Every engine
+offers `compile()` beside `parse()`: `parse()` returns the in-memory graph, `compile()`
+the storable document (#137) with its `m2x1` fingerprint (#138) and its dependencies bound
+under `embed`, `pin` or `rebind`, a `UnitStore` to keep sources and compiled units in (#139),
+a `UnitPreparer` that loads a pipeline into one verified context so that Execute asks no
+resolver (#140), and one `ResolutionPolicy` for several sources — every source asked, a failing
+one an error, disagreeing ones a conflict (#141), and a `UnitValidator` every loaded unit passes
+— what the parser guaranteed by construction, checked for a document that never saw it (#142).
+
+### OCL — Object Constraint Language
+
+| Bundle | Description | Status |
+|--------|-------------|--------|
+| `org.eclipse.fennec.m2x.ocl.model` | OCL EMF metamodel (53 classifiers) | Done |
+| `org.eclipse.fennec.m2x.ocl.api` | Public API interfaces, `OclStandardLibrary` (the predefined types as one EPackage) | Done |
+| `org.eclipse.fennec.m2x.ocl.parser` | ANTLR4 parser | Done |
+| `org.eclipse.fennec.m2x.ocl.engine` | Switch-based evaluator | Done |
+| `org.eclipse.fennec.m2x.ocl.tests` | 4,360 tests and 26 OSGi tests, 0 failures | Done |
+| `org.eclipse.fennec.m2x.ocl.fingerprint` | Fingerprint cache for parsed expressions | Done |
+| `org.eclipse.fennec.m2x.ocl.metadata` | Metadata-service bridge: OCL constraints reachable through the emf.osgi metadata services | Done |
+| `org.eclipse.fennec.m2x.ocl.ide` | Generic EMF editor support for the Eclipse IDE (D41 — the one platform-coupled bundle) | Done |
+| `org.eclipse.fennec.m2x.ocl.ide.p2` | Builds the p2 repository for the IDE support | Done |
+| `org.eclipse.fennec.m2x.ocl.example.model` | Generated EMF model used as the cross-bundle fixture of the OSGi tests — not part of the example project below | Done |
+| `org.eclipse.fennec.m2x.ocl.example` | Worked example: a metamodel with OCL delegate annotations and a Complete OCL document beside it — EMF delegates, ad-hoc document, compiled unit | Done |
+| `org.eclipse.fennec.m2x.ocl.benchmark` | Performance benchmarks | Done |
+
+### QVT-O — QVT Operational
+
+| Bundle | Description | Status |
+|--------|-------------|--------|
+| `org.eclipse.fennec.m2x.qvto.model` | QVT-O + Trace EMF metamodel (63 classifiers) | Done |
+| `org.eclipse.fennec.m2x.qvto.api` | Public API interfaces | Done |
+| `org.eclipse.fennec.m2x.qvto.parser` | ANTLR4 parser | Done |
+| `org.eclipse.fennec.m2x.qvto.engine` | Evaluator (mappings, resolve, trace, blackbox) | Done |
+| `org.eclipse.fennec.m2x.qvto.tests` | 1,259 tests (2 disabled) and 12 OSGi tests, 0 failures | Done |
+| `org.eclipse.fennec.m2x.qvto.example` | Worked example: two metamodels, an instance model and two `.qvto` files — run ad hoc, and as compiled units through store and prepare | Done |
+| `org.eclipse.fennec.m2x.qvto.benchmark` | Performance benchmarks | Done |
+
+### QVT-R — QVT Relations
+
+| Bundle | Description | Status |
+|--------|-------------|--------|
+| `org.eclipse.fennec.m2x.qvt.model` | QVTBase shared metamodel (9 classifiers) | Done |
+| `org.eclipse.fennec.m2x.qvtd.model` | QVT-R EMF metamodel (qvtrelation, qvttemplate) | Done |
+| `org.eclipse.fennec.m2x.qvtd.api` | Public API interfaces | Done |
+| `org.eclipse.fennec.m2x.qvtd.parser` | ANTLR4 parser | Done |
+| `org.eclipse.fennec.m2x.qvtd.engine` | Relation evaluator, enforcer, traces | Done |
+| `org.eclipse.fennec.m2x.qvtd.tests` | 236 tests (2 disabled) and 8 OSGi tests, 0 failures | Done |
+| `org.eclipse.fennec.m2x.qvtd.example` | Worked example: a `.qvtr` transformation with keys, queries, a where-chain and a when-guard — run ad hoc, and as a compiled unit | Done |
+
+### M2T — MOF Model to Text
+
+| Bundle | Description | Status |
+|--------|-------------|--------|
+| `org.eclipse.fennec.m2x.m2t.model` | MOFM2T EMF metamodel (2 enums, 18 EClasses) | Done |
+| `org.eclipse.fennec.m2x.m2t.api` | Public API interfaces | Done |
+| `org.eclipse.fennec.m2x.m2t.parser` | ANTLR4 parser | Done |
+| `org.eclipse.fennec.m2x.m2t.engine` | Template evaluator | Done |
+| `org.eclipse.fennec.m2x.m2t.tests` | 398 tests and 8 OSGi tests, 0 failures | Done |
+| `org.eclipse.fennec.m2x.m2t.example` | Worked example: a module import, both file open modes and a protected area that survives regeneration — run ad hoc, and as compiled units | Done |
+| `org.eclipse.fennec.m2x.m2t.generator` | bnd external plugin `fennecM2T`: runs templates as a build step | Done |
+| `org.eclipse.fennec.m2x.m2t.generator.example` | Address book to vCards and documentation, generated by `fennecM2T` | Done |
+
+## Examples
+
+Four example projects — one per language — show the engines at work on real files rather than
+on inline strings: a metamodel and an instance model on disk, a real `.qvto` / `.qvtr` / `.mtl` /
+`.ocl` file beside them, and plain Java that loads them. None of them is the minimal case; each
+one uses enough of its language to be worth reading.
+
+| Project | What it transforms | Paths shown |
+|---------|--------------------|-------------|
+| [`ocl.example`](org.eclipse.fennec.m2x.ocl.example/) | a library model, constrained and queried | delegate annotations through EMF's own `Diagnostician`/`eGet`/`eInvoke`, a Complete OCL document loaded ad hoc, the same document as a compiled unit |
+| [`qvto.example`](org.eclipse.fennec.m2x.qvto.example/) | library → catalog, with a second `.qvto` as an imported library | ad hoc, and compiled units through store and prepare |
+| [`qvtd.example`](org.eclipse.fennec.m2x.qvtd.example/) | library → inventory, with keys, queries, a where-chain and a when-guard | ad hoc, and a compiled unit |
+| [`m2t.example`](org.eclipse.fennec.m2x.m2t.example/) | a library model to a catalog file and an appended log | ad hoc, and compiled units; a protected area whose hand-edits survive regeneration |
+
+Every project carries `main()` classes that are the walkthrough — run one from its project
+directory, since the files are addressed relative to the working directory — and a smoke test that
+keeps them honest in CI:
+
+```bash
+./gradlew org.eclipse.fennec.m2x.ocl.example:test
+```
+
+For the build-step flavour of M2T, where templates run as part of the build and no Java is
+involved, see `org.eclipse.fennec.m2x.m2t.generator.example` and the
+[M2T bnd Generator Guide](docs/m2t-generator-guide.md).
+
+## Build
+
+The repository root is a Gradle + BND workspace:
+
+```bash
+# Build all
+./gradlew build
+
+# Run tests per component
+./gradlew org.eclipse.fennec.m2x.ocl.tests:test
+./gradlew org.eclipse.fennec.m2x.qvto.tests:test
+./gradlew org.eclipse.fennec.m2x.m2t.tests:test
+
+# OSGi integration tests (Felix, per component)
+./gradlew testOSGi
+
+# Run benchmarks
+./gradlew org.eclipse.fennec.m2x.ocl.benchmark:perfTest
+./gradlew org.eclipse.fennec.m2x.qvto.benchmark:perfTest
+```
+
+**Requirements:** Java 21, Gradle (bnd 7.2.1+ workspace)
+
+The per-bundle counts above are a snapshot, and the honest way to read them is with a date: **6,489 tests and 64 OSGi tests, 0 failures, as of 2026-09-01**. `./gradlew build` and `./gradlew testOSGi` are what produce that number — if it differs from the tables, the tables are the stale ones.
+
+## Branches & releases
+
+* `snapshot` is the active development branch. PRs land here first; every push publishes a `-SNAPSHOT` artifact to [Sonatype Central snapshots](https://central.sonatype.com/repository/maven-snapshots/org/eclipse/fennec/m2x/).
+* `main` always holds the latest released version.
+
+## Maven coordinates
+
+All bundles are published under the group id `org.eclipse.fennec.m2x`, with the bundle symbolic name as the artifact id:
+
+```xml
+<dependency>
+    <groupId>org.eclipse.fennec.m2x</groupId>
+    <artifactId>org.eclipse.fennec.m2x.ocl.engine</artifactId>
+    <version>0.1.1-SNAPSHOT</version>
+</dependency>
+```
+
+## User Guides
+
+- **[OCL Engine User Guide](docs/ocl-user-guide.md)** — How to use the OCL engine as a Java library (setup, evaluation, caching, EMF delegates, custom operations)
+- **[QVT-O Engine User Guide](docs/qvto-user-guide.md)** — How to use the QVT-O engine (setup, model extents, execution, tracing, blackbox libraries, multi-file composition)
+- **[QVT-R Engine User Guide](docs/qvtd-user-guide.md)** — How to use the QVT-R engine (setup, relations, binding validation, blackbox, hybrid QVT-O)
+- **[M2T Engine User Guide](docs/m2t-user-guide.md)** — How to use the M2T engine (setup, template syntax, file output, protected areas, module composition)
+- **[Compiled Units Guide](docs/compiled-units-guide.md)** — Storable units for QVT-O, QVT-R and MOFM2T: `compile()` beside `parse()`, the dependency modes embed / pin / rebind, the unit store, prepare and execute, resolution from several sources, validation on load, fingerprints
+- **[M2T bnd Generator Guide](docs/m2t-generator-guide.md)** — Running templates as a build step with the `fennecM2T` bnd plugin (dependencies, `-generate` attributes, nsURI registration)
+- **[OCL IDE Installation](docs/ocl-ide-installation.md)** — Installing the generic EMF editor support from the p2 repository
+
+## Architecture & Design
+
+- [OCL Architecture](docs/ocl-architecture.md) — OCL implementation reference (metamodel, parser, engine, caching, delegates)
+- [QVT-O Architecture](docs/qvto-architecture.md) — QVT-O implementation reference (metamodel, parser, engine, trace, resolve)
+- [QVT-R Architecture](docs/qvtd-architecture.md) — QVT-R implementation reference (metamodel, parser, engine, traces)
+
+Kept internally, not published with the code: the development guideline (conventions, coding
+standards, testing strategy, roadmap), the decision records D1–D45, the OCL spec-compliance gap
+analysis, the QVT-O test plan, the MOFM2T implementation plan, and the four security analyses
+(threat model, attack vectors and hardening per engine, mapped to BSI TR-03185).
+
+## Benchmarks
+
+Fennec is significantly faster than the Eclipse reference implementations:
+
+| Metric | OCL | QVT-O |
+|--------|-----|-------|
+| Parse | 100–315x faster | 2.2x faster |
+| Parse (cached) | ~100,000x faster | — |
+| Parse + Eval | 176–454x faster | — |
+| End-to-End | — | 2.3x faster |
+
+See [Benchmark Results](docs/benchmark-results.md) for detailed numbers and methodology.
+
+## Developers
+
+* **Mark Hoffmann** (mhoffmann) / [m.hoffmann@data-in-motion.biz](mailto:m.hoffmann@data-in-motion.biz) @ [Data In Motion](https://www.datainmotion.de) - *developer*, *architect*
+
+## License
+
+[Eclipse Public License 2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+## Copyright
+
+Copyright (c) Contributors to the Eclipse Foundation.
+
+---
+Data In Motion Consulting GmbH - [info@datainmotion.com](mailto:info@datainmotion.com)

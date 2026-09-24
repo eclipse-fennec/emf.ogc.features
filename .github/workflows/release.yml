@@ -1,0 +1,103 @@
+name: Release Build
+
+# Orchestrator for main (release branch -> Maven Central).
+#
+# Identical in shape to snapshot.yml; the only differences are do-release=true and
+# the `latest` channel (Pages docs and the p2 site on download.eclipse.org). Note that verify now gates the release: the previous
+# bespoke workflow called `./gradlew release` directly, and the bnd release task
+# does not depend on test/check, so main published without ever running a test.
+on:
+  push:
+    # This release should only happen on pushes to the main branch.
+    branches:
+      - main
+  pull_request:
+    # This release should NOT happen on pull requests.
+    branches-ignore:
+      - '*'
+
+permissions:
+  contents: read
+  pages: write # Pages deploy
+  id-token: write # OIDC token for the Pages deployment
+  actions: read # pages-deploy restores the previous site-full artifact
+
+# Serialize Pages publishing; let an in-flight deploy finish before the next.
+concurrency:
+  group: release-pages
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Verify
+    uses: eclipse-fennec/.github/.github/workflows/reusable-verify.yml@2a98ad6e2459556b858e1273bff2f8d87fc11a06 # v1.3.0
+    with:
+      # java-versions unset on purpose: the reusable default '["21","25"]' runs
+      # both legs. m2x still targets Java 21; the 25 leg is a toolchain check.
+      # perfTest gates since #88 and costs ~38 s since #87 — a release is the last
+      # place to skip a check that cheap.
+      run-perf-tests: true
+
+  release:
+    name: Release to Maven Central
+    needs: verify
+    uses: eclipse-fennec/.github/.github/workflows/reusable-release.yml@2a98ad6e2459556b858e1273bff2f8d87fc11a06 # v1.3.0
+    with:
+      do-release: true
+      artifact-paths: org.eclipse.fennec.m2x.ocl.ide.p2/generated/org.eclipse.fennec.m2x.ocl.p2.jar
+    secrets: inherit
+
+  p2:
+    name: Publish p2 to download.eclipse.org
+    needs: release
+    # Independent of the Pages deploy: `deploy` does not wait for it, so the two
+    # publications never block each other.
+    uses: ./.github/workflows/p2-downloads.yml
+    with:
+      channel: latest
+    secrets:
+      SCP_USERNAME: ${{ secrets.SCP_USERNAME }}
+      SCP_KEY: ${{ secrets.SCP_KEY }}
+      SCP_PASSPHRASE: ${{ secrets.SCP_PASSPHRASE }}
+
+  docs:
+    name: Build docs slice
+    # Central VitePress build, in slice mode: `deploy: false` uploads
+    # `site/latest/` as the `pages-docs` artifact instead of publishing, which
+    # is what this repo needs — a Pages deploy replaces the ENTIRE site and the
+    # `snapshot` and `latest` channels must not wipe each other, so only
+    # pages-deploy.yml may deploy. It also gates the build on the shared docs theme (Eclipse Foundation
+    # footer, brand palette) matching eclipse-fennec/.github's docs-theme/.
+    uses: eclipse-fennec/.github/.github/workflows/reusable-docs.yml@2a98ad6e2459556b858e1273bff2f8d87fc11a06 # v1.3.0
+    with:
+      deploy: false
+      # `latest`/`snapshot` is a URL segment, not necessarily the ref name:
+      # release.yml runs on `main` but publishes the `latest` channel.
+      version: latest
+      # The name pages-deploy.yml globs as `pages-*`.
+      slice-artifact: pages-docs
+
+  deploy:
+    name: Publish merged Pages site
+    needs: docs
+    uses: ./.github/workflows/pages-deploy.yml
+    with:
+      channel: latest
+
+  test-report:
+    name: Render test results
+    needs: verify
+    # Render whatever `verify` produced, red or green — a failing run is exactly
+    # when the per-test annotations are worth having.
+    if: ${{ !cancelled() }}
+    permissions:
+      contents: read
+      checks: write
+    # Opt-in check runs from the central set (moved there from this repo's
+    # trial in #241, see eclipse-fennec/.github#34). verify already renders the
+    # same XML as a job summary with inline annotations; this job adds the one
+    # check run per JDK leg, which needs `checks: write` — granted on this job
+    # alone, so verify itself keeps running with `contents: read`.
+    uses: eclipse-fennec/.github/.github/workflows/reusable-test-report.yml@2a98ad6e2459556b858e1273bff2f8d87fc11a06 # v1.3.0
+    # java-versions deliberately unset: it defaults to the same '["21","25"]' as
+    # reusable-verify, so the two stay in step.

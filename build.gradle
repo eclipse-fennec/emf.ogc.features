@@ -1,0 +1,96 @@
+plugins {
+  id "org.sonarqube" version "6.3.1.5724"
+  id 'jacoco'
+  id 'java'
+}
+
+// We need to define a repository for the root project, otherwise Jacoco dependencies cannot be resolved
+repositories {
+  mavenCentral()
+}
+
+subprojects {
+
+    //  Apply plugin: 'jacoco' to all submodules JUnit tests are generated as generated/jacoco/test.exec
+    apply plugin: 'jacoco'
+    apply plugin: 'java'
+    // We need to define a repository, otherwise Jacoco dependencies cannot be resolved
+    repositories {
+        mavenCentral()
+    }
+    // Allow gradle to enable JUnit support in submodules
+    // The ordinary build runs everything that asserts behaviour. The two tags below
+    // measure instead, and are excluded from it.
+    test {
+        useJUnitPlatform {
+            excludeTags 'perf', 'benchmark'
+        }
+        // The thread-safety tests saturate whatever cores they find. A build agent has
+        // fewer to give than a developer machine, and a race shows up at any load.
+        systemProperty 'ocl.test.threads', findProperty('ocl.test.threads') ?: '4'
+        systemProperty 'ocl.test.iterations', findProperty('ocl.test.iterations') ?: '200'
+    }
+
+    // Our own performance tests (@Tag("perf")) — how fast the engines are.
+    tasks.register('perfTest', Test) {
+        useJUnitPlatform {
+            includeTags 'perf'
+        }
+    }
+
+    // The comparison against the Eclipse implementations (@Tag("benchmark")). These need
+    // the Eclipse bundles in the benchmark projects' lib/ and produce relative numbers,
+    // which vary with the machine — so a slow run is not a broken build.
+    tasks.register('benchmarkTest', Test) {
+        useJUnitPlatform {
+            includeTags 'benchmark'
+        }
+        ignoreFailures = true
+    }
+    
+       // Add JUnit dependencies for modules that have Gradle tests
+    dependencies {
+        testImplementation 'org.junit.jupiter:junit-jupiter:5.14.4'
+        testImplementation 'org.junit.platform:junit-platform-launcher:1.14.4'
+        testImplementation 'org.mockito:mockito-core:5.23.0'
+        testImplementation 'org.mockito:mockito-junit-jupiter:5.23.0'
+        testImplementation 'org.assertj:assertj-core:3.27.7'
+    }
+    
+}
+
+// Sonar setup
+sonarqube {
+  properties {
+    property "sonar.projectName", "fennec.codec"
+    property "sonar.projectKey", "eclipse-fennec_emf.codec"
+    property "sonar.organization", "eclipse-fennec"
+    property "sonar.host.url", "https://sonarcloud.io"
+    property "sonar.coverage.jacoco.xmlReportPaths", "${rootDir}/build/reports/jacoco/codeCoverageReport/codeCoverageReport.xml"
+    //property "sonar.exclusions", "org.eclipse.fennec.project/**/*.java"
+  }
+}
+
+task codeCoverageReport(type: JacocoReport) {
+    dependsOn(test)
+    // Gather execution data from all subprojects for JUnit generated/jacoco/test.exec for OSGi Tests generated/tmp/testOSGi/generated/jacoco.exec
+    // Latter are generated via agent in the test.bndrun
+    executionData fileTree(project.rootDir.absolutePath).include("**/**/*.exec")
+
+    // Add all relevant sourcesets from the subprojects
+    subprojects.each {
+        sourceSets it.sourceSets.main
+    }
+
+    // Generate xml reports for tools like sonar and html for humans
+    reports {
+        xml.required = true
+        html.required = true
+        csv.required = false
+    }
+}
+
+tasks.named("sonar") {
+    dependsOn(codeCoverageReport)
+}
+
