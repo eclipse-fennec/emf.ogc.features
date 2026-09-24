@@ -1,0 +1,56 @@
+Bundle-Name: Fennec Codec CQL2
+Bundle-Description: EMF resources of the two CQL2 encodings: the text encoding (text/cql2) \
+ through an ANTLR parser and a writer, the JSON encoding (application/cql2+json) through the \
+ Fennec codec with a reader and writer for the mixed operation arguments. Registered with \
+ emf.osgi by content type and file extension.
+
+-library: enableEMF
+
+src=${^src},src-gen-parser
+
+# The ANTLR4 parser in src-gen-parser is generated from grammar/CQL2.g4 and checked in, as in
+# the m2x parsers. The tool classpath comes from the workspace repositories (cnf/ext/central.mvn).
+antlr4-version = 4.13.2
+antlr4.tool.cp = \
+	${repo;org.antlr:antlr4;${antlr4-version}}:\
+	${repo;org.antlr:antlr4-runtime;${antlr4-version}}:\
+	${repo;org.antlr:antlr-runtime;3.5.3}:\
+	${repo;org.antlr:ST4;4.3.4}:\
+	${repo;org.abego.treelayout:org.abego.treelayout.core;1.0.3}:\
+	${repo;com.ibm.icu:icu4j;72.1}
+
+# Generate the grammar on demand: uncomment, run ./gradlew :org.eclipse.fennec.codec.cql2:generate,
+# comment it out again. -Xexact-output-dir: without it ANTLR appends the grammar's directory to -o.
+#-generate: \
+#	grammar/CQL2.g4; \
+#		output=src-gen-parser; \
+#		system='java -cp ${antlr4.tool.cp} org.antlr.v4.Tool \
+#			-visitor -no-listener -Xexact-output-dir \
+#			-package org.eclipse.fennec.codec.cql2.antlr \
+#			-o ${project}/src-gen-parser/org/eclipse/fennec/codec/cql2/antlr \
+#			${project}/grammar/CQL2.g4'
+
+# Include the grammar for downstream reuse
+-includeresource.grammar: grammar=grammar
+
+# Suppress deprecation warnings from ANTLR4-generated code
+javac.deprecation = false
+
+-buildpath: \
+	org.osgi.service.component.annotations;version=latest,\
+	org.antlr.antlr4-runtime;version=latest,\
+	org.geojson.model;version=latest,\
+	org.eclipse.fennec.emf.osgi.api;version=latest,\
+	org.eclipse.fennec.emf.osgi.metadata;version=latest,\
+	org.eclipse.fennec.codec.api;version=latest,\
+	org.eclipse.fennec.codec;version=latest,\
+	tools.jackson.core.jackson-core;version=latest,\
+	tools.jackson.core.jackson-databind;version=latest,\
+	net.opengis.cql2.model;version=snapshot
+
+-testpath: \
+	${junit},\
+	assertj-core;version=latest,\
+	org.eclipse.fennec.codec.metadata;version=latest,\
+	org.eclipse.fennec.emf.osgi.component.minimal;version=latest,\
+	com.fasterxml.jackson.core.jackson-annotations;version=latest

@@ -1,0 +1,18 @@
+Bundle-Name: OGC CQL2 Model
+Bundle-Description: The OGC Common Query Language (CQL2) as EMF model, mirroring the CQL2 JSON \
+ encoding: operations with their arguments, property references, literals and GeoJSON geometries. \
+ Independent of any store or query engine.
+
+src: src-gen,src
+-library: enableEMF
+
+-generate: \
+	model/cql2.ecore; \
+		generate=fennecEMF; \
+		ecore=model/cql2.ecore; \
+		output=src-gen
+
+-includeresource.model: model=model
+
+-buildpath: \
+	org.geojson.model;version=latest

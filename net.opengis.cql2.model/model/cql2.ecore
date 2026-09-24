@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="cql2" nsURI="http://www.opengis.net/spec/cql2/1.0"
+    nsPrefix="cql2">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="copyrightText" value="Copyright (c) 2026 Contributors to the Eclipse Foundation.&#10;&#10;This program and the accompanying materials are made&#10;available under the terms of the Eclipse Public License 2.0&#10;which is available at https://www.eclipse.org/legal/epl-2.0/&#10;&#10;SPDX-License-Identifier: EPL-2.0&#10;&#10;Contributors:&#10;     Data In Motion - initial API and implementation"/>
+    <details key="documentation" value="The OGC Common Query Language (CQL2) as EMF model: basic CQL2, the advanced comparison operators and the spatial functions. Mirrors the CQL2 JSON encoding, which the Fennec codec reads and writes with this model; the text encoding is parsed into the same model."/>
+    <details key="complianceLevel" value="17.0"/>
+    <details key="oSGiCompatible" value="true"/>
+    <details key="basePackage" value="net.opengis"/>
+    <details key="prefix" value="Cql2"/>
+    <details key="modelName" value="Cql2"/>
+    <details key="resource" value="XMI"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Anything that can be an argument of an operation."/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Predicate" abstract="true" eSuperTypes="#//Expression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A boolean valued expression."/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Operation" abstract="true" eSuperTypes="#//Predicate">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value='An operation of the CQL2 JSON encoding: {"op": name, "args": [...]}. The op is the discriminator of the concrete class.'/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec">
+      <details key="typeKey" value="op"/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminatorPath" value="op"/>
+      <details key="fallbackStrategy" value="ERROR"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//Expression" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The arguments, in the order of the CQL2 JSON encoding."/>
+      </eAnnotations>
+      <eAnnotations source="http://eclipse.org/fennec/codec">
+        <details key="valueReaderName" value="cql2.args"/>
+        <details key="valueWriterName" value="cql2.args"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Comparison" abstract="true" eSuperTypes="#//Operation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A binary comparison; args: left, right."/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SpatialOperation" abstract="true" eSuperTypes="#//Operation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A spatial relation of the OGC Simple Features model; args: two geometry expressions."/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="And" eSuperTypes="#//Operation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Logical conjunction of two or more predicates."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="and"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Or" eSuperTypes="#//Operation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Logical disjunction of two or more predicates."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="or"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Not" eSuperTypes="#//Operation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Negation of one predicate."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="not"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Equal" eSuperTypes="#//Comparison">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The operation =."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="="/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NotEqual" eSuperTypes="#//Comparison">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The operation &lt;&gt;."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="&lt;&gt;"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LessThan" eSuperTypes="#//Comparison">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The operation &lt;."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="&lt;"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LessOrEqual" eSuperTypes="#//Comparison">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The operation &lt;=."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="&lt;="/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GreaterThan" eSuperTypes="#//Comparison">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The operation &gt;."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="&gt;"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GreaterOrEqual" eSuperTypes="#//Comparison">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The operation &gt;=."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="&gt;="/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Like" eSuperTypes="#//Operation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="args: value, pattern with the wildcards % and _."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="like"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Between" eSuperTypes="#//Operation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="args: value, lower, upper (inclusive)."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="between"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="In" eSuperTypes="#//Operation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="args: value, array of values."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="in"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsNull" eSuperTypes="#//Operation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="args: value."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="isNull"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SIntersects" eSuperTypes="#//SpatialOperation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The operation s_intersects."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="s_intersects"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SEquals" eSuperTypes="#//SpatialOperation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The operation s_equals."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="s_equals"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SDisjoint" eSuperTypes="#//SpatialOperation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The operation s_disjoint."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="s_disjoint"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="STouches" eSuperTypes="#//SpatialOperation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The operation s_touches."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="s_touches"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SWithin" eSuperTypes="#//SpatialOperation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The operation s_within."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="s_within"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SOverlaps" eSuperTypes="#//SpatialOperation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The operation s_overlaps."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="s_overlaps"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SCrosses" eSuperTypes="#//SpatialOperation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The operation s_crosses."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="s_crosses"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SContains" eSuperTypes="#//SpatialOperation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The operation s_contains."/>
+    </eAnnotations>
+    <eAnnotations source="http://eclipse.org/fennec/codec/typeMapping/cql2">
+      <details key="typeDiscriminator" value="s_contains"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyRef" eSuperTypes="#//Expression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value='A reference to a queryable: {"property": name}.'/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="property" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Name of the queryable."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Literal" abstract="true" eSuperTypes="#//Expression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A literal value."/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringLiteral" eSuperTypes="#//Literal">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A string."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The string."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NumberLiteral" eSuperTypes="#//Literal">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A number, kept in its decimal form."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The number."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteral" eSuperTypes="#//Literal #//Predicate">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="true or false; also a predicate on its own."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The value."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TimestampLiteral" eSuperTypes="#//Literal">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value='An instant: {"timestamp": "2026-01-01T00:00:00Z"}.'/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timestamp" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="RFC 3339 date-time in UTC."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DateLiteral" eSuperTypes="#//Literal">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value='A calendar date: {"date": "2026-01-01"}.'/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="RFC 3339 full-date."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArrayLiteral" eSuperTypes="#//Literal">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="An array of expressions, e.g. the values of IN."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1" eType="#//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BboxLiteral" eSuperTypes="#//Literal">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value='A bounding box {"bbox": [minx, miny, maxx, maxy]} in CRS84; six values with heights are allowed.'/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bbox" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The coordinates."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GeometryLiteral" eSuperTypes="#//Literal">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A geometry literal: GeoJSON in the JSON encoding, WKT in the text encoding."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="geometry" lowerBound="1" eType="ecore:EClass platform:/plugin/org.geojson.model/model/geojson.ecore#//Geometry" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

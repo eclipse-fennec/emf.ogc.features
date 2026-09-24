@@ -145,3 +145,14 @@ org.ow2.asm:asm-commons:9.9.1
 org.ow2.asm:asm-util:9.9.1
 org.ow2.asm:asm-tree:9.9.1
 org.ow2.asm:asm-analysis:9.9.1
+
+# ANTLR 4 runtime for the generated CQL2 text parser (the tool itself is only used to
+# regenerate the checked-in parser, see org.eclipse.fennec.codec.cql2/bnd.bnd).
+org.antlr:antlr4-runtime:4.13.2
+# ANTLR 4 tool and its dependencies, only to regenerate the parser on demand
+# (the -generate instruction in org.eclipse.fennec.codec.cql2/bnd.bnd); not part of any bundle.
+org.antlr:antlr4:4.13.2
+org.antlr:antlr-runtime:3.5.3
+org.antlr:ST4:4.3.4
+org.abego.treelayout:org.abego.treelayout.core:1.0.3
+com.ibm.icu:icu4j:72.1
