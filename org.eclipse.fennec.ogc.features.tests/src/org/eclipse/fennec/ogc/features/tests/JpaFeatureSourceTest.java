@@ -47,8 +47,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.locationtech.jts.geom.Geometry;
 import org.osgi.service.condition.Condition;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
+import org.osgi.test.common.annotation.InjectBundleContext;
 import org.osgi.test.common.annotation.InjectService;
-import org.osgi.test.junit5.cm.ConfigurationExtension;
 import org.osgi.test.junit5.context.BundleContextExtension;
 import org.osgi.test.junit5.service.ServiceExtension;
 
@@ -62,7 +64,6 @@ import org.osgi.test.junit5.service.ServiceExtension;
  */
 @ExtendWith(BundleContextExtension.class)
 @ExtendWith(ServiceExtension.class)
-@ExtendWith(ConfigurationExtension.class)
 @BathSetup
 class JpaFeatureSourceTest {
 
@@ -77,8 +78,8 @@ class JpaFeatureSourceTest {
 	@InjectService(filter = "(emf.configuratorName=geojson)", timeout = 5000)
 	Resource.Factory geoJson;
 
-	@InjectService(timeout = 5000)
-	DataSource dataSource;
+	@InjectBundleContext
+	BundleContext bundleContext;
 
 	private MemoryFeatureSource memory;
 	private CollectionDescriptor assets;
@@ -118,13 +119,22 @@ class JpaFeatureSourceTest {
 	}
 
 	@Test
-	void geometryColumnWasWidened() throws Exception {
-		// workaround until Fennec persistence honours a column definition for basic attributes
+	void geometryColumnHoldsLongText() throws Exception {
+		// Fennec persistence ignores eorm column definitions; the loader widens the column where needed
+		int size = -1;
+		String filter = "(subprotocol=" + System.getProperty("ogc.test.subprotocol") + ")";
+		ServiceReference<DataSource> reference = bundleContext.getServiceReferences(DataSource.class, filter).stream()
+				.findFirst().orElseThrow(() -> new AssertionError("no DataSource " + filter));
+		DataSource dataSource = bundleContext.getService(reference);
 		try (Connection connection = dataSource.getConnection();
-				ResultSet columns = connection.getMetaData().getColumns(null, null, "%", "GEOMETRY")) {
-			assertThat(columns.next()).as("geometry column").isTrue();
-			assertThat(columns.getInt("COLUMN_SIZE")).isGreaterThan(255);
+				ResultSet columns = connection.getMetaData().getColumns(null, null, "%", "%")) {
+			while (columns.next()) {
+				if ("geometry".equalsIgnoreCase(columns.getString("COLUMN_NAME"))) {
+					size = columns.getInt("COLUMN_SIZE");
+				}
+			}
 		}
+		assertThat(size).as("size of the geometry column").isGreaterThan(255);
 	}
 
 	@Test

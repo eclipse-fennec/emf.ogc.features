@@ -7,6 +7,7 @@
 	bnd.identity;id='org.eclipse.fennec.ogc.features.runtime',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.viewer',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.source',\
+	bnd.identity;id='org.eclipse.fennec.ogc.features.cql2',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.geo',\
 	bnd.identity;id='org.eclipse.fennec.codec.geojson',\
 	bnd.identity;id='org.eclipse.fennec.emf.osgi.metadata',\
@@ -96,4 +97,5 @@
 	slf4j.api;version='[2.0.17,2.0.18)',\
 	slf4j.simple;version='[2.0.17,2.0.18)',\
 	tools.jackson.core.jackson-core;version='[3.2.2,3.2.3)',\
-	tools.jackson.core.jackson-databind;version='[3.2.2,3.2.3)'
+	tools.jackson.core.jackson-databind;version='[3.2.2,3.2.3)',\
+	org.eclipse.fennec.ogc.features.cql2;version=snapshot

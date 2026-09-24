@@ -4,6 +4,9 @@
 	bnd.identity;id='org.eclipse.fennec.ogc.features.tests',\
 	bnd.identity;id='org.osgi.test.junit5.cm',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.source',\
+	bnd.identity;id='org.eclipse.fennec.ogc.features.cql2',\
+	bnd.identity;id='org.eclipse.fennec.ogc.features.runtime',\
+	bnd.identity;id='org.apache.felix.http.jetty12',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.geo',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.example.bath',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.example.bath.demo',\
@@ -15,6 +18,8 @@
 	bnd.identity;id='org.eclipse.persistence.asm',\
 	bnd.identity;id='org.eclipse.persistence.jpa.jpql',\
 	bnd.identity;id='org.eclipse.daanse.jdbc.datasource.h2',\
+	bnd.identity;id='org.eclipse.daanse.jdbc.datasource.postgresql',\
+	bnd.identity;id='org.postgresql.jdbc',\
 	bnd.identity;id='com.h2database',\
 	bnd.identity;id='org.apache.aries.spifly.dynamic.bundle',\
 	bnd.identity;id='org.apache.felix.configadmin'
@@ -28,5 +33,12 @@
 
 -runee: JavaSE-21
 
+# OGC_TEST_FLAVOR=postgres runs the same tests against PostgreSQL 17 in a container
+# (OGC_TEST_CONTAINER_CLI=docker|podman); the default is H2.
 -runproperties: \
-	bathDb=${.}/generated/h2/bath-${tstamp}
+	ogc.test.subprotocol=${if;${matches;${env;OGC_TEST_FLAVOR;h2};postgres.*};postgresql;h2},\
+	ogc.test.container.cli=${env;OGC_TEST_CONTAINER_CLI;docker},\
+	ogc.test.postgres.port=${env;OGC_TEST_POSTGRES_PORT;55432},\
+	bathDb=${.}/generated/h2/bath-${tstamp},\
+	org.osgi.service.http.port=18894,\
+	org.apache.felix.http.host=127.0.0.1

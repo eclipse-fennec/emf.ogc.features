@@ -33,7 +33,6 @@ The project maintains the following source code repository:
 
 This project leverages third-party content. Notable runtime dependencies are:
 
-* ANTLR 4 Runtime — BSD 3-Clause License
 * Eclipse Modeling Framework (EMF), Ecore and Common — Eclipse Public License 2.0
 * Eclipse Fennec persistence, codec and EMF OSGi libraries — Eclipse Public License 2.0
 * JTS Topology Suite — Eclipse Public License 2.0 / Eclipse Distribution License 1.0

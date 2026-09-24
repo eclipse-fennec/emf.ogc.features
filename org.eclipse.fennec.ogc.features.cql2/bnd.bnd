@@ -1,0 +1,31 @@
+Bundle-Name: Fennec OGC Features CQL2
+Bundle-Description: The OGC Common Query Language (CQL2) for Fennec OGC Features: text and JSON \
+ encodings of basic CQL2, the advanced comparison operators and the spatial functions, \
+ translated into a store part in the Fennec query IR and an in-memory residual.
+
+-library: enableEMF
+
+-buildpath: \
+	org.osgi.service.component.annotations;version=latest,\
+	org.locationtech.jts.jts-core;version=latest,\
+	org.eclipse.fennec.expression.model;version=latest,\
+	org.eclipse.fennec.query.model;version=latest,\
+	org.eclipse.fennec.persistence.query;version=latest,\
+	tools.jackson.core.jackson-core;version=latest,\
+	tools.jackson.core.jackson-databind;version=latest,\
+	org.geojson.model;version=latest,\
+	org.eclipse.fennec.ogc.features.api;version=snapshot,\
+	org.eclipse.fennec.ogc.features.geo;version=snapshot
+
+-testpath: \
+	org.eclipse.fennec.ogc.features.example.bath;version=snapshot,\
+	org.eclipse.fennec.ogc.features.source;version=snapshot,\
+	org.eclipse.fennec.persistence.capabilities;version=latest,\
+	org.eclipse.fennec.m2x.ocl.model;version=latest,\
+	org.eclipse.fennec.codec.geojson;version=latest,\
+	org.eclipse.fennec.codec;version=latest,\
+	org.eclipse.fennec.codec.api;version=latest,\
+	org.eclipse.fennec.codec.metadata;version=latest,\
+	org.eclipse.fennec.emf.osgi.metadata;version=latest,\
+	org.eclipse.fennec.emf.osgi.component.minimal;version=latest,\
+	com.fasterxml.jackson.core.jackson-annotations;version=latest

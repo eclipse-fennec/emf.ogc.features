@@ -38,20 +38,27 @@ Until it does, the workaround is:
 
 | Bundle | Description |
 |--------|-------------|
-| `org.eclipse.fennec.ogc.features.model` | `GeoJsonGeometry` data type, collection annotation conventions |
-| `org.eclipse.fennec.ogc.features.api` | `FeatureSource` SPI, `FeatureQuery`, collection descriptors |
-| `org.eclipse.fennec.ogc.features.geo` | Envelopes, GeoJSON ↔ JTS, spatial predicates, GeoJSON `TypeConverter` |
+| `org.eclipse.fennec.ogc.features.api` | Collection descriptors from EAnnotations, `FeatureSource` SPI, `FeatureQuery`, `FilterLanguage` |
+| `org.eclipse.fennec.ogc.features.geo` | Envelopes, GeoJSON ↔ JTS, spatial relations, GeoJSON `TypeConverter`, writer and importer |
 | `org.eclipse.fennec.ogc.features.cql2` | CQL2 text/JSON parser, splitting a filter into store part and in-memory part |
 | `org.eclipse.fennec.ogc.features.source` | Feature sources over Fennec repositories and in memory |
-| `org.eclipse.fennec.ogc.features.runtime` | The OGC API servlet: landing page, conformance, OpenAPI, collections, items |
-| `org.eclipse.fennec.ogc.features.viewer` | MapLibre GL JS map viewer |
-| `org.eclipse.fennec.ogc.features.example.bath` | Demo: assets of a leisure pool as feature collections |
+| `org.eclipse.fennec.ogc.features.runtime` | The OGC API servlet: landing page, conformance, OpenAPI, collections, items, queryables |
+| `org.eclipse.fennec.ogc.features.viewer` | MapLibre GL JS map viewer under `/ogc/viewer/` |
+| `org.eclipse.fennec.ogc.features.example.bath` | Demo model: the assets of a leisure pool |
+| `org.eclipse.fennec.ogc.features.example.bath.demo` | Demo data, loader and the launchable demo server (`bath.bndrun`) |
+| `org.eclipse.fennec.ogc.features.tests` | OSGi tests on H2 or PostgreSQL: JPA against the in-memory reference, the API over HTTP |
+
+See [docs/ogc-features-overview.md](docs/ogc-features-overview.md) for the annotation, the
+configuration and the demo, and [docs/upstream-issues.md](docs/upstream-issues.md) for the
+workarounds carried until upstream fixes land.
 
 ## Build
 
 ```bash
-./gradlew build          # compile + unit tests
-./gradlew testOSGi       # OSGi integration tests (H2)
+./gradlew build          # compile, unit and OSGi tests (H2)
+OGC_TEST_FLAVOR=postgres OGC_TEST_CONTAINER_CLI=podman \
+  ./gradlew :org.eclipse.fennec.ogc.features.tests:testOSGi --rerun   # the OSGi tests on PostgreSQL 17
+./gradlew :org.eclipse.fennec.ogc.features.example.bath.demo:run.bath # demo on http://localhost:8080/ogc
 ```
 
 This is a bnd workspace, and Gradle only drives the build. Dependencies are listed in

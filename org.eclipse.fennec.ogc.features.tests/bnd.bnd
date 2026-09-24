@@ -14,6 +14,8 @@ Private-Package: org.eclipse.fennec.ogc.features.tests
 -buildpath: \
 	org.osgi.framework;version=latest,\
 	org.osgi.service.cm;version=latest,\
+	org.osgi.util.tracker;version=latest,\
+	org.apache.felix.http.servlet-api;version=latest,\
 	org.osgi.test.junit5.cm;version=latest,\
 	org.osgi.service.condition;version=latest,\
 	org.osgi.service.jdbc;version=latest,\
@@ -23,6 +25,9 @@ Private-Package: org.eclipse.fennec.ogc.features.tests
 	org.eclipse.fennec.ogc.features.api;version=snapshot,\
 	org.eclipse.fennec.ogc.features.geo;version=snapshot,\
 	org.eclipse.fennec.ogc.features.source;version=snapshot,\
+	org.eclipse.fennec.ogc.features.cql2;version=snapshot,\
+	tools.jackson.core.jackson-core;version=latest,\
+	tools.jackson.core.jackson-databind;version=latest,\
 	org.eclipse.fennec.ogc.features.example.bath;version=snapshot,\
 	org.eclipse.fennec.ogc.features.example.bath.demo;version=snapshot,\
 	org.locationtech.jts.jts-core;version=latest
