@@ -64,8 +64,6 @@ import org.osgi.test.junit5.cm.ConfigurationExtension;
 @WithFactoryConfiguration(factoryPid = "org.eclipse.fennec.ogc.features.example.loader", name = "bath", location = "?",
 		properties = {
 				@Property(key = "repository.target", value = "(persistence.repository.id=bath)"),
-				@Property(key = "dataSource.target", value = "(subprotocol=%s)",
-						templateArguments = @TemplateArgument(source = ValueSource.SystemProperty, value = "ogc.test.subprotocol")),
 				@Property(key = "ePackage.target", value = "(emf.nsURI=" + BathSetup.NS_URI + ")"),
 				@Property(key = "files", value = "data/saaleaue.geojson"),
 				@Property(key = "existsType", value = "Asset"),

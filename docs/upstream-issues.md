@@ -61,13 +61,10 @@ String. A GeoJSON polygon exceeds 255 characters quickly. H2 has no such limit.
 Suggestion: honour `length`/`columnDefinition`/`lob` from the eorm, or let a
 `TypeConverter` hint the column type.
 
-emf.persistence-jpa#319 (PR #321) adds `TypeConverter.isLargeValue`, and
-`GeoJsonTypeConverter` declares the geometry a large value. On PostgreSQL the column still comes
-out as `VARCHAR(255)` with the snapshot of 2026-09-24 19:18 (the hint does not reach the DDL,
-[emf.persistence-jpa#324](https://github.com/eclipse-fennec/emf.persistence-jpa/issues/324)).
-
-**Workaround here:** after schema generation the demo loader alters the column to `TEXT`
-(`TextColumns` in `...example.bath.demo`); on PostgreSQL it logs `Widened columns [asset.geometry]`.
+**Fixed** with emf.persistence-jpa#319 (PR #321) and
+[#324](https://github.com/eclipse-fennec/emf.persistence-jpa/issues/324) (PR #327):
+`GeoJsonTypeConverter.isLargeValue` declares the geometry a large value, so it is mapped as a Lob
+(`TEXT` on PostgreSQL, CLOB on H2). The demo's `TextColumns` workaround is gone.
 
 ## 4. emf.persistence-jpa — [#313](https://github.com/eclipse-fennec/emf.persistence-jpa/issues/313): repository published before its unit accepts requests
 

@@ -14,14 +14,10 @@ package org.eclipse.fennec.ogc.features.example.bath.demo;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.Set;
-
-import javax.sql.DataSource;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -62,9 +58,6 @@ public class DemoDataLoader {
 		@AttributeDefinition(description = "Filter selecting the repository to load into")
 		String repository_target();
 
-		@AttributeDefinition(description = "Filter selecting the DataSource of the repository, used to widen text columns")
-		String dataSource_target();
-
 		@AttributeDefinition(description = "Filter selecting the EPackage of the feature classes, e.g. (emf.nsURI=...)")
 		String ePackage_target();
 
@@ -82,16 +75,12 @@ public class DemoDataLoader {
 		@AttributeDefinition(description = "Name of the class whose instances mean the data is loaded already")
 		String existsType();
 
-		@AttributeDefinition(description = "Text columns to widen after schema generation")
-		String[] widenColumns() default { "geometry" };
-
 		@AttributeDefinition(description = "osgi.condition.id registered once the data is in the store")
 		String conditionId();
 	}
 
 	private final Config config;
 	private final Repository repository;
-	private final DataSource dataSource;
 	private final EPackage ePackage;
 	private final Resource.Factory geoJson;
 	private final ServiceRegistration<Condition> condition;
@@ -100,22 +89,18 @@ public class DemoDataLoader {
 	 * @param context the bundle context
 	 * @param config the configuration
 	 * @param repository the repository to load into
-	 * @param dataSource the database behind the repository
 	 * @param ePackage the package of the feature classes
 	 * @param geoJson the GeoJSON resource factory
 	 * @throws IOException if a data file cannot be read
-	 * @throws SQLException if the geometry columns cannot be widened
 	 */
 	@Activate
 	public DemoDataLoader(BundleContext context, Config config,
 			@Reference(name = "repository") Repository repository,
-			@Reference(name = "dataSource") DataSource dataSource,
 			@Reference(name = "ePackage") EPackage ePackage,
 			@Reference(target = "(emf.configuratorName=geojson)") Resource.Factory geoJson)
-			throws IOException, SQLException {
+			throws IOException {
 		this.config = config;
 		this.repository = repository;
-		this.dataSource = dataSource;
 		this.ePackage = ePackage;
 		this.geoJson = geoJson;
 		load();
@@ -124,11 +109,9 @@ public class DemoDataLoader {
 		this.condition = context.registerService(Condition.class, Condition.INSTANCE, properties);
 	}
 
-	private void load() throws IOException, SQLException {
+	private void load() throws IOException {
 		// the first access builds the persistence unit and lets EclipseLink create the schema
 		long existing = repository.count(eClass(config.existsType()));
-		List<String> widened = TextColumns.widen(dataSource, Set.of(config.widenColumns()));
-		LOGGER.log(System.Logger.Level.INFO, "Widened columns {0}", widened);
 		if (existing > 0) {
 			return;
 		}

@@ -33,7 +33,6 @@
   },
   "org.eclipse.fennec.ogc.features.example.loader~bath": {
     "repository.target": "(persistence.repository.id=bath)",
-    "dataSource.target": "(subprotocol=*)",
     "ePackage.target": "(emf.nsURI=https://eclipse.org/fennec/ogc/example/bath/1.0)",
     "files": [
       "data/woge.geojson"
@@ -58,7 +57,6 @@
   },
   "org.eclipse.fennec.ogc.features.example.loader~city": {
     "repository.target": "(persistence.repository.id=city)",
-    "dataSource.target": "(subprotocol=*)",
     "ePackage.target": "(emf.nsURI=https://eclipse.org/fennec/ogc/example/city/1.0)",
     "files": [
       "data/city/dim_stadt.geojson=Stadtgebiet",
