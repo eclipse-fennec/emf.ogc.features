@@ -46,6 +46,9 @@ jobs:
 
   docs:
     name: Build docs slice
+    # Only after the artifacts are published, which also waits for a green verify:
+    # the site never documents a build that failed or a release that did not happen.
+    needs: release
     # Central VitePress build, in slice mode: `deploy: false` uploads
     # `site/snapshot/` as the `pages-docs` artifact instead of publishing, which
     # is what this repo needs — a Pages deploy replaces the ENTIRE site and the
