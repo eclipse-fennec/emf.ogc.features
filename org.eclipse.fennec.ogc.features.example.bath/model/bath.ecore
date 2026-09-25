@@ -494,9 +494,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="GeoJsonGeometry" instanceClassName="org.geojson.Geometry">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="A GeoJSON geometry. Persisted as GeoJSON text by the geojson TypeConverter of org.eclipse.fennec.ogc.features.geo. The string conversion lets XMI carry it, and reads it back from JPA as long as Fennec persistence hands String column values to EcoreUtil.createFromString instead of to the converter."/>
-      <details key="create" value="return org.eclipse.fennec.ogc.features.geo.GeoJsonText.standalone().read(it);"/>
-      <details key="convert" value="return it == null ? null : org.eclipse.fennec.ogc.features.geo.GeoJsonText.standalone().write(it);"/>
+      <details key="documentation" value="A GeoJSON geometry, persisted as GeoJSON text by the geojson TypeConverter of org.eclipse.fennec.ogc.features.source.persistence."/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Level">

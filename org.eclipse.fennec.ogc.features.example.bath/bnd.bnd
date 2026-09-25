@@ -17,5 +17,4 @@ src: src-gen,src
 -includeresource.model: model=model
 
 -buildpath: \
-	org.geojson.model;version=latest,\
-	org.eclipse.fennec.ogc.features.geo;version=snapshot
+	org.geojson.model;version=latest

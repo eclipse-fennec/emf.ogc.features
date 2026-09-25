@@ -22,7 +22,6 @@ import java.util.Objects;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.fennec.codec.geojson.GeoJsonResourceFactoryImpl;
 import org.geojson.Geometry;
 
 /**
@@ -33,8 +32,6 @@ public final class GeoJsonText {
 
 	private static final URI URI_ = URI.createURI("geometry.geojson");
 
-	private static volatile GeoJsonText standalone;
-
 	private final Resource.Factory factory;
 
 	/**
@@ -42,26 +39,6 @@ public final class GeoJsonText {
 	 */
 	public GeoJsonText(Resource.Factory factory) {
 		this.factory = Objects.requireNonNull(factory, "factory");
-	}
-
-	/**
-	 * An instance over a GeoJSON codec of its own, for code that cannot get the OSGi
-	 * service, such as the string conversion of a generated EMF factory.
-	 *
-	 * @return the shared standalone instance
-	 */
-	public static GeoJsonText standalone() {
-		GeoJsonText instance = standalone;
-		if (instance == null) {
-			synchronized (GeoJsonText.class) {
-				instance = standalone;
-				if (instance == null) {
-					instance = new GeoJsonText(new GeoJsonResourceFactoryImpl());
-					standalone = instance;
-				}
-			}
-		}
-		return instance;
 	}
 
 	/**

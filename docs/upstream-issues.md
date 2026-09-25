@@ -25,9 +25,10 @@ it as GeoJSON text.
 
 Suggested order in `dataTypeConvert`: converter first, `createFromString` second.
 
-**Workaround here:** the EDataType has GenModel `create`/`convert` bodies that use the
-GeoJSON codec (`GeoJsonText.standalone()`), so `createFromString` succeeds
-(`org.eclipse.fennec.ogc.features.example.bath/model/bath.ecore`).
+**Fixed** (#308 closed; the converter lookup by classifier id fixed with #324/PR #327): the
+geometry is read back through the geojson converter. The GenModel `create`/`convert` bodies on
+the `GeoJsonGeometry` data types of the bath and city models and `GeoJsonText.standalone()` are
+gone.
 
 ## 2. emf.persistence-jpa — [#311](https://github.com/eclipse-fennec/emf.persistence-jpa/issues/311): generated classes are not used as entity classes
 

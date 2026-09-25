@@ -229,26 +229,8 @@ public class CityFactoryImpl extends EFactoryImpl implements CityFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Geometry createGeoJsonGeometry(final String it) {
-		return org.eclipse.fennec.ogc.features.geo.GeoJsonText.standalone().read(it);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Geometry createGeoJsonGeometryFromString(EDataType eDataType, String initialValue) {
-		return createGeoJsonGeometry(initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertGeoJsonGeometry(final Geometry it) {
-		return it == null ? null : org.eclipse.fennec.ogc.features.geo.GeoJsonText.standalone().write(it);
+		return (Geometry)super.createFromString(eDataType, initialValue);
 	}
 
 	/**
@@ -257,7 +239,7 @@ public class CityFactoryImpl extends EFactoryImpl implements CityFactory {
 	 * @generated
 	 */
 	public String convertGeoJsonGeometryToString(EDataType eDataType, Object instanceValue) {
-		return convertGeoJsonGeometry((Geometry)instanceValue);
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

@@ -4190,7 +4190,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
-     * A GeoJSON geometry. Persisted as GeoJSON text by the geojson TypeConverter of org.eclipse.fennec.ogc.features.geo. The string conversion lets XMI carry it, and reads it back from JPA as long as Fennec persistence hands String column values to EcoreUtil.createFromString instead of to the converter.
+     * A GeoJSON geometry, persisted as GeoJSON text by the geojson TypeConverter of org.eclipse.fennec.ogc.features.source.persistence.
      * <!-- end-model-doc -->
 	 * @return the meta object for data type '<em>Geo Json Geometry</em>'.
 	 * @see org.geojson.Geometry

@@ -1656,7 +1656,7 @@ public interface CityPackage extends org.eclipse.emf.ecore.EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
-     * A GeoJSON geometry, persisted as GeoJSON text.
+     * A GeoJSON geometry, persisted as GeoJSON text by the geojson TypeConverter of org.eclipse.fennec.ogc.features.source.persistence.
      * <!-- end-model-doc -->
 	 * @return the meta object for data type '<em>Geo Json Geometry</em>'.
 	 * @see org.geojson.Geometry
