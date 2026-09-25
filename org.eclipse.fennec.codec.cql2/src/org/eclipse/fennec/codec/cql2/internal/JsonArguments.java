@@ -14,10 +14,12 @@ package org.eclipse.fennec.codec.cql2.internal;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.geojson.Geometry;
 import net.opengis.cql2.ArrayLiteral;
 import net.opengis.cql2.BboxLiteral;
 import net.opengis.cql2.BooleanLiteral;
@@ -85,10 +87,11 @@ public final class JsonArguments {
 
 	/**
 	 * @param node one argument
+	 * @param geometries reads a GeoJSON geometry
 	 * @return it as model
 	 * @throws IllegalArgumentException if it is no CQL2 argument
 	 */
-	public static Expression read(JsonNode node) {
+	public static Expression read(JsonNode node, Function<JsonNode, Geometry> geometries) {
 		if (node.isString()) {
 			StringLiteral literal = F.createStringLiteral();
 			literal.setValue(node.asString());
@@ -106,7 +109,7 @@ public final class JsonArguments {
 		}
 		if (node.isArray()) {
 			ArrayLiteral array = F.createArrayLiteral();
-			node.forEach(element -> array.getElements().add(read(element)));
+			node.forEach(element -> array.getElements().add(read(element, geometries)));
 			return array;
 		}
 		if (!node.isObject()) {
@@ -118,7 +121,7 @@ public final class JsonArguments {
 			if (!args.isArray()) {
 				throw new IllegalArgumentException("Operation '" + node.path("op").asString() + "' has no args array");
 			}
-			args.forEach(arg -> operation.getArgs().add(read(arg)));
+			args.forEach(arg -> operation.getArgs().add(read(arg, geometries)));
 			return operation;
 		}
 		if (node.has("property")) {
@@ -143,7 +146,7 @@ public final class JsonArguments {
 		}
 		if (node.has("type") && (node.has("coordinates") || node.has("geometries"))) {
 			GeometryLiteral literal = F.createGeometryLiteral();
-			literal.setGeometry(GeoJson.read(node));
+			literal.setGeometry(geometries.apply(node));
 			return literal;
 		}
 		throw new IllegalArgumentException("Unsupported CQL2 argument " + node);

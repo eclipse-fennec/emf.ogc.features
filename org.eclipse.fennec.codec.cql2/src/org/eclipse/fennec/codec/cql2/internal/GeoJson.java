@@ -15,84 +15,26 @@ package org.eclipse.fennec.codec.cql2.internal;
 import java.util.List;
 
 import org.geojson.Coordinates;
-import org.geojson.GeoJsonFactory;
 import org.geojson.GeoJsonPackage;
 import org.geojson.Geometry;
 import org.geojson.GeometryCollection;
-import org.geojson.Hole;
 import org.geojson.LineString;
 import org.geojson.MultiLineString;
 import org.geojson.MultiPoint;
 import org.geojson.MultiPolygon;
 import org.geojson.Point;
 import org.geojson.Polygon;
-import org.geojson.Ring;
-import org.geojson.SimpleLineString;
 import org.geojson.SimplePolygon;
 
 import tools.jackson.core.JsonGenerator;
-import tools.jackson.databind.JsonNode;
 
 /**
- * GeoJSON geometries of the CQL2 JSON encoding, read into and written from the GeoJSON EMF
- * model. A position keeps an elevation only if it has one.
+ * GeoJSON geometries of the CQL2 JSON encoding, written from the GeoJSON EMF model; they are
+ * read by the codec. A position keeps an elevation only if it has one.
  */
 final class GeoJson {
 
-	private static final GeoJsonFactory G = GeoJsonFactory.eINSTANCE;
-
 	private GeoJson() {
-	}
-
-	static Geometry read(JsonNode node) {
-		String type = node.path("type").asString();
-		JsonNode c = node.path("coordinates");
-		return switch (type) {
-		case "Point" -> {
-			Point p = G.createPoint();
-			p.setCoordinates(position(c));
-			yield p;
-		}
-		case "MultiPoint" -> {
-			MultiPoint mp = G.createMultiPoint();
-			c.forEach(pos -> mp.getCoordinates().add(position(pos)));
-			yield mp;
-		}
-		case "LineString" -> {
-			LineString l = G.createLineString();
-			positions(c, l.getCoordinates());
-			yield l;
-		}
-		case "MultiLineString" -> {
-			MultiLineString ml = G.createMultiLineString();
-			c.forEach(line -> {
-				SimpleLineString l = G.createSimpleLineString();
-				positions(line, l.getCoordinates());
-				ml.getLinesStrings().add(l);
-			});
-			yield ml;
-		}
-		case "Polygon" -> {
-			Polygon p = G.createPolygon();
-			polygon(c, p);
-			yield p;
-		}
-		case "MultiPolygon" -> {
-			MultiPolygon mp = G.createMultiPolygon();
-			c.forEach(rings -> {
-				SimplePolygon p = G.createSimplePolygon();
-				polygon(rings, p);
-				mp.getPolygons().add(p);
-			});
-			yield mp;
-		}
-		case "GeometryCollection" -> {
-			GeometryCollection gc = G.createGeometryCollection();
-			node.path("geometries").forEach(g -> gc.getGeometries().add(read(g)));
-			yield gc;
-		}
-		default -> throw new IllegalArgumentException("Unsupported GeoJSON geometry type '" + type + "'");
-		};
 	}
 
 	static void write(JsonGenerator g, Geometry geometry) {
@@ -135,40 +77,11 @@ final class GeoJson {
 		g.writeEndObject();
 	}
 
-	private static void polygon(JsonNode rings, SimplePolygon polygon) {
-		for (int i = 0; i < rings.size(); i++) {
-			Ring ring = i == 0 ? G.createRing() : G.createHole();
-			positions(rings.get(i), ring.getCoordinates());
-			if (i == 0) {
-				polygon.setExteriorRing(ring);
-			} else {
-				polygon.getInteriorHoles().add((Hole) ring);
-			}
-		}
-	}
-
 	private static void polygon(JsonGenerator g, SimplePolygon polygon) {
 		g.writeStartArray();
 		positions(g, polygon.getExteriorRing().getCoordinates());
 		polygon.getInteriorHoles().forEach(h -> positions(g, h.getCoordinates()));
 		g.writeEndArray();
-	}
-
-	private static void positions(JsonNode node, List<Coordinates> target) {
-		node.forEach(pos -> target.add(position(pos)));
-	}
-
-	private static Coordinates position(JsonNode node) {
-		if (!node.isArray() || node.size() < 2) {
-			throw new IllegalArgumentException("A position needs at least two numbers: " + node);
-		}
-		Coordinates c = G.createCoordinates();
-		c.setLongitude(node.get(0).doubleValue());
-		c.setLatitude(node.get(1).doubleValue());
-		if (node.size() > 2) {
-			c.setElevation(node.get(2).doubleValue());
-		}
-		return c;
 	}
 
 	private static void positions(JsonGenerator g, List<Coordinates> coordinates) {
