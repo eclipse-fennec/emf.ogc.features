@@ -61,8 +61,9 @@ Until it does, the workaround is:
 | `org.eclipse.fennec.ogc.features.example.bath.demo` | Demo data (the leisure pool WOGE in Dim Stadt), loader and the launchable demo server (`bath.bndrun`) |
 | `org.eclipse.fennec.ogc.features.tests` | OSGi tests on H2 or PostgreSQL: JPA against the in-memory reference, the API over HTTP |
 
-See [docs/ogc-features-overview.md](docs/ogc-features-overview.md) for the annotation, the
-configuration and the demo, and [docs/upstream-issues.md](docs/upstream-issues.md) for the
+See the [User Guide](docs/ogc-features-user-guide.md)
+([online](https://eclipse-fennec.github.io/emf.ogc.features/snapshot/guides/user-guide)) for the
+annotation, the configuration, the API and the demo, and [docs/upstream-issues.md](docs/upstream-issues.md) for the
 workarounds carried until upstream fixes land.
 
 ## Build

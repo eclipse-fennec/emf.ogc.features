@@ -4,5 +4,6 @@
 //   slug  — route name under /guides/
 //   title — sidebar / nav label
 export const GUIDES = [
-  { file: 'ogc-features-overview.md', slug: 'overview', title: 'Overview' },
+  { file: 'ogc-features-user-guide.md', slug: 'user-guide', title: 'User Guide' },
+  { file: 'ogc-features-architecture.md', slug: 'architecture', title: 'Architecture' },
 ];

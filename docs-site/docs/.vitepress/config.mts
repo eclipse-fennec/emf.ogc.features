@@ -16,7 +16,7 @@ const ref = process.env.DOCS_REF || 'snapshot'
 // (other doc versions) must be full URLs — VitePress
 // auto-prepends `base` to any root-absolute (`/…`) link, which would otherwise
 // double the path (e.g. /emf.ogc.features/snapshot/emf.ogc.features/guides/…). Links to pages WITHIN
-// this version stay base-relative (e.g. `/guides/overview`).
+// this version stay base-relative (e.g. `/guides/user-guide`).
 const SITE = 'https://eclipse-fennec.github.io/emf.ogc.features'
 
 
