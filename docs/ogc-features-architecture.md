@@ -41,15 +41,15 @@ about either. For setting it up, see the [User Guide](ogc-features-user-guide.md
 
 | Bundle | Role |
 |--------|------|
-| `org.eclipse.fennec.ogc.features.api` | The SPI: `CollectionDescriptor`, `FeatureQuery`, `FeatureResult`, `FeatureSource`, `FilterLanguage` |
+| `org.eclipse.fennec.ogc.features.api` | The SPI: `CollectionDescriptor`, `CollectionProvider`, `FeatureQuery`, `FeatureResult`, `FeatureSource`, `FilterLanguage` |
 | `org.eclipse.fennec.ogc.features.geo` | Geometry support, backend neutral: envelopes, conversion to JTS, the OGC spatial relations, GeoJSON text, the GeoJSON importer |
 | `net.opengis.cql2.model` | CQL2 as EMF model, mirroring the CQL2 JSON encoding |
 | `org.eclipse.fennec.codec.cql2` | EMF resources for the two CQL2 encodings, registered with emf.osgi |
 | `org.eclipse.fennec.ogc.features.cql2` | The filter languages `cql2-text` and `cql2-json`, binding a filter to a collection, the filters of the request parameters, the in-memory evaluator |
 | `org.eclipse.fennec.ogc.features.source.memory` | Feature source over objects in memory, the reference backend |
 | `org.eclipse.fennec.ogc.features.source.persistence` | Feature source over a Fennec persistence repository, and the `geojson` type converter |
-| `org.eclipse.fennec.ogc.features.runtime` | The server: servlet under `/ogc`, encoders for JSON, GeoJSON, HTML, OpenAPI and QGIS |
-| `org.eclipse.fennec.ogc.features.viewer` | The MapLibre viewer under `/ogc/viewer`, static web resources only |
+| `org.eclipse.fennec.ogc.features.runtime` | The server: one servlet instance per configuration, encoders for JSON, GeoJSON, HTML, OpenAPI and QGIS, collections declared by configuration |
+| `org.eclipse.fennec.ogc.features.viewer` | The MapLibre viewer, one instance per configuration below a server instance, static web resources only |
 
 ### 2.1 Dependency Graph
 
@@ -88,13 +88,14 @@ over HTTP like any other client.
 GET /ogc/collections/pools/items?bbox=…&filter=…
   │
   ▼
-OgcFeaturesServlet ── HTTP whiteboard, CORS, base URL
+OgcFeaturesServlet ── HTTP whiteboard, CORS, base URL; one instance per configuration
   │
   ▼
 OgcApi ── format (f / Accept), routing, errors
   │
-  ├─ CollectionRegistry ── collections of every registered EPackage,
-  │                         the first FeatureSource that supports the class
+  ├─ CollectionRegistry ── collections of the bound EPackages: annotated classes plus
+  │                         what the bound CollectionProviders declare, narrowed to the
+  │                         published ids; the first bound FeatureSource that supports the class
   │
   ├─ ItemsRequest ── parameters ─► FeatureQuery
   │     bbox, datetime, property=value ─► Cql2Filters ─┐
@@ -109,9 +110,20 @@ OgcApi ── format (f / Accept), routing, errors
 ```
 
 The server knows collections, not stores. `CollectionRegistry` keeps the collections of
-every EPackage service and, per collection, asks the registered feature sources which one
-`supports` its class. EPackages, sources and filter languages are dynamic references, so a
-model or backend installed later appears without a restart.
+the EPackage services an instance binds and, per collection, asks the bound feature sources
+which one `supports` its class. EPackages, sources, collection providers and filter
+languages are dynamic references, so a model or backend installed later appears without a
+restart.
+
+One configuration is one server instance (OGC API Features Part 1 §7.2 leaves the landing
+page URL to the provider; several APIs per host is the ordinary deployment). The
+configuration properties become the service properties of the servlet, so the standard
+whiteboard keys mount it, and the reference filters `ePackage.target`, `source.target` and
+`collectionProvider.target` decide what it binds. `collections` narrows the published ids on
+top: the landing page, `/collections`, the routing, the QGIS project and the extent all read
+the same list, so a collection outside it is a 404. A `CollectionProvider` declares
+collections for a package next to the annotation; `ConfiguredCollectionProvider` is the one
+driven by configuration. Without a configuration the runtime bundle serves nothing.
 
 An exception of a backend maps to an HTTP status:
 

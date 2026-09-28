@@ -25,8 +25,10 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
- * An OGC API Features collection, derived from an EClass carrying the
- * {@link OgcFeaturesAnnotations#SOURCE} annotation.
+ * An OGC API Features collection: an EClass and the attributes that make its instances
+ * features. Derived from the {@link OgcFeaturesAnnotations#SOURCE} annotation of the class
+ * with {@link #of(EClass)}, or declared by a {@link CollectionProvider} through
+ * {@link #builder(EClass)}.
  *
  * @param id collection id as used in the URL
  * @param title human readable title
@@ -70,7 +72,9 @@ public record CollectionDescriptor(String id, String title, String description, 
 	}
 
 	/**
-	 * Derives the collection of an EClass.
+	 * Derives the collection of an EClass from its annotation. Keys are looked up on the
+	 * class first and then along its super types, except {@code collection}, {@code id},
+	 * {@code title}, {@code description} and {@code style}, which are the class' own.
 	 *
 	 * @param eClass the class
 	 * @return the collection, empty if the class is not annotated with {@code collection=true}
@@ -81,29 +85,28 @@ public record CollectionDescriptor(String id, String title, String description, 
 		if (own == null || !Boolean.parseBoolean(own.getDetails().get(OgcFeaturesAnnotations.COLLECTION))) {
 			return Optional.empty();
 		}
-		String id = own.getDetails().get(OgcFeaturesAnnotations.ID);
-		String title = own.getDetails().get(OgcFeaturesAnnotations.TITLE);
-		String description = own.getDetails().get(OgcFeaturesAnnotations.DESCRIPTION);
+		return Optional.of(builder(eClass)
+				.id(own.getDetails().get(OgcFeaturesAnnotations.ID))
+				.title(own.getDetails().get(OgcFeaturesAnnotations.TITLE))
+				.description(own.getDetails().get(OgcFeaturesAnnotations.DESCRIPTION))
+				.idAttribute(inherited(eClass, OgcFeaturesAnnotations.ID_ATTRIBUTE))
+				.geometry(inherited(eClass, OgcFeaturesAnnotations.GEOMETRY))
+				.bbox(inherited(eClass, OgcFeaturesAnnotations.BBOX))
+				.temporal(inherited(eClass, OgcFeaturesAnnotations.TEMPORAL))
+				.layerGroup(inherited(eClass, OgcFeaturesAnnotations.LAYER_GROUP))
+				.style(own.getDetails().get(OgcFeaturesAnnotations.STYLE))
+				.build());
+	}
 
-		String idName = inherited(eClass, OgcFeaturesAnnotations.ID_ATTRIBUTE);
-		EAttribute idAttribute = idName != null ? attribute(eClass, idName) : eClass.getEIDAttribute();
-		if (idAttribute == null) {
-			throw new IllegalArgumentException("Collection class " + eClass.getName()
-					+ " has neither an ID attribute nor an '" + OgcFeaturesAnnotations.ID_ATTRIBUTE + "' detail");
-		}
-		String geometryName = inherited(eClass, OgcFeaturesAnnotations.GEOMETRY);
-		EAttribute geometry = geometryName != null ? attribute(eClass, geometryName) : null;
-		String bboxNames = inherited(eClass, OgcFeaturesAnnotations.BBOX);
-		BboxAttributes bbox = bboxNames != null ? bbox(eClass, bboxNames) : null;
-		String temporalName = inherited(eClass, OgcFeaturesAnnotations.TEMPORAL);
-		EAttribute temporal = temporalName != null ? attribute(eClass, temporalName) : null;
-
-		return Optional.of(new CollectionDescriptor(
-				id != null ? id : eClass.getName(),
-				title != null ? title : eClass.getName(),
-				description, eClass, idAttribute, geometry, bbox, temporal,
-				inherited(eClass, OgcFeaturesAnnotations.LAYER_GROUP),
-				own.getDetails().get(OgcFeaturesAnnotations.STYLE)));
+	/**
+	 * Starts a collection of a class, with the same defaults and checks as the annotation:
+	 * id and title default to the class name, the id attribute to the class' ID attribute.
+	 *
+	 * @param type the EClass whose instances are the features
+	 * @return the builder
+	 */
+	public static Builder builder(EClass type) {
+		return new Builder(type);
 	}
 
 	/**
@@ -137,6 +140,117 @@ public record CollectionDescriptor(String id, String title, String description, 
 		EStructuralFeature feature = type.getEStructuralFeature(name);
 		return feature instanceof EAttribute attribute && isProperty(attribute)
 				? Optional.of(attribute) : Optional.empty();
+	}
+
+	/**
+	 * Builds a {@link CollectionDescriptor} from attribute names. Every setter accepts
+	 * {@code null} or a blank string for "not set"; {@link #build()} validates.
+	 */
+	public static final class Builder {
+
+		private final EClass type;
+		private String id;
+		private String title;
+		private String description;
+		private String idAttribute;
+		private String geometry;
+		private String bbox;
+		private String temporal;
+		private String layerGroup;
+		private String style;
+
+		private Builder(EClass type) {
+			this.type = Objects.requireNonNull(type, "type");
+		}
+
+		/** @param id the collection id used in the URL, defaults to the class name */
+		public Builder id(String id) {
+			this.id = blankToNull(id);
+			return this;
+		}
+
+		/** @param title the human readable title, defaults to the class name */
+		public Builder title(String title) {
+			this.title = blankToNull(title);
+			return this;
+		}
+
+		/** @param description the human readable description */
+		public Builder description(String description) {
+			this.description = blankToNull(description);
+			return this;
+		}
+
+		/** @param name the attribute used as feature id, defaults to the class' ID attribute */
+		public Builder idAttribute(String name) {
+			this.idAttribute = blankToNull(name);
+			return this;
+		}
+
+		/** @param name the attribute holding the geometry */
+		public Builder geometry(String name) {
+			this.geometry = blankToNull(name);
+			return this;
+		}
+
+		/** @param names four attribute names {@code minX,minY,maxX,maxY} holding the bounding box */
+		public Builder bbox(String names) {
+			this.bbox = blankToNull(names);
+			return this;
+		}
+
+		/**
+		 * @param minX the attribute holding the western edge
+		 * @param minY the attribute holding the southern edge
+		 * @param maxX the attribute holding the eastern edge
+		 * @param maxY the attribute holding the northern edge
+		 */
+		public Builder bbox(String minX, String minY, String maxX, String maxY) {
+			return bbox(String.join(",", minX, minY, maxX, maxY));
+		}
+
+		/** @param name the date/time attribute a {@code datetime} parameter filters on */
+		public Builder temporal(String name) {
+			this.temporal = blankToNull(name);
+			return this;
+		}
+
+		/** @param layerGroup the group of layers a viewer shows the collection in */
+		public Builder layerGroup(String layerGroup) {
+			this.layerGroup = blankToNull(layerGroup);
+			return this;
+		}
+
+		/** @param style the display style for a viewer, a CSS color or a JSON object */
+		public Builder style(String style) {
+			this.style = blankToNull(style);
+			return this;
+		}
+
+		/**
+		 * @return the descriptor
+		 * @throws IllegalArgumentException if the class lacks a named attribute, or has
+		 *         neither an ID attribute nor an id attribute name
+		 */
+		public CollectionDescriptor build() {
+			EAttribute idAttr = idAttribute != null ? attribute(type, idAttribute) : type.getEIDAttribute();
+			if (idAttr == null) {
+				throw new IllegalArgumentException("Collection class " + type.getName()
+						+ " has neither an ID attribute nor an '" + OgcFeaturesAnnotations.ID_ATTRIBUTE + "'");
+			}
+			return new CollectionDescriptor(
+					id != null ? id : type.getName(),
+					title != null ? title : type.getName(),
+					description, type, idAttr,
+					geometry != null ? attribute(type, geometry) : null,
+					bbox != null ? CollectionDescriptor.bbox(type, bbox) : null,
+					temporal != null ? attribute(type, temporal) : null,
+					layerGroup, style);
+		}
+
+		private static String blankToNull(String value) {
+			return value == null || value.isBlank() ? null : value.trim();
+		}
 	}
 
 	private static String inherited(EClass eClass, String key) {

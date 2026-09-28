@@ -72,7 +72,40 @@ import org.osgi.test.junit5.cm.ConfigurationExtension;
 		location = "?", properties = {
 				@Property(key = "repository.target", value = "(persistence.repository.id=bath)"),
 				@Property(key = "nsURIs", value = BathSetup.NS_URI) })
+// the whole model at /ogc, as the demo serves it
+@WithFactoryConfiguration(factoryPid = "org.eclipse.fennec.ogc.features.servlet", name = "bath", location = "?",
+		properties = {
+				@Property(key = "title", value = "Freizeitbad"),
+				@Property(key = "ePackage.target", value = "(emf.nsURI=" + BathSetup.NS_URI + ")") })
+// a second root beside it: two annotated collections and the configured one, nothing else
+@WithFactoryConfiguration(factoryPid = "org.eclipse.fennec.ogc.features.servlet", name = "water", location = "?",
+		properties = {
+				@Property(key = "title", value = "Wasser"),
+				@Property(key = "osgi.http.whiteboard.servlet.pattern", type = Property.Type.Array,
+						value = { BathSetup.WATER_PATH, BathSetup.WATER_PATH + "/*" }),
+				@Property(key = "osgi.http.whiteboard.servlet.name", value = BathSetup.WATER_SERVLET),
+				@Property(key = "collections", type = Property.Type.Array,
+						value = { "pools", "slides", BathSetup.INSPECTED }) })
+// a collection declared by configuration: the assets once more, under another id
+@WithFactoryConfiguration(factoryPid = "org.eclipse.fennec.ogc.features.collection", name = "inspected",
+		location = "?", properties = {
+				@Property(key = "type", value = BathSetup.NS_URI + "#Asset"),
+				@Property(key = "id", value = BathSetup.INSPECTED),
+				@Property(key = "title", value = "Geprüfte Anlagen"),
+				@Property(key = "geometry", value = "geometry"),
+				@Property(key = "bbox", type = Property.Type.Array, value = { "minX", "minY", "maxX", "maxY" }),
+				@Property(key = "temporal", value = "lastInspection"),
+				@Property(key = "layerGroup", value = "Prüfung") })
 public @interface BathSetup {
+
+	/** mount of the second, scoped server instance */
+	String WATER_PATH = "/ogc/water";
+
+	/** servlet name of the second server instance */
+	String WATER_SERVLET = "fennec-ogc-features-water";
+
+	/** id of the collection declared by configuration */
+	String INSPECTED = "inspected";
 
 	/** namespace URI of the leisure pool model */
 	String NS_URI = "https://eclipse.org/fennec/ogc/example/bath/1.0";

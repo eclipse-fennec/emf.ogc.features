@@ -26,6 +26,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.fennec.codec.geojson.GeoJsonResourceFactoryImpl;
+import org.eclipse.fennec.ogc.features.api.CollectionDescriptor;
 import org.eclipse.fennec.ogc.features.example.bath.BathPackage;
 import org.eclipse.fennec.ogc.features.geo.GeoJsonFeatureImporter;
 import org.eclipse.fennec.ogc.features.geo.GeoJsonText;
@@ -120,6 +121,43 @@ class OgcApiTest {
 		assertThat(pools.has("aggregate")).isFalse();
 		assertThat(all.path("layerGroup").asString()).isEqualTo("Dim Stadt/Freizeitbad WOGE");
 		assertThat(all.path("aggregate").asBoolean()).isTrue();
+	}
+
+	@Test
+	void publishedIdsNarrowTheCollectionsAndTheRouting() {
+		CollectionRegistry registry = new CollectionRegistry();
+		registry.addPackage(BathPackage.eINSTANCE);
+		registry.addSource(new MemoryFeatureSource(Set.of(BathPackage.eNS_URI), List::of));
+		registry.publish(List.of("pools", "slides"));
+		OgcApi scoped = new OgcApi(registry, Map::of, new OgcApi.Settings("t", null, 10, 100));
+		JsonNode collections = MAPPER.readTree(scoped.handle("/collections", Map.of(), null, BASE).body()).path("collections");
+		assertThat(collections.valueStream().map(c -> c.path("id").asString())).containsExactly("pools", "slides");
+		assertThat(scoped.handle("/collections/assets", Map.of(), null, BASE).status()).isEqualTo(404);
+		assertThat(scoped.handle("/collections/assets/items", Map.of(), null, BASE).status()).isEqualTo(404);
+		assertThat(scoped.handle("/collections/pools/items", Map.of(), null, BASE).status()).isEqualTo(200);
+
+		registry.publish(List.of());
+		assertThat(scoped.handle("/collections/assets", Map.of(), null, BASE).status()).isEqualTo(200);
+	}
+
+	@Test
+	void providedCollectionsJoinAndReplaceTheAnnotatedOnes() {
+		CollectionRegistry registry = new CollectionRegistry();
+		registry.addPackage(BathPackage.eINSTANCE);
+		registry.addSource(new MemoryFeatureSource(Set.of(BathPackage.eNS_URI), List::of));
+		registry.addProvider(ePackage -> ePackage != BathPackage.eINSTANCE ? List.of() : List.of(
+				// the pools once more, under another id
+				CollectionDescriptor.builder(BathPackage.Literals.POOL).id("water").title("Wasserflächen")
+						.geometry("geometry").build(),
+				// the annotated slides with another title
+				CollectionDescriptor.builder(BathPackage.Literals.SLIDE).id("slides").title("Slides").build()));
+		OgcApi provided = new OgcApi(registry, Map::of, new OgcApi.Settings("t", null, 10, 100));
+		JsonNode collections = MAPPER.readTree(provided.handle("/collections", Map.of(), null, BASE).body()).path("collections");
+		Map<String, String> titles = new LinkedHashMap<>();
+		collections.valueStream().forEach(c -> titles.put(c.path("id").asString(), c.path("title").asString()));
+		assertThat(titles).containsEntry("pools", "Becken").containsEntry("water", "Wasserflächen")
+				.containsEntry("slides", "Slides");
+		assertThat(titles).hasSize(22);
 	}
 
 	@Test

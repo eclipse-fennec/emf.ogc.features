@@ -26,7 +26,11 @@ and are read through [Fennec persistence](https://github.com/eclipse-fennec/emf.
 Fennec OGC Features provides:
 
 - **Collections from Ecore.** An EClass annotated with `collection=true` becomes a feature
-  collection. An abstract class gathers the instances of all its subclasses.
+  collection. An abstract class gathers the instances of all its subclasses. A class of a
+  model you do not own is declared by configuration instead.
+- **One landing page per configuration.** A server instance is mounted where its
+  configuration says and publishes the collections it names, so several APIs run side by
+  side in one runtime.
 - **OGC API – Features Part 1 (Core)** with GeoJSON, HTML and an OpenAPI 3.0 definition.
 - **Part 3 (Filtering)** with queryables, property filters and CQL2 in the text and JSON
   encoding, including the spatial functions.
@@ -128,6 +132,9 @@ in the demo, therefore declares the geometry, the bounding box and the temporal 
 once for all its subclasses. A class naming an attribute it does not have is rejected with
 an error.
 
+The annotation is the model author's declaration. A class whose model you cannot annotate is
+declared by configuration or by a provider instead ([3.5](#35-collections-without-annotation)).
+
 ### 3.2 Properties and Queryables
 
 Every attribute of a feature is a property, except the geometry, the bounding box
@@ -180,6 +187,53 @@ members of styled GeoJSON files:
 An ExtendedMetaData name works as well. The annotation keeps the GeoJSON name apart from
 other serialisations of the model.
 
+### 3.5 Collections without Annotation
+
+A server that publishes models it does not own, such as schemas resolved at runtime from a
+model registry, cannot annotate them. The same applies to a class that should be published
+twice, under different ids or with different geometry attributes. Such a collection is
+declared next to the model, with the same details as the annotation:
+
+**By configuration.** Factory PID `org.eclipse.fennec.ogc.features.collection`, one
+configuration per collection:
+
+| Property | Meaning |
+|----------|---------|
+| `type` | The feature class as `nsURI#EClass`, e.g. `https://eclipse.org/fennec/ogc/example/bath/1.0#Asset` |
+| `id` | Collection id in the URL. Default: the class name. |
+| `title` | Title. Default: the class name. |
+| `description` | Description. |
+| `idAttribute` | Attribute used as feature id. Default: the ID attribute of the class. |
+| `geometry` | Attribute holding the geometry. |
+| `bbox` | The four attributes `minX`, `minY`, `maxX`, `maxY` of the persisted bounding box. |
+| `temporal` | Date/time attribute the `datetime` parameter filters on. |
+| `layerGroup` | Group the viewer and the QGIS project put the layer in. |
+| `style` | Display style, as in the annotation. |
+
+```json
+"org.eclipse.fennec.ogc.features.collection~inspected": {
+  "type": "https://eclipse.org/fennec/ogc/example/bath/1.0#Asset",
+  "id": "inspected",
+  "title": "Inspected assets",
+  "geometry": "geometry",
+  "bbox": ["minX", "minY", "maxX", "maxY"],
+  "temporal": "lastInspection",
+  "layerGroup": "Inspection"
+}
+```
+
+**By a service.** A `org.eclipse.fennec.ogc.features.api.CollectionProvider` returns the
+collections it declares for a package, built with `CollectionDescriptor.builder(EClass)`,
+which applies the defaults and checks of the annotation. The configured collection above is
+such a provider.
+
+A server instance asks every provider it binds for every package it binds. A declared
+collection replaces the annotated collection of the same id; a class may appear in several
+collections under different ids. A declaration naming an attribute the class lacks is logged
+and skipped. Which instance publishes a declared collection follows the usual rules of
+[4.1](#41-the-server): the `collections` allowlist and the `collectionProvider.target`
+filter.
+
 ---
 
 ## 4. Configuration
@@ -190,8 +244,10 @@ format, shown in the examples below.
 
 ### 4.1 The Server
 
-PID `org.eclipse.fennec.ogc.features.servlet`. The servlet registers on the OSGi HTTP
-whiteboard under `/ogc`.
+Factory PID `org.eclipse.fennec.ogc.features.servlet`. One configuration is one server
+instance with its own landing page; without a configuration nothing is served. An instance
+registers on the OSGi HTTP whiteboard under `/ogc` unless its configuration mounts it
+elsewhere.
 
 | Property | Default | Meaning |
 |----------|---------|---------|
@@ -202,9 +258,17 @@ whiteboard under `/ogc`.
 | `baseUrl` | empty | Public base URL, e.g. `https://example.org/ogc`, for links behind a proxy. Derived from the request when empty. |
 | `corsOrigin` | `*` | Value of `Access-Control-Allow-Origin`. No CORS header when empty. |
 | `layerFolders` | none | Folders put in front of the layer groups of a package, as `nsURI=Folder/Subfolder` |
+| `collections` | none | Ids of the collections the instance publishes. Every collection of the bound packages when empty. |
+| `osgi.http.whiteboard.servlet.pattern` | `/ogc`, `/ogc/*` | Where the instance is mounted: the landing page path and the same path with `/*` |
+| `osgi.http.whiteboard.servlet.name` | `fennec-ogc-features` | Servlet name. Must differ between instances on the same servlet context. |
+| `osgi.http.whiteboard.context.select` | default context | Filter selecting the servlet context |
+| `osgi.http.whiteboard.target` | all runtimes | Filter selecting the HTTP runtime, e.g. `(id=atlasHttp)` |
+| `ePackage.target` | all packages | Filter selecting the `EPackage` services bound, e.g. `(emf.nsURI=https://example.org/pools)` |
+| `source.target` | all sources | Filter selecting the `FeatureSource` services bound |
+| `collectionProvider.target` | all providers | Filter selecting the `CollectionProvider` services bound |
 
 ```json
-"org.eclipse.fennec.ogc.features.servlet": {
+"org.eclipse.fennec.ogc.features.servlet~woge": {
   "title": "Leisure pool WOGE",
   "defaultLimit": 50,
   "layerFolders": [
@@ -214,8 +278,37 @@ whiteboard under `/ogc`.
 }
 ```
 
-The server collects the collections of all registered EPackages. A collection is served by
-the first feature source that supports its class; without one it is not listed.
+An instance publishes the collections of the packages it binds: the annotated classes plus
+the collections declared for them ([3.5](#35-collections-without-annotation)), narrowed to
+`collections` when that is set. A collection is served by the first bound feature source
+that supports its class; without one it is not listed. The landing page, `/collections`, the
+routing, the QGIS project and the extent all follow the same list, so a collection outside it
+answers 404.
+
+Two instances side by side, each on its own path with its own collections, bound to one
+named HTTP runtime:
+
+```json
+"org.eclipse.fennec.ogc.features.servlet~woge": {
+  "title": "Leisure pool WOGE",
+  "osgi.http.whiteboard.servlet.pattern": ["/ogc/woge", "/ogc/woge/*"],
+  "osgi.http.whiteboard.servlet.name": "ogc-woge",
+  "osgi.http.whiteboard.target": "(id=atlasHttp)",
+  "ePackage.target": "(emf.nsURI=https://eclipse.org/fennec/ogc/example/bath/1.0)",
+  "source.target": "(nsURIs=https://eclipse.org/fennec/ogc/example/bath/1.0)"
+},
+"org.eclipse.fennec.ogc.features.servlet~water": {
+  "title": "Water",
+  "osgi.http.whiteboard.servlet.pattern": ["/ogc/water", "/ogc/water/*"],
+  "osgi.http.whiteboard.servlet.name": "ogc-water",
+  "osgi.http.whiteboard.target": "(id=atlasHttp)",
+  "collections": ["pools", "slides"]
+}
+```
+
+The whiteboard keys and the `.target` filters are ordinary configuration properties: every
+property of the configuration becomes a service property of the servlet, and Declarative
+Services applies a `<reference>.target` property as the filter of that reference.
 
 ### 4.2 Feature Sources
 
@@ -317,14 +410,14 @@ implementation (e.g. `org.apache.felix.http.jetty12`):
 
 | Bundle | Purpose |
 |--------|---------|
-| `org.eclipse.fennec.ogc.features.runtime` | The server under `/ogc` |
+| `org.eclipse.fennec.ogc.features.runtime` | The server, one instance per configuration, and the configured collections |
 | `org.eclipse.fennec.ogc.features.api` | The SPI |
 | `org.eclipse.fennec.ogc.features.geo` | Envelopes, JTS conversion, spatial relations |
 | `org.eclipse.fennec.ogc.features.cql2` | The filter languages `cql2-text` and `cql2-json` |
 | `org.eclipse.fennec.codec.cql2`, `net.opengis.cql2.model` | The CQL2 EMF resources and model |
 | `org.eclipse.fennec.ogc.features.source.persistence` | The repository source and the `geojson` converter |
 | `org.eclipse.fennec.codec.geojson` | The GeoJSON codec used by the converter |
-| `org.eclipse.fennec.ogc.features.viewer` | The map viewer under `/ogc/viewer` (optional) |
+| `org.eclipse.fennec.ogc.features.viewer` | The map viewer, one instance per configuration (optional) |
 | Your model bundle | The annotated EPackage, registered with emf.osgi |
 
 Plus Fennec persistence and a JDBC driver. `bath.bndrun` in the demo project is a complete
@@ -458,8 +551,23 @@ well. A filter without a spatial part runs completely in the store.
 
 ### 7.1 The Map Viewer
 
-`/ogc/viewer/` shows all collections on a map (MapLibre GL JS, loaded from
-cdn.jsdelivr.net):
+The viewer shows the collections of one server instance on a map (MapLibre GL JS, loaded
+from cdn.jsdelivr.net). It reads the API one level above its own URL, so it is mounted at the
+landing page path plus `/viewer`: factory PID `org.eclipse.fennec.ogc.features.viewer`, one
+configuration per server instance, with the same whiteboard keys as the server
+(`osgi.http.whiteboard.servlet.pattern`, default `/ogc/viewer` and `/ogc/viewer/*`;
+`osgi.http.whiteboard.servlet.name`, `osgi.http.whiteboard.context.select`,
+`osgi.http.whiteboard.target`). Without a configuration no viewer is served.
+
+```json
+"org.eclipse.fennec.ogc.features.viewer~water": {
+  "osgi.http.whiteboard.servlet.pattern": ["/ogc/water/viewer", "/ogc/water/viewer/*"],
+  "osgi.http.whiteboard.servlet.name": "ogc-water-viewer",
+  "osgi.http.whiteboard.target": "(id=atlasHttp)"
+}
+```
+
+In the demo, `/ogc/viewer/` shows the collections of `/ogc`:
 
 - The layer tree is built from the `layerGroup` paths and the server's `layerFolders`, with
   folders before layers.
@@ -560,8 +668,10 @@ OGC_TEST_FLAVOR=postgres OGC_TEST_CONTAINER_CLI=podman \
 ```
 
 The OSGi tests compare every query and every CQL2 construct between the JPA backend and the
-in-memory reference backend, and exercise the API over HTTP. For PostgreSQL a container
-`postgres:17` is started on port 55432 (`OGC_TEST_POSTGRES_PORT`).
+in-memory reference backend, and exercise the API over HTTP: the whole model at `/ogc`, a
+second instance at `/ogc/water` publishing two annotated collections and one declared by
+configuration, and nothing else. For PostgreSQL a container `postgres:17` is started on port
+55432 (`OGC_TEST_POSTGRES_PORT`).
 
 ---
 

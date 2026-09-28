@@ -11,5 +11,5 @@
  *     Data In Motion - initial API and implementation
  */
 @org.osgi.annotation.bundle.Export
-@org.osgi.annotation.versioning.Version("0.1.0")
+@org.osgi.annotation.versioning.Version("0.2.0")
 package org.eclipse.fennec.ogc.features.api;
