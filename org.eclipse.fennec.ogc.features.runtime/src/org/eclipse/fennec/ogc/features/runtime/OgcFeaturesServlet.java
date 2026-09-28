@@ -14,14 +14,17 @@ package org.eclipse.fennec.ogc.features.runtime;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.fennec.ogc.features.api.CollectionProvider;
 import org.eclipse.fennec.ogc.features.api.FeatureSource;
 import org.eclipse.fennec.ogc.features.api.FilterLanguage;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
@@ -38,21 +41,32 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Serves OGC API - Features under {@code /ogc}: the collections of every registered EPackage
- * with annotated classes, read from the registered feature sources.
+ * Serves one OGC API - Features landing page with its conformance, OpenAPI, collections and
+ * items. One configuration is one server instance: it binds the packages, feature sources
+ * and collection providers its reference filters select, publishes the collections its
+ * allowlist names, and mounts where its whiteboard properties say.
+ * <p>
+ * Every configuration property becomes a service property, so the standard whiteboard keys
+ * apply: {@code osgi.http.whiteboard.servlet.pattern} replaces the default {@code /ogc},
+ * {@code /ogc/*}; {@code osgi.http.whiteboard.servlet.name} must differ between instances
+ * on the same whiteboard; {@code osgi.http.whiteboard.context.select} and
+ * {@code osgi.http.whiteboard.target} pick the servlet context and the HTTP runtime.
+ * {@code ePackage.target}, {@code source.target} and {@code collectionProvider.target}
+ * narrow what the instance binds. Without a configuration nothing is served.
  */
-@Component(service = Servlet.class, name = OgcFeaturesServlet.PID)
-@Designate(ocd = OgcFeaturesServlet.Config.class)
+@Component(service = Servlet.class, name = OgcFeaturesServlet.PID, configurationPolicy = ConfigurationPolicy.REQUIRE)
+@Designate(ocd = OgcFeaturesServlet.Config.class, factory = true)
 @HttpWhiteboardServletName("fennec-ogc-features")
 @HttpWhiteboardServletPattern({ "/ogc", "/ogc/*" })
 public class OgcFeaturesServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	/** the configuration PID */
+	/** the configuration PID, singleton or factory */
 	public static final String PID = "org.eclipse.fennec.ogc.features.servlet";
 
-	@ObjectClassDefinition(name = "Fennec OGC API Features Server")
+	@ObjectClassDefinition(name = "Fennec OGC API Features Server",
+			description = "One OGC API Features landing page with its collections; one configuration per instance")
 	public @interface Config {
 
 		@AttributeDefinition(description = "Title of the landing page")
@@ -76,6 +90,39 @@ public class OgcFeaturesServlet extends HttpServlet {
 		@AttributeDefinition(description = "Folders of the layer groups, 'nsURI=Folder/Subfolder': put in front of the "
 				+ "layer groups of the collections of that package")
 		String[] layerFolders() default {};
+
+		@AttributeDefinition(description = "Ids of the collections this instance publishes; every collection of the "
+				+ "bound packages when empty")
+		String[] collections() default {};
+
+		@AttributeDefinition(name = "osgi.http.whiteboard.servlet.pattern", required = false,
+				description = "Where the instance is mounted: the landing page path and the same path with /*")
+		String[] osgi_http_whiteboard_servlet_pattern() default { "/ogc", "/ogc/*" };
+
+		@AttributeDefinition(name = "osgi.http.whiteboard.servlet.name", required = false,
+				description = "Servlet name, unique per servlet context")
+		String osgi_http_whiteboard_servlet_name() default "fennec-ogc-features";
+
+		@AttributeDefinition(name = "osgi.http.whiteboard.context.select", required = false,
+				description = "Filter selecting the servlet context; the default context when empty")
+		String osgi_http_whiteboard_context_select();
+
+		@AttributeDefinition(name = "osgi.http.whiteboard.target", required = false,
+				description = "Filter selecting the HTTP runtime, e.g. (id=atlasHttp); every runtime when empty")
+		String osgi_http_whiteboard_target();
+
+		@AttributeDefinition(name = "ePackage.target", required = false,
+				description = "Filter selecting the EPackage services bound, e.g. (emf.nsURI=https://example.org/pools); "
+						+ "every package when empty")
+		String ePackage_target();
+
+		@AttributeDefinition(name = "source.target", required = false,
+				description = "Filter selecting the FeatureSource services bound; every source when empty")
+		String source_target();
+
+		@AttributeDefinition(name = "collectionProvider.target", required = false,
+				description = "Filter selecting the CollectionProvider services bound; every provider when empty")
+		String collectionProvider_target();
 	}
 
 	private final transient CollectionRegistry registry = new CollectionRegistry();
@@ -87,12 +134,13 @@ public class OgcFeaturesServlet extends HttpServlet {
 	@Modified
 	void activate(Config config) {
 		this.config = config;
+		registry.publish(List.of(config.collections()));
 		this.api = new OgcApi(registry, () -> Map.copyOf(languages),
 				new OgcApi.Settings(config.title(), emptyToNull(config.description()), config.defaultLimit(),
 						config.maxLimit(), folders(config.layerFolders())));
 	}
 
-	@Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC)
+	@Reference(name = "ePackage", cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC)
 	void addPackage(EPackage ePackage) {
 		registry.addPackage(ePackage);
 	}
@@ -101,7 +149,7 @@ public class OgcFeaturesServlet extends HttpServlet {
 		registry.removePackage(ePackage);
 	}
 
-	@Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC)
+	@Reference(name = "source", cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC)
 	void addSource(FeatureSource source) {
 		registry.addSource(source);
 	}
@@ -110,7 +158,16 @@ public class OgcFeaturesServlet extends HttpServlet {
 		registry.removeSource(source);
 	}
 
-	@Reference(cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC)
+	@Reference(name = "collectionProvider", cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC)
+	void addCollectionProvider(CollectionProvider provider) {
+		registry.addProvider(provider);
+	}
+
+	void removeCollectionProvider(CollectionProvider provider) {
+		registry.removeProvider(provider);
+	}
+
+	@Reference(name = "filterLanguage", cardinality = ReferenceCardinality.MULTIPLE, policy = ReferencePolicy.DYNAMIC)
 	void addLanguage(FilterLanguage language) {
 		languages.put(language.name(), language);
 	}

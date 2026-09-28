@@ -53,8 +53,15 @@ class OgcHttpTest {
 	@InjectService(filter = "(osgi.http.whiteboard.servlet.name=fennec-ogc-features)", timeout = 10000)
 	Servlet servlet;
 
+	@InjectService(filter = "(osgi.http.whiteboard.servlet.name=" + BathSetup.WATER_SERVLET + ")", timeout = 10000)
+	Servlet water;
+
 	private static HttpResponse<String> get(String pathAndQuery) throws Exception {
-		HttpRequest request = HttpRequest.newBuilder(URI.create(BASE + pathAndQuery)).timeout(Duration.ofSeconds(20))
+		return get(BASE, pathAndQuery);
+	}
+
+	private static HttpResponse<String> get(String base, String pathAndQuery) throws Exception {
+		HttpRequest request = HttpRequest.newBuilder(URI.create(base + pathAndQuery)).timeout(Duration.ofSeconds(20))
 				.header("Accept", "application/json").GET().build();
 		return CLIENT.send(request, HttpResponse.BodyHandlers.ofString());
 	}
@@ -81,9 +88,43 @@ class OgcHttpTest {
 	@Test
 	void collectionsWithExtent() throws Exception {
 		JsonNode collections = json("/collections").path("collections");
-		assertThat(collections.size()).isEqualTo(21);
+		// the 21 annotated collections plus the one declared by configuration
+		assertThat(collections.size()).isEqualTo(22);
 		assertThat(collections.get(0).path("links").valueStream().map(l -> l.path("href").asString()))
 				.anyMatch(href -> href.startsWith(BASE + "/collections/"));
+	}
+
+	@Test
+	void configuredCollectionIsPublishedLikeAnAnnotatedOne() throws Exception {
+		JsonNode inspected = json("/collections/" + BathSetup.INSPECTED);
+		assertThat(inspected.path("title").asString()).isEqualTo("Geprüfte Anlagen");
+		assertThat(inspected.path("layerGroup").asString()).isEqualTo("Prüfung");
+		assertThat(inspected.path("extent").path("spatial").path("bbox").get(0).size()).isEqualTo(4);
+		JsonNode page = json("/collections/" + BathSetup.INSPECTED + "/items?limit=2");
+		assertThat(page.path("numberMatched").asInt()).isEqualTo(43);
+		assertThat(page.path("numberReturned").asInt()).isEqualTo(2);
+	}
+
+	@Test
+	void secondRootPublishesItsOwnCollectionsOnly() throws Exception {
+		assertThat(water).isNotNull();
+		String base = "http://127.0.0.1:18894" + BathSetup.WATER_PATH;
+		JsonNode landing = MAPPER.readTree(get(base, "").body());
+		assertThat(landing.path("title").asString()).isEqualTo("Wasser");
+		assertThat(landing.path("links").valueStream().map(l -> l.path("href").asString()))
+				.allMatch(href -> href.startsWith(base));
+
+		JsonNode collections = MAPPER.readTree(get(base, "/collections").body()).path("collections");
+		assertThat(collections.valueStream().map(c -> c.path("id").asString()))
+				.containsExactly("pools", "slides", BathSetup.INSPECTED);
+
+		// a collection outside the allowlist is a 404, not a leak
+		assertThat(get(base, "/collections/lawns").statusCode()).isEqualTo(404);
+		assertThat(get(base, "/collections/lawns/items").statusCode()).isEqualTo(404);
+		assertThat(get(base, "/collections/pools/items/pool-kids").statusCode()).isEqualTo(200);
+
+		// the first root is untouched
+		assertThat(get("/collections/lawns").statusCode()).isEqualTo(200);
 	}
 
 	@Test

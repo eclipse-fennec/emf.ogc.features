@@ -23,13 +23,15 @@
       "https://eclipse.org/fennec/ogc/example/bath/1.0"
     ]
   },
-  "org.eclipse.fennec.ogc.features.servlet": {
+  "org.eclipse.fennec.ogc.features.servlet~woge": {
     "title": "Freizeitbad WOGE in Dim Stadt",
     "description": "Das Freizeitbad WOGE (Am Wellental 1) in der generierten Stadt Dim Stadt als OGC API Features, gespeichert mit Fennec Persistence (JPA/H2)",
     "layerFolders": [
       "https://eclipse.org/fennec/ogc/example/city/1.0=Dim Stadt",
       "https://eclipse.org/fennec/ogc/example/bath/1.0=Dim Stadt/Freizeitbad WOGE"
     ]
+  },
+  "org.eclipse.fennec.ogc.features.viewer~woge": {
   },
   "org.eclipse.fennec.ogc.features.example.loader~bath": {
     "repository.target": "(persistence.repository.id=bath)",

@@ -1,7 +1,7 @@
 Bundle-Name: Fennec OGC Features Runtime
 Bundle-Description: The OGC API - Features server: landing page, conformance, OpenAPI \
  definition, collections, items and queryables as JSON, GeoJSON and HTML, served by a \
- servlet on the OSGi HTTP whiteboard under /ogc.
+ servlet per configuration on the OSGi HTTP whiteboard, /ogc by default.
 
 -library: enableEMF
 

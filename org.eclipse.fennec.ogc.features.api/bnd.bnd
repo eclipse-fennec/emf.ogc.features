@@ -1,6 +1,6 @@
 Bundle-Name: Fennec OGC Features API
 Bundle-Description: The protocol neutral feature access SPI of Fennec OGC Features: collection \
- descriptors derived from annotated EClasses, feature queries with a CQL2 filter and the \
+ descriptors derived from annotated EClasses or declared by a CollectionProvider, feature queries with a CQL2 filter and the \
  FeatureSource a backend implements.
 
 -library: enableEMF
