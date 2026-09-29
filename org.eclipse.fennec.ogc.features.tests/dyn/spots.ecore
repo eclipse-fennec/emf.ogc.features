@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="spots" nsURI="https://eclipse.org/fennec/ogc/test/spots/1.0" nsPrefix="spots">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="documentation" value="A dynamic package for the OSGi tests: loaded from this file at runtime, no generated code. Its geometry data type resolves org.geojson.Geometry only through the ecore fragment."/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Spot">
+    <eAnnotations source="https://eclipse.org/fennec/ogc/features">
+      <details key="collection" value="true"/>
+      <details key="id" value="spots"/>
+      <details key="title" value="Spots"/>
+      <details key="geometry" value="geometry"/>
+      <details key="bbox" value="minX,minY,maxX,maxY"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="geometry" eType="#//Geometry"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minX" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minY" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxX" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxY" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Geometry" instanceClassName="org.geojson.Geometry"/>
+</ecore:EPackage>

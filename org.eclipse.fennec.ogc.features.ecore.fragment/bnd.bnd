@@ -1,0 +1,14 @@
+Bundle-Name: Fennec OGC Features Ecore GeoJSON Fragment
+Bundle-Description: Fragment of org.eclipse.emf.ecore importing org.geojson, so that a dynamic EPackage \
+ (loaded from an .ecore file or a model registry, no generated code) resolves the instance class of \
+ its GeoJSON geometry data type. EMF resolves an instance class through the class loader of the \
+ package's implementation class, which for a dynamic package is the ecore bundle; without this \
+ fragment the geometry data type has no instance class and accepts no value at all.
+
+Fragment-Host: org.eclipse.emf.ecore
+Import-Package: org.geojson;version="[1.0,2)"
+
+-resourceonly: true
+
+-buildpath: \
+	org.geojson.model;version=latest
