@@ -52,7 +52,8 @@ Until it does, the workaround is:
 | `org.eclipse.fennec.codec.cql2` | EMF resources of CQL2 text (ANTLR) and CQL2 JSON (Fennec codec), registered with emf.osgi |
 | `org.qgis.project.model` | The part of the QGIS project format written here, as EMF model with the QGIS XML names |
 | `org.eclipse.fennec.ogc.features.api` | Collection descriptors from EAnnotations or a `CollectionProvider`, the backend neutral `FeatureSource` SPI, `FeatureQuery` with a CQL2 filter, `FilterLanguage` |
-| `org.eclipse.fennec.ogc.features.geo` | Envelopes, GeoJSON ↔ JTS, spatial relations, GeoJSON writer and importer |
+| `org.eclipse.fennec.ogc.features.geo` | Envelopes, GeoJSON ↔ JTS, spatial relations, GeoJSON writer and importer, the EMF conversion of geometry data types |
+| `org.eclipse.fennec.ogc.features.ecore.fragment` | Fragment of `org.eclipse.emf.ecore` importing `org.geojson`, so dynamic packages (no generated code) resolve their geometry data type |
 | `org.eclipse.fennec.ogc.features.cql2` | The filter languages, binding a filter to a collection, builders for `bbox`/`datetime`/properties, the in-memory CQL2 evaluator |
 | `org.eclipse.fennec.ogc.features.source.memory` | Backend over objects in memory, evaluated by the CQL2 evaluator: the reference |
 | `org.eclipse.fennec.ogc.features.source.persistence` | Backend over a Fennec persistence repository (JPA, MongoDB): CQL2 → query IR plus in-memory residual, GeoJSON `TypeConverter` |
