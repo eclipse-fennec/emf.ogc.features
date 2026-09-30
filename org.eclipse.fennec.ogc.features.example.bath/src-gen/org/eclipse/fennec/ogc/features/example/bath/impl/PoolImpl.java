@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.fennec.ogc.features.example.bath.BathPackage;
 import org.eclipse.fennec.ogc.features.example.bath.Pool;
 import org.eclipse.fennec.ogc.features.example.bath.PoolType;
+import org.eclipse.fennec.ogc.features.example.bath.WaterQuality;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,6 +35,7 @@ import org.eclipse.fennec.ogc.features.example.bath.PoolType;
  *   <li>{@link org.eclipse.fennec.ogc.features.example.bath.impl.PoolImpl#getDepthMin <em>Depth Min</em>}</li>
  *   <li>{@link org.eclipse.fennec.ogc.features.example.bath.impl.PoolImpl#getDepthMax <em>Depth Max</em>}</li>
  *   <li>{@link org.eclipse.fennec.ogc.features.example.bath.impl.PoolImpl#getWaterTemperature <em>Water Temperature</em>}</li>
+ *   <li>{@link org.eclipse.fennec.ogc.features.example.bath.impl.PoolImpl#getWaterQuality <em>Water Quality</em>}</li>
  *   <li>{@link org.eclipse.fennec.ogc.features.example.bath.impl.PoolImpl#getLanes <em>Lanes</em>}</li>
  * </ul>
  *
@@ -119,6 +121,26 @@ public class PoolImpl extends AssetImpl implements Pool {
 	 * @ordered
 	 */
 	protected double waterTemperature = WATER_TEMPERATURE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getWaterQuality() <em>Water Quality</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWaterQuality()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final WaterQuality WATER_QUALITY_EDEFAULT = WaterQuality.EXCELLENT;
+
+	/**
+	 * The cached value of the '{@link #getWaterQuality() <em>Water Quality</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWaterQuality()
+	 * @generated
+	 * @ordered
+	 */
+	protected WaterQuality waterQuality = WATER_QUALITY_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getLanes() <em>Lanes</em>}' attribute.
@@ -257,6 +279,29 @@ public class PoolImpl extends AssetImpl implements Pool {
 	 * @generated
 	 */
 	@Override
+	public WaterQuality getWaterQuality() {
+		return waterQuality;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setWaterQuality(WaterQuality newWaterQuality) {
+		WaterQuality oldWaterQuality = waterQuality;
+		waterQuality = newWaterQuality == null ? WATER_QUALITY_EDEFAULT : newWaterQuality;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BathPackage.POOL__WATER_QUALITY, oldWaterQuality, waterQuality));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public int getLanes() {
 		return lanes;
 	}
@@ -290,6 +335,8 @@ public class PoolImpl extends AssetImpl implements Pool {
 				return getDepthMax();
 			case BathPackage.POOL__WATER_TEMPERATURE:
 				return getWaterTemperature();
+			case BathPackage.POOL__WATER_QUALITY:
+				return getWaterQuality();
 			case BathPackage.POOL__LANES:
 				return getLanes();
 		}
@@ -315,6 +362,9 @@ public class PoolImpl extends AssetImpl implements Pool {
 				return;
 			case BathPackage.POOL__WATER_TEMPERATURE:
 				setWaterTemperature((Double)newValue);
+				return;
+			case BathPackage.POOL__WATER_QUALITY:
+				setWaterQuality((WaterQuality)newValue);
 				return;
 			case BathPackage.POOL__LANES:
 				setLanes((Integer)newValue);
@@ -343,6 +393,9 @@ public class PoolImpl extends AssetImpl implements Pool {
 			case BathPackage.POOL__WATER_TEMPERATURE:
 				setWaterTemperature(WATER_TEMPERATURE_EDEFAULT);
 				return;
+			case BathPackage.POOL__WATER_QUALITY:
+				setWaterQuality(WATER_QUALITY_EDEFAULT);
+				return;
 			case BathPackage.POOL__LANES:
 				setLanes(LANES_EDEFAULT);
 				return;
@@ -366,6 +419,8 @@ public class PoolImpl extends AssetImpl implements Pool {
 				return depthMax != DEPTH_MAX_EDEFAULT;
 			case BathPackage.POOL__WATER_TEMPERATURE:
 				return waterTemperature != WATER_TEMPERATURE_EDEFAULT;
+			case BathPackage.POOL__WATER_QUALITY:
+				return waterQuality != WATER_QUALITY_EDEFAULT;
 			case BathPackage.POOL__LANES:
 				return lanes != LANES_EDEFAULT;
 		}
@@ -390,6 +445,8 @@ public class PoolImpl extends AssetImpl implements Pool {
 		result.append(depthMax);
 		result.append(", waterTemperature: ");
 		result.append(waterTemperature);
+		result.append(", waterQuality: ");
+		result.append(waterQuality);
 		result.append(", lanes: ");
 		result.append(lanes);
 		result.append(')');

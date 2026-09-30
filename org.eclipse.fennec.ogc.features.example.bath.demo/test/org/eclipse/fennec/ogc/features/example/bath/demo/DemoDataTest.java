@@ -33,6 +33,7 @@ import org.eclipse.fennec.ogc.features.example.bath.Pool;
 import org.eclipse.fennec.ogc.features.example.bath.PoolType;
 import org.eclipse.fennec.ogc.features.example.bath.Shower;
 import org.eclipse.fennec.ogc.features.example.bath.Slide;
+import org.eclipse.fennec.ogc.features.example.bath.WaterQuality;
 import org.eclipse.fennec.ogc.features.example.city.CityPackage;
 import org.eclipse.fennec.ogc.features.example.city.Flaeche;
 import org.eclipse.fennec.ogc.features.example.city.Gebaeude;
@@ -69,10 +70,14 @@ class DemoDataTest {
 	void woge() throws IOException {
 		List<EObject> assets = read(BathPackage.eINSTANCE, "woge.geojson", null);
 		assertThat(assets).hasSize(82);
-		Pool wave = find(assets, Pool.class, "woge-wave");
+		// the pools the waterparc simulation knows carry the ids of its topology areas
+		Pool wave = find(assets, Pool.class, "wellenbecken");
 		assertThat(wave.getPoolType()).isEqualTo(PoolType.WAVE);
 		assertThat(wave.getWaterTemperature()).isEqualTo(28.0);
-		assertThat(find(assets, Pool.class, "woge-sole").getPoolType()).isEqualTo(PoolType.SOLE);
+		assertThat(wave.getWaterQuality()).isEqualTo(WaterQuality.EXCELLENT);
+		assertThat(find(assets, Pool.class, "aussen-sole").getPoolType()).isEqualTo(PoolType.SOLE);
+		assertThat(find(assets, Pool.class, "kinderland").getWaterQuality()).isEqualTo(WaterQuality.GOOD);
+		assertThat(find(assets, Pool.class, "sportbecken").getLanes()).isEqualTo(6);
 		assertThat(find(assets, Slide.class, "woge-blauer-blitz").getLength()).isEqualTo(120.0);
 		ParkingLot parking = find(assets, ParkingLot.class, "woge-parking");
 		assertThat(parking.getSpaces()).isEqualTo(350);

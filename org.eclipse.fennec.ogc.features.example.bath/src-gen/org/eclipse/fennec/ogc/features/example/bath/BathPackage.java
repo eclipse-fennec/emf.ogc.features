@@ -42,7 +42,7 @@ import org.osgi.annotation.versioning.ProviderType;
  * @generated
  */
 @ProviderType
-@EPackage(uri = BathPackage.eNS_URI, fingerprint = "fp1:d078980007d9fb7c31e2e1babb62b624a0d6c6b062f7154fbfb1c04c949cf645", genModel = "/model/bath.genmodel", genModelSourceLocations = {"model/bath.genmodel","org.eclipse.fennec.ogc.features.example.bath/model/bath.genmodel"}, ecore = "/model/bath.ecore", ecoreSourceLocations = "/model/bath.ecore")
+@EPackage(uri = BathPackage.eNS_URI, fingerprint = "fp1:b034e4b921443584a10a7c79cb0fddc5d05de5c7d9af42d2dfc66a570252af64", genModel = "/model/bath.genmodel", genModelSourceLocations = {"model/bath.genmodel","org.eclipse.fennec.ogc.features.example.bath/model/bath.genmodel"}, ecore = "/model/bath.ecore", ecoreSourceLocations = "/model/bath.ecore")
 public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	/**
 	 * The package name.
@@ -367,13 +367,22 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int POOL__WATER_TEMPERATURE = ASSET_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Water Quality</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POOL__WATER_QUALITY = ASSET_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Lanes</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POOL__LANES = ASSET_FEATURE_COUNT + 4;
+	int POOL__LANES = ASSET_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Pool</em>' class.
@@ -382,7 +391,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int POOL_FEATURE_COUNT = ASSET_FEATURE_COUNT + 5;
+	int POOL_FEATURE_COUNT = ASSET_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Pool</em>' class.
@@ -3314,6 +3323,16 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int POOL_TYPE = 23;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.fennec.ogc.features.example.bath.WaterQuality <em>Water Quality</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.fennec.ogc.features.example.bath.WaterQuality
+	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getWaterQuality()
+	 * @generated
+	 */
+	int WATER_QUALITY = 24;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.fennec.ogc.features.example.bath.SaunaType <em>Sauna Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3321,7 +3340,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getSaunaType()
 	 * @generated
 	 */
-	int SAUNA_TYPE = 24;
+	int SAUNA_TYPE = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.fennec.ogc.features.example.bath.SportType <em>Sport Type</em>}' enum.
@@ -3331,7 +3350,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getSportType()
 	 * @generated
 	 */
-	int SPORT_TYPE = 25;
+	int SPORT_TYPE = 26;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.fennec.ogc.features.example.bath.Surface <em>Surface</em>}' enum.
@@ -3341,7 +3360,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getSurface()
 	 * @generated
 	 */
-	int SURFACE = 26;
+	int SURFACE = 27;
 
 	/**
 	 * The meta object id for the '<em>Geo Json Geometry</em>' data type.
@@ -3351,7 +3370,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getGeoJsonGeometry()
 	 * @generated
 	 */
-	int GEO_JSON_GEOMETRY = 27;
+	int GEO_JSON_GEOMETRY = 28;
 
 
 	/**
@@ -3549,6 +3568,17 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	 * @generated
 	 */
 	EAttribute getPool_WaterTemperature();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.fennec.ogc.features.example.bath.Pool#getWaterQuality <em>Water Quality</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Water Quality</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.Pool#getWaterQuality()
+	 * @see #getPool()
+	 * @generated
+	 */
+	EAttribute getPool_WaterQuality();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.fennec.ogc.features.example.bath.Pool#getLanes <em>Lanes</em>}'.
@@ -4156,6 +4186,16 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	EEnum getPoolType();
 
 	/**
+	 * Returns the meta object for enum '{@link org.eclipse.fennec.ogc.features.example.bath.WaterQuality <em>Water Quality</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Water Quality</em>'.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.WaterQuality
+	 * @generated
+	 */
+	EEnum getWaterQuality();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.fennec.ogc.features.example.bath.SaunaType <em>Sauna Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4369,6 +4409,14 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 		 * @generated
 		 */
 		EAttribute POOL__WATER_TEMPERATURE = eINSTANCE.getPool_WaterTemperature();
+
+		/**
+		 * The meta object literal for the '<em><b>Water Quality</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute POOL__WATER_QUALITY = eINSTANCE.getPool_WaterQuality();
 
 		/**
 		 * The meta object literal for the '<em><b>Lanes</b></em>' attribute feature.
@@ -4869,6 +4917,16 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 		 * @generated
 		 */
 		EEnum POOL_TYPE = eINSTANCE.getPoolType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.fennec.ogc.features.example.bath.WaterQuality <em>Water Quality</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.fennec.ogc.features.example.bath.WaterQuality
+		 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getWaterQuality()
+		 * @generated
+		 */
+		EEnum WATER_QUALITY = eINSTANCE.getWaterQuality();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.fennec.ogc.features.example.bath.SaunaType <em>Sauna Type</em>}' enum.

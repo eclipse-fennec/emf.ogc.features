@@ -49,6 +49,7 @@ import org.eclipse.fennec.ogc.features.example.bath.SportType;
 import org.eclipse.fennec.ogc.features.example.bath.Surface;
 import org.eclipse.fennec.ogc.features.example.bath.Toilet;
 import org.eclipse.fennec.ogc.features.example.bath.Tree;
+import org.eclipse.fennec.ogc.features.example.bath.WaterQuality;
 
 import org.geojson.Geometry;
 
@@ -226,6 +227,13 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 	 * @generated
 	 */
 	private EEnum poolTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum waterQualityEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -501,8 +509,18 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getPool_Lanes() {
+	public EAttribute getPool_WaterQuality() {
 		return (EAttribute)poolEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPool_Lanes() {
+		return (EAttribute)poolEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1071,6 +1089,16 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 	 * @generated
 	 */
 	@Override
+	public EEnum getWaterQuality() {
+		return waterQualityEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getSaunaType() {
 		return saunaTypeEEnum;
 	}
@@ -1153,6 +1181,7 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 		createEAttribute(poolEClass, POOL__DEPTH_MIN);
 		createEAttribute(poolEClass, POOL__DEPTH_MAX);
 		createEAttribute(poolEClass, POOL__WATER_TEMPERATURE);
+		createEAttribute(poolEClass, POOL__WATER_QUALITY);
 		createEAttribute(poolEClass, POOL__LANES);
 
 		slideEClass = createEClass(SLIDE);
@@ -1231,6 +1260,7 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 		levelEEnum = createEEnum(LEVEL);
 		operationalStatusEEnum = createEEnum(OPERATIONAL_STATUS);
 		poolTypeEEnum = createEEnum(POOL_TYPE);
+		waterQualityEEnum = createEEnum(WATER_QUALITY);
 		saunaTypeEEnum = createEEnum(SAUNA_TYPE);
 		sportTypeEEnum = createEEnum(SPORT_TYPE);
 		surfaceEEnum = createEEnum(SURFACE);
@@ -1308,6 +1338,7 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 		initEAttribute(getPool_DepthMin(), ecorePackage.getEDouble(), "depthMin", null, 0, 1, Pool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPool_DepthMax(), ecorePackage.getEDouble(), "depthMax", null, 0, 1, Pool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPool_WaterTemperature(), ecorePackage.getEDouble(), "waterTemperature", null, 0, 1, Pool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPool_WaterQuality(), this.getWaterQuality(), "waterQuality", null, 0, 1, Pool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPool_Lanes(), ecorePackage.getEInt(), "lanes", null, 0, 1, Pool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(slideEClass, Slide.class, "Slide", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1404,6 +1435,12 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 		addEEnumLiteral(poolTypeEEnum, PoolType.DIVING);
 		addEEnumLiteral(poolTypeEEnum, PoolType.SOLE);
 		addEEnumLiteral(poolTypeEEnum, PoolType.LANDING);
+
+		initEEnum(waterQualityEEnum, WaterQuality.class, "WaterQuality");
+		addEEnumLiteral(waterQualityEEnum, WaterQuality.EXCELLENT);
+		addEEnumLiteral(waterQualityEEnum, WaterQuality.GOOD);
+		addEEnumLiteral(waterQualityEEnum, WaterQuality.SUFFICIENT);
+		addEEnumLiteral(waterQualityEEnum, WaterQuality.POOR);
 
 		initEEnum(saunaTypeEEnum, SaunaType.class, "SaunaType");
 		addEEnumLiteral(saunaTypeEEnum, SaunaType.FINNISH);
