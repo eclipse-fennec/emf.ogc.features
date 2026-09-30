@@ -93,6 +93,9 @@ final class ShapesModel {
 			ecore.load(in, null);
 		}
 		ePackage = (EPackage) ecore.getContents().get(0);
+		// the package's resource URI is what the codecs record as type URI (_type): make it the
+		// nsURI, as a registered package has it, not the file name
+		ecore.setURI(URI.createURI(NS_URI));
 		resourceSet.getPackageRegistry().put(NS_URI, ePackage);
 		shape = (EClass) ePackage.getEClassifier("Shape");
 		id = (EAttribute) shape.getEStructuralFeature("id");
@@ -124,6 +127,41 @@ final class ShapesModel {
 
 	static String idOf(String type) {
 		return type.toLowerCase();
+	}
+
+	/**
+	 * Stores the shapes through one repository instance and reads them back through a
+	 * <em>fresh</em> one. A repository instance owns a resource set, so reading through the
+	 * writing instance could hand back the objects just saved instead of what the store holds.
+	 *
+	 * @param repositories the prototype scoped repository service
+	 * @return what came back, by geometry type
+	 */
+	Map<String, EObject> storeAndReload(org.osgi.framework.ServiceObjects<org.eclipse.fennec.persistence.repository.api.Repository> repositories)
+			throws IOException {
+		org.eclipse.fennec.persistence.repository.api.Repository writer = repositories.getService();
+		try {
+			writer.saveAll(shapes());
+		} finally {
+			repositories.ungetService(writer);
+		}
+		org.eclipse.fennec.persistence.repository.api.Repository reader = repositories.getService();
+		try {
+			Map<String, EObject> back = new LinkedHashMap<>();
+			for (String type : GEOMETRIES.keySet()) {
+				back.put(type, reader.getEObject(shape, idOf(type)));
+			}
+			return back;
+		} finally {
+			repositories.ungetService(reader);
+		}
+	}
+
+	void report(String title, Map<String, EObject> back) {
+		System.out.println("=== #14 experiment, " + title + " ===");
+		for (String type : GEOMETRIES.keySet()) {
+			System.out.println(compare(type, back.get(type)));
+		}
 	}
 
 	/**

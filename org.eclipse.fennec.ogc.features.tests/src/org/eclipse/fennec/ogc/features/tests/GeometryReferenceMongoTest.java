@@ -14,9 +14,9 @@ package org.eclipse.fennec.ogc.features.tests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.bson.Document;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -33,6 +33,9 @@ import org.osgi.test.common.annotation.InjectService;
 import org.osgi.test.common.annotation.Property;
 import org.osgi.test.common.annotation.Property.TemplateArgument;
 import org.osgi.test.common.annotation.config.WithFactoryConfiguration;
+import org.osgi.test.common.service.ServiceAware;
+
+import com.mongodb.client.MongoDatabase;
 import org.osgi.test.junit5.cm.ConfigurationExtension;
 import org.osgi.test.junit5.context.BundleContextExtension;
 import org.osgi.test.junit5.service.ServiceExtension;
@@ -68,7 +71,10 @@ class GeometryReferenceMongoTest {
 	private static ServiceRegistration<EPackage> registration;
 
 	@InjectService(filter = "(persistence.repository.id=shapesMongo)", timeout = 60000)
-	Repository repository;
+	ServiceAware<Repository> repositories;
+
+	@InjectService(filter = "(mongo.database.alias=shapes)", timeout = 60000)
+	MongoDatabase database;
 
 	private static Map<String, EObject> stored;
 
@@ -87,16 +93,15 @@ class GeometryReferenceMongoTest {
 
 	private Map<String, EObject> storeAndReload() throws Exception {
 		if (stored == null) {
-			repository.saveAll(model.shapes());
-			Map<String, EObject> back = new LinkedHashMap<>();
-			for (String type : ShapesModel.GEOMETRIES.keySet()) {
-				back.put(type, repository.getEObject(model.shape, ShapesModel.idOf(type)));
+			stored = model.storeAndReload(context.getServiceObjects(repositories.getServiceReference()));
+			// what the database really holds, independent of any EMF resource set
+			System.out.println("=== #14 experiment, MongoDB documents as stored ===");
+			for (String collection : database.listCollectionNames()) {
+				for (Document document : database.getCollection(collection).find()) {
+					System.out.println(collection + ": " + document.toJson());
+				}
 			}
-			System.out.println("=== #14 experiment, MongoDB round trip (containment reference to geojson Geometry) ===");
-			for (String type : ShapesModel.GEOMETRIES.keySet()) {
-				System.out.println(model.compare(type, back.get(type)));
-			}
-			stored = back;
+			model.report("MongoDB round trip (containment reference to geojson Geometry), fresh repository instance for the read", stored);
 		}
 		return stored;
 	}

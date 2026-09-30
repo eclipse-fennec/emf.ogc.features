@@ -14,7 +14,6 @@ package org.eclipse.fennec.ogc.features.tests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
@@ -33,6 +32,7 @@ import org.osgi.test.common.annotation.Property;
 import org.osgi.test.common.annotation.Property.TemplateArgument;
 import org.osgi.test.common.annotation.Property.ValueSource;
 import org.osgi.test.common.annotation.config.WithFactoryConfiguration;
+import org.osgi.test.common.service.ServiceAware;
 import org.osgi.test.junit5.cm.ConfigurationExtension;
 import org.osgi.test.junit5.context.BundleContextExtension;
 import org.osgi.test.junit5.service.ServiceExtension;
@@ -73,7 +73,7 @@ class GeometryReferenceJpaTest {
 	private static ServiceRegistration<EPackage> registration;
 
 	@InjectService(filter = "(persistence.repository.id=shapes)", timeout = 60000)
-	Repository repository;
+	ServiceAware<Repository> repositories;
 
 	private static Map<String, EObject> stored;
 
@@ -92,16 +92,8 @@ class GeometryReferenceJpaTest {
 
 	private Map<String, EObject> storeAndReload() throws Exception {
 		if (stored == null) {
-			repository.saveAll(model.shapes());
-			Map<String, EObject> back = new LinkedHashMap<>();
-			for (String type : ShapesModel.GEOMETRIES.keySet()) {
-				back.put(type, repository.getEObject(model.shape, ShapesModel.idOf(type)));
-			}
-			System.out.println("=== #14 experiment, JPA/H2 round trip (containment reference to geojson Geometry) ===");
-			for (String type : ShapesModel.GEOMETRIES.keySet()) {
-				System.out.println(model.compare(type, back.get(type)));
-			}
-			stored = back;
+			stored = model.storeAndReload(context.getServiceObjects(repositories.getServiceReference()));
+			model.report("JPA/H2 round trip (containment reference to geojson Geometry), fresh repository instance for the read", stored);
 		}
 		return stored;
 	}
