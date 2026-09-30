@@ -477,7 +477,7 @@
     "depthMin": 0.0,
     "depthMax": 2.0,
     "waterTemperature": 28.0,
-    "waterQuality": "EXCELLENT",
+    "ph": 7.2,
     "lanes": 0,
     "level": "GROUND_FLOOR",
     "description": "1.000 m² Wasserfläche, Wellen alle 30 Minuten"
@@ -628,7 +628,7 @@
     "depthMin": 1.8,
     "depthMax": 2.0,
     "waterTemperature": 26.0,
-    "waterQuality": "EXCELLENT",
+    "ph": 7.0,
     "lanes": 6,
     "level": "GROUND_FLOOR",
     "description": "25 m, sechs Bahnen; Schwimmkurse für Kinder und Erwachsene"
@@ -783,7 +783,7 @@
     "depthMin": 0.1,
     "depthMax": 0.4,
     "waterTemperature": 32.0,
-    "waterQuality": "GOOD",
+    "ph": 7.4,
     "lanes": 0,
     "level": "GROUND_FLOOR",
     "description": "Planschbecken für Kinder von 0 bis 6 Jahren"
@@ -921,7 +921,7 @@
     "depthMin": 1.0,
     "depthMax": 1.2,
     "waterTemperature": 28.0,
-    "waterQuality": "GOOD",
+    "ph": 7.1,
     "lanes": 0,
     "level": "GROUND_FLOOR",
     "description": "Auslauf der Rutsche Blauer Blitz"
@@ -1051,7 +1051,7 @@
     "depthMin": 1.2,
     "depthMax": 1.35,
     "waterTemperature": 34.0,
-    "waterQuality": "GOOD",
+    "ph": 7.5,
     "lanes": 0,
     "level": "OUTDOOR",
     "description": "Ganzjährig 34 °C mit Massagedüsen"

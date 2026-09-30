@@ -68,21 +68,6 @@
       </genEnumLiterals>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false">
-      <ecoreEnum href="bath.ecore#//WaterQuality"/>
-      <genEnumLiterals>
-        <ecoreEnumLiteral href="bath.ecore#//WaterQuality/EXCELLENT"/>
-      </genEnumLiterals>
-      <genEnumLiterals>
-        <ecoreEnumLiteral href="bath.ecore#//WaterQuality/GOOD"/>
-      </genEnumLiterals>
-      <genEnumLiterals>
-        <ecoreEnumLiteral href="bath.ecore#//WaterQuality/SUFFICIENT"/>
-      </genEnumLiterals>
-      <genEnumLiterals>
-        <ecoreEnumLiteral href="bath.ecore#//WaterQuality/POOR"/>
-      </genEnumLiterals>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false">
       <ecoreEnum href="bath.ecore#//SaunaType"/>
       <genEnumLiterals>
         <ecoreEnumLiteral href="bath.ecore#//SaunaType/FINNISH"/>
@@ -193,7 +178,7 @@
         <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Pool/waterTemperature"/>
       </genFeatures>
       <genFeatures createChild="false">
-        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Pool/waterQuality"/>
+        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Pool/ph"/>
       </genFeatures>
       <genFeatures createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Pool/lanes"/>

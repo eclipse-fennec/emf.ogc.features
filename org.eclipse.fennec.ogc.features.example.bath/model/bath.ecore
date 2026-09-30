@@ -104,9 +104,9 @@
         <details key="documentation" value="Water temperature in °C."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="waterQuality" eType="#//WaterQuality">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ph" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Water quality class of the latest assessment, in the four classes of the EU bathing water directive (2006/7/EC)."/>
+        <details key="documentation" value="Water quality as the pH value of the latest measurement. Pool water is kept between 6.5 and 7.6 (DIN 19643)."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lanes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
@@ -523,15 +523,6 @@
     <eLiterals name="DIVING" value="6"/>
     <eLiterals name="SOLE" value="7"/>
     <eLiterals name="LANDING" value="8"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="WaterQuality">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="Water quality classes of the EU bathing water directive: excellent, good, sufficient, poor."/>
-    </eAnnotations>
-    <eLiterals name="EXCELLENT"/>
-    <eLiterals name="GOOD" value="1"/>
-    <eLiterals name="SUFFICIENT" value="2"/>
-    <eLiterals name="POOR" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SaunaType">
     <eLiterals name="FINNISH"/>

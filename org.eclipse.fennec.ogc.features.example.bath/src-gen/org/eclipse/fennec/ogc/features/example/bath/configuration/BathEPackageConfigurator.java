@@ -40,7 +40,7 @@ public class BathEPackageConfigurator implements EPackageConfigurator {
 	 * service property.
 	 * @generated
 	 */
-	public static final String FINGERPRINT = "fp1:b034e4b921443584a10a7c79cb0fddc5d05de5c7d9af42d2dfc66a570252af64";
+	public static final String FINGERPRINT = "fp1:31b05e7cf7e76b2561f4c6f1a3dd7934255b3848871d5d9f5edfa134f9518fbf";
 
 	private BathPackage ePackage;
 
