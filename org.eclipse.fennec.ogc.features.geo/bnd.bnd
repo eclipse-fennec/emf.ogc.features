@@ -1,7 +1,6 @@
 Bundle-Name: Fennec OGC Features Geo
 Bundle-Description: Geometry support for Fennec OGC Features, backend neutral: envelopes of GeoJSON \
- EMF geometries, conversion to JTS, the OGC spatial relations, GeoJSON text and import, and the \
- EMF conversion of GeoJSON geometry data types.
+ EMF geometries, conversion to JTS, the OGC spatial relations and GeoJSON text and import.
 
 -library: enableEMF
 

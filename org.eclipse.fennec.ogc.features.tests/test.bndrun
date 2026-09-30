@@ -11,7 +11,6 @@
 	bnd.identity;id='org.eclipse.fennec.ogc.features.runtime',\
 	bnd.identity;id='org.apache.felix.http.jetty12',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.geo',\
-	bnd.identity;id='org.eclipse.fennec.ogc.features.ecore.fragment',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.example.bath',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.example.bath.demo',\
 	bnd.identity;id='org.eclipse.fennec.codec.geojson',\

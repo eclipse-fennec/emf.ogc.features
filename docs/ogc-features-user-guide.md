@@ -170,27 +170,6 @@ what a spatial filter is pushed down to the store with; the exact relation is th
 in memory. Whoever writes the features keeps the four attributes consistent with the
 geometry. The demo loader computes them from the geometry.
 
-**Dynamic packages.** A package loaded at runtime from an `.ecore` file or a model registry
-has no generated code, and EMF resolves the instance class of its data types through the
-class loader of the `org.eclipse.emf.ecore` bundle, which cannot see `org.geojson`. Without
-the instance class the geometry attribute accepts no value at all. The fragment
-`org.eclipse.fennec.ogc.features.ecore.fragment` extends the ecore bundle with `org.geojson`;
-put it in the run requirements of a runtime that serves dynamic packages (the bnd resolver
-does not add fragments on its own). Without it, `org.eclipse.fennec.ogc.features.geo` logs a
-warning for every geometry data type it cannot resolve.
-The `geo` bundle also gives every geometry data type of a registered package the GeoJSON
-conversion, so an XMI file carries the geometry as GeoJSON text:
-
-```xml
-<spots:Spot id="spot-pool" geometry="{&quot;type&quot;:&quot;Point&quot;,&quot;coordinates&quot;:[11.617,50.905]}"
-    minX="11.617" minY="50.905" maxX="11.617" maxY="50.905"/>
-```
-
-A model may name the conversion itself, as EMF defines: the Ecore annotation detail
-`conversionDelegates` on the package and an annotation with source
-`https://eclipse.org/fennec/ogc/features/geojson` on the data type. Then it also works
-outside this server, e.g. in an editor.
-
 ### 3.4 Property Names in GeoJSON Files
 
 The `property` key on an **EAttribute** names the GeoJSON property the demo importer reads
@@ -433,8 +412,7 @@ implementation (e.g. `org.apache.felix.http.jetty12`):
 |--------|---------|
 | `org.eclipse.fennec.ogc.features.runtime` | The server, one instance per configuration, and the configured collections |
 | `org.eclipse.fennec.ogc.features.api` | The SPI |
-| `org.eclipse.fennec.ogc.features.geo` | Envelopes, JTS conversion, spatial relations, the GeoJSON conversion of geometry data types |
-| `org.eclipse.fennec.ogc.features.ecore.fragment` | Fragment of `org.eclipse.emf.ecore` importing `org.geojson`, so dynamic packages resolve the geometry data type (see [3.3](#33-geometry-and-bounding-box)); needed for models without generated code |
+| `org.eclipse.fennec.ogc.features.geo` | Envelopes, JTS conversion, spatial relations |
 | `org.eclipse.fennec.ogc.features.cql2` | The filter languages `cql2-text` and `cql2-json` |
 | `org.eclipse.fennec.codec.cql2`, `net.opengis.cql2.model` | The CQL2 EMF resources and model |
 | `org.eclipse.fennec.ogc.features.source.persistence` | The repository source and the `geojson` converter |

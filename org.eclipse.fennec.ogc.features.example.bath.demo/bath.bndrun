@@ -12,7 +12,6 @@
 	bnd.identity;id='org.eclipse.fennec.codec.cql2',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.cql2',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.geo',\
-	bnd.identity;id='org.eclipse.fennec.ogc.features.ecore.fragment',\
 	bnd.identity;id='org.eclipse.fennec.codec.geojson',\
 	bnd.identity;id='org.eclipse.fennec.emf.osgi.metadata',\
 	bnd.identity;id='org.eclipse.fennec.persistence.eclipselink',\
@@ -122,5 +121,4 @@ demo.config = ${fileuri;${.}/config/bath-demo.json},${fileuri;${.}/config/dataso
 	org.eclipse.fennec.ogc.features.source.persistence;version=snapshot,\
 	org.eclipse.daanse.jdbc.datasource.postgresql;version='[0.0.1,0.0.2)',\
 	org.postgresql.jdbc;version='[42.7.3,42.7.4)',\
-	org.qgis.project.model;version=snapshot,\
-	org.eclipse.fennec.ogc.features.ecore.fragment;version=snapshot
+	org.qgis.project.model;version=snapshot
