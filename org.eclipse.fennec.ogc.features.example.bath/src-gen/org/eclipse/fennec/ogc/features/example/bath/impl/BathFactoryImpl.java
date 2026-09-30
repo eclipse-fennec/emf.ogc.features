@@ -108,8 +108,6 @@ public class BathFactoryImpl extends EFactoryImpl implements BathFactory {
 				return createOperationalStatusFromString(eDataType, initialValue);
 			case BathPackage.POOL_TYPE:
 				return createPoolTypeFromString(eDataType, initialValue);
-			case BathPackage.WATER_QUALITY:
-				return createWaterQualityFromString(eDataType, initialValue);
 			case BathPackage.SAUNA_TYPE:
 				return createSaunaTypeFromString(eDataType, initialValue);
 			case BathPackage.SPORT_TYPE:
@@ -137,8 +135,6 @@ public class BathFactoryImpl extends EFactoryImpl implements BathFactory {
 				return convertOperationalStatusToString(eDataType, instanceValue);
 			case BathPackage.POOL_TYPE:
 				return convertPoolTypeToString(eDataType, instanceValue);
-			case BathPackage.WATER_QUALITY:
-				return convertWaterQualityToString(eDataType, instanceValue);
 			case BathPackage.SAUNA_TYPE:
 				return convertSaunaTypeToString(eDataType, instanceValue);
 			case BathPackage.SPORT_TYPE:
@@ -429,26 +425,6 @@ public class BathFactoryImpl extends EFactoryImpl implements BathFactory {
 	 * @generated
 	 */
 	public String convertPoolTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public WaterQuality createWaterQualityFromString(EDataType eDataType, String initialValue) {
-		WaterQuality result = WaterQuality.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertWaterQualityToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

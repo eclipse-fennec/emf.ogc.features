@@ -613,8 +613,8 @@ launch configurations.
 The pools of the WOGE that the [waterparc](https://github.com/DataInMotion/waterparc)
 simulation knows carry the ids of its topology areas (`mesa_sim/woge-topologie.json`):
 `wellenbecken`, `sportbecken`, `kinderland` and `aussen-sole`, so simulated sensor events
-and the features of `/collections/pools` meet on the same id. Every pool has a
-`waterQuality` in the four classes of the EU bathing water directive.
+and the features of `/collections/pools` meet on the same id. Every pool carries its water
+quality as the pH value `ph` (pool water is kept between 6.5 and 7.6, DIN 19643).
 
 ### 8.1 Running It
 

@@ -31,7 +31,7 @@ import org.osgi.annotation.versioning.ProviderType;
  *   <li>{@link org.eclipse.fennec.ogc.features.example.bath.Pool#getDepthMin <em>Depth Min</em>}</li>
  *   <li>{@link org.eclipse.fennec.ogc.features.example.bath.Pool#getDepthMax <em>Depth Max</em>}</li>
  *   <li>{@link org.eclipse.fennec.ogc.features.example.bath.Pool#getWaterTemperature <em>Water Temperature</em>}</li>
- *   <li>{@link org.eclipse.fennec.ogc.features.example.bath.Pool#getWaterQuality <em>Water Quality</em>}</li>
+ *   <li>{@link org.eclipse.fennec.ogc.features.example.bath.Pool#getPh <em>Ph</em>}</li>
  *   <li>{@link org.eclipse.fennec.ogc.features.example.bath.Pool#getLanes <em>Lanes</em>}</li>
  * </ul>
  *
@@ -142,32 +142,29 @@ public interface Pool extends Asset {
 	void setWaterTemperature(double value);
 
 	/**
-	 * Returns the value of the '<em><b>Water Quality</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.eclipse.fennec.ogc.features.example.bath.WaterQuality}.
+	 * Returns the value of the '<em><b>Ph</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * Water quality class of the latest assessment, in the four classes of the EU bathing water directive (2006/7/EC).
+	 * Water quality as the pH value of the latest measurement. Pool water is kept between 6.5 and 7.6 (DIN 19643).
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Water Quality</em>' attribute.
-	 * @see org.eclipse.fennec.ogc.features.example.bath.WaterQuality
-	 * @see #setWaterQuality(WaterQuality)
-	 * @see org.eclipse.fennec.ogc.features.example.bath.BathPackage#getPool_WaterQuality()
+	 * @return the value of the '<em>Ph</em>' attribute.
+	 * @see #setPh(double)
+	 * @see org.eclipse.fennec.ogc.features.example.bath.BathPackage#getPool_Ph()
 	 * @model
 	 * @generated
 	 */
-	WaterQuality getWaterQuality();
+	double getPh();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.fennec.ogc.features.example.bath.Pool#getWaterQuality <em>Water Quality</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.fennec.ogc.features.example.bath.Pool#getPh <em>Ph</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Water Quality</em>' attribute.
-	 * @see org.eclipse.fennec.ogc.features.example.bath.WaterQuality
-	 * @see #getWaterQuality()
+	 * @param value the new value of the '<em>Ph</em>' attribute.
+	 * @see #getPh()
 	 * @generated
 	 */
-	void setWaterQuality(WaterQuality value);
+	void setPh(double value);
 
 	/**
 	 * Returns the value of the '<em><b>Lanes</b></em>' attribute.

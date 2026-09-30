@@ -171,7 +171,7 @@
     "depthMin": 1.35,
     "depthMax": 2.0,
     "waterTemperature": 27.0,
-    "waterQuality": "EXCELLENT",
+    "ph": 7.0,
     "lanes": 5,
     "level": "GROUND_FLOOR"
    }
@@ -216,7 +216,7 @@
     "depthMin": 0.6,
     "depthMax": 1.25,
     "waterTemperature": 30.0,
-    "waterQuality": "GOOD",
+    "ph": 7.3,
     "lanes": 0,
     "level": "GROUND_FLOOR"
    }
@@ -265,7 +265,7 @@
     "depthMin": 0.2,
     "depthMax": 0.4,
     "waterTemperature": 32.0,
-    "waterQuality": "GOOD",
+    "ph": 7.4,
     "lanes": 0,
     "level": "GROUND_FLOOR"
    }
@@ -310,7 +310,7 @@
     "depthMin": 0.0,
     "depthMax": 2.0,
     "waterTemperature": 28.0,
-    "waterQuality": "EXCELLENT",
+    "ph": 7.2,
     "lanes": 0,
     "level": "GROUND_FLOOR",
     "description": "Wellenbetrieb jede volle Stunde"
@@ -388,7 +388,7 @@
     "depthMin": 0.9,
     "depthMax": 0.9,
     "waterTemperature": 36.0,
-    "waterQuality": "SUFFICIENT",
+    "ph": 7.6,
     "lanes": 0,
     "level": "GROUND_FLOOR"
    }
@@ -433,7 +433,7 @@
     "depthMin": 1.2,
     "depthMax": 2.0,
     "waterTemperature": 24.0,
-    "waterQuality": "EXCELLENT",
+    "ph": 7.1,
     "lanes": 8,
     "level": "OUTDOOR"
    }
@@ -478,7 +478,7 @@
     "depthMin": 3.8,
     "depthMax": 4.5,
     "waterTemperature": 23.0,
-    "waterQuality": "POOR",
+    "ph": 7.9,
     "lanes": 0,
     "level": "OUTDOOR",
     "description": "Sprungturm 1 m / 3 m / 5 m, derzeit Wartung"
