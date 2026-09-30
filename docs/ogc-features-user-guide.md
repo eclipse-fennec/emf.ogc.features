@@ -610,6 +610,12 @@ The demo publishes two models side by side, each in its own persistence unit:
 `org.eclipse.fennec.ogc.features.example.bath.demo` holds the data, the loader and the
 launch configurations.
 
+The pools of the WOGE that the [waterparc](https://github.com/DataInMotion/waterparc)
+simulation knows carry the ids of its topology areas (`mesa_sim/woge-topologie.json`):
+`wellenbecken`, `sportbecken`, `kinderland` and `aussen-sole`, so simulated sensor events
+and the features of `/collections/pools` meet on the same id. Every pool has a
+`waterQuality` in the four classes of the EU bathing water directive.
+
 ### 8.1 Running It
 
 ```bash

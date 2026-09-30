@@ -31,6 +31,7 @@ import org.osgi.annotation.versioning.ProviderType;
  *   <li>{@link org.eclipse.fennec.ogc.features.example.bath.Pool#getDepthMin <em>Depth Min</em>}</li>
  *   <li>{@link org.eclipse.fennec.ogc.features.example.bath.Pool#getDepthMax <em>Depth Max</em>}</li>
  *   <li>{@link org.eclipse.fennec.ogc.features.example.bath.Pool#getWaterTemperature <em>Water Temperature</em>}</li>
+ *   <li>{@link org.eclipse.fennec.ogc.features.example.bath.Pool#getWaterQuality <em>Water Quality</em>}</li>
  *   <li>{@link org.eclipse.fennec.ogc.features.example.bath.Pool#getLanes <em>Lanes</em>}</li>
  * </ul>
  *
@@ -139,6 +140,34 @@ public interface Pool extends Asset {
 	 * @generated
 	 */
 	void setWaterTemperature(double value);
+
+	/**
+	 * Returns the value of the '<em><b>Water Quality</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.eclipse.fennec.ogc.features.example.bath.WaterQuality}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Water quality class of the latest assessment, in the four classes of the EU bathing water directive (2006/7/EC).
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Water Quality</em>' attribute.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.WaterQuality
+	 * @see #setWaterQuality(WaterQuality)
+	 * @see org.eclipse.fennec.ogc.features.example.bath.BathPackage#getPool_WaterQuality()
+	 * @model
+	 * @generated
+	 */
+	WaterQuality getWaterQuality();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.fennec.ogc.features.example.bath.Pool#getWaterQuality <em>Water Quality</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Water Quality</em>' attribute.
+	 * @see org.eclipse.fennec.ogc.features.example.bath.WaterQuality
+	 * @see #getWaterQuality()
+	 * @generated
+	 */
+	void setWaterQuality(WaterQuality value);
 
 	/**
 	 * Returns the value of the '<em><b>Lanes</b></em>' attribute.

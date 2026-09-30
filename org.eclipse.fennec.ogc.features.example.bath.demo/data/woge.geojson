@@ -439,7 +439,7 @@
   },
   {
    "type": "Feature",
-   "id": "woge-wave",
+   "id": "wellenbecken",
    "geometry": {
     "type": "Polygon",
     "coordinates": [
@@ -477,6 +477,7 @@
     "depthMin": 0.0,
     "depthMax": 2.0,
     "waterTemperature": 28.0,
+    "waterQuality": "EXCELLENT",
     "lanes": 0,
     "level": "GROUND_FLOOR",
     "description": "1.000 m² Wasserfläche, Wellen alle 30 Minuten"
@@ -484,7 +485,7 @@
   },
   {
    "type": "Feature",
-   "id": "woge-wave-surround",
+   "id": "wellenbecken-surround",
    "geometry": {
     "type": "Polygon",
     "coordinates": [
@@ -547,7 +548,7 @@
   },
   {
    "type": "Feature",
-   "id": "woge-wave-shower-1",
+   "id": "wellenbecken-shower-1",
    "geometry": {
     "type": "Point",
     "coordinates": [
@@ -568,7 +569,7 @@
   },
   {
    "type": "Feature",
-   "id": "woge-wave-shower-2",
+   "id": "wellenbecken-shower-2",
    "geometry": {
     "type": "Point",
     "coordinates": [
@@ -589,7 +590,7 @@
   },
   {
    "type": "Feature",
-   "id": "woge-sport",
+   "id": "sportbecken",
    "geometry": {
     "type": "Polygon",
     "coordinates": [
@@ -627,6 +628,7 @@
     "depthMin": 1.8,
     "depthMax": 2.0,
     "waterTemperature": 26.0,
+    "waterQuality": "EXCELLENT",
     "lanes": 6,
     "level": "GROUND_FLOOR",
     "description": "25 m, sechs Bahnen; Schwimmkurse für Kinder und Erwachsene"
@@ -634,7 +636,7 @@
   },
   {
    "type": "Feature",
-   "id": "woge-sport-surround",
+   "id": "sportbecken-surround",
    "geometry": {
     "type": "Polygon",
     "coordinates": [
@@ -697,7 +699,7 @@
   },
   {
    "type": "Feature",
-   "id": "woge-sport-shower-1",
+   "id": "sportbecken-shower-1",
    "geometry": {
     "type": "Point",
     "coordinates": [
@@ -718,7 +720,7 @@
   },
   {
    "type": "Feature",
-   "id": "woge-sport-shower-2",
+   "id": "sportbecken-shower-2",
    "geometry": {
     "type": "Point",
     "coordinates": [
@@ -739,7 +741,7 @@
   },
   {
    "type": "Feature",
-   "id": "woge-kids",
+   "id": "kinderland",
    "geometry": {
     "type": "Polygon",
     "coordinates": [
@@ -781,6 +783,7 @@
     "depthMin": 0.1,
     "depthMax": 0.4,
     "waterTemperature": 32.0,
+    "waterQuality": "GOOD",
     "lanes": 0,
     "level": "GROUND_FLOOR",
     "description": "Planschbecken für Kinder von 0 bis 6 Jahren"
@@ -788,7 +791,7 @@
   },
   {
    "type": "Feature",
-   "id": "woge-kids-surround",
+   "id": "kinderland-surround",
    "geometry": {
     "type": "Polygon",
     "coordinates": [
@@ -859,7 +862,7 @@
   },
   {
    "type": "Feature",
-   "id": "woge-kids-shower-1",
+   "id": "kinderland-shower-1",
    "geometry": {
     "type": "Point",
     "coordinates": [
@@ -918,6 +921,7 @@
     "depthMin": 1.0,
     "depthMax": 1.2,
     "waterTemperature": 28.0,
+    "waterQuality": "GOOD",
     "lanes": 0,
     "level": "GROUND_FLOOR",
     "description": "Auslauf der Rutsche Blauer Blitz"
@@ -1009,7 +1013,7 @@
   },
   {
    "type": "Feature",
-   "id": "woge-sole",
+   "id": "aussen-sole",
    "geometry": {
     "type": "Polygon",
     "coordinates": [
@@ -1047,6 +1051,7 @@
     "depthMin": 1.2,
     "depthMax": 1.35,
     "waterTemperature": 34.0,
+    "waterQuality": "GOOD",
     "lanes": 0,
     "level": "OUTDOOR",
     "description": "Ganzjährig 34 °C mit Massagedüsen"
@@ -1054,7 +1059,7 @@
   },
   {
    "type": "Feature",
-   "id": "woge-sole-surround",
+   "id": "aussen-sole-surround",
    "geometry": {
     "type": "Polygon",
     "coordinates": [
@@ -1117,7 +1122,7 @@
   },
   {
    "type": "Feature",
-   "id": "woge-sole-shower-1",
+   "id": "aussen-sole-shower-1",
    "geometry": {
     "type": "Point",
     "coordinates": [

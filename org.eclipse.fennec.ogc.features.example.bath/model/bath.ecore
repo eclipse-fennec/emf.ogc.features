@@ -104,6 +104,11 @@
         <details key="documentation" value="Water temperature in °C."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="waterQuality" eType="#//WaterQuality">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Water quality class of the latest assessment, in the four classes of the EU bathing water directive (2006/7/EC)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lanes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Number of swimming lanes, 0 if none."/>
@@ -518,6 +523,15 @@
     <eLiterals name="DIVING" value="6"/>
     <eLiterals name="SOLE" value="7"/>
     <eLiterals name="LANDING" value="8"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="WaterQuality">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Water quality classes of the EU bathing water directive: excellent, good, sufficient, poor."/>
+    </eAnnotations>
+    <eLiterals name="EXCELLENT"/>
+    <eLiterals name="GOOD" value="1"/>
+    <eLiterals name="SUFFICIENT" value="2"/>
+    <eLiterals name="POOR" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SaunaType">
     <eLiterals name="FINNISH"/>
