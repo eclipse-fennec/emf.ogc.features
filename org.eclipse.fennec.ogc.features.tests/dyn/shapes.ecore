@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="shapes" nsURI="https://eclipse.org/fennec/ogc/test/shapes/1.0" nsPrefix="shapes">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="documentation" value="Experiment for emf.ogc.features#14: the geometry as a containment reference to the GeoJSON model's Geometry class instead of a data type with instance class org.geojson.Geometry. Loaded dynamically, no generated code."/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Shape">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="geometry" eType="ecore:EClass https://geojson.org/model/2016#//Geometry"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

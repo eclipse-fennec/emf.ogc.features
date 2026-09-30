@@ -19,6 +19,8 @@
 	bnd.identity;id='org.eclipse.fennec.persistence.eclipselink',\
 	bnd.identity;id='org.eclipse.fennec.persistence.repository',\
 	bnd.identity;id='org.eclipse.fennec.persistence.repository.jpa',\
+	bnd.identity;id='org.eclipse.fennec.persistence.mongo',\
+	bnd.identity;id='org.eclipse.fennec.persistence.repository.mongo',\
 	bnd.identity;id='org.eclipse.persistence.asm',\
 	bnd.identity;id='org.eclipse.persistence.jpa.jpql',\
 	bnd.identity;id='org.eclipse.daanse.jdbc.datasource.h2',\
@@ -44,5 +46,7 @@
 	ogc.test.container.cli=${env;OGC_TEST_CONTAINER_CLI;docker},\
 	ogc.test.postgres.port=${env;OGC_TEST_POSTGRES_PORT;55432},\
 	bathDb=${.}/generated/h2/bath-${tstamp},\
+	shapesDb=${.}/generated/h2/shapes-${tstamp},\
+	ogc.test.mongo.port=${env;OGC_TEST_MONGO_PORT;55437},\
 	org.osgi.service.http.port=18894,\
 	org.apache.felix.http.host=127.0.0.1

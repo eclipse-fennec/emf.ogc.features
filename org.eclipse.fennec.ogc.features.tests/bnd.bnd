@@ -17,6 +17,7 @@ Private-Package: org.eclipse.fennec.ogc.features.tests
 -buildpath: \
 	org.osgi.framework;version=latest,\
 	org.eclipse.emf.ecore.xmi;version=latest,\
+	org.eclipse.fennec.persistence.repository;version=latest,\
 	org.osgi.service.cm;version=latest,\
 	org.osgi.util.tracker;version=latest,\
 	org.apache.felix.http.servlet-api;version=latest,\
