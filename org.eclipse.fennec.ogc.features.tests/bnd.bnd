@@ -1,7 +1,7 @@
 Bundle-Name: Fennec OGC Features OSGi Tests
 Bundle-Description: OSGi integration tests of Fennec OGC Features: the leisure pool demo \
  loaded into JPA on H2 through the geojson converter, feature sources compared against the \
- in-memory reference, the OGC API over HTTP, and a dynamic package served from XMI.
+ in-memory reference, and the OGC API over HTTP.
 
 Test-Cases: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.annotation.Testable;CONCRETE}
 
@@ -11,12 +11,8 @@ Test-Cases: ${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.
 
 Private-Package: org.eclipse.fennec.ogc.features.tests
 
-# a dynamic package and its instances for DynamicPackageTest
--includeresource.dyn: dyn=dyn
-
 -buildpath: \
 	org.osgi.framework;version=latest,\
-	org.eclipse.emf.ecore.xmi;version=latest,\
 	org.osgi.service.cm;version=latest,\
 	org.osgi.util.tracker;version=latest,\
 	org.apache.felix.http.servlet-api;version=latest,\

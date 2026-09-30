@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:spots="https://eclipse.org/fennec/ogc/test/spots/1.0">
-  <spots:Spot id="spot-pool" name="Am Becken"
-      geometry="{&quot;type&quot;:&quot;Point&quot;,&quot;coordinates&quot;:[11.6170,50.9052]}"
-      minX="11.6170" minY="50.9052" maxX="11.6170" maxY="50.9052"/>
-  <spots:Spot id="spot-lawn" name="Liegewiese"
-      geometry="{&quot;type&quot;:&quot;Polygon&quot;,&quot;coordinates&quot;:[[[11.6180,50.9060],[11.6190,50.9060],[11.6190,50.9065],[11.6180,50.9065],[11.6180,50.9060]]]}"
-      minX="11.6180" minY="50.9060" maxX="11.6190" maxY="50.9065"/>
-</xmi:XMI>

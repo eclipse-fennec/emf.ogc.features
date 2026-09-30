@@ -42,8 +42,7 @@ about either. For setting it up, see the [User Guide](ogc-features-user-guide.md
 | Bundle | Role |
 |--------|------|
 | `org.eclipse.fennec.ogc.features.api` | The SPI: `CollectionDescriptor`, `CollectionProvider`, `FeatureQuery`, `FeatureResult`, `FeatureSource`, `FilterLanguage` |
-| `org.eclipse.fennec.ogc.features.geo` | Geometry support, backend neutral: envelopes, conversion to JTS, the OGC spatial relations, GeoJSON text, the GeoJSON importer, the EMF conversion of geometry data types |
-| `org.eclipse.fennec.ogc.features.ecore.fragment` | Fragment of `org.eclipse.emf.ecore` importing `org.geojson`: a dynamic package resolves its geometry data type through the ecore bundle |
+| `org.eclipse.fennec.ogc.features.geo` | Geometry support, backend neutral: envelopes, conversion to JTS, the OGC spatial relations, GeoJSON text, the GeoJSON importer |
 | `net.opengis.cql2.model` | CQL2 as EMF model, mirroring the CQL2 JSON encoding |
 | `org.eclipse.fennec.codec.cql2` | EMF resources for the two CQL2 encodings, registered with emf.osgi |
 | `org.eclipse.fennec.ogc.features.cql2` | The filter languages `cql2-text` and `cql2-json`, binding a filter to a collection, the filters of the request parameters, the in-memory evaluator |
@@ -279,15 +278,6 @@ The interim design is:
   so the column becomes a CLOB/TEXT instead of `VARCHAR(255)`.
 - **The bounding box is persisted** in four numeric attributes. That is what the store can
   filter on; the envelope test becomes four comparisons.
-- **Dynamic packages** (no generated code) resolve the instance class of a data type through
-  the class loader of `EPackageImpl`, the ecore bundle. `EClassifierImpl.isInstance` rejects
-  every value of a data type without instance class, so without help such a geometry
-  attribute holds nothing. `org.eclipse.fennec.ogc.features.ecore.fragment` attaches
-  `org.geojson` to the ecore bundle, and `GeoJsonDataTypes` in `geo` sets a
-  `ConversionDelegate` (`GeoJsonConversion`) on every geometry data type of a registered
-  package, so `EFactoryImpl.createFromString` parses GeoJSON text from XMI and
-  `convertToString` writes it. The same conversion is registered under
-  `https://eclipse.org/fennec/ogc/features/geojson` for models that name it by annotation.
 
 When spatial columns arrive, the store part of a spatial filter can grow to the exact
 relation, and the residual disappears. Neither the server, the SPI nor the CQL2 layer
