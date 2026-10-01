@@ -96,25 +96,25 @@ public interface CityFeature extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Geometry</b></em>' attribute.
+	 * Returns the value of the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Geometry in CRS84.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Geometry</em>' attribute.
+	 * @return the value of the '<em>Geometry</em>' containment reference.
 	 * @see #setGeometry(Geometry)
 	 * @see org.eclipse.fennec.ogc.features.example.city.CityPackage#getCityFeature_Geometry()
-	 * @model dataType="org.eclipse.fennec.ogc.features.example.city.GeoJsonGeometry"
+	 * @model containment="true"
 	 * @generated
 	 */
 	Geometry getGeometry();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.fennec.ogc.features.example.city.CityFeature#getGeometry <em>Geometry</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.fennec.ogc.features.example.city.CityFeature#getGeometry <em>Geometry</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Geometry</em>' attribute.
+	 * @param value the new value of the '<em>Geometry</em>' containment reference.
 	 * @see #getGeometry()
 	 * @generated
 	 */

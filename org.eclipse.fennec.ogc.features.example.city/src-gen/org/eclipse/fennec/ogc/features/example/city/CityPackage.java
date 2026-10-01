@@ -15,8 +15,8 @@ package org.eclipse.fennec.ogc.features.example.city;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.fennec.emf.osgi.annotation.provide.EPackage;
 
@@ -42,7 +42,7 @@ import org.osgi.annotation.versioning.ProviderType;
  * @generated
  */
 @ProviderType
-@EPackage(uri = CityPackage.eNS_URI, fingerprint = "fp1:8f61078fda76f1f22ee1e4cd9fff83a4ac9914788f65e8ffd24b726fec7f88a9", genModel = "/model/city.genmodel", genModelSourceLocations = {"model/city.genmodel","org.eclipse.fennec.ogc.features.example.city/model/city.genmodel"}, ecore = "/model/city.ecore", ecoreSourceLocations = "/model/city.ecore")
+@EPackage(uri = CityPackage.eNS_URI, fingerprint = "fp1:0e5634ea532d510659803070fea5513a7f7981a28467951af542e10dbfc7ac96", genModel = "/model/city.genmodel", genModelSourceLocations = {"model/city.genmodel","org.eclipse.fennec.ogc.features.example.city/model/city.genmodel"}, ecore = "/model/city.ecore", ecoreSourceLocations = "/model/city.ecore")
 public interface CityPackage extends org.eclipse.emf.ecore.EPackage {
 	/**
 	 * The package name.
@@ -105,7 +105,7 @@ public interface CityPackage extends org.eclipse.emf.ecore.EPackage {
 	int CITY_FEATURE__NAME = 1;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -196,7 +196,7 @@ public interface CityPackage extends org.eclipse.emf.ecore.EPackage {
 	int STADTGEBIET__NAME = CITY_FEATURE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -395,7 +395,7 @@ public interface CityPackage extends org.eclipse.emf.ecore.EPackage {
 	int STADTTEIL__NAME = CITY_FEATURE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -531,7 +531,7 @@ public interface CityPackage extends org.eclipse.emf.ecore.EPackage {
 	int FLAECHE__NAME = CITY_FEATURE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -667,7 +667,7 @@ public interface CityPackage extends org.eclipse.emf.ecore.EPackage {
 	int STRASSE__NAME = CITY_FEATURE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -803,7 +803,7 @@ public interface CityPackage extends org.eclipse.emf.ecore.EPackage {
 	int GEBAEUDE__NAME = CITY_FEATURE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -966,7 +966,7 @@ public interface CityPackage extends org.eclipse.emf.ecore.EPackage {
 	int ORT__NAME = CITY_FEATURE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1066,16 +1066,6 @@ public interface CityPackage extends org.eclipse.emf.ecore.EPackage {
 	 */
 	int STRASSENKLASSE = 8;
 
-	/**
-	 * The meta object id for the '<em>Geo Json Geometry</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.geojson.Geometry
-	 * @see org.eclipse.fennec.ogc.features.example.city.impl.CityPackageImpl#getGeoJsonGeometry()
-	 * @generated
-	 */
-	int GEO_JSON_GEOMETRY = 9;
-
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.fennec.ogc.features.example.city.CityFeature <em>Feature</em>}'.
@@ -1110,15 +1100,15 @@ public interface CityPackage extends org.eclipse.emf.ecore.EPackage {
 	EAttribute getCityFeature_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.fennec.ogc.features.example.city.CityFeature#getGeometry <em>Geometry</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.fennec.ogc.features.example.city.CityFeature#getGeometry <em>Geometry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Geometry</em>'.
+	 * @return the meta object for the containment reference '<em>Geometry</em>'.
 	 * @see org.eclipse.fennec.ogc.features.example.city.CityFeature#getGeometry()
 	 * @see #getCityFeature()
 	 * @generated
 	 */
-	EAttribute getCityFeature_Geometry();
+	EReference getCityFeature_Geometry();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.fennec.ogc.features.example.city.CityFeature#getMinX <em>Min X</em>}'.
@@ -1652,20 +1642,6 @@ public interface CityPackage extends org.eclipse.emf.ecore.EPackage {
 	EEnum getStrassenklasse();
 
 	/**
-	 * Returns the meta object for data type '{@link org.geojson.Geometry <em>Geo Json Geometry</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * A GeoJSON geometry, persisted as GeoJSON text by the geojson TypeConverter of org.eclipse.fennec.ogc.features.source.persistence.
-     * <!-- end-model-doc -->
-	 * @return the meta object for data type '<em>Geo Json Geometry</em>'.
-	 * @see org.geojson.Geometry
-	 * @model instanceClass="org.geojson.Geometry"
-	 * @generated
-	 */
-	EDataType getGeoJsonGeometry();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1715,12 +1691,12 @@ public interface CityPackage extends org.eclipse.emf.ecore.EPackage {
 		EAttribute CITY_FEATURE__NAME = eINSTANCE.getCityFeature_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Geometry</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Geometry</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CITY_FEATURE__GEOMETRY = eINSTANCE.getCityFeature_Geometry();
+		EReference CITY_FEATURE__GEOMETRY = eINSTANCE.getCityFeature_Geometry();
 
 		/**
 		 * The meta object literal for the '<em><b>Min X</b></em>' attribute feature.
@@ -2129,16 +2105,6 @@ public interface CityPackage extends org.eclipse.emf.ecore.EPackage {
 		 * @generated
 		 */
 		EEnum STRASSENKLASSE = eINSTANCE.getStrassenklasse();
-
-		/**
-		 * The meta object literal for the '<em>Geo Json Geometry</em>' data type.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.geojson.Geometry
-		 * @see org.eclipse.fennec.ogc.features.example.city.impl.CityPackageImpl#getGeoJsonGeometry()
-		 * @generated
-		 */
-		EDataType GEO_JSON_GEOMETRY = eINSTANCE.getGeoJsonGeometry();
 
 	}
 

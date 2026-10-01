@@ -23,8 +23,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.eclipse.fennec.ogc.features.example.bath.*;
 
-import org.geojson.Geometry;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
@@ -114,8 +112,6 @@ public class BathFactoryImpl extends EFactoryImpl implements BathFactory {
 				return createSportTypeFromString(eDataType, initialValue);
 			case BathPackage.SURFACE:
 				return createSurfaceFromString(eDataType, initialValue);
-			case BathPackage.GEO_JSON_GEOMETRY:
-				return createGeoJsonGeometryFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -141,8 +137,6 @@ public class BathFactoryImpl extends EFactoryImpl implements BathFactory {
 				return convertSportTypeToString(eDataType, instanceValue);
 			case BathPackage.SURFACE:
 				return convertSurfaceToString(eDataType, instanceValue);
-			case BathPackage.GEO_JSON_GEOMETRY:
-				return convertGeoJsonGeometryToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -486,24 +480,6 @@ public class BathFactoryImpl extends EFactoryImpl implements BathFactory {
 	 */
 	public String convertSurfaceToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Geometry createGeoJsonGeometryFromString(EDataType eDataType, String initialValue) {
-		return (Geometry)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertGeoJsonGeometryToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

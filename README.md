@@ -37,8 +37,10 @@ Fennec persistence has no PostGIS support yet
 ([emf.persistence-jpa#262](https://github.com/eclipse-fennec/emf.persistence-jpa/issues/262)).
 Until it does, the workaround is:
 
-- A geometry is stored as a GeoJSON string, through a `TypeConverter` that uses the
-  Fennec GeoJSON codec.
+- A geometry is a containment reference to the GeoJSON EMF `Geometry`. JPA stores the child
+  as one CLOB column of its parent ([emf.persistence-jpa#363](https://github.com/eclipse-fennec/emf.persistence-jpa/issues/363));
+  a geometry held in an attribute is stored as a GeoJSON string, through a `TypeConverter`
+  that uses the Fennec GeoJSON codec.
 - Each feature also carries a persisted bounding box (`minX/minY/maxX/maxY`).
 - The persistence backend sends the envelope test of `bbox=` and `S_*` to the store as plain
   numeric comparisons.

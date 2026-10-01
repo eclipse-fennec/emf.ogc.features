@@ -23,6 +23,7 @@ import java.util.Objects;
 
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.fennec.ogc.features.api.Envelope;
 
 import net.opengis.cql2.And;
@@ -68,21 +69,21 @@ public final class Cql2Filters {
 	}
 
 	/**
-	 * @param attribute the attribute
+	 * @param attribute the attribute, or the geometry feature
 	 * @return a reference to it
 	 */
-	public static PropertyRef property(EAttribute attribute) {
+	public static PropertyRef property(EStructuralFeature attribute) {
 		PropertyRef ref = F.createPropertyRef();
 		ref.setProperty(attribute.getName());
 		return ref;
 	}
 
 	/**
-	 * @param geometry the geometry attribute
+	 * @param geometry the geometry feature of the collection
 	 * @param envelope the box, in CRS84
 	 * @return {@code S_INTERSECTS(geometry, BBOX(…))}
 	 */
-	public static Predicate intersects(EAttribute geometry, Envelope envelope) {
+	public static Predicate intersects(EStructuralFeature geometry, Envelope envelope) {
 		BboxLiteral bbox = F.createBboxLiteral();
 		bbox.getBbox().addAll(List.of(envelope.minX(), envelope.minY(), envelope.maxX(), envelope.maxY()));
 		return operation(F.createSIntersects(), property(geometry), bbox);

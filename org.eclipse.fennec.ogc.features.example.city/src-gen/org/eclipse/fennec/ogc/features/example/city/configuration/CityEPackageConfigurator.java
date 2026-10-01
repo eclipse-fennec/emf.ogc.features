@@ -40,7 +40,7 @@ public class CityEPackageConfigurator implements EPackageConfigurator {
 	 * service property.
 	 * @generated
 	 */
-	public static final String FINGERPRINT = "fp1:8f61078fda76f1f22ee1e4cd9fff83a4ac9914788f65e8ffd24b726fec7f88a9";
+	public static final String FINGERPRINT = "fp1:0e5634ea532d510659803070fea5513a7f7981a28467951af542e10dbfc7ac96";
 
 	private CityPackage ePackage;
 

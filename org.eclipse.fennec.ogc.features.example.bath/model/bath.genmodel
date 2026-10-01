@@ -121,9 +121,6 @@
         <ecoreEnumLiteral href="bath.ecore#//Surface/TILES"/>
       </genEnumLiterals>
     </genEnums>
-    <genDataTypes>
-      <ecoreDataType href="bath.ecore#//GeoJsonGeometry"/>
-    </genDataTypes>
     <genClasses image="false">
       <ecoreClass href="bath.ecore#//Asset"/>
       <genFeatures createChild="false">
@@ -135,8 +132,8 @@
       <genFeatures createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Asset/description"/>
       </genFeatures>
-      <genFeatures createChild="false">
-        <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Asset/geometry"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="bath.ecore#//Asset/geometry"/>
       </genFeatures>
       <genFeatures createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="bath.ecore#//Asset/minX"/>
@@ -344,4 +341,5 @@
       </genFeatures>
     </genClasses>
   </genPackages>
+  <usedGenPackages href="platform:/plugin/org.geojson.model/model/geojson.genmodel#//geojson"/>
 </genmodel:GenModel>

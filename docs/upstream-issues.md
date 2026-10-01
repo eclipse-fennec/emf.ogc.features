@@ -4,7 +4,7 @@ Gaps and bugs in the libraries this project builds on, found while building OGC 
 We report them to the projects they belong to and work around them here. Each entry names
 the workaround, so it can be removed once the upstream fix lands.
 
-Status: 1–8 posted on 2026-09-24 (links in the headings), 9 not yet.
+Status: 1–8 posted on 2026-09-24 (links in the headings), 9 not yet, 12 posted on 2026-10-01.
 
 ---
 
@@ -174,3 +174,20 @@ EclipseLink without a pool closes it around every operation.
 
 **Workaround here:** the H2 identifier of the demo carries `DB_CLOSE_DELAY=-1`, and the demo
 also runs on PostgreSQL (`bath-postgres.bndrun`). Both use `ddl-generation=create-tables`.
+
+## 12. emf.persistence-jpa — [#363](https://github.com/eclipse-fennec/emf.persistence-jpa/issues/363): a GeoJSON geometry as containment child is not stored
+
+The examples model the geometry as a containment reference to `org.geojson.model`'s
+`Geometry` (the fix for [emf.ogc.features#14](https://github.com/eclipse-fennec/emf.ogc.features/issues/14),
+instead of an EDataType with instance class `org.geojson.Geometry`). Neither backend stores
+the child: JPA skips a reference into another package (`Skipping reference 'geometry': target
+EClass 'Geometry' is not part of this persistence unit`), and the BSON codec and the EORM
+mapping skip the `volatile derived` `data` attribute that holds the coordinates, which only
+the GeoJSON codec forces. XMI carries it.
+
+**Fixed** (PR #364, snapshot of 2026-10-01): a containment child from outside the unit is one
+CLOB column of its parent, the subtree as XMI through the `containedObject` converter, and both
+backends store the persisted form EMF declares (`transient` excludes, `derived`/`volatile` do
+not). The OSGi tests on H2 pass with the reference. The column is atomic, so a query path into
+the geometry fails; the store part of a spatial filter stays on the bounding box attributes.
+`GeoJsonTypeConverter` stays for models that keep the geometry in an attribute.

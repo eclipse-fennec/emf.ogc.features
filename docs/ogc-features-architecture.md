@@ -271,11 +271,18 @@ Fennec persistence has no spatial column type yet
 ([emf.persistence-jpa#262](https://github.com/eclipse-fennec/emf.persistence-jpa/issues/262)).
 The interim design is:
 
-- **The geometry is a normal attribute** whose data type has the instance class
-  `org.geojson.Geometry`. In memory, and to the server, it is a GeoJSON EMF object.
-- **`GeoJsonTypeConverter`**, a Fennec persistence `TypeConverter` named `geojson`, stores it
-  as GeoJSON text through the GeoJSON codec, and reads it back. It declares the value large,
-  so the column becomes a CLOB/TEXT instead of `VARCHAR(255)`.
+- **The geometry is a containment reference** to the `Geometry` class of `org.geojson.model`
+  (an attribute whose data type has the instance class `org.geojson.Geometry` is accepted as
+  well). In memory, and to the server, it is a GeoJSON EMF object; `CollectionDescriptor`
+  carries it as `EStructuralFeature`.
+- **JPA stores the child as one column of its parent**: a CLOB holding the subtree as XMI,
+  written by the `containedObject` converter of Fennec persistence
+  ([emf.persistence-jpa#363](https://github.com/eclipse-fennec/emf.persistence-jpa/issues/363)).
+  The column is atomic: a query path into the geometry has nothing to address, which is why
+  the spatial filter is pushed down on the bounding box, not on the geometry.
+- **`GeoJsonTypeConverter`**, a Fennec persistence `TypeConverter` named `geojson`, stores a
+  geometry *attribute* as GeoJSON text through the GeoJSON codec, and reads it back. It
+  declares the value large, so the column becomes a CLOB/TEXT instead of `VARCHAR(255)`.
 - **The bounding box is persisted** in four numeric attributes. That is what the store can
   filter on; the envelope test becomes four comparisons.
 

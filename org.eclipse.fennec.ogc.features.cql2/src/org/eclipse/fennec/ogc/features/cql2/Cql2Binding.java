@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.fennec.ogc.features.api.CollectionDescriptor;
@@ -68,10 +69,10 @@ public final class Cql2Binding {
 	/**
 	 * @param ref the property reference of a spatial function
 	 * @param collection the collection
-	 * @return the geometry attribute of the collection
+	 * @return the geometry feature of the collection, an attribute or a containment reference
 	 */
-	public static EAttribute geometry(PropertyRef ref, CollectionDescriptor collection) {
-		EAttribute geometry = collection.geometry();
+	public static EStructuralFeature geometry(PropertyRef ref, CollectionDescriptor collection) {
+		EStructuralFeature geometry = collection.geometry();
 		if (geometry == null || !geometry.getName().equals(ref.getProperty())) {
 			throw new IllegalArgumentException(
 					"'" + ref.getProperty() + "' is not the geometry of collection " + collection.id());

@@ -14,9 +14,9 @@ package org.eclipse.fennec.ogc.features.example.bath.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -50,7 +50,7 @@ import org.eclipse.fennec.ogc.features.example.bath.Surface;
 import org.eclipse.fennec.ogc.features.example.bath.Toilet;
 import org.eclipse.fennec.ogc.features.example.bath.Tree;
 
-import org.geojson.Geometry;
+import org.geojson.GeoJsonPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -249,13 +249,6 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 	private EEnum surfaceEEnum = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType geoJsonGeometryEDataType = null;
-
-	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -300,6 +293,9 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 		BathPackageImpl theBathPackage = registeredBathPackage instanceof BathPackageImpl ? (BathPackageImpl)registeredBathPackage : new BathPackageImpl();
 
 		isInited = true;
+
+		// Initialize simple dependencies
+		GeoJsonPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theBathPackage.createPackageContents();
@@ -361,8 +357,8 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getAsset_Geometry() {
-		return (EAttribute)assetEClass.getEStructuralFeatures().get(3);
+	public EReference getAsset_Geometry() {
+		return (EReference)assetEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1111,16 +1107,6 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 	 * @generated
 	 */
 	@Override
-	public EDataType getGeoJsonGeometry() {
-		return geoJsonGeometryEDataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public BathFactory getBathFactory() {
 		return (BathFactory)getEFactoryInstance();
 	}
@@ -1148,7 +1134,7 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 		createEAttribute(assetEClass, ASSET__ID);
 		createEAttribute(assetEClass, ASSET__NAME);
 		createEAttribute(assetEClass, ASSET__DESCRIPTION);
-		createEAttribute(assetEClass, ASSET__GEOMETRY);
+		createEReference(assetEClass, ASSET__GEOMETRY);
 		createEAttribute(assetEClass, ASSET__MIN_X);
 		createEAttribute(assetEClass, ASSET__MIN_Y);
 		createEAttribute(assetEClass, ASSET__MAX_X);
@@ -1245,9 +1231,6 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 		saunaTypeEEnum = createEEnum(SAUNA_TYPE);
 		sportTypeEEnum = createEEnum(SPORT_TYPE);
 		surfaceEEnum = createEEnum(SURFACE);
-
-		// Create data types
-		geoJsonGeometryEDataType = createEDataType(GEO_JSON_GEOMETRY);
 	}
 
 	/**
@@ -1272,6 +1255,9 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 		setName(eNAME);
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
+
+		// Obtain other dependent packages
+		GeoJsonPackage theGeoJsonPackage = (GeoJsonPackage)EPackage.Registry.INSTANCE.getEPackage(GeoJsonPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1304,7 +1290,7 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 		initEAttribute(getAsset_Id(), ecorePackage.getEString(), "id", null, 1, 1, Asset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAsset_Name(), ecorePackage.getEString(), "name", null, 0, 1, Asset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAsset_Description(), ecorePackage.getEString(), "description", null, 0, 1, Asset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAsset_Geometry(), this.getGeoJsonGeometry(), "geometry", null, 0, 1, Asset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAsset_Geometry(), theGeoJsonPackage.getGeometry(), null, "geometry", null, 0, 1, Asset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAsset_MinX(), ecorePackage.getEDouble(), "minX", null, 0, 1, Asset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAsset_MinY(), ecorePackage.getEDouble(), "minY", null, 0, 1, Asset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAsset_MaxX(), ecorePackage.getEDouble(), "maxX", null, 0, 1, Asset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1437,9 +1423,6 @@ public class BathPackageImpl extends EPackageImpl implements BathPackage {
 		addEEnumLiteral(surfaceEEnum, Surface.RUBBER);
 		addEEnumLiteral(surfaceEEnum, Surface.GRASS);
 		addEEnumLiteral(surfaceEEnum, Surface.TILES);
-
-		// Initialize data types
-		initEDataType(geoJsonGeometryEDataType, Geometry.class, "GeoJsonGeometry", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

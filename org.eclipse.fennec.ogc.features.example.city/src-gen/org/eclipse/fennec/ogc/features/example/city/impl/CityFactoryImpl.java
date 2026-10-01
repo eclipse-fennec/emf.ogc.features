@@ -23,8 +23,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.eclipse.fennec.ogc.features.example.city.*;
 
-import org.geojson.Geometry;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
@@ -92,8 +90,6 @@ public class CityFactoryImpl extends EFactoryImpl implements CityFactory {
 				return createNutzungFromString(eDataType, initialValue);
 			case CityPackage.STRASSENKLASSE:
 				return createStrassenklasseFromString(eDataType, initialValue);
-			case CityPackage.GEO_JSON_GEOMETRY:
-				return createGeoJsonGeometryFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -111,8 +107,6 @@ public class CityFactoryImpl extends EFactoryImpl implements CityFactory {
 				return convertNutzungToString(eDataType, instanceValue);
 			case CityPackage.STRASSENKLASSE:
 				return convertStrassenklasseToString(eDataType, instanceValue);
-			case CityPackage.GEO_JSON_GEOMETRY:
-				return convertGeoJsonGeometryToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -222,24 +216,6 @@ public class CityFactoryImpl extends EFactoryImpl implements CityFactory {
 	 */
 	public String convertStrassenklasseToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Geometry createGeoJsonGeometryFromString(EDataType eDataType, String initialValue) {
-		return (Geometry)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertGeoJsonGeometryToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

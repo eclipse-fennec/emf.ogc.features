@@ -13,8 +13,10 @@
 package org.eclipse.fennec.ogc.features.example.city.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -85,24 +87,14 @@ public abstract class CityFeatureImpl extends MinimalEObjectImpl.Container imple
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getGeometry() <em>Geometry</em>}' attribute.
+	 * The cached value of the '{@link #getGeometry() <em>Geometry</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getGeometry()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Geometry GEOMETRY_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getGeometry() <em>Geometry</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGeometry()
-	 * @generated
-	 * @ordered
-	 */
-	protected Geometry geometry = GEOMETRY_EDEFAULT;
+	protected Geometry geometry;
 
 	/**
 	 * The default value of the '{@link #getMinX() <em>Min X</em>}' attribute.
@@ -264,12 +256,34 @@ public abstract class CityFeatureImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setGeometry(Geometry newGeometry) {
+	public NotificationChain basicSetGeometry(Geometry newGeometry, NotificationChain msgs) {
 		Geometry oldGeometry = geometry;
 		geometry = newGeometry;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CityPackage.CITY_FEATURE__GEOMETRY, oldGeometry, geometry));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CityPackage.CITY_FEATURE__GEOMETRY, oldGeometry, newGeometry);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setGeometry(Geometry newGeometry) {
+		if (newGeometry != geometry) {
+			NotificationChain msgs = null;
+			if (geometry != null)
+				msgs = ((InternalEObject)geometry).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CityPackage.CITY_FEATURE__GEOMETRY, null, msgs);
+			if (newGeometry != null)
+				msgs = ((InternalEObject)newGeometry).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CityPackage.CITY_FEATURE__GEOMETRY, null, msgs);
+			msgs = basicSetGeometry(newGeometry, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CityPackage.CITY_FEATURE__GEOMETRY, newGeometry, newGeometry));
 	}
 
 	/**
@@ -370,6 +384,20 @@ public abstract class CityFeatureImpl extends MinimalEObjectImpl.Container imple
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case CityPackage.CITY_FEATURE__GEOMETRY:
+				return basicSetGeometry(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case CityPackage.CITY_FEATURE__ID:
@@ -438,7 +466,7 @@ public abstract class CityFeatureImpl extends MinimalEObjectImpl.Container imple
 				setName(NAME_EDEFAULT);
 				return;
 			case CityPackage.CITY_FEATURE__GEOMETRY:
-				setGeometry(GEOMETRY_EDEFAULT);
+				setGeometry((Geometry)null);
 				return;
 			case CityPackage.CITY_FEATURE__MIN_X:
 				setMinX(MIN_X_EDEFAULT);
@@ -469,7 +497,7 @@ public abstract class CityFeatureImpl extends MinimalEObjectImpl.Container imple
 			case CityPackage.CITY_FEATURE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case CityPackage.CITY_FEATURE__GEOMETRY:
-				return GEOMETRY_EDEFAULT == null ? geometry != null : !GEOMETRY_EDEFAULT.equals(geometry);
+				return geometry != null;
 			case CityPackage.CITY_FEATURE__MIN_X:
 				return minX != MIN_X_EDEFAULT;
 			case CityPackage.CITY_FEATURE__MIN_Y:
@@ -496,8 +524,6 @@ public abstract class CityFeatureImpl extends MinimalEObjectImpl.Container imple
 		result.append(id);
 		result.append(", name: ");
 		result.append(name);
-		result.append(", geometry: ");
-		result.append(geometry);
 		result.append(", minX: ");
 		result.append(minX);
 		result.append(", minY: ");

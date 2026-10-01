@@ -29,7 +29,8 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="geometry" eType="#//GeoJsonGeometry">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="geometry" eType="ecore:EClass platform:/plugin/org.geojson.model/model/geojson.ecore#//Geometry"
+        containment="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Geometry in CRS84."/>
       </eAnnotations>
@@ -231,11 +232,6 @@
         <details key="property" value="marker-color"/>
       </eAnnotations>
     </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="GeoJsonGeometry" instanceClassName="org.geojson.Geometry">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="A GeoJSON geometry, persisted as GeoJSON text by the geojson TypeConverter of org.eclipse.fennec.ogc.features.source.persistence."/>
-    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Nutzung">
     <eLiterals name="WIESE" literal="Wiese"/>

@@ -36,14 +36,16 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @param type the EClass whose instances are the collection's features; may be abstract,
  *        then the collection contains the instances of all its concrete subclasses
  * @param idAttribute the attribute used as feature id
- * @param geometry the geometry attribute, may be {@code null} for a collection without geometry
+ * @param geometry the geometry feature: an attribute whose data type holds a GeoJSON geometry,
+ *        or a containment reference to a GeoJSON {@code Geometry}; may be {@code null} for a
+ *        collection without geometry
  * @param bbox the persisted bounding box, may be {@code null}
  * @param temporal the date/time attribute {@code datetime} filters on, may be {@code null}
  * @param layerGroup the viewer layer group, may be {@code null}
  * @param style the viewer style, may be {@code null}
  */
 public record CollectionDescriptor(String id, String title, String description, EClass type,
-		EAttribute idAttribute, EAttribute geometry, BboxAttributes bbox, EAttribute temporal,
+		EAttribute idAttribute, EStructuralFeature geometry, BboxAttributes bbox, EAttribute temporal,
 		String layerGroup, String style) {
 
 	public CollectionDescriptor {
@@ -187,7 +189,7 @@ public record CollectionDescriptor(String id, String title, String description, 
 			return this;
 		}
 
-		/** @param name the attribute holding the geometry */
+		/** @param name the attribute or containment reference holding the geometry */
 		public Builder geometry(String name) {
 			this.geometry = blankToNull(name);
 			return this;
@@ -229,8 +231,8 @@ public record CollectionDescriptor(String id, String title, String description, 
 
 		/**
 		 * @return the descriptor
-		 * @throws IllegalArgumentException if the class lacks a named attribute, or has
-		 *         neither an ID attribute nor an id attribute name
+		 * @throws IllegalArgumentException if the class lacks a named attribute or reference, or
+		 *         has neither an ID attribute nor an id attribute name
 		 */
 		public CollectionDescriptor build() {
 			EAttribute idAttr = idAttribute != null ? attribute(type, idAttribute) : type.getEIDAttribute();
@@ -242,7 +244,7 @@ public record CollectionDescriptor(String id, String title, String description, 
 					id != null ? id : type.getName(),
 					title != null ? title : type.getName(),
 					description, type, idAttr,
-					geometry != null ? attribute(type, geometry) : null,
+					geometry != null ? feature(type, geometry) : null,
 					bbox != null ? CollectionDescriptor.bbox(type, bbox) : null,
 					temporal != null ? attribute(type, temporal) : null,
 					layerGroup, style);
@@ -279,6 +281,16 @@ public record CollectionDescriptor(String id, String title, String description, 
 		}
 		throw new IllegalArgumentException("Collection class " + eClass.getName()
 				+ " has no attribute '" + name.trim() + "'");
+	}
+
+	/** the single-valued attribute or reference of the name: the geometry may be either */
+	private static EStructuralFeature feature(EClass eClass, String name) {
+		EStructuralFeature feature = eClass.getEStructuralFeature(name.trim());
+		if (feature != null && !feature.isMany()) {
+			return feature;
+		}
+		throw new IllegalArgumentException("Collection class " + eClass.getName()
+				+ " has no single-valued attribute or reference '" + name.trim() + "'");
 	}
 
 	private static BboxAttributes bbox(EClass eClass, String names) {

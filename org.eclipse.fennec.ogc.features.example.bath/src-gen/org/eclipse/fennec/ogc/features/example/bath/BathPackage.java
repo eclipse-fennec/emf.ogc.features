@@ -15,8 +15,8 @@ package org.eclipse.fennec.ogc.features.example.bath;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.fennec.emf.osgi.annotation.provide.EPackage;
 
@@ -42,7 +42,7 @@ import org.osgi.annotation.versioning.ProviderType;
  * @generated
  */
 @ProviderType
-@EPackage(uri = BathPackage.eNS_URI, fingerprint = "fp1:31b05e7cf7e76b2561f4c6f1a3dd7934255b3848871d5d9f5edfa134f9518fbf", genModel = "/model/bath.genmodel", genModelSourceLocations = {"model/bath.genmodel","org.eclipse.fennec.ogc.features.example.bath/model/bath.genmodel"}, ecore = "/model/bath.ecore", ecoreSourceLocations = "/model/bath.ecore")
+@EPackage(uri = BathPackage.eNS_URI, fingerprint = "fp1:3c0a777b7fb7c6398ad52cf507d4ac774fb1b8f6e978973dd314e9def88df105", genModel = "/model/bath.genmodel", genModelSourceLocations = {"model/bath.genmodel","org.eclipse.fennec.ogc.features.example.bath/model/bath.genmodel"}, ecore = "/model/bath.ecore", ecoreSourceLocations = "/model/bath.ecore")
 public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	/**
 	 * The package name.
@@ -114,7 +114,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int ASSET__DESCRIPTION = 2;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -250,7 +250,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int POOL__DESCRIPTION = ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -440,7 +440,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int SLIDE__DESCRIPTION = ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -603,7 +603,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int CHANGING_ROOM__DESCRIPTION = ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -766,7 +766,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int TOILET__DESCRIPTION = ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -911,7 +911,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int KIOSK__DESCRIPTION = ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1065,7 +1065,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int SAUNA__DESCRIPTION = ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1228,7 +1228,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int SPORT_AREA__DESCRIPTION = ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1373,7 +1373,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int LAWN__DESCRIPTION = ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1518,7 +1518,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int PLAYGROUND__DESCRIPTION = ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1672,7 +1672,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int FIRST_AID__DESCRIPTION = ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1817,7 +1817,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int ENTRANCE__DESCRIPTION = ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1962,7 +1962,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int PATH__DESCRIPTION = ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2107,7 +2107,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int BUILDING__DESCRIPTION = ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2252,7 +2252,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int SITE_BOUNDARY__DESCRIPTION = ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2388,7 +2388,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int PARKING_LOT__DESCRIPTION = ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2551,7 +2551,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int PAVING__DESCRIPTION = ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2705,7 +2705,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int SHOWER__DESCRIPTION = ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2859,7 +2859,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int TREE__DESCRIPTION = ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3022,7 +3022,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int SHRUB__DESCRIPTION = ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3176,7 +3176,7 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	int BIKE_PARKING__DESCRIPTION = ASSET__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Geometry</b></em>' attribute.
+	 * The feature id for the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3352,16 +3352,6 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	 */
 	int SURFACE = 26;
 
-	/**
-	 * The meta object id for the '<em>Geo Json Geometry</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.geojson.Geometry
-	 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getGeoJsonGeometry()
-	 * @generated
-	 */
-	int GEO_JSON_GEOMETRY = 27;
-
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.fennec.ogc.features.example.bath.Asset <em>Asset</em>}'.
@@ -3407,15 +3397,15 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	EAttribute getAsset_Description();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.fennec.ogc.features.example.bath.Asset#getGeometry <em>Geometry</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.fennec.ogc.features.example.bath.Asset#getGeometry <em>Geometry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Geometry</em>'.
+	 * @return the meta object for the containment reference '<em>Geometry</em>'.
 	 * @see org.eclipse.fennec.ogc.features.example.bath.Asset#getGeometry()
 	 * @see #getAsset()
 	 * @generated
 	 */
-	EAttribute getAsset_Geometry();
+	EReference getAsset_Geometry();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.fennec.ogc.features.example.bath.Asset#getMinX <em>Min X</em>}'.
@@ -4206,20 +4196,6 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 	EEnum getSurface();
 
 	/**
-	 * Returns the meta object for data type '{@link org.geojson.Geometry <em>Geo Json Geometry</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * A GeoJSON geometry, persisted as GeoJSON text by the geojson TypeConverter of org.eclipse.fennec.ogc.features.source.persistence.
-     * <!-- end-model-doc -->
-	 * @return the meta object for data type '<em>Geo Json Geometry</em>'.
-	 * @see org.geojson.Geometry
-	 * @model instanceClass="org.geojson.Geometry"
-	 * @generated
-	 */
-	EDataType getGeoJsonGeometry();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4277,12 +4253,12 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 		EAttribute ASSET__DESCRIPTION = eINSTANCE.getAsset_Description();
 
 		/**
-		 * The meta object literal for the '<em><b>Geometry</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Geometry</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ASSET__GEOMETRY = eINSTANCE.getAsset_Geometry();
+		EReference ASSET__GEOMETRY = eINSTANCE.getAsset_Geometry();
 
 		/**
 		 * The meta object literal for the '<em><b>Min X</b></em>' attribute feature.
@@ -4927,16 +4903,6 @@ public interface BathPackage extends org.eclipse.emf.ecore.EPackage {
 		 * @generated
 		 */
 		EEnum SURFACE = eINSTANCE.getSurface();
-
-		/**
-		 * The meta object literal for the '<em>Geo Json Geometry</em>' data type.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.geojson.Geometry
-		 * @see org.eclipse.fennec.ogc.features.example.bath.impl.BathPackageImpl#getGeoJsonGeometry()
-		 * @generated
-		 */
-		EDataType GEO_JSON_GEOMETRY = eINSTANCE.getGeoJsonGeometry();
 
 	}
 

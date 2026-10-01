@@ -58,9 +58,6 @@
         <ecoreEnumLiteral href="city.ecore#//Strassenklasse/WOHNSTRASSE"/>
       </genEnumLiterals>
     </genEnums>
-    <genDataTypes>
-      <ecoreDataType href="city.ecore#//GeoJsonGeometry"/>
-    </genDataTypes>
     <genClasses image="false">
       <ecoreClass href="city.ecore#//CityFeature"/>
       <genFeatures createChild="false">
@@ -69,8 +66,8 @@
       <genFeatures createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//CityFeature/name"/>
       </genFeatures>
-      <genFeatures createChild="false">
-        <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//CityFeature/geometry"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="city.ecore#//CityFeature/geometry"/>
       </genFeatures>
       <genFeatures createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="city.ecore#//CityFeature/minX"/>
@@ -215,4 +212,5 @@
       </genFeatures>
     </genClasses>
   </genPackages>
+  <usedGenPackages href="platform:/plugin/org.geojson.model/model/geojson.genmodel#//geojson"/>
 </genmodel:GenModel>

@@ -20,6 +20,7 @@ import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.fennec.ogc.features.api.CollectionDescriptor;
 import org.eclipse.fennec.ogc.features.geo.JtsGeometries;
@@ -298,7 +299,7 @@ public final class Cql2Evaluator {
 					? r.test(JtsGeometries.toJts(g), literal) : null;
 		}
 
-		private static Value read(EAttribute attribute) {
+		private static Value read(EStructuralFeature attribute) {
 			return feature -> attribute.getEContainingClass().isSuperTypeOf(feature.eClass())
 					? feature.eGet(attribute) : null;
 		}

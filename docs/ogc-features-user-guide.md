@@ -153,19 +153,27 @@ query parameters.
 
 ### 3.3 Geometry and Bounding Box
 
-The geometry is an attribute whose data type has the instance class `org.geojson.Geometry`,
-from the GeoJSON EMF model `org.geojson.model`:
+The geometry is a containment reference to the `Geometry` class of the GeoJSON EMF model
+`org.geojson.model`, as in the examples:
 
 ```xml
-<eClassifiers xsi:type="ecore:EDataType" name="GeoJsonGeometry"
-    instanceClassName="org.geojson.Geometry"/>
+<eStructuralFeatures xsi:type="ecore:EReference" name="geometry" containment="true"
+    eType="ecore:EClass platform:/plugin/org.geojson.model/model/geojson.ecore#//Geometry"/>
 ```
+
+The `platform:/plugin/…` form of the reference is what the codegen resolves in ecore mode
+(see [upstream-issues](upstream-issues.md), 9). An attribute whose data type has the instance
+class `org.geojson.Geometry` is accepted as well; that was the form of the examples before.
 
 Coordinates are CRS84: longitude, latitude and optionally elevation.
 
-Fennec persistence has no spatial column type yet. The geometry is therefore stored as
-GeoJSON text by the `geojson` type converter (see [4.3](#43-a-persistence-backend)), and
-every feature also carries its bounding box in four numeric attributes. The bounding box is
+Fennec persistence has no spatial column type yet. JPA stores the GeoJSON child of the
+reference as one CLOB column of its parent, the subtree as XMI, through its own
+`containedObject` converter
+([emf.persistence-jpa#363](https://github.com/eclipse-fennec/emf.persistence-jpa/issues/363));
+nothing has to be configured for it. A geometry held in an attribute is stored as GeoJSON
+text by the `geojson` type converter (see [4.3](#43-a-persistence-backend)). Every feature
+also carries its bounding box in four numeric attributes. The bounding box is
 what a spatial filter is pushed down to the store with; the exact relation is then checked
 in memory. Whoever writes the features keeps the four attributes consistent with the
 geometry. The demo loader computes them from the geometry.
@@ -362,8 +370,10 @@ Two settings matter for OGC Features:
 
 - **`fennec.jpa.converter.target=(fennec.persistence.converter=geojson)`** makes the unit wait
   for the `geojson` type converter of `org.eclipse.fennec.ogc.features.source.persistence`,
-  so the geometry attribute is always mapped with it. The converter stores a geometry as
-  GeoJSON text in a large-value column (CLOB/TEXT), so long polygons fit.
+  so a geometry held in an attribute is always mapped with it. The converter stores it as
+  GeoJSON text in a large-value column (CLOB/TEXT), so long polygons fit. The examples hold
+  the geometry in a containment reference ([3.3](#33-geometry-and-bounding-box)), which
+  Fennec persistence stores as one CLOB column by itself; the converter is not involved.
 - **Inheritance.** An abstract collection class is best mapped with one table for all
   subclasses. Annotate it with source `https://eclipse.org/fennec/persistence` and
   `inheritance=SINGLE_TABLE`.
@@ -685,10 +695,9 @@ configuration, and nothing else. For PostgreSQL a container `postgres:17` is sta
 
 - **CRS84 only.** No other coordinate reference systems, no antimeridian handling.
 - **Read only.** Creating, replacing and deleting features (Part 4) is not implemented.
-- **No spatial index.** Geometries are stored as GeoJSON text until Fennec persistence
-  supports spatial columns
-  ([emf.persistence-jpa#262](https://github.com/eclipse-fennec/emf.persistence-jpa/issues/262)).
-  A spatial filter therefore pages in memory.
+- **No spatial index.** Fennec persistence has no spatial columns yet
+  ([emf.persistence-jpa#262](https://github.com/eclipse-fennec/emf.persistence-jpa/issues/262)),
+  so the store filters on the bounding box attributes and a spatial filter pages in memory.
 - **Dynamic objects.** Objects read from JPA are dynamic EObjects, not instances of the
   generated classes
   ([emf.persistence-jpa#311](https://github.com/eclipse-fennec/emf.persistence-jpa/issues/311)).

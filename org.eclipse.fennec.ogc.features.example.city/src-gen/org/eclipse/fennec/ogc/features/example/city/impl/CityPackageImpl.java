@@ -14,9 +14,9 @@ package org.eclipse.fennec.ogc.features.example.city.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -32,7 +32,7 @@ import org.eclipse.fennec.ogc.features.example.city.Stadtteil;
 import org.eclipse.fennec.ogc.features.example.city.Strasse;
 import org.eclipse.fennec.ogc.features.example.city.Strassenklasse;
 
-import org.geojson.Geometry;
+import org.geojson.GeoJsonPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -105,13 +105,6 @@ public class CityPackageImpl extends EPackageImpl implements CityPackage {
 	private EEnum strassenklasseEEnum = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType geoJsonGeometryEDataType = null;
-
-	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -156,6 +149,9 @@ public class CityPackageImpl extends EPackageImpl implements CityPackage {
 		CityPackageImpl theCityPackage = registeredCityPackage instanceof CityPackageImpl ? (CityPackageImpl)registeredCityPackage : new CityPackageImpl();
 
 		isInited = true;
+
+		// Initialize simple dependencies
+		GeoJsonPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theCityPackage.createPackageContents();
@@ -207,8 +203,8 @@ public class CityPackageImpl extends EPackageImpl implements CityPackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getCityFeature_Geometry() {
-		return (EAttribute)cityFeatureEClass.getEStructuralFeatures().get(2);
+	public EReference getCityFeature_Geometry() {
+		return (EReference)cityFeatureEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -707,16 +703,6 @@ public class CityPackageImpl extends EPackageImpl implements CityPackage {
 	 * @generated
 	 */
 	@Override
-	public EDataType getGeoJsonGeometry() {
-		return geoJsonGeometryEDataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public CityFactory getCityFactory() {
 		return (CityFactory)getEFactoryInstance();
 	}
@@ -743,7 +729,7 @@ public class CityPackageImpl extends EPackageImpl implements CityPackage {
 		cityFeatureEClass = createEClass(CITY_FEATURE);
 		createEAttribute(cityFeatureEClass, CITY_FEATURE__ID);
 		createEAttribute(cityFeatureEClass, CITY_FEATURE__NAME);
-		createEAttribute(cityFeatureEClass, CITY_FEATURE__GEOMETRY);
+		createEReference(cityFeatureEClass, CITY_FEATURE__GEOMETRY);
 		createEAttribute(cityFeatureEClass, CITY_FEATURE__MIN_X);
 		createEAttribute(cityFeatureEClass, CITY_FEATURE__MIN_Y);
 		createEAttribute(cityFeatureEClass, CITY_FEATURE__MAX_X);
@@ -801,9 +787,6 @@ public class CityPackageImpl extends EPackageImpl implements CityPackage {
 		// Create enums
 		nutzungEEnum = createEEnum(NUTZUNG);
 		strassenklasseEEnum = createEEnum(STRASSENKLASSE);
-
-		// Create data types
-		geoJsonGeometryEDataType = createEDataType(GEO_JSON_GEOMETRY);
 	}
 
 	/**
@@ -829,6 +812,9 @@ public class CityPackageImpl extends EPackageImpl implements CityPackage {
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		GeoJsonPackage theGeoJsonPackage = (GeoJsonPackage)EPackage.Registry.INSTANCE.getEPackage(GeoJsonPackage.eNS_URI);
+
 		// Create type parameters
 
 		// Set bounds for type parameters
@@ -845,7 +831,7 @@ public class CityPackageImpl extends EPackageImpl implements CityPackage {
 		initEClass(cityFeatureEClass, CityFeature.class, "CityFeature", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCityFeature_Id(), ecorePackage.getEString(), "id", null, 1, 1, CityFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCityFeature_Name(), ecorePackage.getEString(), "name", null, 0, 1, CityFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCityFeature_Geometry(), this.getGeoJsonGeometry(), "geometry", null, 0, 1, CityFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCityFeature_Geometry(), theGeoJsonPackage.getGeometry(), null, "geometry", null, 0, 1, CityFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCityFeature_MinX(), ecorePackage.getEDouble(), "minX", null, 0, 1, CityFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCityFeature_MinY(), ecorePackage.getEDouble(), "minY", null, 0, 1, CityFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCityFeature_MaxX(), ecorePackage.getEDouble(), "maxX", null, 0, 1, CityFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -918,9 +904,6 @@ public class CityPackageImpl extends EPackageImpl implements CityPackage {
 		addEEnumLiteral(strassenklasseEEnum, Strassenklasse.HAUPTSTRASSE);
 		addEEnumLiteral(strassenklasseEEnum, Strassenklasse.NEBENSTRASSE);
 		addEEnumLiteral(strassenklasseEEnum, Strassenklasse.WOHNSTRASSE);
-
-		// Initialize data types
-		initEDataType(geoJsonGeometryEDataType, Geometry.class, "GeoJsonGeometry", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

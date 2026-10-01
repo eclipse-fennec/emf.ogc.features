@@ -128,25 +128,25 @@ public interface Asset extends EObject {
 	void setDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Geometry</b></em>' attribute.
+	 * Returns the value of the '<em><b>Geometry</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Location of the asset as GeoJSON geometry in CRS84 (longitude, latitude).
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Geometry</em>' attribute.
+	 * @return the value of the '<em>Geometry</em>' containment reference.
 	 * @see #setGeometry(Geometry)
 	 * @see org.eclipse.fennec.ogc.features.example.bath.BathPackage#getAsset_Geometry()
-	 * @model dataType="org.eclipse.fennec.ogc.features.example.bath.GeoJsonGeometry"
+	 * @model containment="true"
 	 * @generated
 	 */
 	Geometry getGeometry();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.fennec.ogc.features.example.bath.Asset#getGeometry <em>Geometry</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.fennec.ogc.features.example.bath.Asset#getGeometry <em>Geometry</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Geometry</em>' attribute.
+	 * @param value the new value of the '<em>Geometry</em>' containment reference.
 	 * @see #getGeometry()
 	 * @generated
 	 */
