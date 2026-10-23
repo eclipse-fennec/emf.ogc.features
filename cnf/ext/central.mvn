@@ -130,7 +130,7 @@ org.eclipse.fennec.emf:org.eclipse.fennec.emf.osgi.bnd.library.workspace:1.1.0-S
 org.eclipse.osgi-technology.rest:org.eclipse.osgitech.rest.bnd.library:1.2.3
 org.eclipse.fennec.codec:org.eclipse.fennec.codec.workspace.library:0.1.0-SNAPSHOT
 org.eclipse.fennec.persistence:org.eclipse.fennec.persistence.workspace.library:0.1.0-SNAPSHOT
-org.eclipse.fennec.models:org.eclipse.fennec.common.models.library:0.0.1-SNAPSHOT
+org.eclipse.fennec.models:org.eclipse.fennec.common.models.library:0.1.0-SNAPSHOT
 
 # JTS Topology Suite — exact spatial predicates (S_INTERSECTS & co.) evaluated in memory
 # after the bbox pre-filter was pushed to the store. The jar ships OSGi metadata.
