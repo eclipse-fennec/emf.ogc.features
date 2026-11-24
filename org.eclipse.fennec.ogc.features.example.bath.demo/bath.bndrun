@@ -2,6 +2,11 @@
 # the map viewer on http://localhost:8080/ogc/viewer/, data in H2 under generated/h2.
 #   ./gradlew :org.eclipse.fennec.ogc.features.example.bath.demo:run.bath
 
+# SBOM for `./gradlew sbom`: the exporter is included only once it has been fetched (see
+# cnf/sbom/plugin.bnd); resolve, the build and the tests ignore both lines.
+-include: ${if;${isfile;${workspace}/cnf/cache/sbom-exporter/org.gecko.bnd.sbom.jar};${workspace}/cnf/sbom/plugin.bnd}
+-sbom: level=medium, format=cyclonedx
+
 -runrequires: \
 	bnd.identity;id='org.eclipse.fennec.ogc.features.example.bath.demo',\
 	bnd.identity;id='org.eclipse.fennec.ogc.features.example.bath',\
